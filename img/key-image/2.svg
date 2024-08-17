@@ -56,6 +56,13 @@
 
     <g>
         <style>
+            .sharp-key {
+                fill: #4B4B4B;
+                font-size: 180px;
+                font-weight: 900;
+                font-family:  "Courier New", Consolas, monospace;
+            }
+
             .key {
                 fill: #4B4B4B;
                 font-size: 200px;
@@ -64,8 +71,8 @@
             }
         </style>
 
-                    <text class="key" x="350" y="160">♯</text>
-                            <text class="key" x="390" y="280">♯</text>
+                    <text class="sharp-key" x="350" y="140">♯</text>
+                            <text class="sharp-key" x="390" y="260">♯</text>
                                         
 
                                         

@@ -56,6 +56,13 @@
 
     <g>
         <style>
+            .sharp-key {
+                fill: #4B4B4B;
+                font-size: 180px;
+                font-weight: 900;
+                font-family:  "Courier New", Consolas, monospace;
+            }
+
             .key {
                 fill: #4B4B4B;
                 font-size: 200px;
