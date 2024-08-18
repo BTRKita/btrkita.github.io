@@ -176,8 +176,8 @@
             .note_name {
                 font: bold 18px sans-serif;
                 stroke-width: 10;
-                stroke: rgba(255, 255, 255, 0.55);
-                fill: rgba(45, 45, 45, 0.55);
+                stroke: rgba(255, 255, 255, 0.35);
+                fill: rgba(45, 45, 45, 0.35);
                 paint-order: stroke;
             }
 
