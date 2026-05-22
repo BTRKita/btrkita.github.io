@@ -41,17 +41,6 @@
 
             --site-body-bg: #0b0e18;
 
-            /* finger-board SVG */
-            --fb-bg:          #1c2338;
-            --fb-line:        #8899aa;
-            --fb-string-name: #e2e8f0;
-            --fb-fret-num:    #c9a0a0;
-            --fb-note-fill:   rgba(180, 180, 190, 0.40);
-            --fb-note-stroke: rgba(15, 23, 42, 0.60);
-            --fb-root-fill:   #f87171;
-            --fb-root-stroke: #0f172a;
-            --fb-scale-fill:  #60a5fa;
-            --fb-scale-stroke:#0f172a;
 
             --site-footer-bg: #0f172a; /* 深みのある紺・黒 */
             --site-footer-border: #1e293b;
@@ -320,6 +309,19 @@
             --svg-ci-major: #e8e6df;
             --svg-ci-minor: #c8c4b8;
             --svg-ci-dim:   #a8a499;
+
+
+            /* finger-board SVG */
+            --svg-fb-bg:          #1c2338;
+            --svg-fb-line:        #8899aa;
+            --svg-fb-string-name: #e2e8f0;
+            --svg-fb-fret-num:    #c9a0a0;
+            --svg-fb-note-fill:   rgba(180, 180, 190, 0.40);
+            --svg-fb-note-stroke: rgba(15, 23, 42, 0.60);
+            --svg-fb-root-fill:   #f87171;
+            --svg-fb-root-stroke: #0f172a;
+            --svg-fb-scale-fill:  #60a5fa;
+            --svg-fb-scale-stroke:#0f172a;
         }
 
         [data-theme="light"] {
@@ -332,16 +334,16 @@
             --svg-ci-dim:   #555555;
 
             /* finger-board */
-            --fb-bg:          #ffffff;
-            --fb-line:        rgb(0, 0, 0);
-            --fb-string-name: #000000;
-            --fb-fret-num:    #3f2727;
-            --fb-note-fill:   rgba(45, 45, 45, 0.35);
-            --fb-note-stroke: rgba(255, 255, 255, 0.35);
-            --fb-root-fill:   #d00b0b;
-            --fb-root-stroke: #ffffff;
-            --fb-scale-fill:  rgb(8, 15, 155);
-            --fb-scale-stroke:#ffffff;
+            --svg-fb-bg:          #ffffff;
+            --svg-fb-line:        rgb(0, 0, 0);
+            --svg-fb-string-name: #000000;
+            --svg-fb-fret-num:    #3f2727;
+            --svg-fb-note-fill:   rgba(45, 45, 45, 0.35);
+            --svg-fb-note-stroke: rgba(255, 255, 255, 0.35);
+            --svg-fb-root-fill:   #d00b0b;
+            --svg-fb-root-stroke: #ffffff;
+            --svg-fb-scale-fill:  rgb(8, 15, 155);
+            --svg-fb-scale-stroke:#ffffff;
         }
 
         img{
@@ -782,7 +784,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/major-pentatonic/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭メジャー・ペンタトニックスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -1088,7 +1090,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/minor-pentatonic/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭マイナー・ペンタトニックスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -1394,7 +1396,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/chromatic/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭クロマチック・スケールスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -1861,7 +1863,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/ionian/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭イオニアンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -2213,7 +2215,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/dorian/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭ドリアンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -2565,7 +2567,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/phrygian/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭フリジアンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -2917,7 +2919,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/lydian/11.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Bリディアンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -3269,7 +3271,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/mixolydian/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭ミクソリディアンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -3621,7 +3623,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/aeolian/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭エオリアンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -3973,7 +3975,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/locrian/5.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Fロクリアンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -4325,7 +4327,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/ionian-bebop/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭イオニアン・ビバップスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -4700,7 +4702,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/dorian-bebop/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭ドリアン・ビバップスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -5075,7 +5077,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/phrygian-bebop/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭フリジアン・ビバップスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -5450,7 +5452,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/lydian-bebop/11.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Bリディアン・ビバップスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -5825,7 +5827,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/mixolydian-bebop/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭ミクソリディアン・ビバップスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -6200,7 +6202,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/aeolian-bebop/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭エオリアン・ビバップスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -6575,7 +6577,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/locrian-bebop/5.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Fロクリアン・ビバップスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -6950,7 +6952,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/bebop-harmonic-minor/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭ビバップ・ハーモニック・マイナースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -7325,7 +7327,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/major-triad/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭メジャー・トライアドスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -7585,7 +7587,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/minor-triad/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭マイナー・トライアドスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -7845,7 +7847,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/minor-triad/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭マイナー・トライアドスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -8105,7 +8107,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/major-triad/11.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Bメジャー・トライアドスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -8365,7 +8367,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/major-triad/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭メジャー・トライアドスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -8625,7 +8627,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/minor-triad/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭マイナー・トライアドスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -9083,7 +9085,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/major/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭メジャースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -9435,7 +9437,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/harmonic-major/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭ハーモニック・メジャースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -9787,7 +9789,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/major-blues/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭メジャーブルーススケールの画像"
             decoding="sync"
             loading="lazy"
@@ -10116,7 +10118,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/hungarian-major/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭ハンガリアン・メジャースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -10468,7 +10470,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/double-harmonic-major/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭ダブル・ハーモニック・メジャースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -10820,7 +10822,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/lydian-sharp2-sharp6/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭リディアン♯2♯6スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -11172,7 +11174,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/ultra-phrygian/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭ウルトラ・フリジアンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -11524,7 +11526,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/hungarian-minor/11.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Bハンガリアン・マイナースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -11876,7 +11878,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/oriental/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭オリエンタルスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -12228,7 +12230,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/ionian-sharp2-sharp5/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭イオニアン♯2♯5スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -12580,7 +12582,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/locrian-double-flat3-double-flat7/5.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Fロクリアン♭♭3♭♭7スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -12932,7 +12934,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/bebop-dominant/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭ビバップ・ドミナントスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -13307,7 +13309,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/bebop-major/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭ビバップ・メジャースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -13682,7 +13684,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/melodic-major/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭メロディック・メジャースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -14034,7 +14036,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/dorian-flat-5/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭ドリアン・♭5スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -14386,7 +14388,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/lydian-augmented-sharp-2/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭リディアン・オーギュメント・♯2スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -14738,7 +14740,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/lydian-dominant-flat-3/11.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Bリディアン・ドミナント・♭3スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -15090,7 +15092,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/mixolydian-flat-2-flat-3/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭ミクソリディアン・♭2・♭3スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -15442,7 +15444,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/locrian-natural-2-natural-6/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭ロクリアン・♮2・♮6スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -15794,7 +15796,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/altered-double-flat-7/5.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Fオルタード・ダブル・フラット7スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -16146,7 +16148,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/half-whole-diminished/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭ハーフ・ホール・ディミニッシュスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -16521,7 +16523,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/whole-half-diminished/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭ホール・ハーフ・ディミニッシュスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -16896,7 +16898,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/whole-tone/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭ホール・トーンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -17225,7 +17227,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/whole-tone/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭ホール・トーンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -17554,7 +17556,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/diminished-triad/5.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Fディミニッシュ・トライアドスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -17814,7 +17816,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/diminished/5.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Fディミニッシュスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -18189,7 +18191,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/lydian-dominant/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭リディアン・ドミナントスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -18541,7 +18543,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/dorian-flat2/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭ドリアン ♭2スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -18893,7 +18895,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/altered/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭オルタードスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -19245,7 +19247,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/lydian-augmented/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭リディアン・オーグメンテッドスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -19597,7 +19599,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/aeolian-dominant/11.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Bエオリアン・ドミナントスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -19949,7 +19951,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/aeolian-dominant/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭エオリアン・ドミナントスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -20301,7 +20303,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/miyakobushi/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭都節スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -20607,7 +20609,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/insenpou/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭陰旋法（上行形）スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -20913,7 +20915,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/descending-insenpou/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭陰旋法（下行形）スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -21219,7 +21221,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/ryukyu/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭琉球スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -21525,7 +21527,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/ryukyu/11.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="B琉球スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -21831,7 +21833,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/ryukyu/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭琉球スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -22300,7 +22302,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/minor/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭ナチュラル・マイナースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -22652,7 +22654,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/bebop-dominant/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭ビバップ・ドミナントスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -23027,7 +23029,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/dorian-bebop-minor/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭ドリアンビバップ・マイナースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -23402,7 +23404,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/bebop-minor/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭ビバップ・マイナースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -23777,7 +23779,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/bebop-melodic-minor/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭ビバップ・メロディック・マイナースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -24152,7 +24154,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/half-whole-diminished/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭ハーフ・ホール・ディミニッシュスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -24527,7 +24529,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/whole-half-diminished/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭ホール・ハーフ・ディミニッシュスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -24902,7 +24904,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/whole-tone/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭ホール・トーンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -25231,7 +25233,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/whole-tone/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭ホール・トーンスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -25560,7 +25562,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/diminished-triad/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭ディミニッシュ・トライアドスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -25820,7 +25822,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/diminished/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭ディミニッシュスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -26195,7 +26197,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/hungarian-minor/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭ハンガリアン・マイナースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -26547,7 +26549,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/miyakobushi/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭都節スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -26853,7 +26855,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/insenpou/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭陰旋法（上行形）スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -27159,7 +27161,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/descending-insenpou/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭陰旋法（下行形）スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -27465,7 +27467,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/ryukyu/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭琉球スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -27771,7 +27773,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/miner-blues/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭マイナー・ブルーススケールの画像"
             decoding="sync"
             loading="lazy"
@@ -28100,7 +28102,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/melodic-minor/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭メロディック・マイナースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -28452,7 +28454,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/dorian-flat2/5.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Fドリアン ♭2スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -28804,7 +28806,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/lydian-augmented/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭リディアン・オーグメンテッドスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -29156,7 +29158,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/lydian-dominant/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭リディアン・ドミナントスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -29508,7 +29510,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/aeolian-dominant/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭エオリアン・ドミナントスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -29860,7 +29862,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/locrian-sharp2/11.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Bロクリアン #2スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -30212,7 +30214,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/altered/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭オルタードスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -30564,7 +30566,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/harmonic-minor/3.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="D♯ E♭ハーモニック・マイナースケールの画像"
             decoding="sync"
             loading="lazy"
@@ -30916,7 +30918,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/locrian-natural6/5.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Fロクリアン・ナチュラル6スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -31268,7 +31270,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/ionian-sharp5/6.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="F♯ G♭イオニアン・シャープ5スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -31620,7 +31622,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/dorian-sharp4/8.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="G♯ A♭ドリアン・シャープ4スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -31972,7 +31974,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/harmonic-minor-perfect-5th-below/10.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="A♯ B♭ハーモニック・マイナー・パーフェクトフィフス・ビロウスケールの画像"
             decoding="sync"
             loading="lazy"
@@ -32324,7 +32326,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/lydian-sharp2/11.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="Bリディアン・シャープ2スケールの画像"
             decoding="sync"
             loading="lazy"
@@ -32676,7 +32678,7 @@
     <div class="card-body">
         <img
             src="https://btrkita.github.io/img/finger-board/altered-bb7/1.svg"
-            class="img-fluid img-finger-board select-image"
+            class="img-fluid img-finger-board select-image svg-inject"
             alt="C♯ D♭オルタード・ダブルフラット7スケールの画像"
             decoding="sync"
             loading="lazy"

@@ -6,21 +6,21 @@
         <style>
             /* デフォルト（ライトモード相当）のフォールバック変数 */
             :root {
-                --fb-bg:          #ffffff;
-                --fb-line:        rgb(0, 0, 0);
-                --fb-string-name: #000000;
-                --fb-fret-num:    #3f2727;
-                --fb-note-fill:   rgba(45, 45, 45, 0.35);
-                --fb-note-stroke: rgba(255, 255, 255, 0.35);
-                --fb-root-fill:   #d00b0b;
-                --fb-root-stroke: #ffffff;
-                --fb-scale-fill:  rgb(8, 15, 155);
-                --fb-scale-stroke:#ffffff;
+                --svg-fb-bg:          #ffffff;
+                --svg-fb-line:        rgb(0, 0, 0);
+                --svg-fb-string-name: #000000;
+                --svg-fb-fret-num:    #3f2727;
+                --svg-fb-note-fill:   rgba(45, 45, 45, 0.35);
+                --svg-fb-note-stroke: rgba(255, 255, 255, 0.35);
+                --svg-fb-root-fill:   #d00b0b;
+                --svg-fb-root-stroke: #ffffff;
+                --svg-fb-scale-fill:  rgb(8, 15, 155);
+                --svg-fb-scale-stroke:#ffffff;
             }
 
             /* キャンバス背景 */
             #svg-canvas {
-                background-color: var(--fb-bg);
+                background-color: var(--svg-fb-bg);
             }
 
             /* 指板ボディ（半透明の木目色 — 両モードで映える） */
@@ -30,29 +30,29 @@
 
             /* フレット線・弦線: インラインの stroke 属性を CSS で上書き */
             #finger-board-line path {
-                stroke: var(--fb-line);
+                stroke: var(--svg-fb-line);
             }
 
             /* 弦名テキスト（1弦〜6弦） */
             .string_name {
                 font: bold 25px sans-serif;
                 font-size: 32px;
-                fill: var(--fb-string-name);
+                fill: var(--svg-fb-string-name);
             }
 
             /* フレット番号 */
             .fret_number {
                 font: bold 18px sans-serif;
                 font-size: 24px;
-                fill: var(--fb-fret-num);
+                fill: var(--svg-fb-fret-num);
             }
 
             /* 音名（スケール外） */
             .note_name {
                 font: bold 18px sans-serif;
                 stroke-width: 10;
-                stroke: var(--fb-note-stroke);
-                fill: var(--fb-note-fill);
+                stroke: var(--svg-fb-note-stroke);
+                fill: var(--svg-fb-note-fill);
                 paint-order: stroke;
             }
 
@@ -60,8 +60,8 @@
             .root_note_name {
                 font: bold 18px sans-serif;
                 stroke-width: 10;
-                stroke: var(--fb-root-stroke);
-                fill: var(--fb-root-fill);
+                stroke: var(--svg-fb-root-stroke);
+                fill: var(--svg-fb-root-fill);
                 paint-order: stroke;
             }
 
@@ -69,8 +69,8 @@
             .scale_note_name {
                 font: bold 18px sans-serif;
                 stroke-width: 10;
-                stroke: var(--fb-scale-stroke);
-                fill: var(--fb-scale-fill);
+                stroke: var(--svg-fb-scale-stroke);
+                fill: var(--svg-fb-scale-fill);
                 paint-order: stroke;
             }
         </style>
