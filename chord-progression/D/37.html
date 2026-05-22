@@ -404,6 +404,22 @@
         </style>
 </head>
 <body data-theme="light" data-bs-theme="light">
+<script>
+    
+    let ColorScheme = 'dark';
+    // 初期テーマの決定：① localStorage → ② OS設定 の順で参照
+    (function initTheme() {
+        ColorScheme = localStorage.getItem('color-scheme');
+        if (!(ColorScheme === 'light' || ColorScheme === 'dark')) {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            ColorScheme = (isDark ? 'dark' : 'light');
+        }
+        document.documentElement.setAttribute('data-bs-theme', ColorScheme);
+        document.documentElement.setAttribute('data-theme', ColorScheme);
+        document.body.setAttribute('data-bs-theme', ColorScheme);
+        document.body.setAttribute('data-theme', ColorScheme);
+    })();
+</script>
 <nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">BTR KITA</a>
@@ -3050,8 +3066,6 @@
 
 
 <script>
-    let ColorScheme = 'dark';
-
     /**
      * テーマを適用する
      * @param {string} t    'light' | 'dark'
@@ -3080,16 +3094,7 @@
         }
     }
 
-    // 初期テーマの決定：① localStorage → ② OS設定 の順で参照
-    (function initTheme() {
-        const saved = localStorage.getItem('color-scheme');
-        if (saved === 'light' || saved === 'dark') {
-            updateTheme(saved);
-        } else {
-            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            updateTheme(isDark ? 'dark' : 'light');
-        }
-    })();
+
 
     // OSの設定変更をリアルタイムに監視（ユーザーが明示的に選択していない場合のみ）
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
