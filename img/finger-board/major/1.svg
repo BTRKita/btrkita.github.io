@@ -1,28 +1,87 @@
 <?xml version="1.0" standalone="no"?>
 
-
-
 <svg xmlns="http://www.w3.org/2000/svg" id="svg-canvas"
      width="1462.00" height="333.00" viewBox="0.00 0.00 1462.00 333.00">
-    <style>
-        #svg-canvas{
-            background-color:#fff;
-        }
-    </style>
-    
-
-
-    <g stroke-linecap="round" id="finger-board">
+    <defs>
         <style>
-            .finger-board{
+            /* デフォルト（ライトモード相当）のフォールバック変数 */
+            :root {
+                --fb-bg:          #ffffff;
+                --fb-line:        rgb(0, 0, 0);
+                --fb-string-name: #000000;
+                --fb-fret-num:    #3f2727;
+                --fb-note-fill:   rgba(45, 45, 45, 0.35);
+                --fb-note-stroke: rgba(255, 255, 255, 0.35);
+                --fb-root-fill:   #d00b0b;
+                --fb-root-stroke: #ffffff;
+                --fb-scale-fill:  rgb(8, 15, 155);
+                --fb-scale-stroke:#ffffff;
+            }
+
+            /* キャンバス背景 */
+            #svg-canvas {
+                background-color: var(--fb-bg);
+            }
+
+            /* 指板ボディ（半透明の木目色 — 両モードで映える） */
+            .finger-board {
                 fill: rgba(105, 58, 58, 0.42);
             }
+
+            /* フレット線・弦線: インラインの stroke 属性を CSS で上書き */
+            #finger-board-line path {
+                stroke: var(--fb-line);
+            }
+
+            /* 弦名テキスト（1弦〜6弦） */
+            .string_name {
+                font: bold 25px sans-serif;
+                font-size: 32px;
+                fill: var(--fb-string-name);
+            }
+
+            /* フレット番号 */
+            .fret_number {
+                font: bold 18px sans-serif;
+                font-size: 24px;
+                fill: var(--fb-fret-num);
+            }
+
+            /* 音名（スケール外） */
+            .note_name {
+                font: bold 18px sans-serif;
+                stroke-width: 10;
+                stroke: var(--fb-note-stroke);
+                fill: var(--fb-note-fill);
+                paint-order: stroke;
+            }
+
+            /* 音名（ルート音） */
+            .root_note_name {
+                font: bold 18px sans-serif;
+                stroke-width: 10;
+                stroke: var(--fb-root-stroke);
+                fill: var(--fb-root-fill);
+                paint-order: stroke;
+            }
+
+            /* 音名（スケール音） */
+            .scale_note_name {
+                font: bold 18px sans-serif;
+                stroke-width: 10;
+                stroke: var(--fb-scale-stroke);
+                fill: var(--fb-scale-fill);
+                paint-order: stroke;
+            }
         </style>
-        <rect class="finger-board" width="1290"  height="206" x="150.9" y="44" />
+    </defs>
+
+    <g stroke-linecap="round" id="finger-board">
+        <rect class="finger-board" width="1290" height="206" x="150.9" y="44"/>
     </g>
     <g stroke-linecap="round" id="finger-board-line">
 
-            <!-- 上 -->
+        <!-- 上 -->
         <path d="M150.9,44 L150.9,250" fill="none" stroke="rgb(0, 0, 0)"
               stroke-width="10" stroke-opacity="1.00" stroke-linejoin="round"/>
 
@@ -160,44 +219,6 @@
     <g id="note-name">
 
         <!-- 各弦の説明 -->
-        <style>
-            .string_name {
-                font: bold 25px sans-serif;
-                font-size: 32px;
-                fill: #000000;
-            }
-
-            .fret_number {
-                font: bold 18px sans-serif;
-                font-size: 24px;
-                fill: #3f2727;
-            }
-
-            .note_name {
-                font: bold 18px sans-serif;
-                stroke-width: 10;
-                stroke: rgba(255, 255, 255, 0.55);
-                fill: rgba(45, 45, 45, 0.55);
-                paint-order: stroke;
-            }
-
-            .root_note_name {
-                font: bold 18px sans-serif;
-                stroke-width: 10;
-                stroke: #fff;
-                fill: #d00b0b;
-                paint-order: stroke;
-            }
-
-            .scale_note_name {
-                font: bold 18px sans-serif;
-                stroke-width: 10;
-                stroke: #fff;
-                fill: rgb(8, 15, 155);
-                paint-order: stroke;
-            }
-
-        </style>
         <text x="10" y="56.5" class="string_name">1弦
         </text>
         <text x="10" y="97.7" class="string_name">2弦
@@ -313,904 +334,1054 @@
                 24
             </text>
         
-                                        <text x="120.9"
-                      y="53"
-                                      class="note_name"
-                                      >
+                                            <text
+                    x="120.9"
+                    y="53"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="170.9"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="170.9"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="211.36"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="211.36"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="284.82"
-                      y="53"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="284.82"
+                    y="53"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="318.28"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="318.28"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="391.73"
-                      y="53"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="391.73"
+                    y="53"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="425.19"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="425.19"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="498.65"
-                      y="53"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="498.65"
+                    y="53"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="552.11"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="552.11"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="585.57"
-                      y="53"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="585.57"
+                    y="53"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="659.03"
-                      y="53"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="659.03"
+                    y="53"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="692.48"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="692.48"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="765.94"
-                      y="53"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="765.94"
+                    y="53"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="819.4"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="819.4"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="852.86"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="852.86"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="926.32"
-                      y="53"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="926.32"
+                    y="53"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="959.78"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="959.78"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="1033.23"
-                      y="53"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1033.23"
+                    y="53"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="1066.69"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="1066.69"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="1140.15"
-                      y="53"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1140.15"
+                    y="53"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="1193.61"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="1193.61"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="1227.07"
-                      y="53"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="1227.07"
+                    y="53"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="1300.53"
-                      y="53"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1300.53"
+                    y="53"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="1333.98"
-                      y="53"
-                                          class="scale_note_name"
+                            <text
+                    x="1333.98"
+                    y="53"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="1407.44"
-                      y="53"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1407.44"
+                    y="53"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                                                <text x="120.9"
-                      y="94"
-                                      class="note_name"
-                                      >
+                                                <text
+                    x="120.9"
+                    y="94"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="170.9"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="170.9"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="211.36"
-                      y="94"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="211.36"
+                    y="94"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="284.82"
-                      y="94"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="284.82"
+                    y="94"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="318.28"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="318.28"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="391.73"
-                      y="94"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="391.73"
+                    y="94"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="445.19"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="445.19"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="478.65"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="478.65"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="552.11"
-                      y="94"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="552.11"
+                    y="94"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="585.57"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="585.57"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="659.03"
-                      y="94"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="659.03"
+                    y="94"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="692.48"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="692.48"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="765.94"
-                      y="94"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="765.94"
+                    y="94"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="819.4"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="819.4"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="852.86"
-                      y="94"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="852.86"
+                    y="94"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="926.32"
-                      y="94"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="926.32"
+                    y="94"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="959.78"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="959.78"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="1033.23"
-                      y="94"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1033.23"
+                    y="94"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="1086.69"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="1086.69"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="1120.15"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="1120.15"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="1193.61"
-                      y="94"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1193.61"
+                    y="94"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="1227.07"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="1227.07"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="1300.53"
-                      y="94"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1300.53"
+                    y="94"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="1333.98"
-                      y="94"
-                                          class="scale_note_name"
+                            <text
+                    x="1333.98"
+                    y="94"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="1407.44"
-                      y="94"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1407.44"
+                    y="94"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                                                <text x="120.9"
-                      y="135"
-                                      class="note_name"
-                                      >
+                                                <text
+                    x="120.9"
+                    y="135"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="150.9"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="150.9"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="231.36"
-                      y="135"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="231.36"
+                    y="135"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="264.82"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="264.82"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="338.28"
-                      y="135"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="338.28"
+                    y="135"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="391.73"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="391.73"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="425.19"
-                      y="135"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="425.19"
+                    y="135"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="498.65"
-                      y="135"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="498.65"
+                    y="135"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="532.11"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="532.11"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="605.57"
-                      y="135"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="605.57"
+                    y="135"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="659.03"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="659.03"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="692.48"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="692.48"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="765.94"
-                      y="135"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="765.94"
+                    y="135"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="799.4"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="799.4"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="872.86"
-                      y="135"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="872.86"
+                    y="135"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="906.32"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="906.32"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="979.78"
-                      y="135"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="979.78"
+                    y="135"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="1033.23"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="1033.23"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="1066.69"
-                      y="135"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="1066.69"
+                    y="135"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="1140.15"
-                      y="135"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1140.15"
+                    y="135"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="1173.61"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="1173.61"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="1247.07"
-                      y="135"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1247.07"
+                    y="135"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="1300.53"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="1300.53"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="1333.98"
-                      y="135"
-                                          class="scale_note_name"
+                            <text
+                    x="1333.98"
+                    y="135"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="1407.44"
-                      y="135"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1407.44"
+                    y="135"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                                                <text x="120.9"
-                      y="176"
-                                      class="note_name"
-                                      >
+                                                <text
+                    x="120.9"
+                    y="176"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="150.9"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="150.9"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="231.36"
-                      y="176"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="231.36"
+                    y="176"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="284.82"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="284.82"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="318.28"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="318.28"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="391.73"
-                      y="176"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="391.73"
+                    y="176"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="425.19"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="425.19"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="498.65"
-                      y="176"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="498.65"
+                    y="176"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="532.11"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="532.11"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="605.57"
-                      y="176"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="605.57"
+                    y="176"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="659.03"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="659.03"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="692.48"
-                      y="176"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="692.48"
+                    y="176"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="765.94"
-                      y="176"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="765.94"
+                    y="176"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="799.4"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="799.4"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="872.86"
-                      y="176"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="872.86"
+                    y="176"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="926.32"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="926.32"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="959.78"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="959.78"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="1033.23"
-                      y="176"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1033.23"
+                    y="176"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="1066.69"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="1066.69"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="1140.15"
-                      y="176"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1140.15"
+                    y="176"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="1173.61"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="1173.61"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="1247.07"
-                      y="176"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1247.07"
+                    y="176"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="1300.53"
-                      y="176"
-                                          class="scale_note_name"
+                            <text
+                    x="1300.53"
+                    y="176"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="1333.98"
-                      y="176"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="1333.98"
+                    y="176"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="1407.44"
-                      y="176"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1407.44"
+                    y="176"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                                                <text x="120.9"
-                      y="217"
-                                      class="note_name"
-                                      >
+                                                <text
+                    x="120.9"
+                    y="217"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="150.9"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="150.9"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="231.36"
-                      y="217"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="231.36"
+                    y="217"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="284.82"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="284.82"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="318.28"
-                      y="217"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="318.28"
+                    y="217"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="391.73"
-                      y="217"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="391.73"
+                    y="217"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="425.19"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="425.19"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="498.65"
-                      y="217"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="498.65"
+                    y="217"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="552.11"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="552.11"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="585.57"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="585.57"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="659.03"
-                      y="217"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="659.03"
+                    y="217"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="692.48"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="692.48"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="765.94"
-                      y="217"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="765.94"
+                    y="217"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="799.4"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="799.4"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="872.86"
-                      y="217"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="872.86"
+                    y="217"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="926.32"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="926.32"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="959.78"
-                      y="217"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="959.78"
+                    y="217"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="1033.23"
-                      y="217"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1033.23"
+                    y="217"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="1066.69"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="1066.69"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="1140.15"
-                      y="217"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1140.15"
+                    y="217"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="1193.61"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="1193.61"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="1227.07"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="1227.07"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="1300.53"
-                      y="217"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1300.53"
+                    y="217"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="1333.98"
-                      y="217"
-                                          class="scale_note_name"
+                            <text
+                    x="1333.98"
+                    y="217"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="1407.44"
-                      y="217"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1407.44"
+                    y="217"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                                                <text x="120.9"
-                      y="259"
-                                      class="note_name"
-                                      >
+                                                <text
+                    x="120.9"
+                    y="259"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="170.9"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="170.9"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="211.36"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="211.36"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="284.82"
-                      y="259"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="284.82"
+                    y="259"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="318.28"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="318.28"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="391.73"
-                      y="259"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="391.73"
+                    y="259"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="425.19"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="425.19"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="498.65"
-                      y="259"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="498.65"
+                    y="259"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="552.11"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="552.11"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="585.57"
-                      y="259"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="585.57"
+                    y="259"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="659.03"
-                      y="259"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="659.03"
+                    y="259"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="692.48"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="692.48"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="765.94"
-                      y="259"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="765.94"
+                    y="259"
+                                            class="note_name"
+                                    >
                     E
                 </text>
-                            <text x="819.4"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="819.4"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     F
                 </text>
-                            <text x="852.86"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="852.86"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     F#G♭
                 </text>
-                            <text x="926.32"
-                      y="259"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="926.32"
+                    y="259"
+                                            class="note_name"
+                                    >
                     G
                 </text>
-                            <text x="959.78"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="959.78"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     G#A♭
                 </text>
-                            <text x="1033.23"
-                      y="259"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1033.23"
+                    y="259"
+                                            class="note_name"
+                                    >
                     A
                 </text>
-                            <text x="1066.69"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="1066.69"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     A#B♭
                 </text>
-                            <text x="1140.15"
-                      y="259"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1140.15"
+                    y="259"
+                                            class="note_name"
+                                    >
                     B
                 </text>
-                            <text x="1193.61"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="1193.61"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     C
                 </text>
-                            <text x="1227.07"
-                      y="259"
-                                          class="root_note_name"
-                                      >
+                            <text
+                    x="1227.07"
+                    y="259"
+                                            class="root_note_name"
+                                    >
                     C#D♭
                 </text>
-                            <text x="1300.53"
-                      y="259"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1300.53"
+                    y="259"
+                                            class="note_name"
+                                    >
                     D
                 </text>
-                            <text x="1333.98"
-                      y="259"
-                                          class="scale_note_name"
+                            <text
+                    x="1333.98"
+                    y="259"
+                                            class="scale_note_name"
                                     >
                     D#E♭
                 </text>
-                            <text x="1407.44"
-                      y="259"
-                                      class="note_name"
-                                      >
+                            <text
+                    x="1407.44"
+                    y="259"
+                                            class="note_name"
+                                    >
                     E
                 </text>
                         </g>

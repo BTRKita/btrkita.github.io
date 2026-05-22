@@ -1,0 +1,2975 @@
+<!doctype html>
+<html lang="ja" data-theme="light" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Fメジャーキー&nbsp・&nbsp;Dmマイナーキー
+        &nbsp;アウト・オブ・キー・ホラー進行のコード進行です。ギターのコードダイアグラムの表示や、音声での和音再生が可能です。">
+
+    <title>Fメジャーキー&nbsp・&nbsp;Dmマイナーキー
+        &nbsp;アウト・オブ・キー・ホラー進行 | コード進行集</title>
+
+    <!-- おさむ -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- Styles -->
+    
+    
+
+    <link rel="mask-icon" sizes="any" href="https://btrkita.github.io/img/icon.svg" color="#0bd">
+    <link rel="icon" href="https://btrkita.github.io/img/icon.svg" type="image/svg+xml">
+    <style>
+        /* ==========================================
+          カラーモード設定（ライト・ダーク共通変数定義）
+        ========================================== */
+        :root,
+        [data-theme="dark"] {
+            /* 完全に真っ黒にせず、少し青み・グレーを混ぜてエディタ風に */
+            --site-h1-color: #f7fafc;
+            --site-h1-border: #3b82f6; /* 少し明るめのブルー */
+
+            --site-h2-color: #e2e8f0;
+            --site-h2-border: #334155; /* 暗めのボーダー */
+
+            --site-h3-h5-color: #cbd5e1;
+            --site-h3-border: #1e293b;
+
+            --site-select-border: #475569;
+
+            --site-body-bg: #0b0e18;
+
+            /* finger-board SVG */
+            --fb-bg:          #1c2338;
+            --fb-line:        #8899aa;
+            --fb-string-name: #e2e8f0;
+            --fb-fret-num:    #c9a0a0;
+            --fb-note-fill:   rgba(180, 180, 190, 0.40);
+            --fb-note-stroke: rgba(15, 23, 42, 0.60);
+            --fb-root-fill:   #f87171;
+            --fb-root-stroke: #0f172a;
+            --fb-scale-fill:  #60a5fa;
+            --fb-scale-stroke:#0f172a;
+
+            --site-footer-bg: #0f172a; /* 深みのある紺・黒 */
+            --site-footer-border: #1e293b;
+            --site-footer-link: #94a3b8;
+            --site-footer-link-hover: #3b82f6;
+            --site-footer-copy: #64748b;
+        }
+
+        [data-theme="light"] {
+            --site-h1-color: #1a202c;
+            --site-h1-border: #0d6efd; /* Bootstrapのprimary相当 */
+
+            --site-h2-color: #2d3748;
+            --site-h2-border: #dee2e6;
+
+            --site-h3-h5-color: #4a5568;
+            --site-h3-border: #e9ecef;
+
+            --site-select-border: #ccc;
+
+            --site-body-bg: #f5f4ef; /* 和紙調オフホワイト */
+
+            --site-footer-bg: #ede9df; /* 温かみのあるオフホワイト */
+            --site-footer-border: #e9ecef;
+            --site-footer-link: #6c757d;
+            --site-footer-link-hover: #0d6efd;
+            --site-footer-copy: #adb5bd;
+        }
+
+        /* ===== ボディ背景 ===== */
+        body {
+            background-color: var(--site-body-bg);
+            transition: background-color .25s ease;
+        }
+
+        /* ===== テーブル コンテキストクラス ダークモード ===== */
+        /* Bootstrap 5.3 の変数が確実に上書きされるよう明示指定 */
+        [data-bs-theme="dark"] .table-light,
+        [data-bs-theme="dark"] thead.table-light {
+            --bs-table-bg:          #343a40;
+            --bs-table-color:       #f8f9fa;
+            --bs-table-border-color:#495057;
+            color: #f8f9fa;
+        }
+        [data-bs-theme="dark"] .table-info {
+            --bs-table-bg:          #032830;
+            --bs-table-color:       #6edff6;
+            --bs-table-border-color:#0d3f50;
+            color: #6edff6;
+        }
+        [data-bs-theme="dark"] .table-primary {
+            --bs-table-bg:          #031633;
+            --bs-table-color:       #6ea8fe;
+            --bs-table-border-color:#0d2d5e;
+            color: #6ea8fe;
+        }
+        [data-bs-theme="dark"] .table-success {
+            --bs-table-bg:          #051b11;
+            --bs-table-color:       #75b798;
+            --bs-table-border-color:#0f2d1e;
+            color: #75b798;
+        }
+
+        /* ==========================================
+        Bootstrap ナビバー専用カラー上書き設定
+        ========================================== */
+
+
+        /* 2. ダークモード：黒背景に青系統（4a9eff）のアクセント */
+        :root,[data-theme="dark"] {
+            .navbar.site-custom-nav {
+                /* 背景色：DAWやエディタ風の引き締まった黒（必要に応じて #000000 等に変更可） */
+                --bs-navbar-bg: #0f172a;
+
+                /* 文字色：基本はグレー、ホバーや現在地で指定の青（4a9eff）に */
+                --bs-navbar-color: #94a3b8;
+                --bs-navbar-hover-color: #4a9eff;
+                --bs-navbar-active-color: #4a9eff;
+                --bs-navbar-disabled-color: #475569;
+
+                /* ロゴ・ブランド名 */
+                --bs-navbar-brand-color: #f8fafc;
+                --bs-navbar-brand-hover-color: #4a9eff;
+
+                /* トグラー（スマホ用三本線ボタン）の調整 */
+                --bs-navbar-toggler-color: #94a3b8;
+                --bs-navbar-toggler-border-color: #334155;
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28148, 163, 184, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+                border-bottom: 1px solid #1e293b;
+            }
+        }
+
+        [data-theme="light"]
+         {
+            .navbar.site-custom-nav {
+                /* 背景色：黒や緑と識別しやすく、白文字とのコントラストも高い朱赤 */
+                --bs-navbar-bg: #d9381e;
+
+                /* 文字色：赤背景の上でハッキリ読めるホワイト */
+                --bs-navbar-color: rgba(255, 255, 255, 0.85);
+                --bs-navbar-hover-color: #ffffff;
+                --bs-navbar-active-color: #f1c40f;
+                --bs-navbar-disabled-color: rgba(255, 255, 255, 0.4);
+
+                /* ロゴ・ブランド名（常時100%の白で強調） */
+                --bs-navbar-brand-color: #ffffff;
+                --bs-navbar-brand-hover-color: #ffffff;
+
+                /* トグラー（スマホ用三本線ボタン）の調整 */
+                --bs-navbar-toggler-color: rgba(255, 255, 255, 0.85);
+                --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.25);
+                /* 三本線アイコンを白ベースにするためのフィルター */
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+                /* ナビバーの境界線（必要に応じて同系色の濃い赤で締める） */
+                border-bottom: 1px solid #bc2f17;
+            }
+        }
+
+
+        /* 共通：Bootstrapの既存の背景ユーティリティとバッティングしないためのクラス */
+        .navbar.site-custom-nav {
+            background-color: var(--bs-navbar-bg) !important;
+        }
+
+        /* ===== 見出し ===== */
+        h1 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--site-h1-color);
+            border-left: 4px solid var(--site-h1-border);
+            padding: 0.15rem 0 0.15rem 0.85rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--site-h2-color);
+            padding: 0 0 0.35rem 0;
+            border-bottom: 2px solid var(--site-h2-border);
+            margin-top: 2rem;
+            margin-bottom: 0.85rem;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: 1px solid var(--site-h3-border);
+            padding-bottom: 0.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.65rem;
+        }
+
+        h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: none;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h5 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: none;
+        }
+
+        /* ===== その他共通 ===== */
+        span.delimiter:before {
+            content: " ━ ";
+        }
+
+        .select-image {
+            display: none;
+            width: 100%;
+            aspect-ratio: 1462 / 333;
+            height: auto;
+            object-fit: contain;
+            background-color: transparent;
+        }
+
+        .is-visible {
+            display: block !important;
+        }
+
+        .select-in-table {
+            padding: 10px 16px;
+            font-size: 16px;
+            margin-right: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--site-select-border);
+            background-color: transparent; /* ダークモードでの汎用性を考慮 */
+            color: inherit;               /* 親（Bootstrap）の文字色を引き継ぐ */
+            cursor: pointer;
+        }
+
+        /* ===== フッター ===== */
+        .site-footer {
+            background: var(--site-footer-bg);
+            border-top: 1px solid var(--site-footer-border);
+            padding: 1.75rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem 1.25rem;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-nav a {
+            color: var(--site-footer-link);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--site-footer-link-hover);
+        }
+
+        .footer-copy {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--site-footer-copy);
+            margin: 0;
+        }
+
+        /* ==========================================
+          SVG インジェクト: FOUC 防止
+          img.svg-inject[data-loading="true"] → 不透明度 0 でレイアウト確保
+          JS が SVG に置換しきった瞬間に data-loading を削除してフェードイン
+        ========================================== */
+        img.svg-inject[data-loading="true"] {
+            opacity: 0;
+        }
+        svg.svg-inject {
+            transition: opacity 0.1s ease;
+        }
+        svg.svg-inject[data-loading="true"] {
+            opacity: 0;
+        }
+
+        /* ==========================================
+          SVG 外部ファイル用カラー変数
+          ※ <img src> で読み込まれた SVG はこれらを参照する
+        ========================================== */
+        :root,
+        [data-theme="dark"] {
+            /* key-image: 音符・五線・シャープ・フラット */
+            --svg-key-fg: #cbd5e1;
+
+            /* circle-of-5th */
+            --svg-ci-fill:  #1c2338;
+            --svg-ci-stroke: #dedad0;
+            --svg-ci-major: #e8e6df;
+            --svg-ci-minor: #c8c4b8;
+            --svg-ci-dim:   #a8a499;
+        }
+
+        [data-theme="light"] {
+            --svg-key-fg: #4a5568;
+
+            --svg-ci-fill:  #ffffff;
+            --svg-ci-stroke: #1a1a1a;
+            --svg-ci-major: #111111;
+            --svg-ci-minor: #333333;
+            --svg-ci-dim:   #555555;
+
+            /* finger-board */
+            --fb-bg:          #ffffff;
+            --fb-line:        rgb(0, 0, 0);
+            --fb-string-name: #000000;
+            --fb-fret-num:    #3f2727;
+            --fb-note-fill:   rgba(45, 45, 45, 0.35);
+            --fb-note-stroke: rgba(255, 255, 255, 0.35);
+            --fb-root-fill:   #d00b0b;
+            --fb-root-stroke: #ffffff;
+            --fb-scale-fill:  rgb(8, 15, 155);
+            --fb-scale-stroke:#ffffff;
+        }
+
+        :root {
+            --text:    #1a1a1a; --text2: #666;
+            --danger:  #c0392b;
+            /* clef-btn 等が参照する変数（未定義だったため追加） */
+            --bg:      #ffffff;
+            --bg2:     #f4f4f4;
+            --border:  #d0d0d0;
+            --border2: #aaaaaa;
+            --radius:  8px;
+        }
+        /* OS の prefers-color-scheme ではなく data-theme 属性で制御 */
+        [data-theme="dark"] {
+            --text:    #e8e6df; --text2: #999;
+            --danger:  #e57373;
+            /* clef ボタン用にダーク系の値を使う（SVG出力エリアは .five-line-image と同じ --bg 色） */
+            --bg:      #1c2338;
+            --bg2:     #252e45;
+            --border:  #334155;
+            --border2: #64748b;
+        }
+        /* コンポーネント全体の背景をテーマに追従させる（親の bg-white に打ち勝つよう直接指定） */
+        .five-line-image {
+            background-color: var(--bg);
+            border-radius: 4px;
+            padding: 4px;
+        }
+        /* 五線譜SVG出力エリア（SVG自身が st-bg rect で背景色を持つ） */
+        .staff-out {
+            border-radius: 4px;
+            padding: 4px;
+        }
+        .clef-btn {
+        -webkit-appearance: none; /* Safari用の立体感リセット */
+        appearance: none; /* 標準の立体感リセット */
+        display:flex;flex-direction:column;align-items:center;
+        padding:6px 10px;min-width:110px;
+        border:1.5px solid var(--border);border-radius:var(--radius);
+        background:var(--bg2);color:var(--text);
+        cursor:pointer;transition:border-color .12s,background .12s;
+        gap:2px;font-family:inherit;
+        }
+        .clef-btn:hover{border-color:var(--border2);}
+        .clef-btn.active{border-color:var(--text);background:var(--bg);font-weight:500;}
+        .section-title{font-size:11px;font-weight:500;color:var(--text2);margin:12px 0 5px;letter-spacing:.04em;}
+        .clef-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2px;}
+        .clef-font-preview{
+        font-size:28px;line-height:1;height:32px;display:flex;align-items:center;
+        font-family: 'Bravura', 'Noto Music', 'Segoe UI Symbol', sans-serif;
+        }
+        .clef-name{font-size:11px;color:var(--text2);text-align:center;line-height:1.3;}
+
+        #error{color:var(--danger);font-size:12px;margin-top:5px;min-height:16px;}
+        #staff-out{margin-top:4px;overflow-x:auto;}
+        </style>
+</head>
+<body data-theme="light" data-bs-theme="light">
+<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">BTR KITA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                                            <a class="nav-link" href="/">Home</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/diatonic/index.html">ダイアトニックコード</a>
+                    
+                </li>
+
+                <li class="nav-item">
+                                            <a class="nav-link" href="/scale/index.html">スケール</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/metronome.html">メトロノーム</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/tuner.html">チューナー</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="/chord-progression/index.html">コード進行</a>
+                                    </li>
+
+                
+                <li class="nav-item d-lg-none"><hr class="dropdown-divider opacity-25 my-1"></li>
+                <li class="nav-item d-lg-none">
+                    <button type="button"
+                            class="nav-link theme-toggle-btn btn border-0 bg-transparent d-flex align-items-center gap-2 w-100 text-start">
+                        <i class="fas fa-moon theme-icon"></i>
+                        <span class="theme-label"></span>
+                    </button>
+                </li>
+            </ul>
+
+            
+            <span class="navbar-text d-none d-lg-inline">
+                ギター演奏に役立つ便利な情報
+            </span>
+
+            <button type="button"
+                    class="btn btn-link nav-link theme-toggle-btn d-none d-lg-inline-flex align-items-center px-2"
+                    id="themeBtn" title="ライト / ダーク">
+                <i class="fas fa-moon theme-icon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+<main id="main" class="site-main main">
+    <script>
+    function navigatePage(selectElement) {
+        const targetUrl = selectElement.value;
+
+        if (targetUrl) {
+            window.location.href = targetUrl;
+        }
+    }
+</script>
+    <script>
+
+        /* -------------------------------------------------------
+           テーマ別カラー
+        ------------------------------------------------------- */
+        function getDiagramColors() {
+            const t = document.documentElement.dataset.theme
+                   ?? document.body.dataset.theme;
+            const dark = t !== 'light';
+            return dark ? {
+                primary:   '#e8e8e2',
+                secondary: '#9e9e98',
+                tertiary:  '#5a5a55',
+                border:    'rgba(255,255,255,0.22)',
+                accent:    '#4d8ef5'
+            } : {
+                primary:   '#1a1a18',
+                secondary: '#6b6b66',
+                tertiary:  '#9e9e98',
+                border:    'rgba(0,0,0,0.25)',
+                accent:    '#2a6dd9'
+            };
+        }
+
+        /* テーマ変化時の再描画用ストア */
+        const diagramStore = new Map();
+
+        /* -------------------------------------------------------
+           フレット文字 → 数値変換
+           x  → -1 (ミュート)
+           0  → 0  (開放弦)
+           1–9 → 1–9
+           A–O → 10–24  (大文字・小文字両対応)
+        ------------------------------------------------------- */
+        function charToFret(c) {
+            if (c === 'x' || c === 'X') return -1;
+            const code = c.toUpperCase().charCodeAt(0);
+            if (code >= 65 && code <= 79) return code - 55; // A=10 … O=24
+            const n = parseInt(c, 10);
+            return isNaN(n) ? -1 : n;
+        }
+
+        /* -------------------------------------------------------
+           barres 正規化
+           - 0 は無視（仕様）
+           - 文字列 "1"、数値 1、配列 [5,7]、空値 すべて number[] へ
+        ------------------------------------------------------- */
+        function normalizeBarres(raw) {
+            if (raw === null || raw === undefined || raw === '') return [];
+            const arr = Array.isArray(raw) ? raw : String(raw).split(',');
+            return arr
+                .map(x => Number(String(x).trim()))
+                .filter(n => Number.isFinite(n) && n > 0); // 0 は除外
+        }
+
+        /* -------------------------------------------------------
+           generateFromJson
+           JSON オブジェクトを受け取り、指定 id の要素に描画する
+           ストアに保存してテーマ変化時の再描画に備える
+        ------------------------------------------------------- */
+        function generateFromJson(j, id, name) {
+            diagramStore.set(id, { j, name });
+            _renderDiagram(j, id, name);
+        }
+
+        function _renderDiagram(j, id, name) {
+            const svgStr = buildDiagram(j);
+
+            const cardTarget = document.getElementById(id);
+            cardTarget.innerHTML = '';
+
+            cardTarget.insertAdjacentHTML('beforeend', svgStr);
+
+            const cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+
+            if (name) {
+                const nm = document.createElement('h5');
+                nm.className = 'card-title';
+                nm.textContent = name;
+                cardBody.appendChild(nm);
+            }
+
+            const hint = document.createElement('p');
+            hint.className = 'card-text text-secondary';
+            hint.textContent = j.hint;
+            cardBody.appendChild(hint);
+
+            cardTarget.appendChild(cardBody);
+        }
+
+
+        /* -------------------------------------------------------
+           SVG builder
+           { frets, fingers, barres } を受け取り SVG 文字列を返す
+        ------------------------------------------------------- */
+        function buildDiagram(j) {
+            const fretsRaw = String(j.frets);
+            const fingers = String(j.fingers);
+            const barres = normalizeBarres(j.barres);
+
+            const STRING_COUNT = 6;
+            const FRET_ROWS = 5;
+
+            const fretNums = fretsRaw.split('').map(charToFret);
+            const fingerNums = fingers.split('').map(c => parseInt(c, 10) || 0);
+
+            const played = fretNums.filter(f => f > 0);
+            const minFret = played.length ? Math.min(...played) : 1;
+            const maxFret = played.length ? Math.max(...played) : 1;
+
+            const winStart = minFret <= 1 ? 1 : minFret;
+            const showNut = winStart === 1;
+
+            // Layout
+            const LEFT = 44;
+            const TOP = 52;
+            const CW = 36;
+            const RH = 32;
+            const GRID_W = CW * (STRING_COUNT - 1); // 180
+            const GRID_H = RH * FRET_ROWS;          // 160
+            const W = LEFT + GRID_W + 52;
+            const H = TOP + GRID_H + 36;
+
+            const sx = i => LEFT + i * CW;
+            const fy = f => TOP + (f - winStart) * RH + RH / 2;
+            const DOT = 11;
+
+            // 共通フォント定義
+            const fontSans = "'Hiragino Sans', 'Noto Sans JP', sans-serif";
+
+            const C = getDiagramColors();
+            let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" aria-label="コードダイアグラム">`;
+
+            s += `<style>
+            .svg-text-primary { fill: ${C.primary}; }
+            .svg-text-secondary { fill: ${C.secondary}; }
+            .svg-text-tertiary { fill: ${C.tertiary}; }
+            .svg-border { stroke: ${C.border}; }
+            .svg-accent { fill: ${C.accent}; }
+        </style>`;
+
+            /* --- ナット or フレット番号ラベル --- */
+            if (showNut) {
+                s += `<rect x="${LEFT - 1}" y="${TOP - 5}" width="${GRID_W + 2}" height="6" rx="2" class="svg-text-primary" opacity="0.85"/>`;
+            } else {
+                for (let row = 0; row < FRET_ROWS; row++) {
+                    const fNum = winStart + row;
+                    const y = TOP + row * RH + RH / 2;
+                    s += `<text x="${LEFT - 8}" y="${y}" text-anchor="end" dominant-baseline="central" font-size="11" class="svg-text-secondary" font-family="${fontSans}">${fNum}</text>`;
+                }
+            }
+
+            /* --- フレット線 --- */
+            for (let f = 0; f <= FRET_ROWS; f++) {
+                const y = TOP + f * RH;
+                s += `<line x1="${LEFT}" y1="${y}" x2="${LEFT + GRID_W}" y2="${y}" class="svg-border" stroke-width="0.5"/>`;
+            }
+
+            /* --- 弦線 --- */
+            for (let i = 0; i < STRING_COUNT; i++) {
+                s += `<line x1="${sx(i)}" y1="${TOP}" x2="${sx(i)}" y2="${TOP + GRID_H}" class="svg-border" stroke-width="0.75"/>`;
+            }
+
+            /* --- バレーバー --- */
+            barres.forEach(bFret => {
+                if (bFret < winStart || bFret >= winStart + FRET_ROWS) return;
+                const y = fy(bFret);
+                const x1 = LEFT - DOT * 0.5;
+                const bw = GRID_W + DOT;
+                s += `<rect x="${x1}" y="${y - DOT}" width="${bw}" height="${DOT * 2}" rx="${DOT}" class="svg-accent"/>`;
+
+                const cands = fingerNums.filter((fn, i) => fretNums[i] === bFret && fn > 0);
+                const fi = cands.length ? Math.min(...cands) : null;
+                if (fi) {
+                    s += `<text x="${x1 + DOT}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#ffffff" font-family="${fontSans}">${fi}</text>`;
+                }
+            });
+
+            /* --- 各弦マーカー --- */
+            for (let i = 0; i < STRING_COUNT; i++) {
+                const f = fretNums[i];
+                const fi = fingerNums[i];
+                const cx = sx(i);
+                const oy = TOP - 20;
+
+                if (f === -1) {
+                    const d = 5;
+                    s += `<line x1="${cx - d}" y1="${oy - d}" x2="${cx + d}" y2="${oy + d}" class="svg-text-secondary" stroke-width="1.4" stroke-linecap="round"/>`;
+                    s += `<line x1="${cx + d}" y1="${oy - d}" x2="${cx - d}" y2="${oy + d}" class="svg-text-secondary" stroke-width="1.4" stroke-linecap="round"/>`;
+                } else if (f === 0) {
+                    s += `<circle cx="${cx}" cy="${oy}" r="6" fill="none" class="svg-text-secondary" stroke-width="1.2"/>`;
+                } else {
+                    const coveredByBarre = barres.includes(f);
+                    if (!coveredByBarre) {
+                        const cy = fy(f);
+                        s += `<circle cx="${cx}" cy="${cy}" r="${DOT}" class="svg-accent"/>`;
+                        if (fi > 0) {
+                            s += `<text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#ffffff" font-family="${fontSans}">${fi}</text>`;
+                        }
+                    }
+                }
+            }
+
+            /* --- 弦ラベル (EADGBE) --- */
+            const stringLabels = ['E', 'A', 'D', 'G', 'B', 'e'];
+            for (let i = 0; i < STRING_COUNT; i++) {
+                s += `<text x="${sx(i)}" y="${TOP + GRID_H + 18}" text-anchor="middle" font-size="10" class="svg-text-tertiary" font-family="${fontSans}">${stringLabels[i]}</text>`;
+            }
+
+            s += `</svg>`;
+            return s;
+        }
+
+        new MutationObserver(() => {
+            diagramStore.forEach(({ j, name }, id) => _renderDiagram(j, id, name));
+        }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    </script>
+
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="https://btrkita.github.io/chord-progression">コード進行集</a></li>
+                <li class="breadcrumb-item"><a href="https://btrkita.github.io/chord-progression/F/index.html">F
+                        メジャーキー&nbsp・&nbsp;Dmマイナーキー進行集</a></li>
+                <li class="breadcrumb-item active" aria-current="page">F
+                    メジャーキー&nbsp・&nbsp;Dmマイナーキー&nbsp;アウト・オブ・キー・ホラー進行</li>
+            </ol>
+        </nav>
+        <h1>Fメジャーキー&nbsp・&nbsp;Dmマイナーキー
+            &nbsp;アウト・オブ・キー・ホラー進行</h1>
+
+
+        <!-- 全体を囲むブロック（position-relative でリンク範囲をこの dl 全体に広げる） -->
+        <dl class="row position-relative p-3 border-bottom bg-light-hover mb-0">
+
+            <!-- タイトル（dt）：画面幅 md 以上で3つ分の幅、太字 -->
+            <dt class="col-md-3 fw-bold">
+                説明
+            </dt>
+
+            <!-- 内容（dd）：画面幅 md 以上で残りの9つ分の幅、文字を少し小さく薄く -->
+            <dd class="col-md-9 text-muted small mb-0">
+                不安定さを極めた、サスペンス的な響き。
+            </dd>
+
+        </dl>
+
+        <dl class="row position-relative p-3 border-bottom bg-light-hover mb-0">
+
+            <!-- タイトル（dt）：画面幅 md 以上で3つ分の幅、太字 -->
+            <dt class="col-md-3 fw-bold">
+                ジャンル
+            </dt>
+
+            <!-- 内容（dd）：画面幅 md 以上で残りの9つ分の幅、文字を少し小さく薄く -->
+            <dd class="col-md-9 text-muted small mb-0">
+                                    <span class="badge rounded-pill text-bg-info">現代音楽</span>
+                                    <span class="badge rounded-pill text-bg-info">ジャズ</span>
+                            </dd>
+
+        </dl>
+
+        <dl class="row position-relative p-3 border-bottom bg-light-hover mb-0">
+
+            <!-- タイトル（dt）：画面幅 md 以上で3つ分の幅、太字 -->
+            <dt class="col-md-3 fw-bold">
+                ディグリー
+            </dt>
+
+            <!-- 内容（dd）：画面幅 md 以上で残りの9つ分の幅、文字を少し小さく薄く -->
+            <dd class="col-md-9 text-muted small mb-0">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                                                    <li class="page-item">
+                                <span class="page-link">
+                                Ⅵm
+                                </span>
+                            </li>
+                                                    <li class="page-item">
+                                <span class="page-link">
+                                ♭Ⅲm(♭5)
+                                </span>
+                            </li>
+                                                    <li class="page-item">
+                                <span class="page-link">
+                                ♯Ⅳm(♭5)
+                                </span>
+                            </li>
+                                                    <li class="page-item">
+                                <span class="page-link">
+                                Ⅲ
+                                </span>
+                            </li>
+                                            </ul>
+                </nav>
+            </dd>
+        </dl>
+
+
+        <dl class="row position-relative p-3 border-bottom bg-light-hover mb-0">
+            <!-- タイトル（dt）：画面幅 md 以上で3つ分の幅、太字 -->
+            <dt class="col-md-3 fw-bold">
+                コード
+            </dt>
+            <dd class="col-md-9 text-muted small mb-0">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                                                    <li class="page-item">
+                                <a class="page-link"
+                                   href="#Dm">Dm</a></li>
+                                                    <li class="page-item">
+                                <a class="page-link"
+                                   href="#A%E2%99%ADm%28%E2%99%AD5%29">A♭m(♭5)</a></li>
+                                                    <li class="page-item">
+                                <a class="page-link"
+                                   href="#Bm%28%E2%99%AD5%29">Bm(♭5)</a></li>
+                                                    <li class="page-item">
+                                <a class="page-link"
+                                   href="#A">A</a></li>
+                                            </ul>
+                </nav>
+            </dd>
+        </dl>
+
+
+        <dl class="row position-relative p-3 border-bottom bg-light-hover mb-0">
+            <!-- タイトル（dt）：画面幅 md 以上で3つ分の幅、太字 -->
+            <dt class="col-md-3 fw-bold">
+                キーの変更
+            </dt>
+
+            <!-- 内容（dd）：画面幅 md 以上で残りの9つ分の幅、文字を少し小さく薄く -->
+            <dd class="col-md-9 text-muted small mb-0">
+
+                <div class="mb-3">
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <select id="pageSelector" class="form-select" onchange="navigatePage(this)">
+                                <option value="" selected disabled>選択してください</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/C/89.html">C</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/G/89.html">G</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/D/89.html">D</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/A/89.html">A</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/E/89.html">E</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/B/89.html">B</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/Gb/89.html">F#/Gb</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/Db/89.html">Db</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/Ab/89.html">Ab</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/Eb/89.html">Eb</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/Bb/89.html">Bb</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/F/89.html">F</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/C/89.html">Am</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/G/89.html">Em</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/D/89.html">Bm</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/A/89.html">F#m</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/E/89.html">C#m</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/B/89.html">G#m</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/Gb/89.html">Ebm/D#m</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/Db/89.html">Bbm</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/Ab/89.html">Fm</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/Eb/89.html">Cm</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/Bb/89.html">Gm</option>
+                                                                    <option
+                                        value="https://btrkita.github.io/chord-progression/F/89.html">Dm</option>
+                                                            </select>
+                            
+                            <label for="pageSelector">キーを選択</label>
+                        </div>
+                    </div>
+
+                </div>
+            </dd>
+        </dl>
+
+        <dl class="row position-relative p-3 border-bottom bg-light-hover mb-0">
+            <!-- タイトル（dt）：画面幅 md 以上で3つ分の幅、太字 -->
+            <dt class="col-md-3 fw-bold">
+                再生
+            </dt>
+            <dd class="col-md-9 text-muted small mb-0">
+                <div class="form-floating">
+                    <select class="instrument-select form-select" id="instrumentSelector">
+                        <option value="">選択してください</option>
+                        <option value="sine">正弦波</option>
+                        <option value="square">矩形波</option>
+                        <option value="triangle">三角波</option>
+                        <option value="piano">ピアノ風</option>
+                    </select>
+                    
+                    <label for="instrumentSelector">音色を選択</label>
+                </div>
+
+
+                <button class="start-btn btn btn-primary btn-lg"
+                        data-notes='[{"time":"0:2:0","notes":[50,53,57]},{"time":"0:2:0","notes":[56,59,62]},{"time":"0:2:0","notes":[59,62,65]},{"time":"0:2:0","notes":[57,61,64]}]'>再生
+                </button>
+
+                <button class="stop-btn btn btn-secondary btn-lg">停止</button>
+            </dd>
+        </dl>
+
+        <dl class="row position-relative p-3 border-bottom bg-light-hover mb-0">
+            <!-- タイトル（dt）：画面幅 md 以上で3つ分の幅、太字 -->
+            <dt class="col-md-3 fw-bold">
+                5線符
+            </dt>
+
+<dd class="col-md-9 text-muted small mb-0">
+    <div class="five-line-image" data-chords="[[2,5,9],[8,11,14],[11,14,17],[9,13,16]]" data-wholenote="true" data-barlines="true">
+    <div class="section-title">ト音記号 (G clef)</div>
+    <div class="clef-grid g-clefs"></div>
+    <div class="section-title">ヘ音記号 (F clef)</div>
+    <div class="clef-grid f-clefs"></div>
+    <div class="section-title">ハ音記号 (C clef)</div>
+    <div class="clef-grid c-clefs"></div>
+    <div class="staff-error"></div>
+    <div class="staff-out"></div>
+</div>
+</dd>
+        </dl>
+
+                    <h3 id="Dm">Dm</h3>
+            <div class="container py-4">
+
+                <!-- row-cols-1（スマホでは1列）と row-cols-md-3（md以上では3列）を指定すると一括制御も可能 -->
+                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xlg-5 g-4">
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--0">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xx0231","fingers":"000231","barres":null,"hint":"x|x|D|A|D|F"}, 'diagrams--0--0', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--1">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"557765","fingers":"113421","barres":5,"hint":"A|D|A|D|F|A"}, 'diagrams--0--1', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--2">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x8776x","fingers":"042310","barres":null,"hint":"x|F|A|D|F|x"}, 'diagrams--0--2', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--3">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"accaaa","fingers":"134111","barres":10,"hint":"D|A|D|F|A|D"}, 'diagrams--0--3', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--4">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x57765","fingers":"013421","barres":"5","hint":"x|D|A|D|F|A"}, 'diagrams--0--4', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--5">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x53x35","fingers":"031024","barres":null,"hint":"x|D|F|x|D|A"}, 'diagrams--0--5', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--6">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x5323x","fingers":"042130","barres":null,"hint":"x|D|F|A|D|x"}, 'diagrams--0--6', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--7">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"accaad","fingers":"123114","barres":"10","hint":"D|A|D|F|A|F"}, 'diagrams--0--7', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--8">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x532x5","fingers":"032104","barres":null,"hint":"x|D|F|A|x|A"}, 'diagrams--0--8', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--9">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"a877ax","fingers":"321140","barres":"7","hint":"D|F|A|D|A|x"}, 'diagrams--0--9', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--10">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x53x65","fingers":"021043","barres":null,"hint":"x|D|F|x|F|A"}, 'diagrams--0--10', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--11">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"a877xa","fingers":"321104","barres":"7","hint":"D|F|A|D|x|D"}, 'diagrams--0--11', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--12">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"a8xaax","fingers":"210340","barres":null,"hint":"D|F|x|F|A|x"}, 'diagrams--0--12', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--13">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"a8xxaa","fingers":"210034","barres":null,"hint":"D|F|x|x|A|D"}, 'diagrams--0--13', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--14">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"a87axx","fingers":"321400","barres":null,"hint":"D|F|A|F|x|x"}, 'diagrams--0--14', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--15">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"ax7aax","fingers":"201340","barres":null,"hint":"D|x|A|F|A|x"}, 'diagrams--0--15', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--16">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xhjjih","fingers":"013421","barres":"17","hint":"x|D|A|D|F|A"}, 'diagrams--0--16', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--17">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"ax7axa","fingers":"201304","barres":null,"hint":"D|x|A|F|x|D"}, 'diagrams--0--17', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--18">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"mxxmmm","fingers":"100111","barres":"22","hint":"D|x|x|F|A|D"}, 'diagrams--0--18', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--19">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xxcefd","fingers":"001342","barres":null,"hint":"x|x|D|A|D|F"}, 'diagrams--0--19', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--20">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xhfxfh","fingers":"031024","barres":null,"hint":"x|D|F|x|D|A"}, 'diagrams--0--20', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--21">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"mkjjmx","fingers":"321140","barres":"19","hint":"D|F|A|D|A|x"}, 'diagrams--0--21', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--22">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xhfefx","fingers":"042130","barres":null,"hint":"x|D|F|A|D|x"}, 'diagrams--0--22', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--23">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"mkjjxm","fingers":"321104","barres":"19","hint":"D|F|A|D|x|D"}, 'diagrams--0--23', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--24">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xhfexh","fingers":"032104","barres":null,"hint":"x|D|F|A|x|A"}, 'diagrams--0--24', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--25">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xhfxih","fingers":"021043","barres":null,"hint":"x|D|F|x|F|A"}, 'diagrams--0--25', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--26">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"mkxmmx","fingers":"210340","barres":null,"hint":"D|F|x|F|A|x"}, 'diagrams--0--26', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--27">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"mkxxmm","fingers":"210034","barres":null,"hint":"D|F|x|x|A|D"}, 'diagrams--0--27', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--28">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"mkjmxx","fingers":"321400","barres":null,"hint":"D|F|A|F|x|x"}, 'diagrams--0--28', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--29">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"mxjmmx","fingers":"201340","barres":null,"hint":"D|x|A|F|A|x"}, 'diagrams--0--29', 'Dm');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--0--30">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"mxjmxm","fingers":"201304","barres":null,"hint":"D|x|A|F|x|D"}, 'diagrams--0--30', 'Dm');
+                        </script>
+
+                    
+                </div>
+            </div>
+
+                    <h3 id="A%E2%99%ADm%28%E2%99%AD5%29">A♭m(♭5)</h3>
+            <div class="container py-4">
+
+                <!-- row-cols-1（スマホでは1列）と row-cols-md-3（md以上では3列）を指定すると一括制御も可能 -->
+                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xlg-5 g-4">
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--0">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"42x43x","fingers":"310420","barres":null,"hint":"G\u266f|B|x|B|D|x"}, 'diagrams--1--0', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--1">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xx67x7","fingers":"001203","barres":null,"hint":"x|x|G\u266f|D|x|B"}, 'diagrams--1--1', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--2">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xb9x9a","fingers":"041023","barres":null,"hint":"x|G\u266f|B|x|G\u266f|D"}, 'diagrams--1--2', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--3">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xbcdcx","fingers":"012430","barres":null,"hint":"x|G\u266f|D|G\u266f|B|x"}, 'diagrams--1--3', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--4">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"4564x4","fingers":"123101","barres":"4","hint":"G\u266f|D|G\u266f|B|x|G\u266f"}, 'diagrams--1--4', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--5">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"4567x7","fingers":"123404","barres":"7","hint":"G\u266f|D|G\u266f|D|x|B"}, 'diagrams--1--5', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--6">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"4564x7","fingers":"123104","barres":"4","hint":"G\u266f|D|G\u266f|B|x|B"}, 'diagrams--1--6', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--7">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"4xx434","fingers":"200314","barres":null,"hint":"G\u266f|x|x|B|D|G\u266f"}, 'diagrams--1--7', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--8">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"42x13x","fingers":"420130","barres":null,"hint":"G\u266f|B|x|G\u266f|D|x"}, 'diagrams--1--8', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--9">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"45x43x","fingers":"240310","barres":null,"hint":"G\u266f|D|x|B|D|x"}, 'diagrams--1--9', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--10">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xx6434","fingers":"004213","barres":null,"hint":"x|x|G\u266f|B|D|G\u266f"}, 'diagrams--1--10', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--11">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xx6797","fingers":"001243","barres":null,"hint":"x|x|G\u266f|D|G\u266f|B"}, 'diagrams--1--11', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--12">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"42xx34","fingers":"310024","barres":null,"hint":"G\u266f|B|x|x|D|G\u266f"}, 'diagrams--1--12', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--13">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"4x643x","fingers":"204310","barres":null,"hint":"G\u266f|x|G\u266f|B|D|x"}, 'diagrams--1--13', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--14">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"ghigxg","fingers":"123101","barres":"16","hint":"G\u266f|D|G\u266f|B|x|G\u266f"}, 'diagrams--1--14', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--15">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xbcxca","fingers":"023041","barres":null,"hint":"x|G\u266f|D|x|B|D"}, 'diagrams--1--15', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--16">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"ghijxj","fingers":"123404","barres":"19","hint":"G\u266f|D|G\u266f|D|x|B"}, 'diagrams--1--16', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--17">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"ghigxj","fingers":"123104","barres":"16","hint":"G\u266f|D|G\u266f|B|x|B"}, 'diagrams--1--17', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--18">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xbxdca","fingers":"020431","barres":null,"hint":"x|G\u266f|x|G\u266f|B|D"}, 'diagrams--1--18', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--19">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xb9xca","fingers":"031042","barres":null,"hint":"x|G\u266f|B|x|B|D"}, 'diagrams--1--19', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--20">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"gxxgfg","fingers":"200314","barres":null,"hint":"G\u266f|x|x|B|D|G\u266f"}, 'diagrams--1--20', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--21">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"gexdfx","fingers":"420130","barres":null,"hint":"G\u266f|B|x|G\u266f|D|x"}, 'diagrams--1--21', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--22">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"gexgfx","fingers":"310420","barres":null,"hint":"G\u266f|B|x|B|D|x"}, 'diagrams--1--22', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--23">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"ghxgfx","fingers":"240310","barres":null,"hint":"G\u266f|D|x|B|D|x"}, 'diagrams--1--23', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--24">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xxigfg","fingers":"004213","barres":null,"hint":"x|x|G\u266f|B|D|G\u266f"}, 'diagrams--1--24', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--25">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xxijlj","fingers":"001243","barres":null,"hint":"x|x|G\u266f|D|G\u266f|B"}, 'diagrams--1--25', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--26">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"gexxfg","fingers":"310024","barres":null,"hint":"G\u266f|B|x|x|D|G\u266f"}, 'diagrams--1--26', 'A♭m(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--1--27">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"gxigfx","fingers":"204310","barres":null,"hint":"G\u266f|x|G\u266f|B|D|x"}, 'diagrams--1--27', 'A♭m(♭5)');
+                        </script>
+
+                    
+                </div>
+            </div>
+
+                    <h3 id="Bm%28%E2%99%AD5%29">Bm(♭5)</h3>
+            <div class="container py-4">
+
+                <!-- row-cols-1（スマホでは1列）と row-cols-md-3（md以上では3列）を指定すると一括制御も可能 -->
+                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xlg-5 g-4">
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--0">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x20x01","fingers":"030002","barres":null,"hint":"x|B|D|x|B|F"}, 'diagrams--2--0', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--1">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x2343x","fingers":"012430","barres":null,"hint":"x|B|F|B|D|x"}, 'diagrams--2--1', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--2">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"75x76x","fingers":"310420","barres":null,"hint":"B|D|x|D|F|x"}, 'diagrams--2--2', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--3">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xx9axa","fingers":"001203","barres":null,"hint":"x|x|B|F|x|D"}, 'diagrams--2--3', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--4">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x20x31","fingers":"020031","barres":null,"hint":"x|B|D|x|D|F"}, 'diagrams--2--4', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--5">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"7897x7","fingers":"123101","barres":"7","hint":"B|F|B|D|x|B"}, 'diagrams--2--5', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--6">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x23x31","fingers":"023041","barres":null,"hint":"x|B|F|x|D|F"}, 'diagrams--2--6', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--7">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"789axa","fingers":"123404","barres":"10","hint":"B|F|B|F|x|D"}, 'diagrams--2--7', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--8">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x2x431","fingers":"020431","barres":null,"hint":"x|B|x|B|D|F"}, 'diagrams--2--8', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--9">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"7897xa","fingers":"123104","barres":"7","hint":"B|F|B|D|x|D"}, 'diagrams--2--9', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--10">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"7xx767","fingers":"200314","barres":null,"hint":"B|x|x|D|F|B"}, 'diagrams--2--10', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--11">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"75x46x","fingers":"420130","barres":null,"hint":"B|D|x|B|F|x"}, 'diagrams--2--11', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--12">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"78x76x","fingers":"240310","barres":null,"hint":"B|F|x|D|F|x"}, 'diagrams--2--12', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--13">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xx9767","fingers":"004213","barres":null,"hint":"x|x|B|D|F|B"}, 'diagrams--2--13', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--14">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xx9aca","fingers":"001243","barres":null,"hint":"x|x|B|F|B|D"}, 'diagrams--2--14', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--15">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"75xx67","fingers":"310024","barres":null,"hint":"B|D|x|x|F|B"}, 'diagrams--2--15', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--16">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"7x976x","fingers":"204310","barres":null,"hint":"B|x|B|D|F|x"}, 'diagrams--2--16', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--17">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"jkljxj","fingers":"123101","barres":"19","hint":"B|F|B|D|x|B"}, 'diagrams--2--17', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--18">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xefgfx","fingers":"012430","barres":null,"hint":"x|B|F|B|D|x"}, 'diagrams--2--18', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--19">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xecxcd","fingers":"041023","barres":null,"hint":"x|B|D|x|B|F"}, 'diagrams--2--19', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--20">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"jklmxm","fingers":"123404","barres":"22","hint":"B|F|B|F|x|D"}, 'diagrams--2--20', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--21">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xefxfd","fingers":"023041","barres":null,"hint":"x|B|F|x|D|F"}, 'diagrams--2--21', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--22">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"jkljxm","fingers":"123104","barres":"19","hint":"B|F|B|D|x|D"}, 'diagrams--2--22', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--23">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xexgfd","fingers":"020431","barres":null,"hint":"x|B|x|B|D|F"}, 'diagrams--2--23', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--24">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xecxfd","fingers":"031042","barres":null,"hint":"x|B|D|x|D|F"}, 'diagrams--2--24', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--25">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"jxxjij","fingers":"200314","barres":null,"hint":"B|x|x|D|F|B"}, 'diagrams--2--25', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--26">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"jhxgix","fingers":"420130","barres":null,"hint":"B|D|x|B|F|x"}, 'diagrams--2--26', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--27">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"jhxjix","fingers":"310420","barres":null,"hint":"B|D|x|D|F|x"}, 'diagrams--2--27', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--28">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"jkxjix","fingers":"240310","barres":null,"hint":"B|F|x|D|F|x"}, 'diagrams--2--28', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--29">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xxljij","fingers":"004213","barres":null,"hint":"x|x|B|D|F|B"}, 'diagrams--2--29', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--30">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"jhxxij","fingers":"310024","barres":null,"hint":"B|D|x|x|F|B"}, 'diagrams--2--30', 'Bm(♭5)');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--2--31">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"jxljix","fingers":"204310","barres":null,"hint":"B|x|B|D|F|x"}, 'diagrams--2--31', 'Bm(♭5)');
+                        </script>
+
+                    
+                </div>
+            </div>
+
+                    <h3 id="A">A</h3>
+            <div class="container py-4">
+
+                <!-- row-cols-1（スマホでは1列）と row-cols-md-3（md以上では3列）を指定すると一括制御も可能 -->
+                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xlg-5 g-4">
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--0">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x02220","fingers":"001230","barres":null,"hint":"x|A|E|A|C\u266f|E"}, 'diagrams--3--0', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--1">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x02225","fingers":"001114","barres":2,"hint":"x|A|E|A|C\u266f|A"}, 'diagrams--3--1', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--2">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"577655","fingers":"134211","barres":5,"hint":"A|E|A|C\u266f|E|A"}, 'diagrams--3--2', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--3">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"x079a9","fingers":"001243","barres":null,"hint":"x|A|A|E|A|C\u266f"}, 'diagrams--3--3', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--4">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"54xx55","fingers":"210034","barres":null,"hint":"A|C\u266f|x|x|E|A"}, 'diagrams--3--4', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--5">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"54x65x","fingers":"210430","barres":null,"hint":"A|C\u266f|x|C\u266f|E|x"}, 'diagrams--3--5', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--6">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xcb9a9","fingers":"043121","barres":"9","hint":"x|A|C\u266f|E|A|C\u266f"}, 'diagrams--3--6', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--7">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xceeec","fingers":"012341","barres":"12","hint":"x|A|E|A|C\u266f|E"}, 'diagrams--3--7', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--8">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xx79a9","fingers":"001243","barres":null,"hint":"x|x|A|E|A|C\u266f"}, 'diagrams--3--8', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--9">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"hjjihh","fingers":"134211","barres":"17","hint":"A|E|A|C\u266f|E|A"}, 'diagrams--3--9', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--10">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"547x5x","fingers":"214030","barres":null,"hint":"A|C\u266f|A|x|E|x"}, 'diagrams--3--10', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--11">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"hgeeeh","fingers":"321114","barres":"14","hint":"A|C\u266f|E|A|C\u266f|A"}, 'diagrams--3--11', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--12">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xcbxac","fingers":"032014","barres":null,"hint":"x|A|C\u266f|x|A|E"}, 'diagrams--3--12', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--13">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"hgeehx","fingers":"321140","barres":"14","hint":"A|C\u266f|E|A|E|x"}, 'diagrams--3--13', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--14">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xcb9xc","fingers":"032104","barres":null,"hint":"x|A|C\u266f|E|x|E"}, 'diagrams--3--14', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--15">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"hgxxhh","fingers":"210034","barres":null,"hint":"A|C\u266f|x|x|E|A"}, 'diagrams--3--15', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--16">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xcbxec","fingers":"021043","barres":null,"hint":"x|A|C\u266f|x|C\u266f|E"}, 'diagrams--3--16', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--17">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xcbexc","fingers":"021403","barres":null,"hint":"x|A|C\u266f|A|x|E"}, 'diagrams--3--17', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--18">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"hgxihx","fingers":"210430","barres":null,"hint":"A|C\u266f|x|C\u266f|E|x"}, 'diagrams--3--18', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--19">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"xxjlml","fingers":"001243","barres":null,"hint":"x|x|A|E|A|C\u266f"}, 'diagrams--3--19', 'A');
+                        </script>
+
+                                            <!-- カード1 -->
+
+                        <!-- h-100 でカードの高さを揃え、position-relative でリンク範囲を拡張 -->
+                                                <div class="card h-100" id="diagrams--3--20">
+                        </div>
+                        <script>
+                            /* Initial render */
+                            generateFromJson({"frets":"hgjxhx","fingers":"214030","barres":null,"hint":"A|C\u266f|A|x|E|x"}, 'diagrams--3--20', 'A');
+                        </script>
+
+                    
+                </div>
+            </div>
+
+            </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <nav aria-label="フッターナビゲーション">
+            <ul class="footer-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/diatonic/index.html">ダイアトニックコード</a></li>
+                <li><a href="/scale/index.html">スケール</a></li>
+                <li><a href="/tuner/tuner.html">スケール</a></li>
+                <li><a href="/chord-progression/index.html">コード進行</a></li>
+                <li><a href="/metronome.html">メトロノーム</a></li>
+            </ul>
+        </nav>
+        <p class="footer-copy">© 2024 BTR KITA</p>
+    </div>
+</footer>
+
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+
+<script>
+    let ColorScheme = 'dark';
+
+    /**
+     * テーマを適用する
+     * @param {string} t    'light' | 'dark'
+     * @param {boolean} save true のとき localStorage に保存（ボタン操作時のみ）
+     */
+    function updateTheme(t, save = false) {
+        ColorScheme = t;
+        document.documentElement.setAttribute('data-bs-theme', t);
+        document.documentElement.setAttribute('data-theme', t);
+        document.body.setAttribute('data-bs-theme', t);
+        document.body.setAttribute('data-theme', t);
+
+        // ダーク時は太陽（ライトへ切り替え）、ライト時は月（ダークへ切り替え）
+        document.querySelectorAll('.theme-icon').forEach(icon => {
+            icon.classList.toggle('fa-sun',  t === 'dark');
+            icon.classList.toggle('fa-moon', t !== 'dark');
+        });
+
+        // ハンバーガー内テキスト: 現在のモードの逆を案内
+        document.querySelectorAll('.theme-label').forEach(label => {
+            label.textContent = t === 'dark' ? 'ライトモードへ' : 'ダークモードへ';
+        });
+
+        if (save) {
+            localStorage.setItem('color-scheme', t);
+        }
+    }
+
+    // 初期テーマの決定：① localStorage → ② OS設定 の順で参照
+    (function initTheme() {
+        const saved = localStorage.getItem('color-scheme');
+        if (saved === 'light' || saved === 'dark') {
+            updateTheme(saved);
+        } else {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            updateTheme(isDark ? 'dark' : 'light');
+        }
+    })();
+
+    // OSの設定変更をリアルタイムに監視（ユーザーが明示的に選択していない場合のみ）
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('color-scheme')) {
+            updateTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // save = true でローカルストレージに保存
+                updateTheme(ColorScheme === 'dark' ? 'light' : 'dark', true);
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.image-change-btn');
+        const images = document.querySelectorAll('.select-image');
+        // 表示を切り替える共通関数
+        const updateDisplay = (targetImageClass) => {
+            buttons.forEach(btn => {
+                const isActive = btn.getAttribute('data-image') === targetImageClass;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+
+            images.forEach(img => {
+                // 画像が対象のクラスを持っているか確認
+                if (img.classList.contains(targetImageClass)) {
+                    img.classList.add('is-visible');
+                } else {
+                    img.classList.remove('is-visible');
+                }
+            });
+        };
+
+        // --- 初期化処理 ---
+        const activeBtn = document.querySelector('.image-change-btn.active');
+        if (activeBtn) {
+            updateDisplay(activeBtn.getAttribute('data-image'));
+        }
+
+        // --- イベントリスナー ---
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                updateDisplay(e.currentTarget.getAttribute('data-image'));
+            });
+        });
+
+    });
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+<script>
+    function createAudioSystem() {
+        // シンセ生成をユーザー操作まで遅延させ、AudioContext の自動起動警告を回避
+        let currentSynth = null;
+        let currentPart = null;
+        let audioInitialized = false;
+
+        function setupAudio() {
+            if (audioInitialized) return;
+            audioInitialized = true;
+            Tone.Destination.volume.value = -12;
+            Tone.Transport.bpm.value = 120;
+            currentSynth = createInstrument("sine");
+        }
+
+        // DX7スタイル: 3系統のFM音源を並列接続してミキサーで合成するピアノ音色ファクトリ
+        // 各レイヤーは独立したPolySynth。ラッパーがPolySynthと同一インターフェースを公開し
+        // createInstrument外部のコード（play/stop/selectInstrument）は変更不要。
+        function createFMPianoInstrument() {
+            const mixer = new Tone.Volume(0).toDestination();
+
+            // FM変調は carrier ± n×modulator にサイドバンドを生成する。
+            // 低音域では carrier - modulator ≈ 0Hz (DC) が発生し、これが低域の曇りの原因。
+            // 40Hz HPF でDC・サブ帯域をカットしつつ、ピアノ音域(A0=27.5Hz〜)は実用上ほぼ無影響。
+            const hpf = new Tone.Filter({ frequency: 40, type: "highpass", rolloff: -24 }).connect(mixer);
+
+            // レイヤー1: 基音層 — modulationIndex を 0.3 まで下げサイドバンド密度を最小化
+            const layer1 = new Tone.PolySynth(Tone.FMSynth, {
+                volume: 0,
+                harmonicity: 1,
+                modulationIndex: 0.3,
+                oscillator: { type: "sine" },
+                modulation: { type: "sine" },
+                envelope: { attack: 0.005, decay: 3.0, sustain: 0.0, release: 3.5 },
+                modulationEnvelope: { attack: 0.005, decay: 0.05, sustain: 0.0, release: 0.05 }
+            }).connect(hpf);
+
+            // レイヤー2: 倍音層 — modulationIndex 1.8→1.0 に削減
+            const layer2 = new Tone.PolySynth(Tone.FMSynth, {
+                volume: -10,
+                harmonicity: 2,
+                modulationIndex: 1.0,
+                oscillator: { type: "sine" },
+                modulation: { type: "sine" },
+                envelope: { attack: 0.005, decay: 0.7, sustain: 0.0, release: 0.7 },
+                modulationEnvelope: { attack: 0.005, decay: 0.05, sustain: 0.0, release: 0.05 }
+            }).connect(hpf);
+
+            // レイヤー3: アタック層
+            const layer3 = new Tone.PolySynth(Tone.FMSynth, {
+                volume: -20,
+                harmonicity: 7,
+                modulationIndex: 0.4,
+                oscillator: { type: "sine" },
+                modulation: { type: "sine" },
+                envelope: { attack: 0.005, decay: 0.12, sustain: 0.0, release: 0.15 },
+                modulationEnvelope: { attack: 0.005, decay: 0.05, sustain: 0.0, release: 0.05 }
+            }).connect(hpf);
+
+            const layers = [layer1, layer2, layer3];
+
+            // ラッパーオブジェクト: PolySynthと同一インターフェースを公開
+            return {
+                get disposed() {
+                    return layers.every(l => l.disposed);
+                },
+                triggerAttackRelease(notes, duration, time) {
+                    layers.forEach(l => { if (!l.disposed) l.triggerAttackRelease(notes, duration, time); });
+                },
+                releaseAll() {
+                    layers.forEach(l => { if (!l.disposed) l.releaseAll(); });
+                },
+                dispose() {
+                    layers.forEach(l => { if (!l.disposed) l.dispose(); });
+                    hpf.dispose();
+                    mixer.dispose();
+                }
+            };
+        }
+
+        function createInstrument(type) {
+            switch (type) {
+                case "piano":
+                    return createFMPianoInstrument();
+
+                case "square":
+                    const polySquareSynth = new Tone.PolySynth(Tone.Synth, { volume: -10 }).toDestination();
+                    polySquareSynth.set({
+                        oscillator: { type: "square" },
+                        envelope: { attack: 0.01, decay: 0.1, sustain: 1.0, release: 0.5 }
+                    });
+                    return polySquareSynth;
+
+                case "triangle":
+                    const polyTriangleSynth = new Tone.PolySynth(Tone.Synth, { volume: -2 }).toDestination();
+                    polyTriangleSynth.set({
+                        oscillator: { type: "triangle" },
+                        envelope: { attack: 0.01, decay: 0.1, sustain: 1.0, release: 0.5 }
+                    });
+                    return polyTriangleSynth;
+
+                case "sine":
+                    const polySineSynth = new Tone.PolySynth(Tone.Synth, { volume: -2 }).toDestination();
+                    polySineSynth.set({
+                        oscillator: { type: "sine" },
+                        envelope: { attack: 0.01, decay: 0.1, sustain: 1.0, release: 0.5 }
+                    });
+                    return polySineSynth;
+            }
+        }
+
+        function stopAndReset() {
+            Tone.Transport.stop();
+            Tone.Transport.cancel();
+            Tone.Transport.seconds = 0;
+
+            if (currentSynth && !currentSynth.disposed) {
+                currentSynth.releaseAll();
+            }
+
+            if (currentPart) {
+                currentPart.stop();
+                currentPart.dispose();
+                currentPart = null;
+            }
+        }
+
+        return {
+            // スマホ対応：async を外し、タップ直後のイベントループ内で直接オーディオを起動させる
+            play: function(rawChordData) {
+                // コンテキスト解除→初期化→リセットの順で呼ぶ
+                Tone.start();
+                setupAudio();
+                stopAndReset();
+
+                let timelinePosition = 0;
+
+                const formattedData = rawChordData.map((item) => {
+                    const durationSeconds = Tone.Time(item.time).toSeconds();
+                    const startTime = Math.max(0, Math.round(timelinePosition * 1000) / 1000);
+
+                    const chordEvent = {
+                        time: startTime,
+                        duration: item.time,
+                        notes: item.notes
+                    };
+                    timelinePosition += durationSeconds;
+                    return chordEvent;
+                });
+
+                currentPart = new Tone.Part((time, value) => {
+                    const frequencies = value.notes.map(note => Tone.Frequency(note, "midi").toFrequency());
+                    const safeTime = Math.max(0, time);
+
+                    if (currentSynth && !currentSynth.disposed) {
+                        currentSynth.triggerAttackRelease(frequencies, value.duration, safeTime);
+                    }
+                }, formattedData);
+
+                currentPart.loop = true;
+                currentPart.loopEnd = Math.max(0, Math.round(timelinePosition * 1000) / 1000);
+
+                currentPart.start(0);
+                Tone.Transport.start();
+            },
+
+            stop: function() {
+                stopAndReset();
+            },
+
+            selectInstrument: function(type) {
+                Tone.start();
+                setupAudio();
+                stopAndReset();
+
+                if (currentSynth) {
+                    currentSynth.dispose();
+                }
+                currentSynth = createInstrument(type);
+            }
+        };
+    }
+
+    // --- メイン処理 ---
+    const audioSystem = createAudioSystem();
+
+    // 1. 再生ボタン群のバインド
+    document.querySelectorAll('.start-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            // 【最重要】コールバックの先頭で、他の処理を一切挟まずにブラウザのロックを解除する
+            if (Tone.context.state !== 'running') {
+                Tone.start();
+                Tone.context.resume();
+            }
+
+            try {
+                const rawData = e.target.getAttribute('data-notes');
+                const inputData = JSON.parse(rawData);
+
+                // ロック解除後に通常の再生ロジックへ移行
+                audioSystem.play(inputData);
+            } catch (error) {
+                console.error("JSONのパースに失敗しました。", error);
+            }
+        });
+    });
+
+    // 2. 停止ボタン群のバインド
+    document.querySelectorAll('.stop-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            audioSystem.stop();
+        });
+    });
+
+    // 3. 音色変更セレクトボックス群のバインド
+    const instrumentSelects = document.querySelectorAll('.instrument-select');
+    instrumentSelects.forEach(select => {
+        select.addEventListener('change', (e) => {
+            const selectedValue = e.target.value;
+
+            instrumentSelects.forEach(el => el.value = selectedValue);
+
+            audioSystem.selectInstrument(selectedValue);
+        });
+    });
+</script>
+        
+
+        
+        <script>
+
+    const CLEF_CONFIGS = {
+        G: {
+            path: 'M35.14,64.6c-0.38,-0 -1.06,-0.08 -1.06,-0.05c0.24,1.8 3.12,2.67 4.8,2.8c5.07,0.39 7.73,-5.33 7.83,-12.04c0.01,-0.85 -0,-1.71 -0.04,-2.59c-6.96,1.65 -19.26,-1.68 -21.21,-12.94c-1.18,-6.13 2.94,-11.29 7.1,-15.9c1.91,-2.12 3.91,-4.08 6.25,-6.83c-4.38,-11.09 -3.69,-21.95 4.77,-27.77c6.67,7.73 11.1,17.61 -1.76,31.82c0.78,2.7 2.04,6.43 2.63,8.67c16,-1.83 20.98,17.71(以下略)',
+            path: 'M35.14,64.6c-0.38,-0 -1.06,-0.08 -1.06,-0.05c0.24,1.8 3.12,2.67 4.8,2.8c5.07,0.39 7.73,-5.33 7.83,-12.04c0.01,-0.85 -0,-1.71 -0.04,-2.59c-6.96,1.65 -19.26,-1.68 -21.21,-12.94c-1.18,-6.13 2.94,-11.29 7.1,-15.9c1.91,-2.12 3.91,-4.08 6.25,-6.83c-4.38,-11.09 -3.69,-21.95 4.77,-27.77c6.67,7.73 11.1,17.61 -1.76,31.82c0.78,2.7 2.04,6.43 2.63,8.67c16,-1.83 20.98,17.71 4.13,22.34c0.17,3.09 0.08,6.03 -0.44,8.54c-1.06,5.21 -3.83,8.69 -9.27,8.62c-5.56,-0.07 -9.19,-6 -8.35,-9.43c0.47,-1.92 2.1,-4.16 4.61,-4.16c2.59,-0 4.69,2.25 4.69,4.62c0,2.38 -2.1,4.31 -4.69,4.31Zm11.41,-13.83c-0.49,-6.21 -1.81,-11.34 -3.07,-16.26c-3.85,0.4 -6.32,4.08 -5.38,6.92c0.59,1.78 1.83,2.71 3.69,3.63c1.12,1.26 0.76,2.01 -0.29,2c-0.79,-0.26 -3.6,-1.22 -5.3,-4.72c-2.31,-4.77 0.74,-10.93 6.19,-12.15c-0.57,-2.13 -1.35,-5.41 -1.99,-7.58c-2.04,2.32 -3.18,2.88 -4.74,5.18c-2.11,3.1 -5.56,6.61 -4.44,12.17c2,10.02 9.25,12.43 15.33,10.81Zm-6.57,-35.12c1.05,-1.66 9.71,-8.95 5.83,-19.92c-6.05,3.39 -6.79,6.67 -7.24,10.65c-0.35,3.14 0.78,6.93 1.41,9.27Zm5.51,18.77c1.22,4.81 2.41,9.58 2.95,15.64c8.98,-3.67 7.28,-16.21 -2.95,-15.64Z',
+            scale: 0.896, leftBound: 19, originX: 37, originY: 42, width: 38
+        },
+        F: {
+            path: 'M19.8,28.5c-1.5,-2.1 -2.9,-5.7 -1.1,-11.1c4,-6.8 8.1,-11.4 20.3,-12c12.1,-0.6 19.3,8.4 21.7,16.4c3.5,15.6 -9.6,45.8 -39.6,50.6c14.3,-9.7 30.8,-27.3 29.7,-46.7c-0.7,-9.6 -4.5,-14.6 -9.8,-16.6c-8,-3.2 -16.5,3.4 -18.2,8.2c-0.2,0.9 -0.1,1.7 0.1,2.3c1.3,-0.7 2.8,-1.1 4.4,-1.1c4.5,0 8.1,3.2 8.1,7.1c-0,3.9 -3.6,7.1 -8.1,7.1c-3.3,-0 -6.1,-1.7 -7.4,-4.1Z M73,16.4c0,3.9 -3.2,7.1 -7.1,7.1c-3.9,0 -7.1,-3.2 -7.1,-7.1c0,-3.9 3.2,-7.1 7.1,-7.1c3.9,0 7.1,3.2 7.1,7.1Z M73,33.3c0,3.9 -3.2,7.1 -7.1,7.1c-3.9,0 -7.1,-3.2 -7.1,-7.1c0,-3.9 3.2,-7.1 7.1,-7.1c3.9,0 7.1,3.2 7.1,3.3Z',
+            scale: 0.456, leftBound: 18, originX: 18, originY: 24.8, width: 46
+        },
+        C: {
+            path: 'M26.3,40c6,-2.6 9.3,-7.5 11.6,-15.3c0,-0.1 0,-0.1 0,-0.2l0.6,-2.1c1.2,2.8 2.3,5.5 4,7.2c1.7,1.7 3.9,2.9 5.9,2.9c6.1,-0.1 6.6,-4.4 6.6,-15.6c0,-11.2 -2.9,-15.2 -7.9,-15.2c-4,0 -5.3,2.1 -5.1,4.1c1.4,0.9 2.4,2.4 2.4,4.2c-0,2.7 -2.3,4.9 -5.2,4.9c-2.8,-0 -5.2,-2.2 -5.2,-4.9c0,-0.1 0,-0.2 0,-0.3l-0,0c0,-4.3 6.8,-10.5 13,-10.5c5.9,-0 17.6,4.6 17.6,17.7c0,13.1 -11.3,17.7 -16.2,17.7c-1.3,0 -3,-0.1 -4.6,-0.5c-2,0.1 -3.4,2 -4.3,6c0.9,4 2.4,5.9 4.3,6c1.6,-0.4 3.3,-0.5 4.6,-0.5c4.9,-0 16.2,4.6 16.2,17.7c0,13.1 -11.7,17.7 -17.6,17.7c-6.2,0 -13,-6.2 -13,-10.5l0,0c-0,-0.1 0,-0.2 0,-0.3c0,-2.7 2.3,-4.9 5.2,-4.9c2.8,0 5.2,2.2 5.2,4.9c-0,1.8 -1,3.3 -2.4,4.2c-0.1,2 1.2,4.1 5.1,4.1c5,-0 7.9,-4 7.9,-15.2c0,-11.2 -0.5,-15.5 -6.6,-15.6c-2,-0 -4.2,1.2 -5.9,2.9c-1.7,1.7 -2.8,4.4 -4,7.2l-0.6,-2.1c0,-0.1 0,-0.1 0,-0.2c-2.3,-7.8 -5.6,-12.7 -11.6,-15.3Z M12.5,0.1l8.8,0l0,81.8l-8.8,0Z M25.7,0.1l3,0l0,81.8l-3,0Z',
+            scale: 0.504, leftBound: 12, originX: 12, originY: 40, width: 44
+        }
+    };
+
+    // char: JSで安全に評価できるサロゲートペア対応のUnicodeコードポイント（エスケープシーケンス）に修正
+    const CLEFS = [
+        {
+            id: 'g1',
+            group: 'g',
+            type: 'G',
+            refLine: 1,
+            refPitch: 7,
+            octaveShift: 0,
+            char: '\u{1D11E}',
+            label: 'フレンチ・ヴァイオリン',
+            sub: '第1線'
+        },
+        {
+            id: 'g2',
+            group: 'g',
+            type: 'G',
+            refLine: 2,
+            refPitch: 7,
+            octaveShift: 0,
+            char: '\u{1D11E}',
+            label: 'ヴァイオリン（標準）',
+            sub: '第2線'
+        },
+        {
+            id: 'g2b',
+            group: 'g',
+            type: 'G',
+            refLine: 2,
+            refPitch: -5,
+            octaveShift: -1,
+            char: '\u{1D11E}',
+            label: 'テノール (8vb)',
+            sub: '第2線・1oct下'
+        },
+        {
+            id: 'f3',
+            group: 'f',
+            type: 'F',
+            refLine: 3,
+            refPitch: -7,
+            octaveShift: -1,
+            char: '\u{1D122}',
+            label: 'バリトン',
+            sub: '第3線'
+        },
+        {
+            id: 'f4',
+            group: 'f',
+            type: 'F',
+            refLine: 4,
+            refPitch: -7,
+            octaveShift: -2,
+            char: '\u{1D122}',
+            label: 'バス（標準）',
+            sub: '第4線'
+        },
+        {
+            id: 'f5',
+            group: 'f',
+            type: 'F',
+            refLine: 5,
+            refPitch: -7,
+            octaveShift: -2,
+            char: '\u{1D122}',
+            label: 'スブバス',
+            sub: '第5線'
+        },
+        {
+            id: 'c1',
+            group: 'c',
+            type: 'C',
+            refLine: 1,
+            refPitch: 0,
+            octaveShift: 0,
+            char: '\u{1D121}',
+            label: 'ソプラノ',
+            sub: '第1線'
+        },
+        {
+            id: 'c2',
+            group: 'c',
+            type: 'C',
+            refLine: 2,
+            refPitch: 0,
+            octaveShift: 0,
+            char: '\u{1D121}',
+            label: 'メゾソプラノ',
+            sub: '第2線'
+        },
+        {
+            id: 'c3',
+            group: 'c',
+            type: 'C',
+            refLine: 3,
+            refPitch: 0,
+            octaveShift: -1,
+            char: '\u{1D121}',
+            label: 'アルト',
+            sub: '第3線'
+        },
+        {
+            id: 'c4',
+            group: 'c',
+            type: 'C',
+            refLine: 4,
+            refPitch: 0,
+            octaveShift: -1,
+            char: '\u{1D121}',
+            label: 'テノール',
+            sub: '第4線'
+        },
+        {
+            id: 'c5',
+            group: 'c',
+            type: 'C',
+            refLine: 5,
+            refPitch: 0,
+            octaveShift: -1,
+            char: '\u{1D121}',
+            label: 'バリトン (C)',
+            sub: '第5線'
+        },
+    ];
+
+    let selectedClef = CLEFS.find(c => c.id === 'g2');
+
+    function buildButtons(dd) {
+        const groups = {g: '.g-clefs', f: '.f-clefs', c: '.c-clefs'};
+        CLEFS.forEach(clef => {
+            const btn = document.createElement('button');
+            btn.className = 'clef-btn' + (clef.id === 'g2' ? ' active' : '');
+            btn.dataset.clefId = clef.id;
+            btn.innerHTML = `<span class="clef-font-preview">${clef.char}</span>` +
+                `<span class="clef-name">${clef.label}<br><span class="fs-6 text">${clef.sub}</span></span>`;
+            btn.onclick = () => selectClef(clef.id, dd);
+            dd.querySelector(groups[clef.group]).appendChild(btn);
+        });
+    }
+
+    function selectClef(id, dd) {
+        dd.querySelectorAll('.clef-btn').forEach(b => b.classList.remove('active'));
+        dd.querySelector(`.clef-btn[data-clef-id="${id}"]`).classList.add('active');
+        selectedClef = CLEFS.find(c => c.id === id);
+        generate(dd);    }
+
+    const PITCH_MAP = [
+        {step: 0, acc: null}, {step: 0, acc: '#'}, {step: 1, acc: null}, {step: 1, acc: '#'},
+        {step: 2, acc: null}, {step: 3, acc: null}, {step: 3, acc: '#'}, {step: 4, acc: null},
+        {step: 4, acc: '#'}, {step: 5, acc: null}, {step: 5, acc: '#'}, {step: 6, acc: null},
+    ];
+
+    function pitchToNote(pitch, clef) {
+        const shiftedPitch = pitch + (clef.octaveShift || 0) * 12;
+        const pc = ((shiftedPitch % 12) + 12) % 12;
+        const octave = Math.floor(shiftedPitch / 12);
+        const {step, acc} = PITCH_MAP[pc];
+        const stepsFromC4 = octave * 7 + step;
+        const refPc = ((clef.refPitch % 12) + 12) % 12;
+        const refOct = Math.floor(clef.refPitch / 12);
+        const refStepsFromC4 = refOct * 7 + PITCH_MAP[refPc].step;
+        const refSP = (5 - clef.refLine) * 2;
+        return {staffPos: refSP - (stepsFromC4 - refStepsFromC4), step, octave, acc, pitch};
+    }
+
+    function resolveAccidentals(chords, clef) {
+        const prev = {};
+        return chords.map(chord => {
+            const notes = chord.map(p => pitchToNote(p, clef));
+            const resolved = notes.map(n => {
+                const key = `${n.step}_${n.octave}`;
+                let dAcc = n.acc;
+                if (n.acc === null && prev[key] && prev[key] !== null) dAcc = 'n';
+                if (n.acc !== null && prev[key] === n.acc) dAcc = null;
+                return {...n, displayAcc: dAcc};
+            });
+            notes.forEach(n => {
+                prev[`${n.step}_${n.octave}`] = n.acc;
+            });
+            return resolved;
+        });
+    }
+
+    function drawClef(clef, staffLeftX, posY) {
+        const refSP = (5 - clef.refLine) * 2;
+        const targetY = posY(refSP);
+        const conf = CLEF_CONFIGS[clef.type];
+
+        const leftMargin = clef.type === 'G' ? 8 : 12;
+        const targetLeftX = staffLeftX + leftMargin;
+
+        const tx = targetLeftX - conf.leftBound * conf.scale;
+        const ty = targetY - conf.originY * conf.scale;
+
+        let s = `<path class="st-clef" d="${conf.path}" transform="translate(${tx}, ${ty}) scale(${conf.scale})"/>`;
+
+        if (clef.id === 'g2b') {
+            const numX = targetLeftX + (conf.width / 2);
+            const numY = targetY + 35;
+            s += `<text class="st-clef st-clef-num" x="${numX}" y="${numY}" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">8</text>`;
+        }
+        return s;
+    }
+
+    function clefOverflow(clef, LS) {
+        const refSP = (5 - clef.refLine) * 2;
+        const conf = CLEF_CONFIGS[clef.type];
+
+        let pTop = 0, pBot = 82;
+        if (clef.type === 'G') {
+            pTop = -28;
+            pBot = 68;
+        }
+
+        const relTop = (refSP * (LS / 2)) + (pTop - conf.originY) * conf.scale;
+        const relBot = (refSP * (LS / 2)) + (pBot - conf.originY) * conf.scale;
+        const staffBot = 8 * (LS / 2);
+
+        return {
+            top: Math.max(0, -relTop + 15),
+            bot: Math.max(0, relBot - staffBot + 15)
+        };
+    }
+
+    function getStaffColors() {
+        // html/body の data-theme を見る。未設定なら CSS の :root 定義(dark)に合わせてダーク扱い
+        const t = document.documentElement.dataset.theme
+               ?? document.body.dataset.theme;
+        const dark = t !== 'light';
+        return dark
+            ? { bg: '#1c2338', line: '#dedad0', fg: '#dedad0', sub: '#999999' }
+            : { bg: '#ffffff',  line: '#1a1a1a', fg: '#1a1a1a', sub: '#888888' };
+    }
+
+    function generateStaffSVG(chords, clef, wholeNote = true, barLines = false) {
+        const SL = 5;
+        const CW = barLines ? 100 : 60;
+        const LS = 10;
+        const NR = 5.5;
+        const LW = 18;
+
+        const conf = CLEF_CONFIGS[clef.type];
+        const leftMargin = clef.type === 'G' ? 8 : 12;
+        const CLEF_ZONE_W = leftMargin + conf.width + 4;
+
+        const totalW = Math.max(500, SL + CLEF_ZONE_W + chords.length * CW + 40);
+
+        let minSP = 0, maxSP = 8;
+        chords.forEach(ch => ch.forEach(p => {
+            const {staffPos} = pitchToNote(p, clef);
+            if (staffPos < minSP) minSP = staffPos;
+            if (staffPos > maxSP) maxSP = staffPos;
+        }));
+
+        const notePad = 4;
+        const noteTop = Math.max(0, -minSP + notePad) * (LS / 2) + 8;
+        const noteBot = Math.max(0, maxSP - 8 + notePad) * (LS / 2) + 8;
+
+        const ov = clefOverflow(clef, LS);
+
+        const topPad = Math.max(noteTop, ov.top) + 20;
+        const botPad = Math.max(noteBot, ov.bot) + 20;
+        const SVG_H = topPad + 4 * LS + botPad + 40;
+        const staffY = topPad;
+
+        const posY = sp => staffY + sp * (LS / 2);
+        const resolved = resolveAccidentals(chords, clef);
+
+        const svgId = 'stf-' + Math.random().toString(36).slice(2, 9);
+        const sc = cls => `#${svgId} .${cls}`;
+        const C = getStaffColors();
+
+        let svg = `<svg id="${svgId}" width="100%" viewBox="0 0 ${totalW} ${SVG_H}" role="img" xmlns="http://www.w3.org/2000/svg">` +
+            `<title>${clef.label}による五線譜</title>` +
+            `<defs><style>` +
+            `${sc('st-bg')}{fill:${C.bg}}` +
+            `${sc('st-line')}{stroke:${C.line}}` +
+            `${sc('st-clef')},${sc('st-note')},${sc('st-acc')}{fill:${C.fg}}` +
+            `${sc('st-clef-num')}{fill:${C.fg}}` +
+            `${sc('st-stem')}{stroke:${C.line}}` +
+            `${sc('st-note-open')}{stroke:${C.line};fill:none}` +
+            `${sc('st-sub')}{fill:${C.sub}}` +
+            `</style></defs>` +
+            `<rect class="st-bg" width="100%" height="100%"/>`;
+        const sR = totalW - 20;
+        const y0 = posY(0), y8 = posY(8);
+
+        for (let i = 0; i < 5; i++) {
+            const y = posY(i * 2);
+            svg += `<line class="st-line" x1="${SL}" y1="${y}" x2="${sR}" y2="${y}" stroke-width="1" opacity="0.8"/>`;
+        }
+        svg += `<line class="st-line" x1="${SL}" y1="${y0}" x2="${SL}" y2="${y8}" stroke-width="1.5"/>`;
+
+        svg += drawClef(clef, SL, posY);
+
+        const csx = SL + CLEF_ZONE_W;
+
+        resolved.forEach((notes, ci) => {
+            const cx = csx + ci * CW + CW / 2;
+
+            const lSet = new Set();
+            notes.forEach(({staffPos: sp}) => {
+                if (sp < 0) {
+                    const start = (sp % 2 === 0) ? sp : sp + 1;
+                    for (let s = start; s <= -2; s += 2) lSet.add(s);
+                }
+                if (sp > 8) {
+                    const start = (sp % 2 === 0) ? sp : sp - 1;
+                    for (let s = start; s >= 10; s -= 2) lSet.add(s);
+                }
+            });
+            lSet.forEach(sp => {
+                const ly = posY(sp);
+                svg += `<line class="st-line" x1="${cx - LW}" y1="${ly}" x2="${cx + LW}" y2="${ly}" stroke-width="1"/>`;
+            });
+
+            notes.forEach(({staffPos, displayAcc}) => {
+                const ny = posY(staffPos);
+                if (displayAcc) {
+                    const sym = displayAcc === '#' ? '♯' : displayAcc === 'b' ? '♭' : '♮';
+                    const fs = displayAcc === 'n' ? 13 : 14;
+                    svg += `<text class="st-acc" x="${cx - NR - 10}" y="${ny + 4}" text-anchor="middle" ` +
+                        `font-size="${fs}" font-family="'Times New Roman',serif">${sym}</text>`;
+                }
+                if (wholeNote) {
+                    svg += `<ellipse class="st-note-open" cx="${cx}" cy="${ny}" rx="${NR}" ry="${NR * 0.7}" ` +
+                        `transform="rotate(-18,${cx},${ny})" stroke-width="1.5"/>`;
+                } else {
+                    svg += `<ellipse class="st-note" cx="${cx}" cy="${ny}" rx="${NR}" ry="${NR * 0.7}" ` +
+                        `transform="rotate(-18,${cx},${ny})"/>`;
+                    const up = staffPos >= 4;
+                    const sx = up ? cx + NR - 1 : cx - NR + 1;
+                    svg += `<line class="st-stem" x1="${sx}" y1="${ny}" x2="${sx}" y2="${ny + (up ? -34 : 34)}" ` +
+                        `stroke-width="1.2"/>`;
+                }
+            });
+
+            const octaveShift =  (clef.octaveShift || 0) * 1;
+            const names = [...chords[ci]].sort((a, b) => a - b).map(p => {
+                const pc = ((p % 12) + 12) % 12;
+                return ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'][pc] + (Math.floor(p / 12) + 4 + octaveShift);
+            }).join(' ');
+            svg += `<text class="st-sub" x="${cx}" y="${y8 + 22}" text-anchor="middle" ` +
+                `font-size="10" font-family="sans-serif">${names}</text>`;
+
+            if (barLines && ci < resolved.length - 1) {
+                const bx = cx + CW / 2;
+                svg += `<line class="st-line" x1="${bx}" y1="${y0}" x2="${bx}" y2="${y8}" stroke-width="1.2"/>`;
+            }
+        });
+
+        const ex = csx + resolved.length * CW;
+        svg += `<line class="st-line" x1="${ex}"   y1="${y0}" x2="${ex}"   y2="${y8}" stroke-width="1.5"/>`;
+        svg += `<line class="st-line" x1="${ex + 5}" y1="${y0}" x2="${ex + 5}" y2="${y8}" stroke-width="4"/>`;
+
+        svg += `</svg>`;
+        return svg;
+    }
+
+    function generate(dd) {
+        const errEl = dd.querySelector('.staff-error');
+        errEl.textContent = '';
+        const wholeNote = dd.dataset.wholenote !== 'false';
+        const barLines = dd.dataset.barlines === 'true';
+        let chords;
+        try {
+            chords = JSON.parse(dd.dataset.chords);
+            if (!Array.isArray(chords) || !Array.isArray(chords[0]))
+                throw new Error('[[...],[...]] 形式で入力してください');
+            chords.forEach((c, i) => c.forEach((n, j) => {
+                if (typeof n !== 'number') throw new Error(`[${i}][${j}] が数値ではありません`);
+            }));
+        } catch (e) {
+            errEl.textContent = 'JSONエラー: ' + e.message;
+            return;
+        }
+        dd.querySelector('.staff-out').innerHTML = generateStaffSVG(chords, selectedClef, wholeNote, barLines);
+    }
+
+    document.querySelectorAll('div.five-line-image').forEach(dd => {
+        buildButtons(dd);
+        generate(dd);
+    });
+
+    // テーマ切替時は SVG を作り直さず <defs><style> の色だけ書き換える（大量要素でも軽量）
+    function updateStaffColors(dd) {
+        const svg = dd.querySelector('.staff-out svg');
+        if (!svg) return;
+        const styleEl = svg.querySelector('defs style');
+        if (!styleEl) return;
+        const id = svg.id;
+        const sc = cls => `#${id} .${cls}`;
+        const C = getStaffColors();
+        styleEl.textContent =
+            `${sc('st-bg')}{fill:${C.bg}}` +
+            `${sc('st-line')}{stroke:${C.line}}` +
+            `${sc('st-clef')},${sc('st-note')},${sc('st-acc')}{fill:${C.fg}}` +
+            `${sc('st-clef-num')}{fill:${C.fg}}` +
+            `${sc('st-stem')}{stroke:${C.line}}` +
+            `${sc('st-note-open')}{stroke:${C.line};fill:none}` +
+            `${sc('st-sub')}{fill:${C.sub}}`;
+    }
+
+    new MutationObserver(() => {
+        document.querySelectorAll('div.five-line-image').forEach(updateStaffColors);
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+
+</script>
+
+<script>
+/**
+ * SVG Inject
+ * ─────────────────────────────────────────────
+ * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
+ * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
+ * - data-loading="true" + CSS transition で FOUC を完全防止
+ * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
+ */
+(function () {
+    'use strict';
+
+    /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
+    const _cache = new Map();
+
+    /** SVG テキストを取得（キャッシュ付き） */
+    function _fetch(url) {
+        if (!_cache.has(url)) {
+            _cache.set(url,
+                fetch(url, { credentials: 'same-origin' })
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+                        return res.text();
+                    })
+            );
+        }
+        return _cache.get(url);
+    }
+
+    /** SVG テキストを DOM 要素にパース */
+    function _parse(text, url) {
+        let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+        let err = doc.querySelector('parsererror');
+        if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
+        let svg = doc.querySelector('svg');
+        if (!svg) throw new Error('No <svg> element found in ' + url);
+        return svg;
+    }
+
+    /**
+     * <img> の属性を <svg> へ引き継ぐ
+     * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
+     * ・img の id がなければ SVG の id を削除（重複 ID 防止）
+     * ・alt は aria-label に変換
+     * ・data-loading="true" を付与して CSS が opacity:0 を維持
+     */
+    function _transfer(img, svg) {
+        let skipImg = new Set([
+            'src', 'data-loading', 'decoding', 'loading',
+            'crossorigin', 'fetchpriority', 'referrerpolicy'
+        ]);
+        let keepSvg = new Set([
+            'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
+        ]);
+
+        for (let i = 0; i < img.attributes.length; i++) {
+            let attr = img.attributes[i];
+            if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
+            svg.setAttribute(attr.name, attr.value);
+        }
+
+        /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
+        if (!img.hasAttribute('id')) {
+            svg.removeAttribute('id');
+        }
+
+        /* alt → aria-label（<svg> に alt は無効） */
+        if (img.alt) {
+            svg.setAttribute('aria-label', img.alt);
+            svg.setAttribute('role', 'img');
+        }
+        svg.removeAttribute('alt');
+
+        /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
+        svg.setAttribute('data-loading', 'true');
+    }
+
+    /** 1 つの <img> を非同期でインライン <svg> に置換 */
+    function _inject(img) {
+        let url = img.src;
+        if (!url || !img.parentNode) return;
+
+        _fetch(url)
+            .then(function (text) {
+                let svg = _parse(text, url);
+                _transfer(img, svg);
+
+                img.parentNode.replaceChild(svg, img);
+
+                /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
+                svg.getBoundingClientRect();
+                svg.removeAttribute('data-loading');
+            })
+            .catch(function (err) {
+                console.error('[svg-inject]', err);
+                /* フォールバック: 元の <img> をそのまま表示 */
+                img.removeAttribute('data-loading');
+            });
+    }
+
+    /** ページ内の全 img.svg-inject を処理 */
+    function injectAll() {
+        document.querySelectorAll('img.svg-inject').forEach(_inject);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', injectAll);
+    } else {
+        injectAll();
+    }
+})();
+</script>
+</body>
+</html>

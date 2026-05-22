@@ -1,0 +1,1436 @@
+<!doctype html>
+<html lang="ja" data-theme="light" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="チューナーです">
+
+    <title>チューナー</title>
+
+    <!-- おさむ -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- Styles -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Music&display=swap" rel="stylesheet">
+
+    <link rel="mask-icon" sizes="any" href="https://btrkita.github.io/img/icon.svg" color="#0bd">
+    <link rel="icon" href="https://btrkita.github.io/img/icon.svg" type="image/svg+xml">
+    <style>
+        /* ==========================================
+          カラーモード設定（ライト・ダーク共通変数定義）
+        ========================================== */
+        :root,
+        [data-theme="dark"] {
+            /* 完全に真っ黒にせず、少し青み・グレーを混ぜてエディタ風に */
+            --site-h1-color: #f7fafc;
+            --site-h1-border: #3b82f6; /* 少し明るめのブルー */
+
+            --site-h2-color: #e2e8f0;
+            --site-h2-border: #334155; /* 暗めのボーダー */
+
+            --site-h3-h5-color: #cbd5e1;
+            --site-h3-border: #1e293b;
+
+            --site-select-border: #475569;
+
+            --site-body-bg: #0b0e18;
+
+            /* finger-board SVG */
+            --fb-bg:          #1c2338;
+            --fb-line:        #8899aa;
+            --fb-string-name: #e2e8f0;
+            --fb-fret-num:    #c9a0a0;
+            --fb-note-fill:   rgba(180, 180, 190, 0.40);
+            --fb-note-stroke: rgba(15, 23, 42, 0.60);
+            --fb-root-fill:   #f87171;
+            --fb-root-stroke: #0f172a;
+            --fb-scale-fill:  #60a5fa;
+            --fb-scale-stroke:#0f172a;
+
+            --site-footer-bg: #0f172a; /* 深みのある紺・黒 */
+            --site-footer-border: #1e293b;
+            --site-footer-link: #94a3b8;
+            --site-footer-link-hover: #3b82f6;
+            --site-footer-copy: #64748b;
+        }
+
+        [data-theme="light"] {
+            --site-h1-color: #1a202c;
+            --site-h1-border: #0d6efd; /* Bootstrapのprimary相当 */
+
+            --site-h2-color: #2d3748;
+            --site-h2-border: #dee2e6;
+
+            --site-h3-h5-color: #4a5568;
+            --site-h3-border: #e9ecef;
+
+            --site-select-border: #ccc;
+
+            --site-body-bg: #f5f4ef; /* 和紙調オフホワイト */
+
+            --site-footer-bg: #ede9df; /* 温かみのあるオフホワイト */
+            --site-footer-border: #e9ecef;
+            --site-footer-link: #6c757d;
+            --site-footer-link-hover: #0d6efd;
+            --site-footer-copy: #adb5bd;
+        }
+
+        /* ===== ボディ背景 ===== */
+        body {
+            background-color: var(--site-body-bg);
+            transition: background-color .25s ease;
+        }
+
+        /* ===== テーブル コンテキストクラス ダークモード ===== */
+        /* Bootstrap 5.3 の変数が確実に上書きされるよう明示指定 */
+        [data-bs-theme="dark"] .table-light,
+        [data-bs-theme="dark"] thead.table-light {
+            --bs-table-bg:          #343a40;
+            --bs-table-color:       #f8f9fa;
+            --bs-table-border-color:#495057;
+            color: #f8f9fa;
+        }
+        [data-bs-theme="dark"] .table-info {
+            --bs-table-bg:          #032830;
+            --bs-table-color:       #6edff6;
+            --bs-table-border-color:#0d3f50;
+            color: #6edff6;
+        }
+        [data-bs-theme="dark"] .table-primary {
+            --bs-table-bg:          #031633;
+            --bs-table-color:       #6ea8fe;
+            --bs-table-border-color:#0d2d5e;
+            color: #6ea8fe;
+        }
+        [data-bs-theme="dark"] .table-success {
+            --bs-table-bg:          #051b11;
+            --bs-table-color:       #75b798;
+            --bs-table-border-color:#0f2d1e;
+            color: #75b798;
+        }
+
+        /* ==========================================
+        Bootstrap ナビバー専用カラー上書き設定
+        ========================================== */
+
+
+        /* 2. ダークモード：黒背景に青系統（4a9eff）のアクセント */
+        :root,[data-theme="dark"] {
+            .navbar.site-custom-nav {
+                /* 背景色：DAWやエディタ風の引き締まった黒（必要に応じて #000000 等に変更可） */
+                --bs-navbar-bg: #0f172a;
+
+                /* 文字色：基本はグレー、ホバーや現在地で指定の青（4a9eff）に */
+                --bs-navbar-color: #94a3b8;
+                --bs-navbar-hover-color: #4a9eff;
+                --bs-navbar-active-color: #4a9eff;
+                --bs-navbar-disabled-color: #475569;
+
+                /* ロゴ・ブランド名 */
+                --bs-navbar-brand-color: #f8fafc;
+                --bs-navbar-brand-hover-color: #4a9eff;
+
+                /* トグラー（スマホ用三本線ボタン）の調整 */
+                --bs-navbar-toggler-color: #94a3b8;
+                --bs-navbar-toggler-border-color: #334155;
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28148, 163, 184, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+                border-bottom: 1px solid #1e293b;
+            }
+        }
+
+        [data-theme="light"]
+         {
+            .navbar.site-custom-nav {
+                /* 背景色：黒や緑と識別しやすく、白文字とのコントラストも高い朱赤 */
+                --bs-navbar-bg: #d9381e;
+
+                /* 文字色：赤背景の上でハッキリ読めるホワイト */
+                --bs-navbar-color: rgba(255, 255, 255, 0.85);
+                --bs-navbar-hover-color: #ffffff;
+                --bs-navbar-active-color: #f1c40f;
+                --bs-navbar-disabled-color: rgba(255, 255, 255, 0.4);
+
+                /* ロゴ・ブランド名（常時100%の白で強調） */
+                --bs-navbar-brand-color: #ffffff;
+                --bs-navbar-brand-hover-color: #ffffff;
+
+                /* トグラー（スマホ用三本線ボタン）の調整 */
+                --bs-navbar-toggler-color: rgba(255, 255, 255, 0.85);
+                --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.25);
+                /* 三本線アイコンを白ベースにするためのフィルター */
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+                /* ナビバーの境界線（必要に応じて同系色の濃い赤で締める） */
+                border-bottom: 1px solid #bc2f17;
+            }
+        }
+
+
+        /* 共通：Bootstrapの既存の背景ユーティリティとバッティングしないためのクラス */
+        .navbar.site-custom-nav {
+            background-color: var(--bs-navbar-bg) !important;
+        }
+
+        /* ===== 見出し ===== */
+        h1 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--site-h1-color);
+            border-left: 4px solid var(--site-h1-border);
+            padding: 0.15rem 0 0.15rem 0.85rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--site-h2-color);
+            padding: 0 0 0.35rem 0;
+            border-bottom: 2px solid var(--site-h2-border);
+            margin-top: 2rem;
+            margin-bottom: 0.85rem;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: 1px solid var(--site-h3-border);
+            padding-bottom: 0.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.65rem;
+        }
+
+        h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: none;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h5 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: none;
+        }
+
+        /* ===== その他共通 ===== */
+        span.delimiter:before {
+            content: " ━ ";
+        }
+
+        .select-image {
+            display: none;
+            width: 100%;
+            aspect-ratio: 1462 / 333;
+            height: auto;
+            object-fit: contain;
+            background-color: transparent;
+        }
+
+        .is-visible {
+            display: block !important;
+        }
+
+        .select-in-table {
+            padding: 10px 16px;
+            font-size: 16px;
+            margin-right: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--site-select-border);
+            background-color: transparent; /* ダークモードでの汎用性を考慮 */
+            color: inherit;               /* 親（Bootstrap）の文字色を引き継ぐ */
+            cursor: pointer;
+        }
+
+        /* ===== フッター ===== */
+        .site-footer {
+            background: var(--site-footer-bg);
+            border-top: 1px solid var(--site-footer-border);
+            padding: 1.75rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem 1.25rem;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-nav a {
+            color: var(--site-footer-link);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--site-footer-link-hover);
+        }
+
+        .footer-copy {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--site-footer-copy);
+            margin: 0;
+        }
+
+        /* ==========================================
+          SVG インジェクト: FOUC 防止
+          img.svg-inject[data-loading="true"] → 不透明度 0 でレイアウト確保
+          JS が SVG に置換しきった瞬間に data-loading を削除してフェードイン
+        ========================================== */
+        img.svg-inject[data-loading="true"] {
+            opacity: 0;
+        }
+        svg.svg-inject {
+            transition: opacity 0.1s ease;
+        }
+        svg.svg-inject[data-loading="true"] {
+            opacity: 0;
+        }
+
+        /* ==========================================
+          SVG 外部ファイル用カラー変数
+          ※ <img src> で読み込まれた SVG はこれらを参照する
+        ========================================== */
+        :root,
+        [data-theme="dark"] {
+            /* key-image: 音符・五線・シャープ・フラット */
+            --svg-key-fg: #cbd5e1;
+
+            /* circle-of-5th */
+            --svg-ci-fill:  #1c2338;
+            --svg-ci-stroke: #dedad0;
+            --svg-ci-major: #e8e6df;
+            --svg-ci-minor: #c8c4b8;
+            --svg-ci-dim:   #a8a499;
+        }
+
+        [data-theme="light"] {
+            --svg-key-fg: #4a5568;
+
+            --svg-ci-fill:  #ffffff;
+            --svg-ci-stroke: #1a1a1a;
+            --svg-ci-major: #111111;
+            --svg-ci-minor: #333333;
+            --svg-ci-dim:   #555555;
+
+            /* finger-board */
+            --fb-bg:          #ffffff;
+            --fb-line:        rgb(0, 0, 0);
+            --fb-string-name: #000000;
+            --fb-fret-num:    #3f2727;
+            --fb-note-fill:   rgba(45, 45, 45, 0.35);
+            --fb-note-stroke: rgba(255, 255, 255, 0.35);
+            --fb-root-fill:   #d00b0b;
+            --fb-root-stroke: #ffffff;
+            --fb-scale-fill:  rgb(8, 15, 155);
+            --fb-scale-stroke:#ffffff;
+        }
+
+        /* ═══════════════════════════════════════
+           THEME VARIABLES
+           ═══════════════════════════════════════ */
+        :root,
+        [data-theme="dark"] {
+            --primary:       #4a9eff;
+            --primary-dim:   rgba(74,158,255,0.13);
+            --danger:        #ff5a5a;
+            --bg:            #0b0e18;
+            --panel:         #131826;
+            --panel-accent:  #0e1220;   /* dial section bg */
+            --row-hover:     rgba(74,158,255,0.05);
+            --divider:       #1e2540;
+            --text:          #dce6f5;
+            --muted:         #5c6e8c;
+            --dial-grad1:    #1a2236;
+            --dial-grad2:    #0b0e18;
+            --dial-inner:    #0b0e18;
+            --dial-dot-off:  #2c3650;
+            --label-rgb:     92,110,140;
+            --btn-bg:        #1c2338;
+            --btn-border:    #252e45;
+        }
+        [data-theme="light"] {
+            --primary:       #2563eb;
+            --primary-dim:   rgba(37,99,235,0.09);
+            --danger:        #dc2626;
+            --bg:            #f5f4ef;   /* 和紙調オフホワイト（layout body bg に合わせる） */
+            --panel:         #ffffff;
+            --panel-accent:  #f0ede4;   /* 温かみのあるアクセント */
+            --row-hover:     rgba(37,99,235,0.04);
+            --divider:       #e0dbd0;   /* 温かみのあるボーダー */
+            --text:          #1e293b;
+            --muted:         #64748b;
+            --dial-grad1:    #e8e4da;
+            --dial-grad2:    #f5f4ef;
+            --dial-inner:    #f5f4ef;
+            --dial-dot-off:  #c8c0b0;
+            --label-rgb:     100,116,139;
+            --btn-bg:        #ece8df;
+            --btn-border:    #d8d2c8;
+        }
+
+        /* ═══════════════════════════════════════
+           BASE
+           ═══════════════════════════════════════ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
+            overscroll-behavior: none;
+            transition: background .25s, color .25s;
+        }
+
+        /* ═══════════════════════════════════════
+           HEADER  (outside panel)
+           ═══════════════════════════════════════ */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 4px 14px;
+        }
+        .app-title {
+            font-size: .95rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+        .app-sub {
+            font-size: .62rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+        .theme-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--btn-border);
+            background: var(--btn-bg);
+            color: var(--text);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color .2s, background .25s;
+            flex-shrink: 0;
+        }
+        .theme-btn:hover { border-color: var(--primary); }
+
+        /* ═══════════════════════════════════════
+           UNIFIED PANEL
+           ═══════════════════════════════════════ */
+        .tuner-panel {
+            background: var(--panel);
+            border: 1px solid var(--divider);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: background .25s, border-color .25s;
+        }
+
+        /* each row inside the panel */
+        .t-row {
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--divider);
+            transition: background .15s;
+        }
+        .t-row:last-child { border-bottom: none; }
+
+        /* dial section gets a slightly different bg to anchor the eye */
+        .t-row-dial {
+            background: var(--panel-accent);
+            padding: 24px 22px;
+        }
+
+        .row-label {
+            font-size: .62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        /* ═══════════════════════════════════════
+           PITCH ROW
+           ═══════════════════════════════════════ */
+        .pitch-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .pitch-trigger:hover { background: var(--row-hover); margin: 0 -22px; padding: 0 22px; }
+
+        .pitch-note-ctx { font-size: .75rem; color: var(--muted); margin-bottom: 2px; }
+        .pitch-hz-val   {
+            font-size: 2.3rem; font-weight: 800;
+            color: var(--primary); line-height: 1;
+        }
+        .pitch-hz-unit  { font-size: .88rem; color: var(--muted); }
+        .pitch-toggle-hint {
+            font-size: .75rem; font-weight: 600;
+            color: var(--primary); white-space: nowrap;
+        }
+
+        /* expand / collapse with CSS transition */
+        .pitch-expand {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height .28s ease, margin-top .25s ease;
+        }
+        .pitch-expand.open {
+            max-height: 200px;
+            margin-top: 16px;
+        }
+        .pitch-expand-inner {
+            padding-top: 14px;
+            border-top: 1px solid var(--divider);
+        }
+        .sub-label {
+            font-size: .65rem; letter-spacing: 1px;
+            color: var(--muted); margin-bottom: 8px;
+        }
+
+        /* ═══════════════════════════════════════
+           CONTROL BUTTON  (+/−)
+           ═══════════════════════════════════════ */
+        .cbtn {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--btn-border);
+            background: var(--btn-bg);
+            color: var(--text);
+            font-size: 1.3rem; line-height: 1;
+            cursor: pointer; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color .15s, color .15s, opacity .15s;
+        }
+        .cbtn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
+        .cbtn:disabled { opacity: .22; cursor: not-allowed; }
+
+        /* ═══════════════════════════════════════
+           DIAL
+           ═══════════════════════════════════════ */
+        .dial-wrapper {
+            position: relative;
+            width: 100%; aspect-ratio: 1;
+            max-width: 300px;
+            margin: 0 auto;
+            touch-action: none;
+        }
+        .dial-canvas {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            cursor: grab; touch-action: none;
+        }
+        .dial-canvas:active { cursor: grabbing; }
+
+        .dial-playbtn {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 31%; height: 31%;
+            min-width: 56px; min-height: 56px;
+            max-width: 80px;  max-height: 80px;
+            border-radius: 50%;
+            border: 2.5px solid var(--primary);
+            background: var(--panel-accent);
+            cursor: pointer;
+            z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color .2s, background .2s, box-shadow .2s;
+        }
+        .dial-playbtn:hover { background: var(--primary-dim); }
+        .dial-playbtn.playing {
+            border-color: var(--danger);
+            background: rgba(220,38,38,.07);
+            box-shadow: 0 0 18px rgba(220,38,38,.22);
+        }
+
+        .icon-play {
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 11px 0 11px 19px;
+            border-color: transparent transparent transparent var(--primary);
+            margin-left: 4px;
+            transition: border-color .2s;
+        }
+        .icon-stop {
+            width: 16px; height: 16px;
+            background: var(--danger);
+            border-radius: 3px;
+            display: none;
+        }
+        .dial-playbtn.playing .icon-play { display: none; }
+        .dial-playbtn.playing .icon-stop { display: block; }
+
+        .note-display {
+            text-align: center;
+            margin-top: 18px;
+        }
+        .note-name-big {
+            font-size: 2.1rem; font-weight: 800;
+            color: var(--primary); line-height: 1;
+            letter-spacing: .5px;
+        }
+        .note-freq-sub {
+            font-size: .82rem; color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* ═══════════════════════════════════════
+           TUNING MODE TOGGLE
+           ═══════════════════════════════════════ */
+        .tuning-toggle {
+            display: flex;
+            border: 1.5px solid var(--btn-border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--btn-bg);
+        }
+        .tuning-btn {
+            flex: 1;
+            padding: 10px 8px;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-size: .84rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .15s, color .15s;
+            text-align: center;
+            line-height: 1.3;
+        }
+        .tuning-btn + .tuning-btn { border-left: 1.5px solid var(--btn-border); }
+        .tuning-btn.active { background: var(--primary-dim); color: var(--primary); }
+        .tuning-btn .t-sub {
+            display: block;
+            font-size: .6rem;
+            font-weight: 400;
+            letter-spacing: .5px;
+            opacity: .65;
+            margin-top: 1px;
+        }
+        .tuning-cents {
+            font-size: .75rem;
+            color: var(--muted);
+            margin-top: 4px;
+            min-height: 1.2em;
+        }
+        .tuning-cents.sharp { color: #f59e0b; }
+        .tuning-cents.flat  { color: #60a5fa; }
+
+        /* ═══════════════════════════════════════
+           WAVE BUTTONS
+           ═══════════════════════════════════════ */
+        .wave-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .wave-btn {
+            display: flex; flex-direction: column;
+            align-items: center; gap: 5px;
+            padding: 11px 6px;
+            border-radius: 12px;
+            border: 1.5px solid var(--btn-border);
+            background: var(--btn-bg);
+            color: var(--text);
+            font-size: .82rem; font-weight: 600;
+            cursor: pointer;
+            transition: border-color .15s, background .15s, color .15s;
+            line-height: 1;
+        }
+        .wave-btn .wicon {
+            font-size: .68rem; font-family: monospace;
+            color: var(--muted); letter-spacing: -1px;
+            transition: color .15s;
+        }
+        .wave-btn:hover            { border-color: var(--primary); }
+        .wave-btn:hover .wicon     { color: var(--primary); }
+        .wave-btn.active           { border-color: var(--primary); background: var(--primary-dim); color: var(--primary); }
+        .wave-btn.active .wicon    { color: var(--primary); }
+
+        /* ═══════════════════════════════════════
+           VOLUME ROW
+           ═══════════════════════════════════════ */
+        .vol-track {
+            height: 5px; border-radius: 3px;
+            background: var(--divider); overflow: hidden;
+        }
+        .vol-fill {
+            height: 100%; border-radius: 3px;
+            background: linear-gradient(90deg, var(--primary), #74c0fc);
+            transition: width .2s;
+        }
+        .vol-label {
+            text-align: center; font-size: .72rem;
+            color: var(--muted); margin-top: 6px;
+        }
+
+        .form-range { accent-color: var(--primary); }
+        </style>
+</head>
+<body data-theme="light" data-bs-theme="light">
+<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">BTR KITA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                                            <a class="nav-link" href="/">Home</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/diatonic/index.html">ダイアトニックコード</a>
+                    
+                </li>
+
+                <li class="nav-item">
+                                            <a class="nav-link" href="/scale/index.html">スケール</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/metronome.html">メトロノーム</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="/tuner.html">チューナー</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/chord-progression/index.html">コード進行</a>
+                                    </li>
+
+                
+                <li class="nav-item d-lg-none"><hr class="dropdown-divider opacity-25 my-1"></li>
+                <li class="nav-item d-lg-none">
+                    <button type="button"
+                            class="nav-link theme-toggle-btn btn border-0 bg-transparent d-flex align-items-center gap-2 w-100 text-start">
+                        <i class="fas fa-moon theme-icon"></i>
+                        <span class="theme-label"></span>
+                    </button>
+                </li>
+            </ul>
+
+            
+            <span class="navbar-text d-none d-lg-inline">
+                ギター演奏に役立つ便利な情報
+            </span>
+
+            <button type="button"
+                    class="btn btn-link nav-link theme-toggle-btn d-none d-lg-inline-flex align-items-center px-2"
+                    id="themeBtn" title="ライト / ダーク">
+                <i class="fas fa-moon theme-icon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+<main id="main" class="site-main main">
+    <div class="container px-3" style="max-width: 480px;">
+        <!-- ════════════════════════════════
+             UNIFIED PANEL
+             ════════════════════════════════ -->
+        <div class="tuner-panel mb-5">
+
+            <!-- ① PITCH ─────────────────── -->
+            <div class="t-row">
+                <div class="row-label">基準周波数</div>
+
+                <div class="pitch-trigger" id="pitchTrigger">
+                    <div>
+                        <div class="pitch-note-ctx" id="pitchNoteCtx">A4</div>
+                        <div style="display:flex;align-items:baseline;gap:5px">
+                            <span class="pitch-hz-val" id="pitchHzVal">440.0</span>
+                            <span class="pitch-hz-unit">Hz</span>
+                        </div>
+                    </div>
+                    <span class="pitch-toggle-hint" id="pitchHint">▼ 変更</span>
+                </div>
+
+                <div class="pitch-expand" id="pitchExpand">
+                    <div class="pitch-expand-inner">
+                        <div class="sub-label">A4 基準 (430–450 Hz) ＝ <span id="pitchBaseSpan">440</span> Hz</div>
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="cbtn" id="pitchMinus">−</button>
+                            <input type="range" class="form-range flex-grow-1"
+                                   id="pitchSlider" min="430" max="450" step="1">
+                            <button class="cbtn" id="pitchPlus">＋</button>
+                        </div>
+                        <div class="sub-label mt-3">音律モード</div>
+                        <div class="tuning-toggle">
+                            <button class="tuning-btn active" id="tuningEqual">
+                                平均律<span class="t-sub">Equal Temperament</span>
+                            </button>
+                            <button class="tuning-btn" id="tuningJust">
+                                純正律<span class="t-sub">Just Intonation</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ② DIAL ──────────────────── -->
+            <div class="t-row t-row-dial">
+                <div class="row-label text-center">音名</div>
+
+                <div class="dial-wrapper">
+                    <canvas id="noteCanvas" class="dial-canvas" width="250" height="250"></canvas>
+                    <button class="dial-playbtn" id="playBtn" aria-label="再生 / 停止">
+                        <span class="icon-play"></span>
+                        <span class="icon-stop"></span>
+                    </button>
+                </div>
+
+                <div class="note-display">
+                    <div class="note-name-big" id="noteNameBig">A</div>
+                    <div class="note-freq-sub" id="noteFreqSub">440.0 Hz</div>
+                    <div class="tuning-cents" id="tuningCents"></div>
+                </div>
+            </div>
+
+            <!-- ③ WAVE ──────────────────── -->
+            <div class="t-row">
+                <div class="row-label">音色（波形）</div>
+                <div class="wave-grid">
+                    <button class="wave-btn active" data-wi="0">
+                        <span class="wicon">∿∿∿∿</span>サイン波
+                    </button>
+                    <button class="wave-btn" data-wi="1">
+                        <span class="wicon">⊓_⊓_⊓</span>矩形波
+                    </button>
+                    <button class="wave-btn" data-wi="2">
+                        <span class="wicon">/\/\/\</span>三角波
+                    </button>
+                    <button class="wave-btn" data-wi="3">
+                        <span class="wicon">╱|╱|╱</span>鋸歯状波
+                    </button>
+                </div>
+            </div>
+
+            <!-- ④ VOLUME ─────────────────── -->
+            <div class="t-row">
+                <div class="row-label">音量</div>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="cbtn" id="volMinus">−</button>
+                    <div class="flex-grow-1">
+                        <div class="vol-track"><div class="vol-fill" id="volFill"></div></div>
+                    </div>
+                    <button class="cbtn" id="volPlus">＋</button>
+                </div>
+                <div class="vol-label" id="volText">70%</div>
+            </div>
+
+        </div><!-- /tuner-panel -->
+
+    </div><!-- /container -->
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <nav aria-label="フッターナビゲーション">
+            <ul class="footer-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/diatonic/index.html">ダイアトニックコード</a></li>
+                <li><a href="/scale/index.html">スケール</a></li>
+                <li><a href="/tuner/tuner.html">スケール</a></li>
+                <li><a href="/chord-progression/index.html">コード進行</a></li>
+                <li><a href="/metronome.html">メトロノーム</a></li>
+            </ul>
+        </nav>
+        <p class="footer-copy">© 2024 BTR KITA</p>
+    </div>
+</footer>
+
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+
+<script>
+    let ColorScheme = 'dark';
+
+    /**
+     * テーマを適用する
+     * @param {string} t    'light' | 'dark'
+     * @param {boolean} save true のとき localStorage に保存（ボタン操作時のみ）
+     */
+    function updateTheme(t, save = false) {
+        ColorScheme = t;
+        document.documentElement.setAttribute('data-bs-theme', t);
+        document.documentElement.setAttribute('data-theme', t);
+        document.body.setAttribute('data-bs-theme', t);
+        document.body.setAttribute('data-theme', t);
+
+        // ダーク時は太陽（ライトへ切り替え）、ライト時は月（ダークへ切り替え）
+        document.querySelectorAll('.theme-icon').forEach(icon => {
+            icon.classList.toggle('fa-sun',  t === 'dark');
+            icon.classList.toggle('fa-moon', t !== 'dark');
+        });
+
+        // ハンバーガー内テキスト: 現在のモードの逆を案内
+        document.querySelectorAll('.theme-label').forEach(label => {
+            label.textContent = t === 'dark' ? 'ライトモードへ' : 'ダークモードへ';
+        });
+
+        if (save) {
+            localStorage.setItem('color-scheme', t);
+        }
+    }
+
+    // 初期テーマの決定：① localStorage → ② OS設定 の順で参照
+    (function initTheme() {
+        const saved = localStorage.getItem('color-scheme');
+        if (saved === 'light' || saved === 'dark') {
+            updateTheme(saved);
+        } else {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            updateTheme(isDark ? 'dark' : 'light');
+        }
+    })();
+
+    // OSの設定変更をリアルタイムに監視（ユーザーが明示的に選択していない場合のみ）
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('color-scheme')) {
+            updateTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // save = true でローカルストレージに保存
+                updateTheme(ColorScheme === 'dark' ? 'light' : 'dark', true);
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.image-change-btn');
+        const images = document.querySelectorAll('.select-image');
+        // 表示を切り替える共通関数
+        const updateDisplay = (targetImageClass) => {
+            buttons.forEach(btn => {
+                const isActive = btn.getAttribute('data-image') === targetImageClass;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+
+            images.forEach(img => {
+                // 画像が対象のクラスを持っているか確認
+                if (img.classList.contains(targetImageClass)) {
+                    img.classList.add('is-visible');
+                } else {
+                    img.classList.remove('is-visible');
+                }
+            });
+        };
+
+        // --- 初期化処理 ---
+        const activeBtn = document.querySelector('.image-change-btn.active');
+        if (activeBtn) {
+            updateDisplay(activeBtn.getAttribute('data-image'));
+        }
+
+        // --- イベントリスナー ---
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                updateDisplay(e.currentTarget.getAttribute('data-image'));
+            });
+        });
+
+    });
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+        <script>
+            'use strict';
+
+            /* ─────────────────────────────────────
+               CONSTANTS
+            ───────────────────────────────────── */
+            const NOTES    = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+            const WAVES    = ['sine','square','triangle','sawtooth'];
+            const A_IDX    = 9;
+            const VOL_STEP = 10;
+            // 純正律比率 (A4=1 基準, 5-limit just intonation)
+            const JI_RATIOS = [3/5, 16/25, 27/40, 18/25, 3/4, 4/5, 27/32, 9/10, 24/25, 1, 16/15, 9/8];
+
+            /* ─────────────────────────────────────
+               STATE
+            ───────────────────────────────────── */
+            function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+            function loadSaved() {
+                try { return JSON.parse(localStorage.getItem('tuner_v4') || '{}'); }
+                catch { return {}; }
+            }
+            const sv = loadSaved();
+            const S = {
+                baseHz:    clamp(sv.baseHz    ?? 440, 430, 450),
+                noteIndex: clamp(sv.noteIndex ?? A_IDX, 0, 11),
+                waveIndex: clamp(sv.waveIndex ?? 0, 0, 3),
+                volume:     clamp(sv.volume    ?? 70, 0, 100),
+                tuningMode: sv.tuningMode ?? 'equal',
+                isPlaying:  false,
+            };
+            function save() {
+                const { baseHz, noteIndex, waveIndex, volume, tuningMode } = S;
+                localStorage.setItem('tuner_v4', JSON.stringify({ baseHz, noteIndex, waveIndex, volume, tuningMode }));
+            }
+
+            /* ─────────────────────────────────────
+               AUDIO
+            ───────────────────────────────────── */
+            let osc = null;
+
+            function noteFreq() {
+                if (S.tuningMode === 'just') return S.baseHz * JI_RATIOS[S.noteIndex];
+                return S.baseHz * Math.pow(2, (S.noteIndex - A_IDX) / 12);
+            }
+            function centsDev() {
+                const etRatio = Math.pow(2, (S.noteIndex - A_IDX) / 12);
+                return 1200 * Math.log2(JI_RATIOS[S.noteIndex] / etRatio);
+            }
+            function toDb(pct) {
+                if (pct <= 0) return -Infinity;
+                return -40 + (pct / 100) * 37;
+            }
+            function syncOsc() {
+                if (!osc) return;
+                osc.frequency.rampTo(noteFreq(), 0.05);
+                osc.type = WAVES[S.waveIndex];
+                osc.volume.rampTo(toDb(S.volume), 0.05);
+            }
+            async function startAudio() {
+                await Tone.start();
+                if (!osc) {
+                    osc = new Tone.Oscillator({
+                        frequency: noteFreq(),
+                        type:      WAVES[S.waveIndex],
+                        volume:    toDb(S.volume),
+                    }).toDestination();
+                }
+                syncOsc(); osc.start();
+                S.isPlaying = true;
+                document.getElementById('playBtn').classList.add('playing');
+            }
+            function stopAudio() {
+                if (osc) { try { osc.stop(); } catch (_) {} }
+                S.isPlaying = false;
+                document.getElementById('playBtn').classList.remove('playing');
+            }
+            function togglePlay() { S.isPlaying ? stopAudio() : startAudio(); }
+
+            /* ─────────────────────────────────────
+               THEME
+            ───────────────────────────────────── */
+            let noteDial = null; // forward-declared for applyTheme
+
+            document.addEventListener('DOMContentLoaded', () => {
+                document.getElementById('themeBtn').addEventListener('click', () => {
+                    if (noteDial) noteDial.draw();
+                });
+            });
+
+            /* ─────────────────────────────────────
+               PITCH PANEL
+            ───────────────────────────────────── */
+            const elTrigger  = document.getElementById('pitchTrigger');
+            const elExpand   = document.getElementById('pitchExpand');
+            const elHint     = document.getElementById('pitchHint');
+            const elHzVal    = document.getElementById('pitchHzVal');
+            const elNoteCtx  = document.getElementById('pitchNoteCtx');
+            const elBaseSpan = document.getElementById('pitchBaseSpan');
+            const elSlider   = document.getElementById('pitchSlider');
+            let pitchOpen    = false;
+
+            function setPitchOpen(v) {
+                pitchOpen = v;
+                elExpand.classList.toggle('open', v);
+                elHint.textContent = v ? '▲ 閉じる' : '▼ 変更';
+            }
+            elTrigger.addEventListener('click', () => setPitchOpen(!pitchOpen));
+            elExpand.addEventListener('click',  e => e.stopPropagation());
+            document.addEventListener('click',  e => {
+                if (pitchOpen && !elTrigger.closest('.t-row').contains(e.target)) setPitchOpen(false);
+            });
+
+            function refreshPitch() {
+                const f = noteFreq();
+                elHzVal.textContent    = f.toFixed(1);
+                elNoteCtx.textContent  = NOTES[S.noteIndex] + '4';
+                elBaseSpan.textContent = S.baseHz;
+                elSlider.value         = S.baseHz;
+                document.getElementById('noteFreqSub').textContent = f.toFixed(1) + ' Hz';
+                const centEl = document.getElementById('tuningCents');
+                if (S.tuningMode === 'just') {
+                    const c = centsDev();
+                    const sign = c >= 0 ? '+' : '';
+                    centEl.textContent = 'ET比 ' + sign + c.toFixed(1) + ' ¢';
+                    centEl.className   = 'tuning-cents' + (c > 0.5 ? ' sharp' : c < -0.5 ? ' flat' : '');
+                } else {
+                    centEl.textContent = '';
+                    centEl.className   = 'tuning-cents';
+                }
+            }
+            function setBaseHz(hz) {
+                S.baseHz = clamp(hz, 430, 450); refreshPitch();
+                if (S.isPlaying) syncOsc(); save();
+            }
+            elSlider.addEventListener('input',  () => setBaseHz(+elSlider.value));
+            document.getElementById('pitchMinus').addEventListener('click', () => setBaseHz(S.baseHz - 1));
+            document.getElementById('pitchPlus' ).addEventListener('click', () => setBaseHz(S.baseHz + 1));
+
+            /* ─────────────────────────────────────
+               TUNING MODE
+            ───────────────────────────────────── */
+            function setTuningMode(mode) {
+                S.tuningMode = mode;
+                document.getElementById('tuningEqual').classList.toggle('active', mode === 'equal');
+                document.getElementById('tuningJust' ).classList.toggle('active', mode === 'just');
+                refreshPitch();
+                if (S.isPlaying) syncOsc();
+                save();
+            }
+            document.getElementById('tuningEqual').addEventListener('click', () => setTuningMode('equal'));
+            document.getElementById('tuningJust' ).addEventListener('click', () => setTuningMode('just'));
+
+            /* ─────────────────────────────────────
+               DIAL CLASS
+            ───────────────────────────────────── */
+            class Dial {
+                constructor({ canvasId, items, labels, initialIndex, onChange }) {
+                    this.canvas      = document.getElementById(canvasId);
+                    this.ctx         = this.canvas.getContext('2d');
+                    this.items       = items;
+                    this.labels      = labels || items;
+                    this.n           = items.length;
+                    this.index       = initialIndex;
+                    this.onChange    = onChange;
+                    this.CW          = this.canvas.width;
+                    this.outerR      = this.CW / 2 - 6;
+                    this.innerR      = 52;
+                    this.labelR      = this.outerR - 28;
+                    this.rotation    = -(initialIndex / this.n) * Math.PI * 2;
+                    this.isDragging  = false;
+                    this.lastAngle   = 0;
+                    this._animId     = null;
+                    this._bind(); this.draw();
+                }
+
+                _tgt(i)    { return -(i / this.n) * Math.PI * 2; }
+                _angle(cx,cy) {
+                    const r = this.canvas.getBoundingClientRect();
+                    return Math.atan2(cy-(r.top+r.height/2), cx-(r.left+r.width/2));
+                }
+                _inCenter(cx,cy) {
+                    const r = this.canvas.getBoundingClientRect();
+                    const s = r.width / this.CW;
+                    return Math.hypot(cx-(r.left+r.width/2), cy-(r.top+r.height/2)) < this.innerR * s;
+                }
+                _nd(d) {
+                    if (d> Math.PI) d-=Math.PI*2;
+                    if (d<-Math.PI) d+=Math.PI*2;
+                    return d;
+                }
+
+                _bind() {
+                    const dn=(cx,cy)=>{ if(this._inCenter(cx,cy)) return; this.isDragging=true; this.lastAngle=this._angle(cx,cy); };
+                    const mv=(cx,cy)=>{ if(!this.isDragging) return; const a=this._angle(cx,cy); this.rotation+=this._nd(a-this.lastAngle); this.lastAngle=a; this._upd(); this.draw(); };
+                    const up=()=>{ if(!this.isDragging) return; this.isDragging=false; this._snap(); };
+
+                    this.canvas.addEventListener('mousedown',  e=>{e.preventDefault();dn(e.clientX,e.clientY);});
+                    document.addEventListener('mousemove',     e=>mv(e.clientX,e.clientY));
+                    document.addEventListener('mouseup',       up);
+                    this.canvas.addEventListener('touchstart', e=>{e.preventDefault();dn(e.touches[0].clientX,e.touches[0].clientY);},{passive:false});
+                    document.addEventListener('touchmove',     e=>{if(!this.isDragging)return;e.preventDefault();mv(e.touches[0].clientX,e.touches[0].clientY);},{passive:false});
+                    document.addEventListener('touchend',      up);
+                }
+
+                _upd() {
+                    const step=(Math.PI*2)/this.n;
+                    let norm=((-this.rotation)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);
+                    let idx=Math.round(norm/step)%this.n; if(idx<0) idx+=this.n;
+                    if(idx!==this.index){this.index=idx;this.onChange(idx);}
+                }
+
+                _snap() {
+                    const diff=this._nd(this._tgt(this.index)-this.rotation);
+                    const start=this.rotation, t0=performance.now(), dur=260;
+                    if(this._animId) cancelAnimationFrame(this._animId);
+                    const tick=now=>{
+                        const p=Math.min((now-t0)/dur,1), e=p<.5?2*p*p:-1+(4-2*p)*p;
+                        this.rotation=start+diff*e; this.draw();
+                        if(p<1) this._animId=requestAnimationFrame(tick);
+                    };
+                    this._animId=requestAnimationFrame(tick);
+                }
+
+                draw() {
+                    const {ctx,n,index,rotation,outerR,innerR,labelR,CW}=this;
+                    const cx=CW/2, cy=CW/2;
+                    const dk = ColorScheme !== 'light';
+
+                    const primary  = dk ? '#4a9eff' : '#2563eb';
+                    const dotOff   = dk ? '#2c3650' : '#b0bdd0';
+                    const borderC  = dk ? '#1e2540' : '#dde4ef';
+                    const rg1      = dk ? '#1a2236' : '#dde5f2';
+                    const rg2      = dk ? '#0b0e18' : '#eef2f8';
+                    const innerBg  = dk ? '#0b0e18' : '#eef2f8';
+                    const lrgb     = dk ? '92,110,140' : '100,116,139';
+
+                    ctx.clearRect(0,0,CW,CW);
+
+                    // ring bg
+                    const g=ctx.createRadialGradient(cx,cy,innerR,cx,cy,outerR);
+                    g.addColorStop(0,rg1); g.addColorStop(1,rg2);
+                    ctx.beginPath(); ctx.arc(cx,cy,outerR,0,Math.PI*2);
+                    ctx.fillStyle=g; ctx.fill();
+                    ctx.strokeStyle=borderC; ctx.lineWidth=1.5; ctx.stroke();
+
+                    // selected sector glow
+                    {
+                        const half=Math.PI/n;
+                        const sa=(index/n)*Math.PI*2+rotation-Math.PI/2;
+                        ctx.save(); ctx.beginPath(); ctx.moveTo(cx,cy);
+                        ctx.arc(cx,cy,outerR-1,sa-half,sa+half); ctx.closePath();
+                        ctx.fillStyle=dk?'rgba(74,158,255,0.09)':'rgba(37,99,235,0.07)';
+                        ctx.fill(); ctx.restore();
+                    }
+
+                    // dots + labels
+                    for(let i=0;i<n;i++){
+                        const angle=(i/n)*Math.PI*2+rotation-Math.PI/2;
+                        const act=(i===index);
+                        // dot
+                        ctx.beginPath(); ctx.arc(cx+Math.cos(angle)*(outerR-10), cy+Math.sin(angle)*(outerR-10), act?3.8:2, 0, Math.PI*2);
+                        ctx.fillStyle=act?primary:dotOff; ctx.fill();
+                        // label
+                        const lx=cx+Math.cos(angle)*labelR, ly=cy+Math.sin(angle)*labelR;
+                        ctx.save(); ctx.translate(lx,ly); ctx.textAlign='center'; ctx.textBaseline='middle';
+                        if(act){
+                            ctx.font='bold 15px system-ui'; ctx.fillStyle=primary;
+                            ctx.shadowColor=primary; ctx.shadowBlur=14;
+                        } else {
+                            const a=0.18+((Math.cos(angle+Math.PI/2)+1)/2)*0.44;
+                            ctx.font='11px system-ui'; ctx.fillStyle=`rgba(${lrgb},${a})`;
+                        }
+                        ctx.fillText(this.labels[i],0,0); ctx.restore();
+                    }
+
+                    // indicator arrow
+                    ctx.save(); ctx.shadowColor=primary; ctx.shadowBlur=10;
+                    ctx.beginPath();
+                    ctx.moveTo(cx,cy-outerR+2); ctx.lineTo(cx-5.5,cy-outerR+13); ctx.lineTo(cx+5.5,cy-outerR+13);
+                    ctx.closePath(); ctx.fillStyle=primary; ctx.fill(); ctx.restore();
+
+                    // inner circle
+                    ctx.beginPath(); ctx.arc(cx,cy,innerR,0,Math.PI*2);
+                    ctx.fillStyle=innerBg; ctx.fill();
+                    ctx.save(); ctx.strokeStyle=primary; ctx.lineWidth=1.8;
+                    ctx.shadowColor=primary; ctx.shadowBlur=8; ctx.stroke(); ctx.restore();
+                }
+            }
+
+            /* ─────────────────────────────────────
+               NOTE DIAL  INIT
+            ───────────────────────────────────── */
+            noteDial = new Dial({
+                canvasId: 'noteCanvas', items: NOTES, labels: NOTES,
+                initialIndex: S.noteIndex,
+                onChange: i => {
+                    S.noteIndex = i;
+                    document.getElementById('noteNameBig').textContent = NOTES[i];
+                    refreshPitch();
+                    if (S.isPlaying) syncOsc();
+                    save();
+                },
+            });
+
+            /* ─────────────────────────────────────
+               PLAY BUTTON
+            ───────────────────────────────────── */
+            document.getElementById('playBtn').addEventListener('click', togglePlay);
+
+            /* ─────────────────────────────────────
+               WAVE BUTTONS
+            ───────────────────────────────────── */
+            const waveBtns = Array.from(document.querySelectorAll('.wave-btn'));
+            function setWave(i) {
+                S.waveIndex = i;
+                waveBtns.forEach((b, idx) => b.classList.toggle('active', idx === i));
+                if (S.isPlaying) syncOsc(); save();
+            }
+            waveBtns.forEach(b => b.addEventListener('click', () => setWave(+b.dataset.wi)));
+
+            /* ─────────────────────────────────────
+               VOLUME
+            ───────────────────────────────────── */
+            function setVolume(v) {
+                S.volume = clamp(v, 0, 100);
+                document.getElementById('volFill').style.width = S.volume + '%';
+                document.getElementById('volText').textContent  = S.volume + '%';
+                document.getElementById('volMinus').disabled    = S.volume <= 0;
+                document.getElementById('volPlus' ).disabled    = S.volume >= 100;
+                if (S.isPlaying) syncOsc(); save();
+            }
+            document.getElementById('volMinus').addEventListener('click', () => setVolume(S.volume - VOL_STEP));
+            document.getElementById('volPlus' ).addEventListener('click', () => setVolume(S.volume + VOL_STEP));
+
+            /* ─────────────────────────────────────
+               INIT
+            ───────────────────────────────────── */
+            noteDial.draw();
+            setTuningMode(S.tuningMode);
+            refreshPitch();
+            setWave(S.waveIndex);
+            setVolume(S.volume);
+            document.getElementById('noteNameBig').textContent = NOTES[S.noteIndex];
+        </script>
+
+<script>
+/**
+ * SVG Inject
+ * ─────────────────────────────────────────────
+ * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
+ * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
+ * - data-loading="true" + CSS transition で FOUC を完全防止
+ * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
+ */
+(function () {
+    'use strict';
+
+    /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
+    const _cache = new Map();
+
+    /** SVG テキストを取得（キャッシュ付き） */
+    function _fetch(url) {
+        if (!_cache.has(url)) {
+            _cache.set(url,
+                fetch(url, { credentials: 'same-origin' })
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+                        return res.text();
+                    })
+            );
+        }
+        return _cache.get(url);
+    }
+
+    /** SVG テキストを DOM 要素にパース */
+    function _parse(text, url) {
+        let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+        let err = doc.querySelector('parsererror');
+        if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
+        let svg = doc.querySelector('svg');
+        if (!svg) throw new Error('No <svg> element found in ' + url);
+        return svg;
+    }
+
+    /**
+     * <img> の属性を <svg> へ引き継ぐ
+     * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
+     * ・img の id がなければ SVG の id を削除（重複 ID 防止）
+     * ・alt は aria-label に変換
+     * ・data-loading="true" を付与して CSS が opacity:0 を維持
+     */
+    function _transfer(img, svg) {
+        let skipImg = new Set([
+            'src', 'data-loading', 'decoding', 'loading',
+            'crossorigin', 'fetchpriority', 'referrerpolicy'
+        ]);
+        let keepSvg = new Set([
+            'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
+        ]);
+
+        for (let i = 0; i < img.attributes.length; i++) {
+            let attr = img.attributes[i];
+            if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
+            svg.setAttribute(attr.name, attr.value);
+        }
+
+        /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
+        if (!img.hasAttribute('id')) {
+            svg.removeAttribute('id');
+        }
+
+        /* alt → aria-label（<svg> に alt は無効） */
+        if (img.alt) {
+            svg.setAttribute('aria-label', img.alt);
+            svg.setAttribute('role', 'img');
+        }
+        svg.removeAttribute('alt');
+
+        /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
+        svg.setAttribute('data-loading', 'true');
+    }
+
+    /** 1 つの <img> を非同期でインライン <svg> に置換 */
+    function _inject(img) {
+        let url = img.src;
+        if (!url || !img.parentNode) return;
+
+        _fetch(url)
+            .then(function (text) {
+                let svg = _parse(text, url);
+                _transfer(img, svg);
+
+                img.parentNode.replaceChild(svg, img);
+
+                /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
+                svg.getBoundingClientRect();
+                svg.removeAttribute('data-loading');
+            })
+            .catch(function (err) {
+                console.error('[svg-inject]', err);
+                /* フォールバック: 元の <img> をそのまま表示 */
+                img.removeAttribute('data-loading');
+            });
+    }
+
+    /** ページ内の全 img.svg-inject を処理 */
+    function injectAll() {
+        document.querySelectorAll('img.svg-inject').forEach(_inject);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', injectAll);
+    } else {
+        injectAll();
+    }
+})();
+</script>
+</body>
+</html>

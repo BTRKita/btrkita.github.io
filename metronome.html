@@ -1,0 +1,2647 @@
+<!doctype html>
+<html lang="ja" data-theme="light" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="ポリリズムやポリメーターの練習に最適な高機能マルチメトロノーム。
+        最大4トラックまで異なる拍数・速度を重ねて再生可能。
+        自動消音のリズムトレーナーやランダムテンポ変化など、高度なキープ力とアジリティを鍛えるプロ仕様の機能をブラウザで即座に利用できます。">
+
+    <title>アルティメット・メトロノーム | マルチ機能 ポリリズム・メトロノーム</title>
+
+    <!-- おさむ -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- Styles -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Music&display=swap" rel="stylesheet">
+
+    <link rel="mask-icon" sizes="any" href="https://btrkita.github.io/img/icon.svg" color="#0bd">
+    <link rel="icon" href="https://btrkita.github.io/img/icon.svg" type="image/svg+xml">
+    <style>
+        /* ==========================================
+          カラーモード設定（ライト・ダーク共通変数定義）
+        ========================================== */
+        :root,
+        [data-theme="dark"] {
+            /* 完全に真っ黒にせず、少し青み・グレーを混ぜてエディタ風に */
+            --site-h1-color: #f7fafc;
+            --site-h1-border: #3b82f6; /* 少し明るめのブルー */
+
+            --site-h2-color: #e2e8f0;
+            --site-h2-border: #334155; /* 暗めのボーダー */
+
+            --site-h3-h5-color: #cbd5e1;
+            --site-h3-border: #1e293b;
+
+            --site-select-border: #475569;
+
+            --site-body-bg: #0b0e18;
+
+            /* finger-board SVG */
+            --fb-bg:          #1c2338;
+            --fb-line:        #8899aa;
+            --fb-string-name: #e2e8f0;
+            --fb-fret-num:    #c9a0a0;
+            --fb-note-fill:   rgba(180, 180, 190, 0.40);
+            --fb-note-stroke: rgba(15, 23, 42, 0.60);
+            --fb-root-fill:   #f87171;
+            --fb-root-stroke: #0f172a;
+            --fb-scale-fill:  #60a5fa;
+            --fb-scale-stroke:#0f172a;
+
+            --site-footer-bg: #0f172a; /* 深みのある紺・黒 */
+            --site-footer-border: #1e293b;
+            --site-footer-link: #94a3b8;
+            --site-footer-link-hover: #3b82f6;
+            --site-footer-copy: #64748b;
+        }
+
+        [data-theme="light"] {
+            --site-h1-color: #1a202c;
+            --site-h1-border: #0d6efd; /* Bootstrapのprimary相当 */
+
+            --site-h2-color: #2d3748;
+            --site-h2-border: #dee2e6;
+
+            --site-h3-h5-color: #4a5568;
+            --site-h3-border: #e9ecef;
+
+            --site-select-border: #ccc;
+
+            --site-body-bg: #f5f4ef; /* 和紙調オフホワイト */
+
+            --site-footer-bg: #ede9df; /* 温かみのあるオフホワイト */
+            --site-footer-border: #e9ecef;
+            --site-footer-link: #6c757d;
+            --site-footer-link-hover: #0d6efd;
+            --site-footer-copy: #adb5bd;
+        }
+
+        /* ===== ボディ背景 ===== */
+        body {
+            background-color: var(--site-body-bg);
+            transition: background-color .25s ease;
+        }
+
+        /* ===== テーブル コンテキストクラス ダークモード ===== */
+        /* Bootstrap 5.3 の変数が確実に上書きされるよう明示指定 */
+        [data-bs-theme="dark"] .table-light,
+        [data-bs-theme="dark"] thead.table-light {
+            --bs-table-bg:          #343a40;
+            --bs-table-color:       #f8f9fa;
+            --bs-table-border-color:#495057;
+            color: #f8f9fa;
+        }
+        [data-bs-theme="dark"] .table-info {
+            --bs-table-bg:          #032830;
+            --bs-table-color:       #6edff6;
+            --bs-table-border-color:#0d3f50;
+            color: #6edff6;
+        }
+        [data-bs-theme="dark"] .table-primary {
+            --bs-table-bg:          #031633;
+            --bs-table-color:       #6ea8fe;
+            --bs-table-border-color:#0d2d5e;
+            color: #6ea8fe;
+        }
+        [data-bs-theme="dark"] .table-success {
+            --bs-table-bg:          #051b11;
+            --bs-table-color:       #75b798;
+            --bs-table-border-color:#0f2d1e;
+            color: #75b798;
+        }
+
+        /* ==========================================
+        Bootstrap ナビバー専用カラー上書き設定
+        ========================================== */
+
+
+        /* 2. ダークモード：黒背景に青系統（4a9eff）のアクセント */
+        :root,[data-theme="dark"] {
+            .navbar.site-custom-nav {
+                /* 背景色：DAWやエディタ風の引き締まった黒（必要に応じて #000000 等に変更可） */
+                --bs-navbar-bg: #0f172a;
+
+                /* 文字色：基本はグレー、ホバーや現在地で指定の青（4a9eff）に */
+                --bs-navbar-color: #94a3b8;
+                --bs-navbar-hover-color: #4a9eff;
+                --bs-navbar-active-color: #4a9eff;
+                --bs-navbar-disabled-color: #475569;
+
+                /* ロゴ・ブランド名 */
+                --bs-navbar-brand-color: #f8fafc;
+                --bs-navbar-brand-hover-color: #4a9eff;
+
+                /* トグラー（スマホ用三本線ボタン）の調整 */
+                --bs-navbar-toggler-color: #94a3b8;
+                --bs-navbar-toggler-border-color: #334155;
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28148, 163, 184, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+                border-bottom: 1px solid #1e293b;
+            }
+        }
+
+        [data-theme="light"]
+         {
+            .navbar.site-custom-nav {
+                /* 背景色：黒や緑と識別しやすく、白文字とのコントラストも高い朱赤 */
+                --bs-navbar-bg: #d9381e;
+
+                /* 文字色：赤背景の上でハッキリ読めるホワイト */
+                --bs-navbar-color: rgba(255, 255, 255, 0.85);
+                --bs-navbar-hover-color: #ffffff;
+                --bs-navbar-active-color: #f1c40f;
+                --bs-navbar-disabled-color: rgba(255, 255, 255, 0.4);
+
+                /* ロゴ・ブランド名（常時100%の白で強調） */
+                --bs-navbar-brand-color: #ffffff;
+                --bs-navbar-brand-hover-color: #ffffff;
+
+                /* トグラー（スマホ用三本線ボタン）の調整 */
+                --bs-navbar-toggler-color: rgba(255, 255, 255, 0.85);
+                --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.25);
+                /* 三本線アイコンを白ベースにするためのフィルター */
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+                /* ナビバーの境界線（必要に応じて同系色の濃い赤で締める） */
+                border-bottom: 1px solid #bc2f17;
+            }
+        }
+
+
+        /* 共通：Bootstrapの既存の背景ユーティリティとバッティングしないためのクラス */
+        .navbar.site-custom-nav {
+            background-color: var(--bs-navbar-bg) !important;
+        }
+
+        /* ===== 見出し ===== */
+        h1 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--site-h1-color);
+            border-left: 4px solid var(--site-h1-border);
+            padding: 0.15rem 0 0.15rem 0.85rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--site-h2-color);
+            padding: 0 0 0.35rem 0;
+            border-bottom: 2px solid var(--site-h2-border);
+            margin-top: 2rem;
+            margin-bottom: 0.85rem;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: 1px solid var(--site-h3-border);
+            padding-bottom: 0.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.65rem;
+        }
+
+        h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: none;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h5 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: none;
+        }
+
+        /* ===== その他共通 ===== */
+        span.delimiter:before {
+            content: " ━ ";
+        }
+
+        .select-image {
+            display: none;
+            width: 100%;
+            aspect-ratio: 1462 / 333;
+            height: auto;
+            object-fit: contain;
+            background-color: transparent;
+        }
+
+        .is-visible {
+            display: block !important;
+        }
+
+        .select-in-table {
+            padding: 10px 16px;
+            font-size: 16px;
+            margin-right: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--site-select-border);
+            background-color: transparent; /* ダークモードでの汎用性を考慮 */
+            color: inherit;               /* 親（Bootstrap）の文字色を引き継ぐ */
+            cursor: pointer;
+        }
+
+        /* ===== フッター ===== */
+        .site-footer {
+            background: var(--site-footer-bg);
+            border-top: 1px solid var(--site-footer-border);
+            padding: 1.75rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem 1.25rem;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-nav a {
+            color: var(--site-footer-link);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--site-footer-link-hover);
+        }
+
+        .footer-copy {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--site-footer-copy);
+            margin: 0;
+        }
+
+        /* ==========================================
+          SVG インジェクト: FOUC 防止
+          img.svg-inject[data-loading="true"] → 不透明度 0 でレイアウト確保
+          JS が SVG に置換しきった瞬間に data-loading を削除してフェードイン
+        ========================================== */
+        img.svg-inject[data-loading="true"] {
+            opacity: 0;
+        }
+        svg.svg-inject {
+            transition: opacity 0.1s ease;
+        }
+        svg.svg-inject[data-loading="true"] {
+            opacity: 0;
+        }
+
+        /* ==========================================
+          SVG 外部ファイル用カラー変数
+          ※ <img src> で読み込まれた SVG はこれらを参照する
+        ========================================== */
+        :root,
+        [data-theme="dark"] {
+            /* key-image: 音符・五線・シャープ・フラット */
+            --svg-key-fg: #cbd5e1;
+
+            /* circle-of-5th */
+            --svg-ci-fill:  #1c2338;
+            --svg-ci-stroke: #dedad0;
+            --svg-ci-major: #e8e6df;
+            --svg-ci-minor: #c8c4b8;
+            --svg-ci-dim:   #a8a499;
+        }
+
+        [data-theme="light"] {
+            --svg-key-fg: #4a5568;
+
+            --svg-ci-fill:  #ffffff;
+            --svg-ci-stroke: #1a1a1a;
+            --svg-ci-major: #111111;
+            --svg-ci-minor: #333333;
+            --svg-ci-dim:   #555555;
+
+            /* finger-board */
+            --fb-bg:          #ffffff;
+            --fb-line:        rgb(0, 0, 0);
+            --fb-string-name: #000000;
+            --fb-fret-num:    #3f2727;
+            --fb-note-fill:   rgba(45, 45, 45, 0.35);
+            --fb-note-stroke: rgba(255, 255, 255, 0.35);
+            --fb-root-fill:   #d00b0b;
+            --fb-root-stroke: #ffffff;
+            --fb-scale-fill:  rgb(8, 15, 155);
+            --fb-scale-stroke:#ffffff;
+        }
+
+        /* ==========================================
+           メトロノーム カラーモード変数
+        ========================================== */
+        :root, [data-theme="light"] {
+            --metro-track-header-bg:    #495057;
+            --metro-track-header-color: #ffffff;
+            --metro-track-body-bg:      #f8f9fa;
+            --metro-border:             #dee2e6;
+            --metro-panel-bg:           #ffffff;
+            --metro-dropdown-bg:        #ffffff;
+            --metro-dropdown-border:    #dee2e6;
+            --metro-item-hover:         #e9ecef;
+            --metro-timesig-line:       #212529;  /* 拍子の分子/分母区切り線 */
+        }
+        [data-theme="dark"] {
+            --metro-track-header-bg:    #1e293b;
+            --metro-track-header-color: #94a3b8;
+            --metro-track-body-bg:      #131826;
+            --metro-border:             #334155;
+            --metro-panel-bg:           #1c2338;
+            --metro-dropdown-bg:        #1c2338;
+            --metro-dropdown-border:    #334155;
+            --metro-item-hover:         #252e45;
+            --metro-timesig-line:       #8899bb;  /* 拍子の分子/分母区切り線 */
+        }
+
+        .btn {
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        }
+
+        .visualizer-container {
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .track-row {
+            margin-bottom: 12px;
+            border: 1px solid var(--metro-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .track-row-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 12px;
+            background: var(--metro-track-header-bg);
+            color: var(--metro-track-header-color);
+        }
+        .track-row-body {
+            padding: 10px 12px;
+            background: var(--metro-track-body-bg);
+        }
+        .beat-box {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #555;
+            border-radius: 6px;
+            display: inline-block;
+            transition: background-color 0.05s ease, box-shadow 0.05s ease;
+        }
+        .beat-box.active-down,  .beat-box--active-down{
+            background-color: #00ffff;
+            border-color: #0eadad;
+            box-shadow: 0 0 8px 2px #00ffff, 0 0 22px 6px rgba(0, 255, 255, 0.5);
+        }
+        .beat-box.active-up, .beat-box--active-up  {
+            background-color: #ff00ff;
+            border-color: #b109b1;
+            box-shadow: 0 0 8px 2px #ff00ff, 0 0 22px 6px rgba(255, 0, 255, 0.5);
+        }
+        .beat-box.off {
+            background-color: #2b3035;
+            box-shadow: none;
+        }
+        #tapBtn {
+            transition: background-color 0.05s ease, box-shadow 0.05s ease, border-color 0.05s ease;
+        }
+        #tapBtn.flash {
+            background-color: #ffc107 !important;
+            border-color: #ffc107 !important;
+            color: #000 !important;
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
+        }
+        /*  */
+        #tempoTermBadge {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s ease;
+            /*  */
+            min-width: 110px;
+            text-align: left;
+            display: inline-block;
+        }
+        #tempoTermBadge:hover {
+            color: #6c757d !important;
+        }
+        /*  */
+        #tempoDropdownPanel {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            z-index: 1050;
+            display: none;
+            background: var(--metro-dropdown-bg);
+            border: 1px solid var(--metro-dropdown-border);
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            overflow: hidden;
+        }
+        #tempoDropdownPanel.show {
+            display: flex;
+        }
+        .tempo-panel-terms {
+            overflow-y: auto;
+            max-height: 300px;
+            border-right: 1px solid var(--metro-dropdown-border);
+        }
+        .tempo-panel-bpms {
+            overflow-y: auto;
+            max-height: 300px;
+            min-width: 64px;
+        }
+        .tempo-term-item {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            padding: 5px 10px;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            font-size: 0.85rem;
+        }
+        .tempo-term-item:hover {
+            background: var(--metro-item-hover);
+        }
+        .tempo-term-item.selected {
+            background: #0d6efd;
+            color: #fff;
+        }
+        .t-range {
+            text-align: right;
+            padding-right: 10px;
+            font-variant-numeric: tabular-nums;
+            color: inherit;
+        }
+        .t-name {
+            font-weight: 600;
+        }
+        .tempo-bpm-item {
+            padding: 3px 14px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            user-select: none;
+            text-align: right;
+        }
+        .tempo-bpm-item:hover {
+            background: var(--metro-item-hover);
+        }
+        .tempo-bpm-item.active {
+            background: #0d6efd;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .track-clicktype{
+            font-family: 'Noto Music', serif;
+        }
+        .track-clicktype-option{
+            font-family: 'Noto Music', serif;
+        }
+        /*  */
+        .music-sym {
+            font-family: 'Noto Music', serif;
+            font-size: 1.15em;
+            line-height: 1;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /*  */
+        .subdiv-label {
+            display: flex;
+            align-items: baseline;
+            gap: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .subdiv-label .music-sym {
+            flex-shrink: 0;
+        }
+
+        /*  */
+        input[type="range"].vol-range {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: #0d6efd;
+            outline: none;
+            transition: background 0.15s ease;
+        }
+        input[type="range"].vol-range.is-muted {
+            background: #fd7e14;
+        }
+        input[type="range"].vol-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #0d6efd;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+        input[type="range"].vol-range.is-muted::-webkit-slider-thumb {
+            background: #fd7e14;
+        }
+        input[type="range"].vol-range::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border: none;
+            border-radius: 50%;
+            background: #0d6efd;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+        input[type="range"].vol-range.is-muted::-moz-range-thumb {
+            background: #fd7e14;
+        }
+        input[type="range"].vol-range::-moz-range-track {
+            height: 6px;
+            border-radius: 3px;
+            background: #0d6efd;
+        }
+        input[type="range"].vol-range.is-muted::-moz-range-track {
+            background: #fd7e14;
+        }
+
+        /*  */
+        .viz-row-wrap {
+            position: relative;
+            border-radius: 6px;
+            padding-bottom: 22px;
+            transition: box-shadow 0.4s ease-out, background-color 0.4s ease-out;
+        }
+        .pendulum-bar {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            border-radius: 2px;
+            transform: translateX(-50%);
+            transition: left 0s linear;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /*  */
+        .vol-num-sm {
+            width: 100% !important;
+            font-size: 0.8rem;
+            padding: 2px 4px;
+            text-align: center;
+        }
+
+        /* ==========================================
+           ダークモード上書き（ビジュアライザー除く）
+        ========================================== */
+        /* card-header の bg-white をダークに */
+        [data-theme="dark"] .card-header.bg-white {
+            background-color: var(--metro-panel-bg) !important;
+            color: #dce6f5 !important;
+            border-bottom-color: var(--metro-border) !important;
+        }
+        /* subdivision / track テンプレート内の bg-white パネル */
+        [data-theme="dark"] .p-2.border.rounded.bg-white,
+        [data-theme="dark"] .p-2.rounded.bg-white {
+            background-color: var(--metro-panel-bg) !important;
+            border-color: var(--metro-border) !important;
+            color: #dce6f5 !important;
+        }
+        /* track テンプレートの分子/分母 select（inline style の background:#fff を上書き） */
+        [data-theme="dark"] .track-beats,
+        [data-theme="dark"] .track-griddiv {
+            background: var(--metro-panel-bg) !important;
+            color: #dce6f5 !important;
+            border-color: var(--metro-border) !important;
+        }
+        /* 拍子の分子/分母区切り線 */
+        .timesig-divider {
+            height: 2px;
+            background: var(--metro-timesig-line);
+        }
+        </style>
+</head>
+<body data-theme="light" data-bs-theme="light">
+<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">BTR KITA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                                            <a class="nav-link" href="/">Home</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/diatonic/index.html">ダイアトニックコード</a>
+                    
+                </li>
+
+                <li class="nav-item">
+                                            <a class="nav-link" href="/scale/index.html">スケール</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="/metronome.html">メトロノーム</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/tuner.html">チューナー</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/chord-progression/index.html">コード進行</a>
+                                    </li>
+
+                
+                <li class="nav-item d-lg-none"><hr class="dropdown-divider opacity-25 my-1"></li>
+                <li class="nav-item d-lg-none">
+                    <button type="button"
+                            class="nav-link theme-toggle-btn btn border-0 bg-transparent d-flex align-items-center gap-2 w-100 text-start">
+                        <i class="fas fa-moon theme-icon"></i>
+                        <span class="theme-label"></span>
+                    </button>
+                </li>
+            </ul>
+
+            
+            <span class="navbar-text d-none d-lg-inline">
+                ギター演奏に役立つ便利な情報
+            </span>
+
+            <button type="button"
+                    class="btn btn-link nav-link theme-toggle-btn d-none d-lg-inline-flex align-items-center px-2"
+                    id="themeBtn" title="ライト / ダーク">
+                <i class="fas fa-moon theme-icon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+<main id="main" class="site-main main">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <div class="container-fluid">
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <div class="row align-items-center g-3">
+                    <div class="col-md-2 text-center">
+                        <button id="startStopBtn" class="btn btn-success btn-lg w-100 py-3 fw-bold">START ▶</button>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center gap-2 mb-2" style="position: relative;">
+                            <button id="tempoTermBadge"
+                                    type="button"
+                                    class="text-dark fw-bold">
+                                -
+                            </button>
+                            <div id="tempoDropdownPanel">
+                                <div class="tempo-panel-terms" id="tempoTermList"></div>
+                                <div class="tempo-panel-bpms" id="tempoBpmList"></div>
+                            </div>
+                            <label for="bpmRange" class="form-label fw-bold mb-0">BPM : &#9833; <span id="bpmVal">120</span></label>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <input type="range" class="form-range" id="bpmRange" min="10" max="400" value="120">
+                            <input type="text" inputmode="numeric" class="form-control" id="bpmNum" data-min="10" data-max="400" data-default="120" value="120" style="width: 80px;" onblur="sanitizeNumericInput(this)">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <label for="masterVolRange" class="form-label fw-bold mb-0">マスターボリューム (dB)</label>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <input type="range" class="form-range vol-range" id="masterVolRange" min="-40" max="15" value="0" data-muted="false">
+                            <input type="text" inputmode="numeric" class="form-control" id="masterVolNum" data-min="-40" data-max="15" data-default="0" value="0" style="width: 70px;" onblur="sanitizeNumericInput(this)">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="tapBtn" class="btn btn-outline-secondary w-100 py-3 fw-bold">TAP TEMPO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-body visualizer-container bg-dark" id="visualizer">
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4 border-info">
+            <div class="card-header bg-info text-dark fw-bold">ランダム・テンポ変化設定</div>
+            <div class="card-body">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="randomBpmToggle">
+                            <label class="form-check-label fw-bold" for="randomBpmToggle">ランダム変化モード</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text fw-bold">変化の間隔</span>
+                            <select class="form-select" id="randomBpmInterval">
+                                <option value="1">1 小節ごと</option>
+                                <option value="2" selected>2 小節ごと</option>
+                                <option value="4">4 小節ごと</option>
+                                <option value="8">8 小節ごと</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text fw-bold">最大変化幅</span>
+                            <select class="form-select" id="randomBpmMaxStep">
+                                <option value="15">最大 +15 BPM</option>
+                                <option value="10">最大 +10 BPM</option>
+                                <option value="5" selected>最大 +5 BPM</option>
+                                <option value="2">最大 +2 BPM</option>
+                                <option value="-2">最大 -2 BPM</option>
+                                <option value="-5">max -5 BPM</option>
+                                <option value="-10">最大 -10 BPM</option>
+                                <option value="-15">最大 -15 BPM</option>
+                            </select>
+                            <span class="input-group-text text-muted" style="font-size: 0.75rem;">※1以上変化します</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4 border-primary">
+            <div class="card-header bg-primary text-white fw-bold">リズム同期モード設定</div>
+            <div class="card-body">
+                <div class="d-flex gap-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rhythmMode" id="modeSync" value="sync">
+                        <label class="form-check-label fw-bold" for="modeSync">
+                            小節同期モード（ポリリズム）
+                        </label>
+                        <div class="small text-muted">1小節の長さを全トラックで統一し、その中で分子の数だけ等分します。</div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rhythmMode" id="modeIndependent" value="independent" checked>
+                        <label class="form-check-label fw-bold" for="modeIndependent">
+                            独立テンポモード（ポリメーター）
+                        </label>
+                        <div class="small text-muted">分母（4分、8分など）を基準速度とし、分子の数だけ叩いて綺麗にループします。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow-sm mb-4 border-secondary">
+            <div class="card-header bg-secondary text-white fw-bold">サブディビジョン・ボリューム</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-xl-2 col-md-4 col-12">
+                        <div class="p-2 border rounded bg-white">
+                            <label id="label-4n" class="small fw-bold d-block mb-1 subdiv-label"></label>
+                            <div class="d-flex align-items-center gap-1 mb-1">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-4n" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-4n-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                            </div>
+                            <div class="d-flex gap-1">
+                                <select class="form-select form-select-sm" id="pitch-4n" title="4分音符の音程">
+                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                </select>
+                                <select class="form-select form-select-sm" id="type-4n" title="4分音符の音色">
+                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-12">
+                        <div class="p-2 border rounded bg-white">
+                            <label id="label-8n" class="small fw-bold d-block mb-1 subdiv-label"></label>
+                            <div class="d-flex align-items-center gap-1 mb-1">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-8n" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-8n-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                            </div>
+                            <div class="d-flex gap-1">
+                                <select class="form-select form-select-sm" id="pitch-8n" title="8分音符の音程">
+                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                </select>
+                                <select class="form-select form-select-sm" id="type-8n" title="8分音符の音色">
+                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-12">
+                        <div class="p-2 border rounded bg-white">
+                            <label id="label-16n" class="small fw-bold d-block mb-1 subdiv-label"></label>
+                            <div class="d-flex align-items-center gap-1 mb-1">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-16n" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-16n-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                            </div>
+                            <div class="d-flex gap-1">
+                                <select class="form-select form-select-sm" id="pitch-16n" title="16分音符の音程">
+                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                </select>
+                                <select class="form-select form-select-sm" id="type-16n" title="16分音符の音色">
+                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-12">
+                        <div class="p-2 border rounded bg-white">
+                            <label id="label-3t" class="small fw-bold d-block mb-1 subdiv-label"></label>
+                            <div class="d-flex align-items-center gap-1 mb-1">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-3t" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-3t-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                            </div>
+                            <div class="d-flex gap-1">
+                                <select class="form-select form-select-sm" id="pitch-3t" title="3連符の音程">
+                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                </select>
+                                <select class="form-select form-select-sm" id="type-3t" title="3連符の音色">
+                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-12">
+                        <div class="p-2 border rounded bg-white">
+                            <label id="label-shuffle" class="small fw-bold d-block mb-1 subdiv-label"></label>
+                            <div class="d-flex align-items-center gap-1 mb-1">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-shuffle" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-shuffle-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                            </div>
+                            <div class="d-flex gap-1">
+                                <select class="form-select form-select-sm" id="pitch-shuffle" title="シャッフルの音程">
+                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                </select>
+                                <select class="form-select form-select-sm" id="type-shuffle" title="シャッフルの音色">
+                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-12">
+                        <div class="p-2 border rounded bg-white">
+                            <label id="label-skip" class="small fw-bold d-block mb-1 subdiv-label"></label>
+                            <div class="d-flex align-items-center gap-1 mb-1">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-skip" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-skip-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                            </div>
+                            <div class="d-flex gap-1">
+                                <select class="form-select form-select-sm" id="pitch-skip" title="スキップの音程">
+                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                </select>
+                                <select class="form-select form-select-sm" id="type-skip" title="スキップの音色">
+                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <span class="fw-bold">リズムトラック設定 (最大4トラック)</span>
+                <button id="addTrackBtn" class="btn btn-primary btn-sm">+ トラック追加</button>
+            </div>
+            <div class="card-body px-3" id="tracksContainer">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold text-primary mb-2">アルティメット・メトロノーム</h1>
+            <p class="lead text-muted">マルチ機能 ポリリズム・メトロノーム 利用ガイド</p>
+            <hr class="my-4">
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white fw-bold">1. 基本操作（START/STOP・BPM・マスターボリューム・TAP TEMPO）</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <h5 class="fw-bold text-success">START / STOP</h5>
+                        <p>左上の大きなボタンで再生・停止を切り替えます。初回起動時はブラウザのオーディオ制限解除のため一瞬だけ処理が入りますが、以降は即座に反応します。停止すると全ビジュアライザーがリセットされます。</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h5 class="fw-bold">BPM（テンポ）</h5>
+                        <p><strong>10〜400 BPM</strong> の範囲で設定できます。スライダーで大まかに動かし、右の数値ボックスで1BPM単位の微調整が可能です。BPM左横に表示される<strong>速度標語テキスト（例：Allegro）</strong>をクリックすると速度標語から指定できるポップオーバーが開きます。</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h5 class="fw-bold text-primary">マスターボリューム</h5>
+                        <p>全体の音量を一括管理します（-40dB〜+6dB）。スライダーを一番左（-40dB）にするとマスターミュートになります。各トラック音量やサブディビジョン音量のバランスを保ったまま全体を絞るときに使います。</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h5 class="fw-bold text-secondary">TAP TEMPO</h5>
+                        <p>曲のリズムに合わせて「TAP TEMPO」ボタンを2〜4回叩くと、その間隔から自動的にBPMを算出して反映します。ボタンが黄色にフラッシュして視覚的にも確認できます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4 border-primary">
+            <div class="card-header bg-primary text-white fw-bold">2. リズム同期モード（ポリリズム vs ポリメーター）</div>
+            <div class="card-body">
+                <p>複数トラックを同時に鳴らす際の時間軸の同期方式を選択します。どちらのモードでも、上部のBPMが「4分音符の基準速度」となります。</p>
+                <div class="row g-3">
+                    <div class="col-md-6 border-end">
+                        <h5 class="fw-bold text-primary">小節同期モード（ポリリズム）</h5>
+                        <p class="small text-muted mb-1">1小節の絶対的な長さを全トラックで揃えます。</p>
+                        <p>「4拍」と「3拍」のトラックを同時に鳴らすと、小節の先頭（1拍目）が常に一致するクロスリズムになります。各拍の間隔はトラックによって異なるため、3対4のポリリズムを手軽に体験できます。</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-secondary">独立テンポモード（ポリメーター）</h5>
+                        <p class="small text-muted mb-1">分母（音符の長さ）を固定し、各トラックが独自の拍数でループします。</p>
+                        <p>「4拍」と「3拍」を分母4（4分音符基準）で鳴らすと、1拍の速さは同じですが小節の頭が周期的にずれていきます。特定の拍数が経過した後に再び揃う変拍子フレーズの練習に最適です。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <span class="fw-bold">3. リズムトラック設定（最大4トラック）</span>
+                <span class="badge bg-primary">コア機能</span>
+            </div>
+            <div class="card-body">
+                <p>「+ トラック追加」ボタンで最大4つのリズムトラックを重ねられます。各トラックは独立して以下を設定できます。</p>
+
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th style="width: 22%;">設定項目</th>
+                        <th>機能と操作方法</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th class="text-nowrap">分子 / 分母</th>
+                        <td>
+                            <strong>分子：</strong>1ループ内の拍数（1〜32）。<br>
+                            <strong>分母：</strong>基準となる音符の長さ（1〜32）。独立テンポモードでは、分母の値が拍の速さに直結します（例：8を選ぶと8分音符1個ぶんの長さが1拍になります）。
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-nowrap">音程（1拍目 / 通常 / 裏拍）</th>
+                        <td>
+                            3つのセレクトボックスで音程（C3〜C6）を指定します。
+                            <ul class="mb-0 small text-muted mt-1">
+                                <li><strong>左：</strong>1拍目（アクセント）の音程</li>
+                                <li><strong>中央：</strong>2拍目以降の通常拍（1拍目より音量が自動で約40%減衰）</li>
+                                <li><strong>右：</strong>裏拍（アップビート）の音程。「裏拍」スイッチがONのときのみ発音</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-nowrap">音量 / 音色 / クリック</th>
+                        <td>
+                            <strong>音量スライダー：</strong>トラックの音量を-40dB（ミュート）〜+15dBで調整します。スライダーと右の数値ボックスが連動します。<br>
+                            <strong>音色：</strong><code>サイン</code>（丸くマイルド）・<code>三角</code>（中間）・<code>矩形</code>（鋭くクリアー）の3種類。<br>
+                            <strong>クリック：</strong>このトラックに重ねるサブディビジョン系クリック音の種類を選択します（4分／8分／16分／3連符／シャッフル／スキップ）。サブディビジョンセクションで設定した音程・音色がそのまま使われます。
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-nowrap">裏拍（スイッチ）</th>
+                        <td>ONにすると各拍のちょうど半分のタイミングで裏拍音を挿入します。シンコペーションの練習に。音程は「音程」欄の右セレクトボックスで設定します。</td>
+                    </tr>
+                    <tr>
+                        <th class="text-nowrap">リズムトレーナー</th>
+                        <td>
+                            「鳴（発音）小節数」と「消（消音）小節数」のサイクルを繰り返す自動消音機能です。ONにするとメトロノームなしで続きのリズムをキープする耳トレ・キープ力トレーニングができます。<br>
+                            <span class="text-danger small">⚠ いずれか1トラックでもONの間は「サブディビジョン・ボリューム」セクションのフェーダーが全てロックされ、サブディビジョン音は強制消音されます。</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4 border-secondary">
+            <div class="card-header bg-secondary text-white fw-bold">4. サブディビジョン・ボリューム</div>
+            <div class="card-body">
+                <p>基準テンポに対して様々な細分化グリッドのガイド音を個別に重ねられるミキサーです。各スライダーを左端（-40dB）にするとミュート、右に動かすほど大きくなります（最大+15dB）。数値ボックスへの直接入力も可能です。<strong>初期状態は全てミュート</strong>になっているので、練習に必要なものだけを選んで有効にしてください。</p>
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                    <tr><th style="width:15%;">種類</th><th>リズムパターン</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><th id="desc-label-4n"></th><td>1拍に1回鳴る基本グリッド。テンポの骨格を確認したいときに。</td></tr>
+                    <tr><th id="desc-label-8n"></th><td>1拍に2回。8分音符ラインを体感しながら練習できます。</td></tr>
+                    <tr><th id="desc-label-16n"></th><td>1拍に4回。細かいグリッドのキープ力を鍛えます。</td></tr>
+                    <tr><th id="desc-label-3t"></th><td>1拍を3等分。スウィングやトリプレットフィールの基礎に。</td></tr>
+                    <tr><th id="desc-label-shuffle"></th><td>3連符の真ん中を休符にした跳ねるリズム（ダウン・休・アップの繰り返し）。ブルースやジャズのシャッフルビート練習に最適。</td></tr>
+                    <tr><th id="desc-label-skip"></th><td>16分音符の内側2つを休符にしたリズム（ダウン・休・休・アップ）。付点8分＋16分の連続に近いグリッドで、軽快なスキップ感覚を体感できます。</td></tr>
+                    </tbody>
+                </table>
+                <p class="small text-muted mb-0">各種類の音程・音色はスライダー下のセレクトボックスで変更できます。また、リズムトラック側の「クリック」セレクトボックスでいずれかを選ぶと、そのトラックの音量に連動したクリック音としてもご利用いただけます。</p>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4 border-info">
+            <div class="card-header bg-info text-dark fw-bold">5. ランダム・テンポ変化設定</div>
+            <div class="card-body">
+                <p>練習中に自動でテンポを変化させ、テンポキープ力・対応力を鍛えるモードです。</p>
+                <ul class="mb-0">
+                    <li><strong>ランダム変化モード ON/OFF：</strong>スイッチで有効化。再生中でも即座に切り替えられます。</li>
+                    <li><strong>変化の間隔：</strong>何小節ごとにテンポを変えるかを選択（1・2・4・8小節）。トラック1の1拍目がトリガーとなります。</li>
+                    <li><strong>最大変化幅：</strong>1回の変化量の上限を設定。プラス方向（徐々に速くなる）またはマイナス方向（徐々に遅くなる）を選べます。変化量は1〜上限値の間でランダムです。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white fw-bold">6. ビジュアライザーとオートセーブ</div>
+            <div class="card-body">
+                <h5 class="fw-bold">ビジュアライザー</h5>
+                <p>各トラックの現在の拍位置がリアルタイムで色付き点灯します。<span class="badge" style="background:#00ffff;color:#000;">シアン</span>が表（ダウン拍）、<span class="badge" style="background:#ff00ff;color:#fff;">マゼンタ</span>が裏拍です。拍数が多い場合は複数行に自動折り返しされます。</p>
+                <h5 class="fw-bold">振り子バー</h5>
+                <p>各トラックのビジュアライザー全体に表拍のたびに左右に振れる縦バーを表示します。トラック設定の「振り子」セレクトで色を選択（なし・白・シアン・マゼンタ・イエロー・オレンジ・ティール・ブルー）。再生開始時に左端からスタートし、以降テンポに合わせて等速で往復します。</p>
+                <h5 class="fw-bold">自動保存</h5>
+                <p class="text-muted mb-0">トラック設定・同期モード・サブディビジョン設定（音程・音色・音量）・マスターボリューム・ランダムテンポ設定は変更のたびにブラウザの <code>localStorage</code> へ自動保存されます。次回同じブラウザで開いたとき、前回の状態から再開できます。</p>
+            </div>
+        </div>
+    </div>
+
+    <!--  -->
+    <template id="tmpl-track-row">
+        <div class="track-row-header">
+            <span class="fw-bold track-label">トラック [[trackIndex]]</span>
+            <button class="remove-track-btn" data-id="[[trackId]]" title="削除" style="background:#dc3545;border:none;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="1" x2="11" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="1" x2="1" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></button>
+        </div>
+        <div class="track-row-body">
+            <div class="row align-items-stretch g-2">
+                <div class="col-xl-2 col-md-4 col-12">
+                    <div class="p-2 border rounded bg-white h-100 d-flex flex-column justify-content-start">
+                        <div class="small fw-bold mb-2">拍子</div>
+                        <div style="display:flex;align-items:center;justify-content:center;">
+                            <div style="display:flex;flex-direction:column;align-items:stretch;width:72px;">
+                                <select class="track-beats" data-id="[[trackId]]" style="text-align:center;text-align-last:center;color:#212529;font-size:1.2rem;font-weight:600;border:1px solid #adb5bd;border-bottom:none;border-radius:6px 6px 0 0;padding:4px 2px;background:#fff;cursor:pointer;appearance:none;-webkit-appearance:none;">[[beatsOptions]]</select>
+                                <div class="timesig-divider"></div>
+                                <select class="track-griddiv" data-id="[[trackId]]" style="text-align:center;text-align-last:center;color:#212529;font-size:1.2rem;font-weight:600;border:1px solid #adb5bd;border-top:none;border-radius:0 0 6px 6px;padding:4px 2px;background:#fff;cursor:pointer;appearance:none;-webkit-appearance:none;">[[gridDivOptions]]</select>
+                            </div>
+                        </div>
+                        <div class="form-floating mt-2">
+                            <select class="form-select track-pendulum-color" id="pendulum-color-[[trackId]]" data-id="[[trackId]]" title="振り子バーの色">
+                                <option value="none" [[pendulumNoneSelected]]>なし</option>
+                                <option value="#ffffff" [[pendulumWhiteSelected]]>白</option>
+                                <option value="#00ffff" [[pendulumCyanSelected]]>シアン</option>
+                                <option value="#ff00ff" [[pendulumMagentaSelected]]>マゼンタ</option>
+                                <option value="#ffc107" [[pendulumYellowSelected]]>イエロー</option>
+                                <option value="#fd7e14" [[pendulumOrangeSelected]]>オレンジ</option>
+                                <option value="#20c997" [[pendulumTealSelected]]>ティール</option>
+                                <option value="#0d6efd" [[pendulumBlueSelected]]>ブルー</option>
+                            </select>
+                            <label for="pendulum-color-[[trackId]]">振り子カラー</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4 col-12">
+                    <div class="p-2 border rounded bg-white h-100 d-flex flex-column justify-content-start">
+                        <div class="small fw-bold mb-1">音程 / 音量補正 dB (1拍目 / 通常 / 裏)</div>
+                        <div class="d-flex gap-1">
+                            <div class="form-floating flex-fill">
+                                <select class="form-select track-pitch" id="pitch-down-[[trackId]]" data-id="[[trackId]]">[[pitchDownOptions]]</select>
+                                <label for="pitch-down-[[trackId]]">1拍目 音程</label>
+                            </div>
+                            <div class="form-floating flex-fill">
+                                <select class="form-select track-normal-pitch" id="pitch-normal-[[trackId]]" data-id="[[trackId]]">[[pitchNormalOptions]]</select>
+                                <label for="pitch-normal-[[trackId]]">通常 音程</label>
+                            </div>
+                            <div class="form-floating flex-fill">
+                                <select class="form-select track-up-pitch" id="pitch-up-[[trackId]]" data-id="[[trackId]]">[[pitchUpOptions]]</select>
+                                <label for="pitch-up-[[trackId]]">裏 音程</label>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-1 mt-1">
+                            <div class="form-floating flex-fill">
+                                <select class="form-select track-down-vol-offset" id="vol-offset-down-[[trackId]]" data-id="[[trackId]]">[[volOffsetDownOptions]]</select>
+                                <label for="vol-offset-down-[[trackId]]">1拍目 dB</label>
+                            </div>
+                            <div class="form-floating flex-fill">
+                                <select class="form-select track-normal-vol-offset" id="vol-offset-normal-[[trackId]]" data-id="[[trackId]]">[[volOffsetNormalOptions]]</select>
+                                <label for="vol-offset-normal-[[trackId]]">通常 dB</label>
+                            </div>
+                            <div class="form-floating flex-fill">
+                                <select class="form-select track-up-vol-offset" id="vol-offset-up-[[trackId]]" data-id="[[trackId]]">[[volOffsetUpOptions]]</select>
+                                <label for="vol-offset-up-[[trackId]]">裏 dB</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4 col-12">
+                    <div class="p-2 border rounded bg-white h-100 d-flex flex-column justify-content-start">
+                        <div class="small fw-bold mb-1">音量 / 音色 / クリック</div>
+                        <div class="d-flex align-items-center gap-1 mb-2">
+                            <input type="range" class="form-range track-vol vol-range flex-grow-1" data-id="[[trackId]]" min="-40" max="15" value="[[downVol]]" data-muted="[[downVolMuted]]">
+                            <input type="text" inputmode="numeric" class="form-control form-control-sm track-vol-num" data-id="[[trackId]]" data-min="-40" data-max="15" data-default="[[downVol]]" value="[[downVol]]" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                        </div>
+                        <div class="d-flex gap-1">
+                            <div class="form-floating flex-fill">
+                                <select class="form-select track-soundtype" id="soundtype-[[trackId]]" data-id="[[trackId]]">
+                                    <option value="sine" [[sineSelected]]>サイン</option>
+                                    <option value="triangle" [[triangleSelected]]>三角</option>
+                                    <option value="square" [[squareSelected]]>矩形</option>
+                                    <option value="beep" [[beepSelected]]>電子音(ピ)</option>
+                                </select>
+                                <label for="soundtype-[[trackId]]">音色</label>
+                            </div>
+                            <div class="form-floating flex-fill">
+                                <select class="form-select track-clicktype" id="clicktype-[[trackId]]" data-id="[[trackId]]" title="クリック音の種類">
+                                    [[clickTypeOptions]]
+                                </select>
+                                <label for="clicktype-[[trackId]]">クリック</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-12 col-12">
+                    <div class="p-2 border rounded bg-white h-100 d-flex flex-column gap-2">
+                        <div class="d-flex gap-3 flex-wrap">
+                            <div class="form-check form-switch p-0">
+                                <input class="form-check-input ms-0 track-upbeat-toggle" type="checkbox" data-id="[[trackId]]" [[upbeatChecked]]>
+                                <label class="form-check-label small fw-bold ms-1">裏拍</label>
+                            </div>
+                            <div class="form-check form-switch p-0">
+                                <input class="form-check-input ms-0 track-mute-active-toggle" type="checkbox" data-id="[[trackId]]" [[muteActiveChecked]]>
+                                <label class="form-check-label small fw-bold ms-1">リズムトレーナー</label>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <div class="form-floating flex-fill" style="min-width:120px;">
+                                <select class="form-select track-play-bars" id="play-bars-[[trackId]]" data-id="[[trackId]]" title="発音小節数">[[playBarsOptions]]</select>
+                                <label for="play-bars-[[trackId]]">非消音小節</label>
+                            </div>
+                            <div class="form-floating flex-fill" style="min-width:120px;">
+                                <select class="form-select track-mute-bars" id="mute-bars-[[trackId]]" data-id="[[trackId]]" title="消音小節数">[[muteBarsOptions]]</select>
+                                <label for="mute-bars-[[trackId]]">消音小節</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <nav aria-label="フッターナビゲーション">
+            <ul class="footer-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/diatonic/index.html">ダイアトニックコード</a></li>
+                <li><a href="/scale/index.html">スケール</a></li>
+                <li><a href="/tuner/tuner.html">スケール</a></li>
+                <li><a href="/chord-progression/index.html">コード進行</a></li>
+                <li><a href="/metronome.html">メトロノーム</a></li>
+            </ul>
+        </nav>
+        <p class="footer-copy">© 2024 BTR KITA</p>
+    </div>
+</footer>
+
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+
+<script>
+    let ColorScheme = 'dark';
+
+    /**
+     * テーマを適用する
+     * @param {string} t    'light' | 'dark'
+     * @param {boolean} save true のとき localStorage に保存（ボタン操作時のみ）
+     */
+    function updateTheme(t, save = false) {
+        ColorScheme = t;
+        document.documentElement.setAttribute('data-bs-theme', t);
+        document.documentElement.setAttribute('data-theme', t);
+        document.body.setAttribute('data-bs-theme', t);
+        document.body.setAttribute('data-theme', t);
+
+        // ダーク時は太陽（ライトへ切り替え）、ライト時は月（ダークへ切り替え）
+        document.querySelectorAll('.theme-icon').forEach(icon => {
+            icon.classList.toggle('fa-sun',  t === 'dark');
+            icon.classList.toggle('fa-moon', t !== 'dark');
+        });
+
+        // ハンバーガー内テキスト: 現在のモードの逆を案内
+        document.querySelectorAll('.theme-label').forEach(label => {
+            label.textContent = t === 'dark' ? 'ライトモードへ' : 'ダークモードへ';
+        });
+
+        if (save) {
+            localStorage.setItem('color-scheme', t);
+        }
+    }
+
+    // 初期テーマの決定：① localStorage → ② OS設定 の順で参照
+    (function initTheme() {
+        const saved = localStorage.getItem('color-scheme');
+        if (saved === 'light' || saved === 'dark') {
+            updateTheme(saved);
+        } else {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            updateTheme(isDark ? 'dark' : 'light');
+        }
+    })();
+
+    // OSの設定変更をリアルタイムに監視（ユーザーが明示的に選択していない場合のみ）
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('color-scheme')) {
+            updateTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // save = true でローカルストレージに保存
+                updateTheme(ColorScheme === 'dark' ? 'light' : 'dark', true);
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.image-change-btn');
+        const images = document.querySelectorAll('.select-image');
+        // 表示を切り替える共通関数
+        const updateDisplay = (targetImageClass) => {
+            buttons.forEach(btn => {
+                const isActive = btn.getAttribute('data-image') === targetImageClass;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+
+            images.forEach(img => {
+                // 画像が対象のクラスを持っているか確認
+                if (img.classList.contains(targetImageClass)) {
+                    img.classList.add('is-visible');
+                } else {
+                    img.classList.remove('is-visible');
+                }
+            });
+        };
+
+        // --- 初期化処理 ---
+        const activeBtn = document.querySelector('.image-change-btn.active');
+        if (activeBtn) {
+            updateDisplay(activeBtn.getAttribute('data-image'));
+        }
+
+        // --- イベントリスナー ---
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                updateDisplay(e.currentTarget.getAttribute('data-image'));
+            });
+        });
+
+    });
+
+
+</script>
+<script>
+            /*  */
+            /*  */
+            /*  */
+            /*  */
+            /*  */
+            /*  */
+            const BEAT_SYMBOLS = {
+                '4n':      { symbol: '&#x1D15F;',                name: '4分音符',   label: '4ビート'      },
+                '8n':      { symbol: '&#x1D160;&#x1D160;',                name: '8分音符',   label: '8ビート'      },
+                '16n':     { symbol: '&#x1D161;&#x1D161;&#x1D161;&#x1D161;',               name: '16分音符',  label: '16ビート'     },
+                '3t':      { symbol: '&#x1D160;&#x00B3;&#x1D160;&#x00B3;&#x1D160;&#x00B3;',    name: '3連符',     label: '3拍子'       },
+                'shuffle': { symbol: '&#x1D15F;&#x00B3;&#x1D160;&#x00B3;', name: 'シャッフルビート', label: 'シャッフルビート' },
+                'skip':    { symbol: '&#x1D160;.&#x1D161;',            name: 'スキップビート',   label: 'スキップビート'   },
+            };
+
+            let isPlaying = false;
+            let bpm = 120;
+            let masterVolume = 0;
+            let tracks = [];
+            const maxTracks = 4;
+            let currentMode = 'independent';
+
+            let scheduledEvents = [];
+
+            let isRandomBpmEnabled = false;
+            let randomBpmIntervalBars = 2;
+            let randomBpmMaxStep = 5;
+
+            const tempoTerms = [
+                { id: "larghissimo", name: "Larghissimo", reading: "ラルギッシモ", meaning: "最も幅広く、この上なく遅く", min: 10, max: 24, center: 18 },
+                { id: "grave", name: "Grave", reading: "グラーヴェ", meaning: "重々しく、厳かに", min: 25, max: 45, center: 35 },
+                { id: "largo", name: "Largo", reading: "ラルゴ", meaning: "幅広く、ゆったりと", min: 40, max: 50, center: 45 },
+                { id: "lento", name: "Lento", reading: "レント", meaning: "遅く、緩慢に", min: 50, max: 55, center: 53 },
+                { id: "adagio", name: "Adagio", reading: "アダージョ", meaning: "ゆるやかに、心地よく", min: 55, max: 65, center: 60 },
+                { id: "larghetto", name: "Larghetto", reading: "ラルゲット", meaning: "Largoよりやや速く", min: 56, max: 61, center: 60 },
+                { id: "andante", name: "Andante", reading: "アンダンテ", meaning: "歩くような速さで", min: 60, max: 80, center: 70 },
+                { id: "andantino", name: "Andantino", reading: "アンダンティーノ", meaning: "Andanteよりやや速く", min: 70, max: 90, center: 80 },
+                { id: "moderato", name: "Moderato", reading: "モデラート", meaning: "控えめに、適度な速さで", min: 90, max: 110, center: 100 },
+                { id: "allegretto", name: "Allegretto", reading: "アレグレット", meaning: "やや快速に", min: 110, max: 120, center: 115 },
+                { id: "allegro", name: "Allegro", reading: "アレグロ", meaning: "陽気に、快速に", min: 120, max: 150, center: 135 },
+                { id: "vivace", name: "Vivace", reading: "ヴィヴァーチェ", meaning: "生き生きと、活発に", min: 150, max: 170, center: 160 },
+                { id: "presto", name: "Presto", reading: "プレスト", meaning: "急速に、きわめて速く", min: 170, max: 200, center: 185 },
+                { id: "prestissimo", name: "Prestissimo", reading: "プレスティッシモ", meaning: "可能な限り速く、極めて急速に", min: 201, max: 400, center: 240 }
+            ];
+
+            /*  */
+            const trackSynths = {};
+            /*  */
+            const beepSynths = {};
+
+            /*  */
+            const subEnvelope = { attack: 0.002, decay: 0.05, sustain: 0, release: 0.03 };
+            const subSynths = {
+                "4n":      new Tone.Synth({ envelope: subEnvelope }),
+                "8n":      new Tone.Synth({ envelope: subEnvelope }),
+                "16n":     new Tone.Synth({ envelope: subEnvelope }),
+                "3t":      new Tone.Synth({ envelope: subEnvelope }),
+                "shuffle": new Tone.Synth({ envelope: subEnvelope }),
+                "skip":    new Tone.Synth({ envelope: subEnvelope })
+            };
+            const volumeNodes = {
+                "4n":      new Tone.Volume(-40).toDestination(),
+                "8n":      new Tone.Volume(-40).toDestination(),
+                "16n":     new Tone.Volume(-40).toDestination(),
+                "3t":      new Tone.Volume(-40).toDestination(),
+                "shuffle": new Tone.Volume(-40).toDestination(),
+                "skip":    new Tone.Volume(-40).toDestination()
+            };
+            /*  */
+            Object.keys(subSynths).forEach(id => {
+                subSynths[id].connect(volumeNodes[id]);
+            });
+            /*  */
+            Object.values(volumeNodes).forEach(node => { node.mute = true; });
+
+            let subSettings = {
+                "4n": { pitch: "A3", type: "sine" },
+                "8n": { pitch: "A3", type: "sine" },
+                "16n": { pitch: "A3", type: "sine" },
+                "3t": { pitch: "A3", type: "sine" },
+                "shuffle": { pitch: "A3", type: "sine" },
+                "skip": { pitch: "A3", type: "sine" }
+            };
+
+            const defaultPitchPatterns = [
+                { down: "A5", normal: "C5", up: "C4" },
+                { down: "C6", normal: "A5", up: "C5" },
+                { down: "C5", normal: "C4", up: "C6" },
+                { down: "C4", normal: "C6", up: "A5" }
+            ];
+
+            const pitchOptionsData = [
+                { value: "C6", text: "C6" }, { value: "A5", text: "A5" }, { value: "G5", text: "G5" }, { value: "E5", text: "E5" }, { value: "C5", text: "C5" },
+                { value: "G4", text: "G4" }, { value: "E4", text: "E4" }, { value: "C4", text: "C4" }, { value: "A3", text: "A3" }, { value: "C3", text: "C3" }
+            ];
+
+            let tapTimes = [];
+
+            const STORAGE_KEY_TRACKS = 'polyrhythm_metronome_tracks';
+            const STORAGE_KEY_MODE = 'polyrhythm_metronome_mode';
+            const STORAGE_KEY_SUB_SETTINGS = 'polyrhythm_metronome_sub_settings';
+            const STORAGE_KEY_RANDOM_SETTINGS = 'polyrhythm_metronome_random_settings';
+            const STORAGE_KEY_MASTER_VOL = 'polyrhythm_metronome_master_vol';
+            const STORAGE_KEY_SUB_VOL = 'polyrhythm_metronome_sub_vol';
+            const STORAGE_KEY_BPM = 'polyrhythm_metronome_bpm';
+
+            const startStopBtn = document.getElementById('startStopBtn');
+            const bpmRange = document.getElementById('bpmRange');
+            const bpmNum = document.getElementById('bpmNum');
+            const bpmVal = document.getElementById('bpmVal');
+            const masterVolRange = document.getElementById('masterVolRange');
+            const masterVolNum = document.getElementById('masterVolNum');
+            const tapBtn = document.getElementById('tapBtn');
+            const tracksContainer = document.getElementById('tracksContainer');
+            const visualizer = document.getElementById('visualizer');
+            const addTrackBtn = document.getElementById('addTrackBtn');
+            const randomBpmToggle = document.getElementById('randomBpmToggle');
+            const randomBpmInterval = document.getElementById('randomBpmInterval');
+            const randomBpmMaxStepSelect = document.getElementById('randomBpmMaxStep');
+            const tempoTermBadge = document.getElementById('tempoTermBadge');
+
+            /*  */
+            function fillTemplate(templateId, vars) {
+                let html = document.getElementById(templateId).innerHTML;
+                Object.entries(vars).forEach(([k, v]) => {
+                    html = html.replaceAll('[[' + k + ']]', v);
+                });
+                return html;
+            }
+
+            function init() {
+                /*  */
+                Object.entries(BEAT_SYMBOLS).forEach(([id, def]) => {
+                    const cardLabel = document.getElementById(`label-${id}`);
+                    if (cardLabel) {
+                        cardLabel.innerHTML =
+                            `<span class="music-sym">${def.symbol}</span>&nbsp;${def.name}`;
+                    }
+                    const descLabel = document.getElementById(`desc-label-${id}`);
+                    if (descLabel) {
+                        descLabel.innerHTML =
+                            `<span class="music-sym">${def.symbol}</span>&nbsp;${def.name}`;
+                    }
+                });
+
+                setupTempoDropdown();
+                setupEventListeners();
+                loadSettings();
+                updateBPM(bpm);
+                updateMasterVolume(masterVolume);
+                updateSubdivisionFaderState();
+            }
+
+            function setupTempoDropdown() {
+                const panel = document.getElementById('tempoDropdownPanel');
+                const termList = document.getElementById('tempoTermList');
+
+                /*  */
+                tempoTerms.forEach(term => {
+                    const item = document.createElement('div');
+                    item.className = 'tempo-term-item';
+                    item.dataset.termId = term.id;
+                    item.innerHTML = `<span class="t-range">${term.min}-${term.max}</span><span class="t-name">${term.name}</span>`;
+                    item.addEventListener('click', () => {
+                        termList.querySelectorAll('.tempo-term-item').forEach(el => el.classList.remove('selected'));
+                        item.classList.add('selected');
+                        renderBpmList(term, bpm);
+                    });
+                    termList.appendChild(item);
+                });
+
+                /*  */
+                tempoTermBadge.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isShown = panel.classList.contains('show');
+                    if (isShown) {
+                        panel.classList.remove('show');
+                    } else {
+                        updateDropdownHighlight(bpm);
+                        panel.classList.add('show');
+                    }
+                });
+            }
+
+            function renderBpmList(term, currentBpm) {
+                const bpmList = document.getElementById('tempoBpmList');
+                bpmList.innerHTML = '';
+                for (let i = term.min; i <= term.max; i++) {
+                    const item = document.createElement('div');
+                    item.className = 'tempo-bpm-item' + (i === currentBpm ? ' active' : '');
+                    item.textContent = i;
+                    item.addEventListener('click', () => {
+                        updateBPM(i);
+                        document.getElementById('tempoDropdownPanel').classList.remove('show');
+                    });
+                    bpmList.appendChild(item);
+                }
+                /*  */
+                const activeItem = bpmList.querySelector('.active');
+                if (activeItem) {
+                    activeItem.scrollIntoView({ block: 'center' });
+                }
+            }
+
+            function updateDropdownHighlight(currentBpm) {
+                const termList = document.getElementById('tempoTermList');
+                if (!termList) return;
+
+                /*  */
+                let matchedTerm = null;
+                let minDiff = Infinity;
+                tempoTerms.forEach(term => {
+                    if (currentBpm >= term.min && currentBpm <= term.max) {
+                        const diff = Math.abs(currentBpm - term.center);
+                        if (diff < minDiff) {
+                            minDiff = diff;
+                            matchedTerm = term;
+                        }
+                    }
+                });
+
+                /*  */
+                termList.querySelectorAll('.tempo-term-item').forEach(el => el.classList.remove('selected'));
+
+                if (matchedTerm) {
+                    const targetItem = termList.querySelector(`[data-term-id="${matchedTerm.id}"]`);
+                    if (targetItem) {
+                        targetItem.classList.add('selected');
+                        targetItem.scrollIntoView({ block: 'nearest' });
+                    }
+                    renderBpmList(matchedTerm, currentBpm);
+                }
+            }
+
+            function updateTempoTermBadge(currentBpm) {
+                let matchedTerm = null;
+                let minDiff = Infinity;
+
+                tempoTerms.forEach(term => {
+                    if (currentBpm >= term.min && currentBpm <= term.max) {
+                        const diff = Math.abs(currentBpm - term.center);
+                        if (diff < minDiff) {
+                            minDiff = diff;
+                            matchedTerm = term;
+                        }
+                    }
+                });
+
+                if (matchedTerm) {
+                    tempoTermBadge.textContent = `${matchedTerm.name}`;
+                    tempoTermBadge.title = `${matchedTerm.reading} : ${matchedTerm.meaning} (${matchedTerm.min}〜${matchedTerm.max})`;
+                } else {
+                    tempoTermBadge.textContent = `-`;
+                    tempoTermBadge.title = "";
+                }
+
+                /*  */
+                const panel = document.getElementById('tempoDropdownPanel');
+                if (panel && panel.classList.contains('show')) {
+                    updateDropdownHighlight(currentBpm);
+                }
+            }
+
+            function sanitizeNumericInput(el) {
+                /*  */
+                let val = el.value
+                    .replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0))
+                    .replace(/＋/g, '+')
+                    .replace(/[－ーｰ−]/g, '-')
+                    .trim();
+                const minVal = parseFloat(el.dataset.min);
+                const maxVal = parseFloat(el.dataset.max);
+                const defVal = parseFloat(el.dataset.default);
+                let num = parseFloat(val);
+                if (val === '' || isNaN(num)) {
+                    num = defVal;
+                } else if (num > maxVal) {
+                    num = maxVal;
+                } else if (num < minVal) {
+                    num = minVal;
+                }
+                /*  */
+                if (el.dataset.step === '1' || !el.dataset.step) num = Math.round(num);
+                el.value = num;
+                el.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+
+            function setupEventListeners() {
+                /*  */
+                document.addEventListener('pointerdown', () => Tone.start(), { once: true });
+
+                startStopBtn.addEventListener('click', toggleTransport);
+                bpmRange.addEventListener('input', (e) => updateBPM(e.target.value));
+                bpmNum.addEventListener('input', (e) => updateBPM(e.target.value));
+
+                masterVolRange.addEventListener('input', (e) => updateMasterVolume(e.target.value));
+                masterVolNum.addEventListener('input', (e) => updateMasterVolume(e.target.value));
+
+                /*  */
+                let _tapTouched = false;
+                tapBtn.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    _tapTouched = true;
+                    handleTapTempo();
+                    setTimeout(() => { _tapTouched = false; }, 500);
+                }, { passive: false });
+                tapBtn.addEventListener('click', () => { if (!_tapTouched) handleTapTempo(); });
+
+                document.addEventListener('click', (e) => {
+                    const panel = document.getElementById('tempoDropdownPanel');
+                    if (panel && !tempoTermBadge.contains(e.target) && !panel.contains(e.target)) {
+                        panel.classList.remove('show');
+                    }
+                });
+
+                document.querySelectorAll('input[name="rhythmMode"]').forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        currentMode = e.target.value;
+                        saveSettings();
+                        tracks.forEach(track => renderVisualBlocks(track));
+                        if (isPlaying) setupSchedules();
+                    });
+                });
+
+                randomBpmToggle.addEventListener('change', (e) => {
+                    isRandomBpmEnabled = e.target.checked;
+                    saveSettings();
+                    if (isPlaying) setupSchedules();
+                });
+
+                randomBpmInterval.addEventListener('change', (e) => {
+                    randomBpmIntervalBars = parseInt(e.target.value);
+                    saveSettings();
+                    if (isPlaying) setupSchedules();
+                });
+
+                randomBpmMaxStepSelect.addEventListener('change', (e) => {
+                    randomBpmMaxStep = parseInt(e.target.value);
+                    saveSettings();
+                });
+
+                addTrackBtn.addEventListener('click', () => {
+                    if (tracks.length < maxTracks) {
+                        const pattern = defaultPitchPatterns[tracks.length % defaultPitchPatterns.length];
+                        addTrack({
+                            beats: 4, gridDiv: 4, upbeatPlay: false, muteActive: false, playBars: 1, muteBars: 1,
+                            downPitch: pattern.down, normalPitch: pattern.normal, downVol: 0, upPitch: pattern.up, soundType: "sine"
+                        });
+                        saveSettings();
+                    }
+                });
+
+                ['4n', '8n', '16n', '3t', 'shuffle', 'skip'].forEach(id => {
+                    const fader = document.getElementById(`vol-${id}`);
+                    const numBox = document.getElementById(`vol-${id}-num`);
+
+                    function applySubVol(val) {
+                        const v = parseFloat(val);
+                        const clamped = isNaN(v) ? -40 : Math.max(-40, Math.min(15, v));
+                        fader.value = clamped;
+                        numBox.value = clamped;
+                        const isMuted = clamped <= -40;
+                        fader.classList.toggle('is-muted', isMuted);
+                        if (isMuted) {
+                            volumeNodes[id].mute = true;
+                        } else {
+                            volumeNodes[id].mute = false;
+                            volumeNodes[id].volume.value = clamped;
+                        }
+                        saveSettings();
+                    }
+
+                    fader.addEventListener('input', (e) => applySubVol(e.target.value));
+                    numBox.addEventListener('input', (e) => applySubVol(e.target.value));
+                    numBox.addEventListener('change', (e) => applySubVol(e.target.value));
+
+                    const pitchSelect = document.getElementById(`pitch-${id}`);
+                    const typeSelect = document.getElementById(`type-${id}`);
+                    pitchSelect.addEventListener('change', (e) => {
+                        subSettings[id].pitch = e.target.value;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    });
+                    typeSelect.addEventListener('change', (e) => {
+                        subSettings[id].type = e.target.value;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    });
+                });
+            }
+
+            function updateMasterVolume(val) {
+                let value = parseFloat(val);
+                if (isNaN(value) || value < -40) value = -40;
+                if (value > 15) value = 15;
+
+                masterVolume = value;
+                masterVolRange.value = value;
+                masterVolNum.value = value;
+                masterVolRange.classList.toggle('is-muted', value <= -40);
+
+                if (masterVolume <= -40) {
+                    Tone.Destination.mute = true;
+                } else {
+                    Tone.Destination.mute = false;
+                    Tone.Destination.volume.value = masterVolume;
+                }
+                localStorage.setItem(STORAGE_KEY_MASTER_VOL, masterVolume);
+            }
+
+            function updateSubdivisionFaderState() {
+                const isAnyMuteActive = tracks.some(track => track.muteActive);
+                ['4n', '8n', '16n', '3t', 'shuffle', 'skip'].forEach(id => {
+                    const fader = document.getElementById(`vol-${id}`);
+                    const numBox = document.getElementById(`vol-${id}-num`);
+                    if (isAnyMuteActive) {
+                        fader.disabled = true;
+                        fader.classList.add('is-muted');
+                        if (numBox) numBox.disabled = true;
+                        volumeNodes[id].mute = true;
+                    } else {
+                        fader.disabled = false;
+                        if (numBox) numBox.disabled = false;
+                        const val = parseFloat(fader.value);
+                        const isMuted = val <= -40;
+                        fader.classList.toggle('is-muted', isMuted);
+                        if (isMuted) {
+                            volumeNodes[id].mute = true;
+                        } else {
+                            volumeNodes[id].mute = false;
+                            volumeNodes[id].volume.value = val;
+                        }
+                    }
+                });
+            }
+
+            function saveSettings() {
+                localStorage.setItem(STORAGE_KEY_TRACKS, JSON.stringify(tracks));
+                localStorage.setItem(STORAGE_KEY_MODE, currentMode);
+                localStorage.setItem(STORAGE_KEY_SUB_SETTINGS, JSON.stringify(subSettings));
+                localStorage.setItem(STORAGE_KEY_RANDOM_SETTINGS, JSON.stringify({
+                    enabled: isRandomBpmEnabled, interval: randomBpmIntervalBars, maxStep: randomBpmMaxStep
+                }));
+                const subVols = {};
+                ['4n', '8n', '16n', '3t', 'shuffle', 'skip'].forEach(id => {
+                    const fader = document.getElementById(`vol-${id}`);
+                    if (fader) subVols[id] = parseFloat(fader.value);
+                });
+                localStorage.setItem(STORAGE_KEY_SUB_VOL, JSON.stringify(subVols));
+            }
+
+            function loadSettings() {
+                const savedTracks = localStorage.getItem(STORAGE_KEY_TRACKS);
+                const savedMode = localStorage.getItem(STORAGE_KEY_MODE);
+                const savedSubSettings = localStorage.getItem(STORAGE_KEY_SUB_SETTINGS);
+                const savedRandomSettings = localStorage.getItem(STORAGE_KEY_RANDOM_SETTINGS);
+                const savedMasterVol = localStorage.getItem(STORAGE_KEY_MASTER_VOL);
+                const savedSubVol = localStorage.getItem(STORAGE_KEY_SUB_VOL);
+                const savedBpm = localStorage.getItem(STORAGE_KEY_BPM);
+
+                if (savedMode) {
+                    currentMode = savedMode;
+                    const targetRadio = document.getElementById(currentMode === 'sync' ? 'modeSync' : 'modeIndependent');
+                    if (targetRadio) targetRadio.checked = true;
+                }
+                if (savedBpm !== null) {
+                    bpm = parseInt(savedBpm) || 120;
+                }
+                if (savedMasterVol !== null) {
+                    masterVolume = parseFloat(savedMasterVol);
+                }
+                if (savedSubSettings) {
+                    try {
+                        const parsed = JSON.parse(savedSubSettings);
+                        if (parsed) {
+                            subSettings = { ...subSettings, ...parsed };
+                            /*  */
+                            Object.entries(subSettings).forEach(([id, s]) => {
+                                const pitchEl = document.getElementById(`pitch-${id}`);
+                                const typeEl  = document.getElementById(`type-${id}`);
+                                if (pitchEl && s.pitch) pitchEl.value = s.pitch;
+                                if (typeEl  && s.type)  typeEl.value  = s.type;
+                            });
+                        }
+                    } catch(e) { console.error(e); }
+                }
+                if (savedSubVol) {
+                    try {
+                        const parsed = JSON.parse(savedSubVol);
+                        if (parsed) {
+                            ['4n', '8n', '16n', '3t', 'shuffle', 'skip'].forEach(id => {
+                                if (parsed[id] != null) {
+                                    const fader = document.getElementById(`vol-${id}`);
+                                    const numBox = document.getElementById(`vol-${id}-num`);
+                                    const clamped = Math.max(-40, Math.min(15, parsed[id]));
+                                    if (fader) { fader.value = clamped; fader.classList.toggle('is-muted', clamped <= -40); }
+                                    if (numBox) numBox.value = clamped;
+                                    if (clamped <= -40) {
+                                        volumeNodes[id].mute = true;
+                                    } else {
+                                        volumeNodes[id].mute = false;
+                                        volumeNodes[id].volume.value = clamped;
+                                    }
+                                }
+                            });
+                        }
+                    } catch(e) { console.error(e); }
+                }
+                if (savedRandomSettings) {
+                    try {
+                        const parsed = JSON.parse(savedRandomSettings);
+                        if (parsed) {
+                            isRandomBpmEnabled = parsed.enabled || false;
+                            randomBpmIntervalBars = parsed.interval || 2;
+                            randomBpmMaxStep = parsed.maxStep || 5;
+                            randomBpmToggle.checked = isRandomBpmEnabled;
+                            randomBpmInterval.value = randomBpmIntervalBars;
+                            randomBpmMaxStepSelect.value = randomBpmMaxStep;
+                        }
+                    } catch(e) { console.error(e); }
+                }
+                if (savedTracks) {
+                    try {
+                        const parsedTracks = JSON.parse(savedTracks);
+                        if (Array.isArray(parsedTracks) && parsedTracks.length > 0) {
+                            parsedTracks.forEach(t => addTrack(t));
+                            return;
+                        }
+                    } catch (e) { console.error(e); }
+                }
+                const pattern = defaultPitchPatterns[0];
+                addTrack({ beats: 4, gridDiv: 4, upbeatPlay: false, muteActive: false, playBars: 1, muteBars: 1, downPitch: pattern.down, normalPitch: pattern.normal, downVol: 0, upPitch: pattern.up, soundType: "sine" });
+            }
+
+            function updateBPM(val) {
+                let value = parseInt(val);
+                if (isNaN(value) || value < 10) value = 10;
+                if (value > 400) value = 400;
+
+                bpm = value;
+                bpmRange.value = value;
+                bpmNum.value = value;
+                bpmVal.textContent = String(value);
+
+                updateTempoTermBadge(value);
+                Tone.Transport.bpm.value = bpm;
+                localStorage.setItem(STORAGE_KEY_BPM, bpm);
+
+                if (isPlaying) setupSchedules();
+            }
+
+            function handleTapTempo() {
+                tapBtn.classList.add('flash');
+                setTimeout(() => { tapBtn.classList.remove('flash'); }, 80);
+
+                const now = performance.now() / 1000;
+                tapTimes.push(now);
+                if (tapTimes.length > 4) tapTimes.shift();
+
+                if (tapTimes.length >= 2) {
+                    let intervals = [];
+                    for (let i = 1; i < tapTimes.length; i++) {
+                        intervals.push(tapTimes[i] - tapTimes[i-1]);
+                    }
+                    const avgInterval = intervals.reduce((a, b) => a + b) / intervals.length;
+                    const calculatedBPM = Math.round(60 / avgInterval);
+                    if (calculatedBPM >= 10 && calculatedBPM <= 400) {
+                        updateBPM(calculatedBPM);
+                    }
+                }
+            }
+
+            function toggleTransport() {
+                if (isPlaying) {
+                    Tone.Transport.stop();
+                    clearAllSchedules();
+                    Tone.getDraw().cancel(0);
+                    startStopBtn.innerHTML = "START ▶︎";
+                    startStopBtn.className = "btn btn-success btn-lg w-100 py-3 fw-bold";
+                    isPlaying = false;
+                    clearAllVisuals();
+                } else {
+                    Tone.start();
+                    setupSchedules();
+                    Tone.Transport.start();
+                    startStopBtn.innerHTML = "STOP ■";
+                    startStopBtn.className = "btn btn-danger btn-lg w-100 py-3 fw-bold";
+                    isPlaying = true;
+                }
+            }
+
+            function clearAllSchedules() {
+                scheduledEvents.forEach(ev => ev.dispose());
+                scheduledEvents = [];
+                Tone.Transport.cancel();
+            }
+
+            function setupSchedules() {
+                clearAllSchedules();
+                const base4nDuration = 60 / bpm;
+
+                /*  */
+
+                /*  */
+                const seq4n = new Tone.Sequence((time) => {
+                    if (!volumeNodes["4n"].mute) {
+                        subSynths["4n"].set({ oscillator: { type: subSettings["4n"].type } });
+                        subSynths["4n"].triggerAttackRelease(subSettings["4n"].pitch, "64n", time);
+                    }
+                }, [0], "4n");
+                seq4n.start(0);
+                scheduledEvents.push(seq4n);
+
+                /*  */
+                const seq8n = new Tone.Sequence((time) => {
+                    if (!volumeNodes["8n"].mute) {
+                        subSynths["8n"].set({ oscillator: { type: subSettings["8n"].type } });
+                        subSynths["8n"].triggerAttackRelease(subSettings["8n"].pitch, "64n", time);
+                    }
+                }, [0, 0], "8n");
+                seq8n.start(0);
+                scheduledEvents.push(seq8n);
+
+                /*  */
+                const seq16n = new Tone.Sequence((time) => {
+                    if (!volumeNodes["16n"].mute) {
+                        subSynths["16n"].set({ oscillator: { type: subSettings["16n"].type } });
+                        subSynths["16n"].triggerAttackRelease(subSettings["16n"].pitch, "64n", time);
+                    }
+                }, [0, 0, 0, 0], "16n");
+                seq16n.start(0);
+                scheduledEvents.push(seq16n);
+
+                /*  */
+                const seq3t = new Tone.Sequence((time) => {
+                    if (!volumeNodes["3t"].mute) {
+                        subSynths["3t"].set({ oscillator: { type: subSettings["3t"].type } });
+                        subSynths["3t"].triggerAttackRelease(subSettings["3t"].pitch, "64n", time);
+                    }
+                }, [0, 0, 0], "8t");
+                seq3t.start(0);
+                scheduledEvents.push(seq3t);
+
+                /*  */
+                const seqShuffle = new Tone.Sequence((time, event) => {
+                    if (!volumeNodes["shuffle"].mute && event === 0) {
+                        subSynths["shuffle"].set({ oscillator: { type: subSettings["shuffle"].type } });
+                        subSynths["shuffle"].triggerAttackRelease(subSettings["shuffle"].pitch, "64n", time);
+                    }
+                }, [0, null, 0], "8t");
+                seqShuffle.start(0);
+                scheduledEvents.push(seqShuffle);
+
+                /*  */
+                const seqSkip = new Tone.Sequence((time, event) => {
+                    if (!volumeNodes["skip"].mute && event === 0) {
+                        subSynths["skip"].set({ oscillator: { type: subSettings["skip"].type } });
+                        subSynths["skip"].triggerAttackRelease(subSettings["skip"].pitch, "64n", time);
+                    }
+                }, [0, null, null, 0], "16n");
+                seqSkip.start(0);
+                scheduledEvents.push(seqSkip);
+
+
+                /*  */
+                tracks.forEach((track, trackIdx) => {
+                    let interval;
+                    let singleLoopLength;
+
+                    if (currentMode === 'sync') {
+                        singleLoopLength = base4nDuration * 4;
+                        interval = singleLoopLength / track.beats;
+                    } else {
+                        interval = base4nDuration * (4 / track.gridDiv);
+                        singleLoopLength = interval * track.beats;
+                    }
+
+                    const pBars = track.playBars || 1;
+                    const mBars = track.muteBars || 1;
+                    const totalCycleBars = pBars + mBars;
+                    const totalLoopLength = singleLoopLength * totalCycleBars;
+
+                    /*  */
+                    /*  */
+                    const ct = track.clickType || '4n';
+                    const clickOffsets = []; /*  */
+                    if (ct === '4n') {
+                        clickOffsets.push(0);
+                    } else if (ct === '8n') {
+                        clickOffsets.push(0, interval / 2);
+                    } else if (ct === '16n') {
+                        clickOffsets.push(0, interval / 4, interval / 2, interval * 3 / 4);
+                    } else if (ct === '3t') {
+                        clickOffsets.push(0, interval / 3, interval * 2 / 3);
+                    } else if (ct === 'shuffle') {
+                        /*  */
+                        clickOffsets.push(0, interval * 2 / 3);
+                    } else if (ct === 'skip') {
+                        /*  */
+                        clickOffsets.push(0, interval * 3 / 4);
+                    }
+
+                    const partEvents = [];
+
+                    for (let b = 0; b < totalCycleBars; b++) {
+                        const isMuteBar = b >= pBars;
+                        const barTimeOffset = b * singleLoopLength;
+
+                        for (let i = 0; i < track.beats; i++) {
+                            const beatTime = barTimeOffset + (i * interval);
+                            /*  */
+                            partEvents.push({ time: beatTime, type: 'down', index: i, isMuteBar: isMuteBar, barIndex: b });
+                            /*  */
+                            for (let k = 1; k < clickOffsets.length; k++) {
+                                partEvents.push({ time: beatTime + clickOffsets[k], type: 'click', index: i, isMuteBar: isMuteBar });
+                            }
+                            /*  */
+                            if (track.upbeatPlay) {
+                                partEvents.push({ time: beatTime + (interval / 2), type: 'up', index: i, isMuteBar: isMuteBar, barIndex: b });
+                            }
+                        }
+                    }
+
+                    /*  */
+                    if (!trackSynths[track.id]) {
+                        trackSynths[track.id] = new Tone.PolySynth(Tone.Synth, {
+                            envelope: { attack: 0.002, decay: 0.08, sustain: 0, release: 0.05 }
+                        }).toDestination();
+                    }
+                    /*  */
+                    if (!beepSynths[track.id]) {
+                        beepSynths[track.id] = new Tone.PolySynth(Tone.Synth, {
+                            oscillator: { type: 'sine' },
+                            envelope: { attack: 0.005, decay: 0, sustain: 1, release: 0.015 }
+                        }).toDestination();
+                    }
+                    const trackSynth = trackSynths[track.id];
+
+                    const part = new Tone.Part((time, event) => {
+                        const shouldMute = track.muteActive && event.isMuteBar;
+                        /*  */
+                        const isBeep = track.soundType === 'beep';
+                        const activeSynth = isBeep ? beepSynths[track.id] : trackSynth;
+                        const noteDur   = isBeep ? 0.065 : "32n";  /*  */
+
+                        if (event.type === 'down') {
+                            const isFirst = (event.index === 0);
+                            const offset = isFirst
+                                ? (track.downVolOffset ?? 2)
+                                : (track.normalVolOffset ?? 0);
+                            const effectiveVol = track.downVol + offset;
+                            if (!shouldMute && effectiveVol > -40) {
+                                const pitch = isFirst ? track.downPitch : (track.normalPitch || "C5");
+                                const gain = Tone.dbToGain(Math.min(effectiveVol, 15));
+                                if (!isBeep) { activeSynth.set({ oscillator: { type: track.soundType || "sine" } }); }
+                                activeSynth.triggerAttackRelease(pitch, noteDur, time, gain);
+                            }
+
+                            if (trackIdx === 0 && event.index === 0 && isRandomBpmEnabled) {
+                                if (event.barIndex % randomBpmIntervalBars === 0) {
+                                    Tone.Draw.schedule(() => {
+                                        if (randomBpmMaxStep > 0 && bpm < 400) {
+                                            const step = Math.floor(Math.random() * randomBpmMaxStep) + 1;
+                                            let nextBpm = bpm + step;
+                                            if (nextBpm > 400) nextBpm = 400;
+                                            updateBPM(nextBpm);
+                                        } else if (randomBpmMaxStep < 0 && bpm > 10) {
+                                            const absStep = Math.abs(randomBpmMaxStep);
+                                            const step = Math.floor(Math.random() * absStep) + 1;
+                                            let nextBpm = bpm - step;
+                                            if (nextBpm < 10) nextBpm = 10;
+                                            updateBPM(nextBpm);
+                                        }
+                                    }, time);
+                                }
+                            }
+
+                            Tone.Draw.schedule(() => {
+                                const prev = (event.index - 1 + track.beats) % track.beats;
+                                clearVisual(track.id, prev);
+                                triggerVisual(track.id, event.index, 'active-down', interval);
+                            }, time);
+                            Tone.Draw.schedule(() => { clearVisual(track.id, event.index); }, time + (interval * 0.8));
+
+                        } else if (event.type === 'click') {
+                            /*  */
+                            if (!shouldMute && track.downVol > -40) {
+                                const baseGain = Tone.dbToGain(track.downVol);
+                                if (!isBeep) { activeSynth.set({ oscillator: { type: track.soundType || "sine" } }); }
+                                activeSynth.triggerAttackRelease(track.normalPitch || "C5", noteDur, time, baseGain * 0.5);
+                            }
+
+                        } else if (event.type === 'up') {
+                            const upEffectiveVol = track.downVol + (track.upVolOffset ?? -5);
+                            if (!shouldMute && upEffectiveVol > -40) {
+                                const gain = Tone.dbToGain(Math.min(upEffectiveVol, 15));
+                                if (!isBeep) { activeSynth.set({ oscillator: { type: track.soundType || "sine" } }); }
+                                activeSynth.triggerAttackRelease(track.upPitch || "C4", noteDur, time, gain);
+                            }
+                            Tone.Draw.schedule(() => { triggerVisual(track.id, event.index, 'active-up'); }, time);
+                        }
+                    }, partEvents);
+
+                    part.loop = true;
+                    part.loopEnd = totalLoopLength;
+                    part.start(0);
+                    scheduledEvents.push(part);
+                });
+            }
+
+            function createNumberOptions(selectedVal) {
+                let options = '';
+                for (let i = 1; i <= 32; i++) { options += `<option value="${i}" ${i === selectedVal ? 'selected' : ''}>${i}</option>`; }
+                return options;
+            }
+            function createGateOptions(selectedVal) {
+                let options = '';
+                for (let i = 1; i <= 10; i++) { options += `<option value="${i}" ${i === selectedVal ? 'selected' : ''}>${i}</option>`; }
+                return options;
+            }
+            function createPitchOptions(selectedVal) {
+                return pitchOptionsData.map(item => `<option value="${item.value}" ${item.value === selectedVal ? 'selected' : ''}>${item.text}</option>`).join('');
+            }
+            function createVolOffsetOptions(selectedVal) {
+                let opts = '';
+                for (let v = 10; v >= -20; v--) {
+                    const label = v > 0 ? `+${v}dB` : v === 0 ? '0dB' : `${v}dB`;
+                    opts += `<option value="${v}" ${v === selectedVal ? 'selected' : ''}>${label}</option>`;
+                }
+                return opts;
+            }
+            function updateAddTrackButtonState() {
+                addTrackBtn.disabled = (tracks.length >= maxTracks);
+            }
+
+            function addTrack(config) {
+                if (tracks.length >= maxTracks) return;
+
+                const trackId = config.id || Date.now() + Math.random().toString(36).substring(2, 11);
+                const trackData = {
+                    soundType: "sine", downPitch: "A5", normalPitch: "C5", upPitch: "C4",
+                    downVolOffset: 7, normalVolOffset: 0, upVolOffset: -7,
+                    muteActive: false, playBars: 1, muteBars: 1, clickType: "4n", pendulumColor: "#00ffff", ...config, id: trackId
+                };
+
+                if (!tracks.some(t => t.id === trackId)) tracks.push(trackData);
+                updateAddTrackButtonState();
+
+                const trackIndex = tracks.findIndex(t => t.id === trackId) + 1;
+                const trackRow = document.createElement('div');
+                trackRow.className = 'track-row';
+                trackRow.id = `track-row-${trackId}`;
+
+                const pc = trackData.pendulumColor || '#00ffff';
+                trackRow.innerHTML = fillTemplate('tmpl-track-row', {
+                    trackId,
+                    trackIndex,
+                    beatsOptions:            createNumberOptions(trackData.beats),
+                    gridDivOptions:          createNumberOptions(trackData.gridDiv),
+                    pendulumNoneSelected:    pc === 'none'    ? 'selected' : '',
+                    pendulumWhiteSelected:   pc === '#ffffff' ? 'selected' : '',
+                    pendulumCyanSelected:    pc === '#00ffff' ? 'selected' : '',
+                    pendulumMagentaSelected: pc === '#ff00ff' ? 'selected' : '',
+                    pendulumYellowSelected:  pc === '#ffc107' ? 'selected' : '',
+                    pendulumOrangeSelected:  pc === '#fd7e14' ? 'selected' : '',
+                    pendulumTealSelected:    pc === '#20c997' ? 'selected' : '',
+                    pendulumBlueSelected:    pc === '#0d6efd' ? 'selected' : '',
+                    pitchDownOptions:        createPitchOptions(trackData.downPitch),
+                    pitchNormalOptions:      createPitchOptions(trackData.normalPitch),
+                    pitchUpOptions:          createPitchOptions(trackData.upPitch),
+                    volOffsetDownOptions:    createVolOffsetOptions(trackData.downVolOffset),
+                    volOffsetNormalOptions:  createVolOffsetOptions(trackData.normalVolOffset),
+                    volOffsetUpOptions:      createVolOffsetOptions(trackData.upVolOffset),
+                    downVol:                 trackData.downVol,
+                    downVolMuted:            trackData.downVol <= -40 ? 'true' : 'false',
+                    sineSelected:            trackData.soundType === 'sine'     ? 'selected' : '',
+                    triangleSelected:        trackData.soundType === 'triangle' ? 'selected' : '',
+                    squareSelected:          trackData.soundType === 'square'   ? 'selected' : '',
+                    beepSelected:            trackData.soundType === 'beep'     ? 'selected' : '',
+                    clickTypeOptions:        Object.entries(BEAT_SYMBOLS).map(([val, def]) =>
+                        `<option class="track-clicktype-option" value="${val}" ${(trackData.clickType||'4n') === val ? 'selected' : ''}>${def.label}</option>`
+                    ).join(''),
+                    upbeatChecked:           trackData.upbeatPlay ? 'checked' : '',
+                    muteActiveChecked:       trackData.muteActive ? 'checked' : '',
+                    playBarsOptions:         createGateOptions(trackData.playBars),
+                    muteBarsOptions:         createGateOptions(trackData.muteBars),
+                });
+                tracksContainer.appendChild(trackRow);
+
+                const vizRow = document.createElement('div');
+                vizRow.id = `viz-row-${trackId}`;
+                vizRow.className = 'mb-3 viz-row-wrap';
+                visualizer.appendChild(vizRow);
+
+                renderVisualBlocks(trackData);
+                setupTrackEventListeners(trackId);
+                /*  */
+                const volNum = document.querySelector(`#track-row-${trackId} .track-vol-num`);
+                if (volNum) volNum.value = trackData.downVol;
+                const volSlider = document.querySelector(`#track-row-${trackId} .track-vol`);
+                if (volSlider) volSlider.classList.toggle('is-muted', trackData.downVol <= -40);
+                updateSubdivisionFaderState();
+
+                if (isPlaying) setupSchedules();
+            }
+
+            function setupTrackEventListeners(trackId) {
+                const row = document.getElementById(`track-row-${trackId}`);
+                const getTrackIndex = () => tracks.findIndex(t => t.id === trackId);
+
+                row.querySelector('.track-beats').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) {
+                        tracks[idx].beats = parseInt(e.target.value) || 1;
+                        renderVisualBlocks(tracks[idx]);
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
+                });
+                row.querySelector('.track-griddiv').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) {
+                        tracks[idx].gridDiv = parseInt(e.target.value) || 1;
+                        renderVisualBlocks(tracks[idx]);
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
+                });
+                row.querySelector('.track-pitch').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].downPitch = e.target.value; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.track-normal-pitch').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].normalPitch = e.target.value; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.track-up-pitch').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].upPitch = e.target.value; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                const clampOffset = v => isNaN(v) ? 0 : Math.max(-20, Math.min(10, v));
+                row.querySelector('.track-down-vol-offset').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].downVolOffset = clampOffset(parseInt(e.target.value)); e.target.value = tracks[idx].downVolOffset; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.track-normal-vol-offset').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].normalVolOffset = clampOffset(parseInt(e.target.value)); e.target.value = tracks[idx].normalVolOffset; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.track-up-vol-offset').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].upVolOffset = clampOffset(parseInt(e.target.value)); e.target.value = tracks[idx].upVolOffset; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.track-vol').addEventListener('input', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) {
+                        const val = parseInt(e.target.value);
+                        const clamped = isNaN(val) ? -40 : Math.max(-40, Math.min(15, val));
+                        tracks[idx].downVol = clamped;
+                        e.target.classList.toggle('is-muted', clamped <= -40);
+                        const numBox = row.querySelector('.track-vol-num');
+                        if (numBox) numBox.value = clamped;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
+                });
+                row.querySelector('.track-vol-num').addEventListener('input', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) {
+                        const val = parseInt(e.target.value);
+                        const clamped = isNaN(val) ? -40 : Math.max(-40, Math.min(15, val));
+                        tracks[idx].downVol = clamped;
+                        const slider = row.querySelector('.track-vol');
+                        if (slider) { slider.value = clamped; slider.classList.toggle('is-muted', clamped <= -40); }
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
+                });
+                row.querySelector('.track-vol-num').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) {
+                        const val = parseInt(e.target.value);
+                        const clamped = isNaN(val) ? -40 : Math.max(-40, Math.min(15, val));
+                        tracks[idx].downVol = clamped;
+                        const slider = row.querySelector('.track-vol');
+                        if (slider) { slider.value = clamped; slider.classList.toggle('is-muted', clamped <= -40); }
+                        e.target.value = clamped;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
+                });
+                row.querySelector('.track-soundtype').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].soundType = e.target.value; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.track-clicktype').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].clickType = e.target.value; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.track-upbeat-toggle').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { if(e.target && e.target.checked !== undefined) tracks[idx].upbeatPlay = e.target.checked; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.track-mute-active-toggle').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].muteActive = e.target.checked; saveSettings(); updateSubdivisionFaderState(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.track-play-bars').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].playBars = parseInt(e.target.value) || 1; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.track-mute-bars').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) { tracks[idx].muteBars = parseInt(e.target.value) || 1; saveSettings(); if (isPlaying) setupSchedules(); }
+                });
+                row.querySelector('.remove-track-btn').addEventListener('click', () => { removeTrack(trackId); });
+                row.querySelector('.track-pendulum-color').addEventListener('change', (e) => {
+                    const idx = getTrackIndex();
+                    if (idx !== -1) {
+                        tracks[idx].pendulumColor = e.target.value;
+                        const bar = document.getElementById(`pendulum-bar-${trackId}`);
+                        const color = e.target.value;
+                        if (bar) {
+                            if (color === 'none') {
+                                bar.dataset.hasColor = '0';
+                                bar.style.opacity = '0';
+                            } else {
+                                bar.dataset.hasColor = '1';
+                                bar.style.background = color;
+                                bar.style.boxShadow = `0 0 6px ${color}`;
+                                /*  */
+                                if (isPlaying) bar.style.opacity = '1';
+                            }
+                        }
+                        saveSettings();
+                    }
+                });
+            }
+
+            function removeTrack(trackId) {
+                document.getElementById(`track-row-${trackId}`).remove();
+                document.getElementById(`viz-row-${trackId}`).remove();
+                tracks = tracks.filter(t => t.id !== trackId);
+                if (trackSynths[trackId]) { trackSynths[trackId].dispose(); delete trackSynths[trackId]; }
+
+                updateAddTrackButtonState();
+                saveSettings();
+
+                tracks.forEach((track, index) => {
+                    const currentIndex = index + 1;
+                    const trackRow = document.getElementById(`track-row-${track.id}`);
+                    if (trackRow) {
+                        const label = trackRow.querySelector('.track-label');
+                        if (label) label.textContent = `トラック ${currentIndex}`;
+                    }
+                    renderVisualBlocks(track);
+                });
+                updateSubdivisionFaderState();
+                if (isPlaying) setupSchedules();
+            }
+
+            function renderVisualBlocks(track) {
+                const vizRow = document.getElementById(`viz-row-${track.id}`);
+                if (!vizRow) return;
+
+                const displayIndex = tracks.findIndex(t => t.id === track.id) + 1;
+                vizRow.innerHTML = '';
+
+                /*  */
+                const badgeLine = document.createElement('div');
+                badgeLine.className = 'mb-1 d-flex align-items-center gap-2';
+                badgeLine.innerHTML = `<span class="badge bg-secondary text-white" style="white-space: nowrap; display: inline-block;">トラック ${displayIndex} (${track.beats}/${track.gridDiv})</span>`;
+                vizRow.appendChild(badgeLine);
+
+                /*  */
+                const pendulumBar = document.createElement('div');
+                pendulumBar.className = 'pendulum-bar';
+                pendulumBar.id = `pendulum-bar-${track.id}`;
+                const color = track.pendulumColor || '#00ffff';
+                if (color !== 'none') {
+                    pendulumBar.style.background = color;
+                    pendulumBar.style.boxShadow = `0 0 6px ${color}`;
+                    pendulumBar.style.left = '15%';
+                    pendulumBar.dataset.hasColor = '1';
+                } else {
+                    pendulumBar.dataset.hasColor = '0';
+                }
+                /*  */
+                pendulumBar.style.opacity = '0';
+                vizRow.appendChild(pendulumBar);
+
+                /*  */
+                const beatsWrap = document.createElement('div');
+
+                const total = track.beats;
+                const rowSizes = [];
+                let remaining = total;
+                while (remaining > 0) {
+                    if (remaining <= 8) {
+                        rowSizes.push(remaining);
+                        remaining = 0;
+                    } else {
+                        rowSizes.push(8);
+                        remaining -= 8;
+                    }
+                }
+
+                if (rowSizes.length >= 2) {
+                    const last = rowSizes[rowSizes.length - 1];
+                    if (last >= 1 && last <= 3) {
+                        rowSizes.pop();
+                        const prev = rowSizes.pop();
+                        const combined = prev + last;
+                        const lower = Math.floor(combined / 2);
+                        const upper = combined - lower;
+                        rowSizes.push(lower, upper);
+                    }
+                }
+
+                let boxIndex = 0;
+                rowSizes.forEach(rowSize => {
+                    const line = document.createElement('div');
+                    line.style.display = 'flex';
+                    line.style.justifyContent = 'space-evenly';
+                    line.style.marginBottom = '4px';
+                    for (let i = 0; i < rowSize; i++) {
+                        const box = document.createElement('div');
+                        box.id = `box-${track.id}-${boxIndex}`;
+                        box.className = 'beat-box off';
+                        line.appendChild(box);
+                        boxIndex++;
+                    }
+                    beatsWrap.appendChild(line);
+                });
+
+                vizRow.appendChild(beatsWrap);
+            }
+
+            function triggerVisual(trackId, beatIndex, className, beatDuration) {
+                const box = document.getElementById(`box-${trackId}-${beatIndex}`);
+                if (box) box.className = `beat-box ${className}`;
+                /*  */
+                if (className === 'active-down') {
+                    const bar = document.getElementById(`pendulum-bar-${trackId}`);
+                    if (bar && bar.dataset.hasColor === '1') {
+                        bar.style.opacity = '1';
+                        /*  */
+                        const currentLeft = parseFloat(bar.style.left) || 15;
+                        const toPos = (currentLeft < 50) ? 85 : 15;
+                        const dur = (beatDuration != null) ? beatDuration : (60 / bpm);
+                        bar.style.transition = `left ${dur.toFixed(3)}s linear`;
+                        bar.style.left = toPos + '%';
+                    }
+                    /*  */
+                    if (beatIndex === 0) {
+                        const vizRow = document.getElementById(`viz-row-${trackId}`);
+                        const track = tracks.find(t => t.id === trackId);
+                        if (vizRow && track && track.pendulumColor && track.pendulumColor !== 'none') {
+                            const c = track.pendulumColor;
+                            vizRow.style.transition = 'background-color 0s, box-shadow 0s';
+                            vizRow.style.backgroundColor = c + '44';
+                            vizRow.style.boxShadow = `0 0 16px 6px ${c}, 0 0 44px 16px ${c}55`;
+                            setTimeout(() => {
+                                vizRow.style.transition = 'background-color 0.4s ease-out, box-shadow 0.4s ease-out';
+                                vizRow.style.backgroundColor = 'transparent';
+                                vizRow.style.boxShadow = 'none';
+                            }, 80);
+                        }
+                    }
+                }
+            }
+            function clearVisual(trackId, beatIndex) {
+                const box = document.getElementById(`box-${trackId}-${beatIndex}`);
+                if (box) box.className = 'beat-box off';
+            }
+            function clearAllVisuals() {
+                tracks.forEach(track => {
+                    for (let i = 0; i < track.beats; i++) { clearVisual(track.id, i); }
+                    /*  */
+                    const bar = document.getElementById(`pendulum-bar-${track.id}`);
+                    if (bar) {
+                        bar.style.opacity = '0';
+                        bar.style.transition = 'left 0s linear';
+                        bar.style.left = '15%';
+                    }
+                    /*  */
+                    const vizRow = document.getElementById(`viz-row-${track.id}`);
+                    if (vizRow) {
+                        vizRow.style.transition = '';
+                        vizRow.style.backgroundColor = '';
+                        vizRow.style.boxShadow = 'none';
+                    }
+                });
+            }
+
+            init();
+        </script>
+
+<script>
+/**
+ * SVG Inject
+ * ─────────────────────────────────────────────
+ * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
+ * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
+ * - data-loading="true" + CSS transition で FOUC を完全防止
+ * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
+ */
+(function () {
+    'use strict';
+
+    /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
+    const _cache = new Map();
+
+    /** SVG テキストを取得（キャッシュ付き） */
+    function _fetch(url) {
+        if (!_cache.has(url)) {
+            _cache.set(url,
+                fetch(url, { credentials: 'same-origin' })
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+                        return res.text();
+                    })
+            );
+        }
+        return _cache.get(url);
+    }
+
+    /** SVG テキストを DOM 要素にパース */
+    function _parse(text, url) {
+        let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+        let err = doc.querySelector('parsererror');
+        if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
+        let svg = doc.querySelector('svg');
+        if (!svg) throw new Error('No <svg> element found in ' + url);
+        return svg;
+    }
+
+    /**
+     * <img> の属性を <svg> へ引き継ぐ
+     * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
+     * ・img の id がなければ SVG の id を削除（重複 ID 防止）
+     * ・alt は aria-label に変換
+     * ・data-loading="true" を付与して CSS が opacity:0 を維持
+     */
+    function _transfer(img, svg) {
+        let skipImg = new Set([
+            'src', 'data-loading', 'decoding', 'loading',
+            'crossorigin', 'fetchpriority', 'referrerpolicy'
+        ]);
+        let keepSvg = new Set([
+            'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
+        ]);
+
+        for (let i = 0; i < img.attributes.length; i++) {
+            let attr = img.attributes[i];
+            if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
+            svg.setAttribute(attr.name, attr.value);
+        }
+
+        /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
+        if (!img.hasAttribute('id')) {
+            svg.removeAttribute('id');
+        }
+
+        /* alt → aria-label（<svg> に alt は無効） */
+        if (img.alt) {
+            svg.setAttribute('aria-label', img.alt);
+            svg.setAttribute('role', 'img');
+        }
+        svg.removeAttribute('alt');
+
+        /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
+        svg.setAttribute('data-loading', 'true');
+    }
+
+    /** 1 つの <img> を非同期でインライン <svg> に置換 */
+    function _inject(img) {
+        let url = img.src;
+        if (!url || !img.parentNode) return;
+
+        _fetch(url)
+            .then(function (text) {
+                let svg = _parse(text, url);
+                _transfer(img, svg);
+
+                img.parentNode.replaceChild(svg, img);
+
+                /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
+                svg.getBoundingClientRect();
+                svg.removeAttribute('data-loading');
+            })
+            .catch(function (err) {
+                console.error('[svg-inject]', err);
+                /* フォールバック: 元の <img> をそのまま表示 */
+                img.removeAttribute('data-loading');
+            });
+    }
+
+    /** ページ内の全 img.svg-inject を処理 */
+    function injectAll() {
+        document.querySelectorAll('img.svg-inject').forEach(_inject);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', injectAll);
+    } else {
+        injectAll();
+    }
+})();
+</script>
+</body>
+</html>

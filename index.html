@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" data-theme="light" data-bs-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>トップ | ギター便利帳</title>
+    <meta name="description" content="BTR KITA｜ダイアトニックコード・スケール・コード進行・メトロノームなど、ギター演奏に役立つ音楽理論の便利帳サイト。">
 
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <title>音楽理論の便利帳 | BTR KITA</title>
+
+    <!-- おさむ -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
     <!-- Bootstrap -->
@@ -15,15 +16,591 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <!-- Styles -->
+    
+    
 
+    <link rel="mask-icon" sizes="any" href="https://btrkita.github.io/img/icon.svg" color="#0bd">
+    <link rel="icon" href="https://btrkita.github.io/img/icon.svg" type="image/svg+xml">
+    <style>
+        /* ==========================================
+          カラーモード設定（ライト・ダーク共通変数定義）
+        ========================================== */
+        :root,
+        [data-theme="dark"] {
+            /* 完全に真っ黒にせず、少し青み・グレーを混ぜてエディタ風に */
+            --site-h1-color: #f7fafc;
+            --site-h1-border: #3b82f6; /* 少し明るめのブルー */
+
+            --site-h2-color: #e2e8f0;
+            --site-h2-border: #334155; /* 暗めのボーダー */
+
+            --site-h3-h5-color: #cbd5e1;
+            --site-h3-border: #1e293b;
+
+            --site-select-border: #475569;
+
+            --site-body-bg: #0b0e18;
+
+            /* finger-board SVG */
+            --fb-bg:          #1c2338;
+            --fb-line:        #8899aa;
+            --fb-string-name: #e2e8f0;
+            --fb-fret-num:    #c9a0a0;
+            --fb-note-fill:   rgba(180, 180, 190, 0.40);
+            --fb-note-stroke: rgba(15, 23, 42, 0.60);
+            --fb-root-fill:   #f87171;
+            --fb-root-stroke: #0f172a;
+            --fb-scale-fill:  #60a5fa;
+            --fb-scale-stroke:#0f172a;
+
+            --site-footer-bg: #0f172a; /* 深みのある紺・黒 */
+            --site-footer-border: #1e293b;
+            --site-footer-link: #94a3b8;
+            --site-footer-link-hover: #3b82f6;
+            --site-footer-copy: #64748b;
+        }
+
+        [data-theme="light"] {
+            --site-h1-color: #1a202c;
+            --site-h1-border: #0d6efd; /* Bootstrapのprimary相当 */
+
+            --site-h2-color: #2d3748;
+            --site-h2-border: #dee2e6;
+
+            --site-h3-h5-color: #4a5568;
+            --site-h3-border: #e9ecef;
+
+            --site-select-border: #ccc;
+
+            --site-body-bg: #f5f4ef; /* 和紙調オフホワイト */
+
+            --site-footer-bg: #ede9df; /* 温かみのあるオフホワイト */
+            --site-footer-border: #e9ecef;
+            --site-footer-link: #6c757d;
+            --site-footer-link-hover: #0d6efd;
+            --site-footer-copy: #adb5bd;
+        }
+
+        /* ===== ボディ背景 ===== */
+        body {
+            background-color: var(--site-body-bg);
+            transition: background-color .25s ease;
+        }
+
+        /* ===== テーブル コンテキストクラス ダークモード ===== */
+        /* Bootstrap 5.3 の変数が確実に上書きされるよう明示指定 */
+        [data-bs-theme="dark"] .table-light,
+        [data-bs-theme="dark"] thead.table-light {
+            --bs-table-bg:          #343a40;
+            --bs-table-color:       #f8f9fa;
+            --bs-table-border-color:#495057;
+            color: #f8f9fa;
+        }
+        [data-bs-theme="dark"] .table-info {
+            --bs-table-bg:          #032830;
+            --bs-table-color:       #6edff6;
+            --bs-table-border-color:#0d3f50;
+            color: #6edff6;
+        }
+        [data-bs-theme="dark"] .table-primary {
+            --bs-table-bg:          #031633;
+            --bs-table-color:       #6ea8fe;
+            --bs-table-border-color:#0d2d5e;
+            color: #6ea8fe;
+        }
+        [data-bs-theme="dark"] .table-success {
+            --bs-table-bg:          #051b11;
+            --bs-table-color:       #75b798;
+            --bs-table-border-color:#0f2d1e;
+            color: #75b798;
+        }
+
+        /* ==========================================
+        Bootstrap ナビバー専用カラー上書き設定
+        ========================================== */
+
+
+        /* 2. ダークモード：黒背景に青系統（4a9eff）のアクセント */
+        :root,[data-theme="dark"] {
+            .navbar.site-custom-nav {
+                /* 背景色：DAWやエディタ風の引き締まった黒（必要に応じて #000000 等に変更可） */
+                --bs-navbar-bg: #0f172a;
+
+                /* 文字色：基本はグレー、ホバーや現在地で指定の青（4a9eff）に */
+                --bs-navbar-color: #94a3b8;
+                --bs-navbar-hover-color: #4a9eff;
+                --bs-navbar-active-color: #4a9eff;
+                --bs-navbar-disabled-color: #475569;
+
+                /* ロゴ・ブランド名 */
+                --bs-navbar-brand-color: #f8fafc;
+                --bs-navbar-brand-hover-color: #4a9eff;
+
+                /* トグラー（スマホ用三本線ボタン）の調整 */
+                --bs-navbar-toggler-color: #94a3b8;
+                --bs-navbar-toggler-border-color: #334155;
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28148, 163, 184, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+                border-bottom: 1px solid #1e293b;
+            }
+        }
+
+        [data-theme="light"]
+         {
+            .navbar.site-custom-nav {
+                /* 背景色：黒や緑と識別しやすく、白文字とのコントラストも高い朱赤 */
+                --bs-navbar-bg: #d9381e;
+
+                /* 文字色：赤背景の上でハッキリ読めるホワイト */
+                --bs-navbar-color: rgba(255, 255, 255, 0.85);
+                --bs-navbar-hover-color: #ffffff;
+                --bs-navbar-active-color: #f1c40f;
+                --bs-navbar-disabled-color: rgba(255, 255, 255, 0.4);
+
+                /* ロゴ・ブランド名（常時100%の白で強調） */
+                --bs-navbar-brand-color: #ffffff;
+                --bs-navbar-brand-hover-color: #ffffff;
+
+                /* トグラー（スマホ用三本線ボタン）の調整 */
+                --bs-navbar-toggler-color: rgba(255, 255, 255, 0.85);
+                --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.25);
+                /* 三本線アイコンを白ベースにするためのフィルター */
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+                /* ナビバーの境界線（必要に応じて同系色の濃い赤で締める） */
+                border-bottom: 1px solid #bc2f17;
+            }
+        }
+
+
+        /* 共通：Bootstrapの既存の背景ユーティリティとバッティングしないためのクラス */
+        .navbar.site-custom-nav {
+            background-color: var(--bs-navbar-bg) !important;
+        }
+
+        /* ===== 見出し ===== */
+        h1 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--site-h1-color);
+            border-left: 4px solid var(--site-h1-border);
+            padding: 0.15rem 0 0.15rem 0.85rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--site-h2-color);
+            padding: 0 0 0.35rem 0;
+            border-bottom: 2px solid var(--site-h2-border);
+            margin-top: 2rem;
+            margin-bottom: 0.85rem;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: 1px solid var(--site-h3-border);
+            padding-bottom: 0.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.65rem;
+        }
+
+        h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: none;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h5 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: none;
+        }
+
+        /* ===== その他共通 ===== */
+        span.delimiter:before {
+            content: " ━ ";
+        }
+
+        .select-image {
+            display: none;
+            width: 100%;
+            aspect-ratio: 1462 / 333;
+            height: auto;
+            object-fit: contain;
+            background-color: transparent;
+        }
+
+        .is-visible {
+            display: block !important;
+        }
+
+        .select-in-table {
+            padding: 10px 16px;
+            font-size: 16px;
+            margin-right: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--site-select-border);
+            background-color: transparent; /* ダークモードでの汎用性を考慮 */
+            color: inherit;               /* 親（Bootstrap）の文字色を引き継ぐ */
+            cursor: pointer;
+        }
+
+        /* ===== フッター ===== */
+        .site-footer {
+            background: var(--site-footer-bg);
+            border-top: 1px solid var(--site-footer-border);
+            padding: 1.75rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem 1.25rem;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-nav a {
+            color: var(--site-footer-link);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--site-footer-link-hover);
+        }
+
+        .footer-copy {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--site-footer-copy);
+            margin: 0;
+        }
+
+        /* ==========================================
+          SVG インジェクト: FOUC 防止
+          img.svg-inject[data-loading="true"] → 不透明度 0 でレイアウト確保
+          JS が SVG に置換しきった瞬間に data-loading を削除してフェードイン
+        ========================================== */
+        img.svg-inject[data-loading="true"] {
+            opacity: 0;
+        }
+        svg.svg-inject {
+            transition: opacity 0.1s ease;
+        }
+        svg.svg-inject[data-loading="true"] {
+            opacity: 0;
+        }
+
+        /* ==========================================
+          SVG 外部ファイル用カラー変数
+          ※ <img src> で読み込まれた SVG はこれらを参照する
+        ========================================== */
+        :root,
+        [data-theme="dark"] {
+            /* key-image: 音符・五線・シャープ・フラット */
+            --svg-key-fg: #cbd5e1;
+
+            /* circle-of-5th */
+            --svg-ci-fill:  #1c2338;
+            --svg-ci-stroke: #dedad0;
+            --svg-ci-major: #e8e6df;
+            --svg-ci-minor: #c8c4b8;
+            --svg-ci-dim:   #a8a499;
+        }
+
+        [data-theme="light"] {
+            --svg-key-fg: #4a5568;
+
+            --svg-ci-fill:  #ffffff;
+            --svg-ci-stroke: #1a1a1a;
+            --svg-ci-major: #111111;
+            --svg-ci-minor: #333333;
+            --svg-ci-dim:   #555555;
+
+            /* finger-board */
+            --fb-bg:          #ffffff;
+            --fb-line:        rgb(0, 0, 0);
+            --fb-string-name: #000000;
+            --fb-fret-num:    #3f2727;
+            --fb-note-fill:   rgba(45, 45, 45, 0.35);
+            --fb-note-stroke: rgba(255, 255, 255, 0.35);
+            --fb-root-fill:   #d00b0b;
+            --fb-root-stroke: #ffffff;
+            --fb-scale-fill:  rgb(8, 15, 155);
+            --fb-scale-stroke:#ffffff;
+        }
+
+        /* ===== カラーモード変数（トップページ専用） ===== */
+        :root, [data-theme="dark"] {
+            --idx-hero-bg:          #131826;
+            --idx-hero-border:      #1e2540;
+            --idx-alt-bg:           #0b0e18;
+            --idx-card-bg:          #1c2338;
+            --idx-card-border:      #334155;
+            --idx-heading:          #f1f5f9;
+            --idx-muted:            #94a3b8;
+            --idx-body-text:        #94a3b8;
+            --idx-list-border:      #1e2540;
+            --idx-update-text:      #dce6f5;
+            --idx-hover-shadow:     rgba(74,158,255,0.12);
+            --idx-hover-border:     #4a9eff;
+        }
+        [data-theme="light"] {
+            --idx-hero-bg:          #ffffff;
+            --idx-hero-border:      #e9ecef;
+            --idx-alt-bg:           #f5f4ef;
+            --idx-card-bg:          #ffffff;
+            --idx-card-border:      #e9ecef;
+            --idx-heading:          #111827;
+            --idx-muted:            #6c757d;
+            --idx-body-text:        #495057;
+            --idx-list-border:      #e9ecef;
+            --idx-update-text:      #343a40;
+            --idx-hover-shadow:     rgba(0,0,0,0.08);
+            --idx-hover-border:     #b6cff5;
+        }
+
+        /* ===== このページ固有リセット ===== */
+        #main {
+            padding: 0;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            padding: 5rem 1.5rem 4.5rem;
+            text-align: center;
+            background: var(--idx-hero-bg);
+            border-bottom: 1px solid var(--idx-hero-border);
+            transition: background .25s ease;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #0d6efd;
+            margin-bottom: 1.1rem;
+        }
+
+        /* グローバルh1スタイルを上書き */
+        .hero h1 {
+            font-size: clamp(2rem, 5.5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            color: var(--idx-heading);
+            border-left: none;
+            padding: 0;
+            margin: 0 0 1.1rem;
+        }
+
+        /* グローバルh2スタイルを上書き（section-title はページ内h2） */
+        .section-title {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--idx-heading);
+            border-bottom: none;
+            padding-bottom: 0;
+            margin: 0 0 0.4rem;
+        }
+
+        .hero h1 span {
+            color: #0d6efd;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--idx-muted);
+            max-width: 500px;
+            margin: 0 auto 2.25rem;
+            line-height: 1.8;
+        }
+
+        .hero-btns .btn {
+            margin: 0.3rem;
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        /* ===== セクション共通 ===== */
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #0d6efd;
+            margin-bottom: 0.4rem;
+        }
+
+        .section-desc {
+            color: var(--idx-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== 機能カード ===== */
+        .features-section {
+            padding: 5rem 0;
+            background-color: var(--idx-alt-bg);
+            transition: background-color .25s ease;
+        }
+
+        .feature-card {
+            background: var(--idx-card-bg);
+            border: 1px solid var(--idx-card-border);
+            border-radius: 12px;
+            padding: 1.75rem 1.5rem;
+            height: 100%;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background .25s ease;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px var(--idx-hover-shadow);
+            border-color: var(--idx-hover-border);
+            color: inherit;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .icon-blue   { background: #dbeafe; color: #1d4ed8; }
+        .icon-purple { background: #ede9fe; color: #6d28d9; }
+        .icon-teal   { background: #ccfbf1; color: #0f766e; }
+        .icon-amber  { background: #fef9c3; color: #a16207; }
+
+        .feature-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--idx-heading);
+            margin-bottom: 0.45rem;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .feature-card p {
+            font-size: 0.85rem;
+            color: var(--idx-muted);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .feature-link {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #0d6efd;
+        }
+
+        .feature-card:hover .feature-link {
+            text-decoration: underline;
+        }
+
+        /* ===== About ===== */
+        .about-section {
+            padding: 4.5rem 0;
+            background: var(--idx-hero-bg);
+            border-top: 1px solid var(--idx-hero-border);
+            border-bottom: 1px solid var(--idx-hero-border);
+            transition: background .25s ease;
+        }
+
+        .about-section p {
+            color: var(--idx-body-text);
+            line-height: 1.9;
+            font-size: 0.95rem;
+        }
+
+        /* ===== 更新情報 ===== */
+        .updates-section {
+            padding: 4.5rem 0;
+            background-color: var(--idx-alt-bg);
+            transition: background-color .25s ease;
+        }
+
+        .update-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .update-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--idx-list-border);
+            font-size: 0.875rem;
+        }
+
+        .update-list li:last-child {
+            border-bottom: none;
+        }
+
+        .update-date {
+            flex-shrink: 0;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #0d6efd;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.03em;
+        }
+
+        .update-badge {
+            flex-shrink: 0;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .badge-new    { background: #dbeafe; color: #1d4ed8; }
+        .badge-update { background: #ccfbf1; color: #0f766e; }
+        .badge-fix    { background: #fef9c3; color: #a16207; }
+
+        .update-text {
+            color: var(--idx-update-text);
+        }
+
+        /* ===== レスポンシブ ===== */
+        @media (max-width: 575px) {
+            .hero { padding: 3.5rem 1rem 3rem; }
+            .feature-card { padding: 1.4rem 1.1rem; }
+        }
+        </style>
 </head>
-<body>
-
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
-
+<body data-theme="light" data-bs-theme="light">
+<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">ギター便利帳</a>
+        <a class="navbar-brand" href="/">BTR KITA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,31 +608,207 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/diatonic/index.html">ダイアトニックコード</a>
+                                            <a class="nav-link" href="/diatonic/index.html">ダイアトニックコード</a>
+                    
+                </li>
+
+                <li class="nav-item">
+                                            <a class="nav-link" href="/scale/index.html">スケール</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/metronome.html">メトロノーム</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/tuner.html">チューナー</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/chord-progression/index.html">コード進行</a>
+                                    </li>
+
+                
+                <li class="nav-item d-lg-none"><hr class="dropdown-divider opacity-25 my-1"></li>
+                <li class="nav-item d-lg-none">
+                    <button type="button"
+                            class="nav-link theme-toggle-btn btn border-0 bg-transparent d-flex align-items-center gap-2 w-100 text-start">
+                        <i class="fas fa-moon theme-icon"></i>
+                        <span class="theme-label"></span>
+                    </button>
                 </li>
             </ul>
-            <span class="navbar-text">
-                ギター演奏に役立つ便利情報
+
+            
+            <span class="navbar-text d-none d-lg-inline">
+                ギター演奏に役立つ便利な情報
             </span>
+
+            <button type="button"
+                    class="btn btn-link nav-link theme-toggle-btn d-none d-lg-inline-flex align-items-center px-2"
+                    id="themeBtn" title="ライト / ダーク">
+                <i class="fas fa-moon theme-icon"></i>
+            </button>
         </div>
     </div>
 </nav>
 
 
 <main id="main" class="site-main main">
+    <section class="hero">
+        <div class="container">
+            <span class="hero-eyebrow">Music Theory Reference</span>
+            <h1>音楽理論を、<span>手元に。</span></h1>
+            <p class="hero-sub">
+                ギター演奏に役立つ音楽理論をまとめた便利帳サイトです。<br>
+                ダイアトニックコード・スケール・コード進行・メトロノームをすぐに参照できます。
+            </p>
+            <div class="hero-btns">
+                <a class="btn btn-primary" href="/diatonic/index.html">
+                    <i class="fas fa-music me-1"></i> ダイアトニックコード
+                </a>
+                <a class="btn btn-outline-secondary" href="/chord-progression/index.html">
+                    <i class="fas fa-list-ol me-1"></i> コード進行
+                </a>
+            </div>
+        </div>
+    </section>
 
-    <div>
-        <h1>ギター演奏に役立つ便利な情報</h1>
-        <p>現在は各キー毎のダイアトニックコード、五度圏表、スケールを提供しています</p>
-        <a class="btn" href="/diatonic/index.html">使ってみる</a>
-    </div>
+    
+    <section class="features-section">
+        <div class="container">
+            <div class="mb-5">
+                <p class="section-label">Features</p>
+                <h2 class="section-title">できること</h2>
+                <p class="section-desc">よく使う機能をまとめました。</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-sm-6 col-lg-3">
+                    <a href="/diatonic/index.html" class="feature-card">
+                        <div class="feature-icon icon-blue">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>ダイアトニックコード</h3>
+                        <p>全12キーのダイアトニックコード一覧と五度圏表を表示。キーを選ぶだけで即座に確認できます。</p>
+                        <span class="feature-link">開く →</span>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <a href="/scale/index.html" class="feature-card">
+                        <div class="feature-icon icon-purple">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                        <h3>スケール一覧</h3>
+                        <p>各キーに対応したスケールの構成音を一覧表示。メジャー・マイナーをはじめ多数のスケールに対応。</p>
+                        <span class="feature-link">開く →</span>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <a href="/chord-progression/index.html" class="feature-card">
+                        <div class="feature-icon icon-teal">
+                            <i class="fas fa-list-ol"></i>
+                        </div>
+                        <h3>コード進行</h3>
+                        <p>100種類以上のコード進行を全12キーで確認。定番から応用まで幅広いパターンを網羅しています。</p>
+                        <span class="feature-link">開く →</span>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <a href="/metronome.html" class="feature-card">
+                        <div class="feature-icon icon-amber">
+                            <i class="fas fa-drum"></i>
+                        </div>
+                        <h3>メトロノーム</h3>
+                        <p>ブラウザで動作するシンプルなメトロノーム。テンポを設定して練習に活用できます。</p>
+                        <span class="feature-link">開く →</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="about-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-4">
+                    <p class="section-label">About</p>
+                    <h2 class="section-title">BTR KITAについて</h2>
+                </div>
+                <div class="col-lg-8">
+                    <p>BTR KITAは、ギター演奏の際に「あのコードなんだっけ？」「このキーのスケールは？」とすぐに調べられる音楽理論の便利帳として作られたサイトです。</p>
+                    <p style="margin-bottom:0; margin-top: 0.85rem;">個人利用をメインに運営していますが、インターネット上に公開しています。理論の勉強中の方や、演奏中にさっと確認したい方のお役に立てれば幸いです。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="updates-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <p class="section-label">Updates</p>
+                    <h2 class="section-title">更新情報</h2>
+                    <p class="section-desc">サイトの変更履歴・追加機能のお知らせ</p>
+                </div>
+                <div class="col-lg-8">
+                    <ul class="update-list">
+                        <li>
+                            <span class="update-date">2026-05-21</span>
+                            <span class="update-badge badge-new">NEW</span>
+                            <span class="update-text">チューナー機能を追加</span>
+                        </li>
+                        <li>
+                            <span class="update-date">2026-05-21</span>
+                            <span class="update-badge badge-new">NEW</span>
+                            <span class="update-text">ダークモード対応</span>
+                        </li>
+                        <li>
+                            <span class="update-date">2026-05-20</span>
+                            <span class="update-badge badge-new">NEW</span>
+                            <span class="update-text">メトロノーム機能を追加</span>
+                        </li>
+                        <li>
+                            <span class="update-date">2026-05-17</span>
+                            <span class="update-badge badge-update">UPDATE</span>
+                            <span class="update-text">コード進行ページを更新</span>
+                        </li>
+                        <li>
+                            <span class="update-date">2026-04-23</span>
+                            <span class="update-badge badge-update">UPDATE</span>
+                            <span class="update-text">スケール一覧ページを更新</span>
+                        </li>
+                        <li>
+                            <span class="update-date">2024-08-24</span>
+                            <span class="update-badge badge-new">NEW</span>
+                            <span class="update-text">サイト公開（ダイアトニックコード・五度圏表）</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
-<footer>
-    <hr/>
-    © 2024 ギター便利帳
+
+<footer class="site-footer">
+    <div class="container">
+        <nav aria-label="フッターナビゲーション">
+            <ul class="footer-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/diatonic/index.html">ダイアトニックコード</a></li>
+                <li><a href="/scale/index.html">スケール</a></li>
+                <li><a href="/tuner/tuner.html">スケール</a></li>
+                <li><a href="/chord-progression/index.html">コード進行</a></li>
+                <li><a href="/metronome.html">メトロノーム</a></li>
+            </ul>
+        </nav>
+        <p class="footer-copy">© 2024 BTR KITA</p>
+    </div>
 </footer>
 
 
@@ -64,5 +817,216 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
 
+
+<script>
+    let ColorScheme = 'dark';
+
+    /**
+     * テーマを適用する
+     * @param {string} t    'light' | 'dark'
+     * @param {boolean} save true のとき localStorage に保存（ボタン操作時のみ）
+     */
+    function updateTheme(t, save = false) {
+        ColorScheme = t;
+        document.documentElement.setAttribute('data-bs-theme', t);
+        document.documentElement.setAttribute('data-theme', t);
+        document.body.setAttribute('data-bs-theme', t);
+        document.body.setAttribute('data-theme', t);
+
+        // ダーク時は太陽（ライトへ切り替え）、ライト時は月（ダークへ切り替え）
+        document.querySelectorAll('.theme-icon').forEach(icon => {
+            icon.classList.toggle('fa-sun',  t === 'dark');
+            icon.classList.toggle('fa-moon', t !== 'dark');
+        });
+
+        // ハンバーガー内テキスト: 現在のモードの逆を案内
+        document.querySelectorAll('.theme-label').forEach(label => {
+            label.textContent = t === 'dark' ? 'ライトモードへ' : 'ダークモードへ';
+        });
+
+        if (save) {
+            localStorage.setItem('color-scheme', t);
+        }
+    }
+
+    // 初期テーマの決定：① localStorage → ② OS設定 の順で参照
+    (function initTheme() {
+        const saved = localStorage.getItem('color-scheme');
+        if (saved === 'light' || saved === 'dark') {
+            updateTheme(saved);
+        } else {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            updateTheme(isDark ? 'dark' : 'light');
+        }
+    })();
+
+    // OSの設定変更をリアルタイムに監視（ユーザーが明示的に選択していない場合のみ）
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('color-scheme')) {
+            updateTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // save = true でローカルストレージに保存
+                updateTheme(ColorScheme === 'dark' ? 'light' : 'dark', true);
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.image-change-btn');
+        const images = document.querySelectorAll('.select-image');
+        // 表示を切り替える共通関数
+        const updateDisplay = (targetImageClass) => {
+            buttons.forEach(btn => {
+                const isActive = btn.getAttribute('data-image') === targetImageClass;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+
+            images.forEach(img => {
+                // 画像が対象のクラスを持っているか確認
+                if (img.classList.contains(targetImageClass)) {
+                    img.classList.add('is-visible');
+                } else {
+                    img.classList.remove('is-visible');
+                }
+            });
+        };
+
+        // --- 初期化処理 ---
+        const activeBtn = document.querySelector('.image-change-btn.active');
+        if (activeBtn) {
+            updateDisplay(activeBtn.getAttribute('data-image'));
+        }
+
+        // --- イベントリスナー ---
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                updateDisplay(e.currentTarget.getAttribute('data-image'));
+            });
+        });
+
+    });
+
+
+</script>
+
+
+<script>
+/**
+ * SVG Inject
+ * ─────────────────────────────────────────────
+ * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
+ * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
+ * - data-loading="true" + CSS transition で FOUC を完全防止
+ * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
+ */
+(function () {
+    'use strict';
+
+    /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
+    const _cache = new Map();
+
+    /** SVG テキストを取得（キャッシュ付き） */
+    function _fetch(url) {
+        if (!_cache.has(url)) {
+            _cache.set(url,
+                fetch(url, { credentials: 'same-origin' })
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+                        return res.text();
+                    })
+            );
+        }
+        return _cache.get(url);
+    }
+
+    /** SVG テキストを DOM 要素にパース */
+    function _parse(text, url) {
+        let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+        let err = doc.querySelector('parsererror');
+        if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
+        let svg = doc.querySelector('svg');
+        if (!svg) throw new Error('No <svg> element found in ' + url);
+        return svg;
+    }
+
+    /**
+     * <img> の属性を <svg> へ引き継ぐ
+     * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
+     * ・img の id がなければ SVG の id を削除（重複 ID 防止）
+     * ・alt は aria-label に変換
+     * ・data-loading="true" を付与して CSS が opacity:0 を維持
+     */
+    function _transfer(img, svg) {
+        let skipImg = new Set([
+            'src', 'data-loading', 'decoding', 'loading',
+            'crossorigin', 'fetchpriority', 'referrerpolicy'
+        ]);
+        let keepSvg = new Set([
+            'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
+        ]);
+
+        for (let i = 0; i < img.attributes.length; i++) {
+            let attr = img.attributes[i];
+            if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
+            svg.setAttribute(attr.name, attr.value);
+        }
+
+        /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
+        if (!img.hasAttribute('id')) {
+            svg.removeAttribute('id');
+        }
+
+        /* alt → aria-label（<svg> に alt は無効） */
+        if (img.alt) {
+            svg.setAttribute('aria-label', img.alt);
+            svg.setAttribute('role', 'img');
+        }
+        svg.removeAttribute('alt');
+
+        /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
+        svg.setAttribute('data-loading', 'true');
+    }
+
+    /** 1 つの <img> を非同期でインライン <svg> に置換 */
+    function _inject(img) {
+        let url = img.src;
+        if (!url || !img.parentNode) return;
+
+        _fetch(url)
+            .then(function (text) {
+                let svg = _parse(text, url);
+                _transfer(img, svg);
+
+                img.parentNode.replaceChild(svg, img);
+
+                /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
+                svg.getBoundingClientRect();
+                svg.removeAttribute('data-loading');
+            })
+            .catch(function (err) {
+                console.error('[svg-inject]', err);
+                /* フォールバック: 元の <img> をそのまま表示 */
+                img.removeAttribute('data-loading');
+            });
+    }
+
+    /** ページ内の全 img.svg-inject を処理 */
+    function injectAll() {
+        document.querySelectorAll('img.svg-inject').forEach(_inject);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', injectAll);
+    } else {
+        injectAll();
+    }
+})();
+</script>
 </body>
 </html>
