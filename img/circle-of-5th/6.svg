@@ -14,7 +14,8 @@
             </dc:creator>
             <dc:rights>
                 <rdf:Alt>
-                    <rdf:li xml:lang="x-default">Copyright © 2024 https://btrkita.github.io/ All rights reserved.</rdf:li>
+                    <rdf:li xml:lang="x-default">Copyright © 2024 https://btrkita.github.io/ All rights reserved.
+                    </rdf:li>
                 </rdf:Alt>
             </dc:rights>
         </rdf:Description>
@@ -24,24 +25,33 @@
         <style>
             /* デフォルト（ライトモード相当）のフォールバック変数 */
             :root {
-                --svg-ci-fill:   #ffffff;
+                --svg-ci-fill: #ffffff;
                 --svg-ci-stroke: #1a1a1a;
-                --svg-ci-major:  #111111;
-                --svg-ci-minor:  #333333;
-                --svg-ci-dim:    #555555;
+                --svg-ci-major: #111111;
+                --svg-ci-minor: #333333;
+                --svg-ci-dim: #555555;
             }
-            .ci-fill   { fill: var(--svg-ci-fill); }
-            .ci-stroke { stroke: var(--svg-ci-stroke); }
+
+            .ci-fill {
+                fill: var(--svg-ci-fill);
+            }
+
+            .ci-stroke {
+                stroke: var(--svg-ci-stroke);
+            }
+
             .major-chord-name {
                 font-family: sans-serif;
                 fill: var(--svg-ci-major);
                 font-size: 90px;
             }
+
             .minor-chord-name {
                 font-family: sans-serif;
                 fill: var(--svg-ci-minor);
                 font-size: 55px;
             }
+
             .half-diminished-chord-name {
                 font-family: sans-serif;
                 fill: var(--svg-ci-dim);
@@ -51,69 +61,105 @@
     </defs>
 
     <g id="circles">
-        <circle class="ci-fill ci-stroke" cx="1050" cy="1050" r="1000" stroke-width="1" />
-        <circle class="ci-fill" cx="1050" cy="1050" r="750" stroke="#3594e2" stroke-width="5" />
-        <circle class="ci-fill" cx="1050" cy="1050" r="500" stroke="#ff66cc" stroke-width="10" />
+        <circle class="ci-fill ci-stroke" cx="1050" cy="1050" r="1000" stroke-width="1"/>
+        <circle class="ci-fill" cx="1050" cy="1050" r="750" stroke="#3594e2" stroke-width="5"/>
+        <circle class="ci-fill" cx="1050" cy="1050" r="500" stroke="#ff66cc" stroke-width="10"/>
     </g>
 
     <g id="lines">
-        <line class="ci-stroke" x1="1050" y1="1050" x2="2015" y2="1308" />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="1757" y2="1757" />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="1308" y2="2015" />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="792"  y2="2015" />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="343"  y2="1757" />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="85"   y2="1308" />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="85"   y2="792"  />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="343"  y2="343"  />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="792"  y2="85"   />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="1308" y2="85"   />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="1757" y2="343"  />
-        <line class="ci-stroke" x1="1050" y1="1050" x2="2015" y2="792"  />
+        <line class="ci-stroke" x1="1050" y1="1050" x2="2015" y2="1308"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="1757" y2="1757"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="1308" y2="2015"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="792" y2="2015"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="343" y2="1757"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="85" y2="1308"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="85" y2="792"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="343" y2="343"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="792" y2="85"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="1308" y2="85"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="1757" y2="343"/>
+        <line class="ci-stroke" x1="1050" y1="1050" x2="2015" y2="792"/>
     </g>
 
     <g id="major-keys">
-        <text text-anchor="middle" dominant-baseline="central" x="1050" y="175"  class="major-chord-name">F#/Gb</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1487" y="293"  class="major-chord-name">Db</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1807" y="613"  class="major-chord-name">Ab</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1925" y="1050" class="major-chord-name">Eb</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1807" y="1487" class="major-chord-name">Bb</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1487" y="1807" class="major-chord-name">F</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1050" y="1910" class="major-chord-name">C</text>
-        <text text-anchor="middle" dominant-baseline="central" x="613"  y="1807" class="major-chord-name">G</text>
-        <text text-anchor="middle" dominant-baseline="central" x="293"  y="1487" class="major-chord-name">D</text>
-        <text text-anchor="middle" dominant-baseline="central" x="175"  y="1050" class="major-chord-name">A</text>
-        <text text-anchor="middle" dominant-baseline="central" x="293"  y="613"  class="major-chord-name">E</text>
-        <text text-anchor="middle" dominant-baseline="central" x="613"  y="293"  class="major-chord-name">B</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1050" y="175"
+              class="major-chord-name">F#/Gb</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1487" y="293"
+              class="major-chord-name">Db</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1807" y="613"
+              class="major-chord-name">Ab</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1925" y="1050"
+              class="major-chord-name">Eb</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1807" y="1487"
+              class="major-chord-name">Bb</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1487" y="1807"
+              class="major-chord-name">F</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1050" y="1910"
+              class="major-chord-name">C</text>
+        <text text-anchor="middle" dominant-baseline="central" x="613" y="1807"
+              class="major-chord-name">G</text>
+        <text text-anchor="middle" dominant-baseline="central" x="293" y="1487"
+              class="major-chord-name">D</text>
+        <text text-anchor="middle" dominant-baseline="central" x="175" y="1050"
+              class="major-chord-name">A</text>
+        <text text-anchor="middle" dominant-baseline="central" x="293" y="613"
+              class="major-chord-name">E</text>
+        <text text-anchor="middle" dominant-baseline="central" x="613" y="293"
+              class="major-chord-name">B</text>
     </g>
 
     <g id="minor-keys">
-        <text text-anchor="middle" dominant-baseline="central" x="1050" y="425"  class="minor-chord-name">Ebm/D#m</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1362" y="509"  class="minor-chord-name">Bbm</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1591" y="738"  class="minor-chord-name">Fm</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1675" y="1050" class="minor-chord-name">Cm</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1591" y="1362" class="minor-chord-name">Gm</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1362" y="1591" class="minor-chord-name">Dm</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1050" y="1650" class="minor-chord-name">Am</text>
-        <text text-anchor="middle" dominant-baseline="central" x="738"  y="1591" class="minor-chord-name">Em</text>
-        <text text-anchor="middle" dominant-baseline="central" x="509"  y="1362" class="minor-chord-name">Bm</text>
-        <text text-anchor="middle" dominant-baseline="central" x="425"  y="1050" class="minor-chord-name">F#m</text>
-        <text text-anchor="middle" dominant-baseline="central" x="509"  y="738"  class="minor-chord-name">C#m</text>
-        <text text-anchor="middle" dominant-baseline="central" x="738"  y="509"  class="minor-chord-name">G#m</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1050" y="425"
+              class="minor-chord-name">Ebm/D#m</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1362" y="509"
+              class="minor-chord-name">Bbm</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1591" y="738"
+              class="minor-chord-name">Fm</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1675" y="1050"
+              class="minor-chord-name">Cm</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1591" y="1362"
+              class="minor-chord-name">Gm</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1362" y="1591"
+              class="minor-chord-name">Dm</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1050" y="1650"
+              class="minor-chord-name">Am</text>
+        <text text-anchor="middle" dominant-baseline="central" x="738" y="1591"
+              class="minor-chord-name">Em</text>
+        <text text-anchor="middle" dominant-baseline="central" x="509" y="1362"
+              class="minor-chord-name">Bm</text>
+        <text text-anchor="middle" dominant-baseline="central" x="425" y="1050"
+              class="minor-chord-name">F#m</text>
+        <text text-anchor="middle" dominant-baseline="central" x="509" y="738"
+              class="minor-chord-name">C#m</text>
+        <text text-anchor="middle" dominant-baseline="central" x="738" y="509"
+              class="minor-chord-name">G#m</text>
     </g>
 
     <g id="half-diminished">
-        <text text-anchor="middle" dominant-baseline="central" x="1050" y="675"  class="half-diminished-chord-name">Fø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1237" y="726"  class="half-diminished-chord-name">Cø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1374" y="863"  class="half-diminished-chord-name">Gø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1425" y="1050" class="half-diminished-chord-name">Dø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1374" y="1237" class="half-diminished-chord-name">Aø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1237" y="1374" class="half-diminished-chord-name">Eø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="1050" y="1425" class="half-diminished-chord-name">Bø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="863"  y="1374" class="half-diminished-chord-name">F#ø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="726"  y="1237" class="half-diminished-chord-name">C#ø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="675"  y="1050" class="half-diminished-chord-name">G#ø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="726"  y="863"  class="half-diminished-chord-name">D#ø</text>
-        <text text-anchor="middle" dominant-baseline="central" x="863"  y="726"  class="half-diminished-chord-name">A#ø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1050" y="675"
+              class="half-diminished-chord-name">Fø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1237" y="726"
+              class="half-diminished-chord-name">Cø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1374" y="863"
+              class="half-diminished-chord-name">Gø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1425" y="1050"
+              class="half-diminished-chord-name">Dø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1374" y="1237"
+              class="half-diminished-chord-name">Aø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1237" y="1374"
+              class="half-diminished-chord-name">Eø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="1050" y="1425"
+              class="half-diminished-chord-name">Bø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="863" y="1374"
+              class="half-diminished-chord-name">F#ø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="726" y="1237"
+              class="half-diminished-chord-name">C#ø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="675" y="1050"
+              class="half-diminished-chord-name">G#ø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="726" y="863"
+              class="half-diminished-chord-name">D#ø</text>
+        <text text-anchor="middle" dominant-baseline="central" x="863" y="726"
+              class="half-diminished-chord-name">A#ø</text>
     </g>
 
     <g id="diatonic-over-ray">

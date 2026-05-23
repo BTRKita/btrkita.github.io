@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="description" content="POLY LAYER SYNTHは、ブラウザ上で動作する多機能なシンセサイザーです。
-            複数のオシレーターとノイズジェネレーターを組み合わせ、フィルターやエンベロープ、LFOなどのモジュールで音色を自在にデザインできます。
-            リアルタイムで演奏やパラメータ調整が可能で、内蔵エフェクトも充実。
-            初心者から上級者まで楽しめる、柔軟かつパワフルなシンセ体験を提供します。">
+        複数のオシレーターとノイズジェネレーターを組み合わせ、フィルターやエンベロープ、LFOなどのモジュールで音色を自在にデザインできます。
+        リアルタイムで演奏やパラメータ調整が可能で、内蔵エフェクトも充実。
+        初心者から上級者まで楽しめる、柔軟かつパワフルなシンセ体験を提供します。">
 
     <title>POLY LAYER SYNTH | BTR KITA</title>
 
@@ -83,27 +83,30 @@
         /* Bootstrap 5.3 の変数が確実に上書きされるよう明示指定 */
         [data-bs-theme="dark"] .table-light,
         [data-bs-theme="dark"] thead.table-light {
-            --bs-table-bg:          #343a40;
-            --bs-table-color:       #f8f9fa;
-            --bs-table-border-color:#495057;
+            --bs-table-bg: #343a40;
+            --bs-table-color: #f8f9fa;
+            --bs-table-border-color: #495057;
             color: #f8f9fa;
         }
+
         [data-bs-theme="dark"] .table-info {
-            --bs-table-bg:          #032830;
-            --bs-table-color:       #6edff6;
-            --bs-table-border-color:#0d3f50;
+            --bs-table-bg: #032830;
+            --bs-table-color: #6edff6;
+            --bs-table-border-color: #0d3f50;
             color: #6edff6;
         }
+
         [data-bs-theme="dark"] .table-primary {
-            --bs-table-bg:          #031633;
-            --bs-table-color:       #6ea8fe;
-            --bs-table-border-color:#0d2d5e;
+            --bs-table-bg: #031633;
+            --bs-table-color: #6ea8fe;
+            --bs-table-border-color: #0d2d5e;
             color: #6ea8fe;
         }
+
         [data-bs-theme="dark"] .table-success {
-            --bs-table-bg:          #051b11;
-            --bs-table-color:       #75b798;
-            --bs-table-border-color:#0f2d1e;
+            --bs-table-bg: #051b11;
+            --bs-table-color: #75b798;
+            --bs-table-border-color: #0f2d1e;
             color: #75b798;
         }
 
@@ -113,7 +116,7 @@
 
 
         /* 2. ダークモード：黒背景に青系統（4a9eff）のアクセント */
-        :root,[data-theme="dark"] {
+        :root, [data-theme="dark"] {
             .navbar.site-custom-nav {
                 /* 背景色：DAWやエディタ風の引き締まった黒（必要に応じて #000000 等に変更可） */
                 --bs-navbar-bg: #0f172a;
@@ -137,8 +140,7 @@
             }
         }
 
-        [data-theme="light"]
-         {
+        [data-theme="light"] {
             .navbar.site-custom-nav {
                 /* 背景色：黒や緑と識別しやすく、白文字とのコントラストも高い朱赤 */
                 --bs-navbar-bg: #d9381e;
@@ -242,7 +244,7 @@
             border-radius: 4px;
             border: 1px solid var(--site-select-border);
             background-color: transparent; /* ダークモードでの汎用性を考慮 */
-            color: inherit;               /* 親（Bootstrap）の文字色を引き継ぐ */
+            color: inherit; /* 親（Bootstrap）の文字色を引き継ぐ */
             cursor: pointer;
         }
 
@@ -290,9 +292,11 @@
         img.svg-inject[data-loading="true"] {
             opacity: 0;
         }
+
         svg.svg-inject {
             transition: opacity 0.1s ease;
         }
+
         svg.svg-inject[data-loading="true"] {
             opacity: 0;
         }
@@ -307,647 +311,648 @@
             --svg-key-fg: #cbd5e1;
 
             /* circle-of-5th */
-            --svg-ci-fill:  #1c2338;
+            --svg-ci-fill: #1c2338;
             --svg-ci-stroke: #dedad0;
             --svg-ci-major: #e8e6df;
             --svg-ci-minor: #c8c4b8;
-            --svg-ci-dim:   #a8a499;
+            --svg-ci-dim: #a8a499;
 
 
             /* finger-board SVG */
-            --svg-fb-bg:          #1c2338;
-            --svg-fb-line:        #8899aa;
+            --svg-fb-bg: #1c2338;
+            --svg-fb-line: #8899aa;
             --svg-fb-string-name: #e2e8f0;
-            --svg-fb-fret-num:    #c9a0a0;
-            --svg-fb-note-fill:   rgba(180, 180, 190, 0.40);
+            --svg-fb-fret-num: #c9a0a0;
+            --svg-fb-note-fill: rgba(180, 180, 190, 0.40);
             --svg-fb-note-stroke: rgba(15, 23, 42, 0.60);
-            --svg-fb-root-fill:   #f87171;
+            --svg-fb-root-fill: #f87171;
             --svg-fb-root-stroke: #0f172a;
-            --svg-fb-scale-fill:  #60a5fa;
-            --svg-fb-scale-stroke:#0f172a;
+            --svg-fb-scale-fill: #60a5fa;
+            --svg-fb-scale-stroke: #0f172a;
         }
 
         [data-theme="light"] {
             --svg-key-fg: #4a5568;
 
-            --svg-ci-fill:  #ffffff;
+            --svg-ci-fill: #ffffff;
             --svg-ci-stroke: #1a1a1a;
             --svg-ci-major: #111111;
             --svg-ci-minor: #333333;
-            --svg-ci-dim:   #555555;
+            --svg-ci-dim: #555555;
 
             /* finger-board */
-            --svg-fb-bg:          #ffffff;
-            --svg-fb-line:        rgb(0, 0, 0);
+            --svg-fb-bg: #ffffff;
+            --svg-fb-line: rgb(0, 0, 0);
             --svg-fb-string-name: #000000;
-            --svg-fb-fret-num:    #3f2727;
-            --svg-fb-note-fill:   rgba(45, 45, 45, 0.35);
+            --svg-fb-fret-num: #3f2727;
+            --svg-fb-note-fill: rgba(45, 45, 45, 0.35);
             --svg-fb-note-stroke: rgba(255, 255, 255, 0.35);
-            --svg-fb-root-fill:   #d00b0b;
+            --svg-fb-root-fill: #d00b0b;
             --svg-fb-root-stroke: #ffffff;
-            --svg-fb-scale-fill:  rgb(8, 15, 155);
-            --svg-fb-scale-stroke:#ffffff;
+            --svg-fb-scale-fill: rgb(8, 15, 155);
+            --svg-fb-scale-stroke: #ffffff;
         }
 
         :root {
-            --bg: #0b0e18;
-            --card: #131722;
-            --bdr: #263044;
-            --hdr: #192236;
-            --blue: #60a5fa;
-            --purp: #a78bfa;
-            --grn: #34d399;
-            --ylw: #f59e0b;
-            --muted: #94a3b8;
-            --text: #e2e8f0;
+        --bg: #0b0e18;
+        --card: #131722;
+        --bdr: #263044;
+        --hdr: #192236;
+        --blue: #60a5fa;
+        --purp: #a78bfa;
+        --grn: #34d399;
+        --ylw: #f59e0b;
+        --muted: #94a3b8;
+        --text: #e2e8f0;
         }
 
         * {
-            box-sizing: border-box
+        box-sizing: border-box
         }
 
         body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Segoe UI', system-ui, sans-serif
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', system-ui, sans-serif
         }
 
         h1, h2, h3, h4, h5 {
-            color: inherit;
-            border: none;
-            padding: 0;
-            margin: 0
+        color: inherit;
+        border: none;
+        padding: 0;
+        margin: 0
         }
 
         /* Panel */
         .sp {
-            background: var(--card);
-            border: 1px solid var(--bdr);
-            border-radius: 8px;
-            margin-bottom: 10px
+        background: var(--card);
+        border: 1px solid var(--bdr);
+        border-radius: 8px;
+        margin-bottom: 10px
         }
 
         .sp-hdr {
-            background: var(--hdr);
-            border-bottom: 1px solid var(--bdr);
-            border-radius: 8px 8px 0 0;
-            padding: 5px 12px;
-            font-size: .62rem;
-            font-weight: 800;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: var(--blue);
-            display: flex;
-            align-items: center;
-            gap: 8px
+        background: var(--hdr);
+        border-bottom: 1px solid var(--bdr);
+        border-radius: 8px 8px 0 0;
+        padding: 5px 12px;
+        font-size: .62rem;
+        font-weight: 800;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+        gap: 8px
         }
 
         .sp-body {
-            padding: 10px 12px
+        padding: 10px 12px
         }
 
         /* Module card */
         .mc {
-            background: #0d1220;
-            border: 1px solid var(--bdr);
-            border-radius: 6px
+        background: #0d1220;
+        border: 1px solid var(--bdr);
+        border-radius: 6px
         }
 
         .mc.on {
-            border-color: var(--blue)
+        border-color: var(--blue)
         }
 
         .mc-hdr {
-            background: #111927;
-            border-bottom: 1px solid var(--bdr);
-            border-radius: 6px 6px 0 0;
-            padding: 5px 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center
+        background: #111927;
+        border-bottom: 1px solid var(--bdr);
+        border-radius: 6px 6px 0 0;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center
         }
 
         .mc-body {
-            padding: 8px 10px
+        padding: 8px 10px
         }
 
         .mod-sect {
-            font-size: .58rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin: 6px 0 3px;
-            padding-top: 4px;
-            border-top: 1px solid #1e2d44
+        font-size: .58rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 6px 0 3px;
+        padding-top: 4px;
+        border-top: 1px solid #1e2d44
         }
 
         /* LED */
         .led {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #253044;
-            display: inline-block;
-            flex-shrink: 0;
-            transition: background .2s, box-shadow .2s
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #253044;
+        display: inline-block;
+        flex-shrink: 0;
+        transition: background .2s, box-shadow .2s
         }
 
         .led.on {
-            background: var(--grn);
-            box-shadow: 0 0 6px var(--grn)
+        background: var(--grn);
+        box-shadow: 0 0 6px var(--grn)
         }
 
         .led.on.b {
-            background: var(--blue);
-            box-shadow: 0 0 6px var(--blue)
+        background: var(--blue);
+        box-shadow: 0 0 6px var(--blue)
         }
 
         /* Labels */
         .pl {
-            font-size: .58rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: .8px;
-            margin-bottom: 1px;
-            display: flex;
-            align-items: baseline;
-            gap: 5px
+        font-size: .58rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: .8px;
+        margin-bottom: 1px;
+        display: flex;
+        align-items: baseline;
+        gap: 5px
         }
 
         .pv {
-            font-size: .68rem;
-            color: var(--blue);
-            font-family: monospace;
-            font-weight: 700;
-            text-transform: none;
-            letter-spacing: 0
+        font-size: .68rem;
+        color: var(--blue);
+        font-family: monospace;
+        font-weight: 700;
+        text-transform: none;
+        letter-spacing: 0
         }
 
         /* Sliders */
         input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 3px;
-            background: #253044;
-            border-radius: 2px;
-            outline: none;
-            cursor: pointer;
-            margin: 2px 0
+        -webkit-appearance: none;
+        width: 100%;
+        height: 3px;
+        background: #253044;
+        border-radius: 2px;
+        outline: none;
+        cursor: pointer;
+        margin: 2px 0
         }
 
         input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            background: var(--blue);
-            border-radius: 50%;
-            box-shadow: 0 0 4px rgba(96, 165, 250, .5)
+        -webkit-appearance: none;
+        width: 12px;
+        height: 12px;
+        background: var(--blue);
+        border-radius: 50%;
+        box-shadow: 0 0 4px rgba(96, 165, 250, .5)
         }
 
         input[type=range]::-moz-range-thumb {
-            width: 12px;
-            height: 12px;
-            background: var(--blue);
-            border-radius: 50%;
-            border: none
+        width: 12px;
+        height: 12px;
+        background: var(--blue);
+        border-radius: 50%;
+        border: none
         }
 
         /* Select */
         .form-select {
-            background: #18243a;
-            color: var(--text);
-            border-color: var(--bdr);
-            font-size: .75rem
+        background: #18243a;
+        color: var(--text);
+        border-color: var(--bdr);
+        font-size: .75rem
         }
 
         .form-select:focus {
-            border-color: var(--blue);
-            box-shadow: 0 0 0 2px rgba(96, 165, 250, .2)
+        border-color: var(--blue);
+        box-shadow: 0 0 0 2px rgba(96, 165, 250, .2)
         }
 
         optgroup {
-            background: #18243a;
-            color: var(--muted)
+        background: #18243a;
+        color: var(--muted)
         }
 
         /* Envelope canvas */
         .env-cvs {
-            background: #080c18;
-            border-radius: 4px;
-            border: 1px solid var(--bdr);
-            width: 100%;
-            height: 48px;
-            display: block;
-            margin: 4px 0
+        background: #080c18;
+        border-radius: 4px;
+        border: 1px solid var(--bdr);
+        width: 100%;
+        height: 48px;
+        display: block;
+        margin: 4px 0
         }
 
         /* Piano */
         .piano-wrap {
-            background: #06080f;
-            border-radius: 8px;
-            padding: 12px 14px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            overflow-x: auto;
-            width: 100%
+        background: #06080f;
+        border-radius: 8px;
+        padding: 12px 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        width: 100%
         }
 
         .piano-keys {
-            position: relative;
-            height: 120px;
-            user-select: none;
-            touch-action: none;
-            flex-shrink: 0
+        position: relative;
+        height: 120px;
+        user-select: none;
+        touch-action: none;
+        flex-shrink: 0
         }
 
         .kw {
-            width: 34px;
-            height: 120px;
-            background: linear-gradient(180deg, #dde 0%, #f0f0f0 100%);
-            border: 1px solid #888;
-            border-top: none;
-            border-radius: 0 0 4px 4px;
-            cursor: pointer;
-            position: absolute;
-            z-index: 1;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 4px;
-            transition: background .05s
+        width: 34px;
+        height: 120px;
+        background: linear-gradient(180deg, #dde 0%, #f0f0f0 100%);
+        border: 1px solid #888;
+        border-top: none;
+        border-radius: 0 0 4px 4px;
+        cursor: pointer;
+        position: absolute;
+        z-index: 1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 4px;
+        transition: background .05s
         }
 
         .kw.active, .kw:active {
-            background: linear-gradient(180deg, #93c5fd 0%, #bfdbfe 100%) !important
+        background: linear-gradient(180deg, #93c5fd 0%, #bfdbfe 100%) !important
         }
 
         .kw .kl {
-            font-size: .5rem;
-            color: #555;
-            text-align: center;
-            line-height: 1.3
+        font-size: .5rem;
+        color: #555;
+        text-align: center;
+        line-height: 1.3
         }
 
         .kb {
-            width: 20px;
-            height: 72px;
-            background: linear-gradient(180deg, #141428 0%, #1e1e38 100%);
-            border-radius: 0 0 3px 3px;
-            cursor: pointer;
-            position: absolute;
-            z-index: 2;
-            top: 0;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 3px;
-            box-shadow: 2px 3px 6px rgba(0, 0, 0, .7);
-            transition: background .05s
+        width: 20px;
+        height: 72px;
+        background: linear-gradient(180deg, #141428 0%, #1e1e38 100%);
+        border-radius: 0 0 3px 3px;
+        cursor: pointer;
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 3px;
+        box-shadow: 2px 3px 6px rgba(0, 0, 0, .7);
+        transition: background .05s
         }
 
         .kb.active, .kb:active {
-            background: linear-gradient(180deg, #1d4ed8 0%, #3b82f6 100%) !important
+        background: linear-gradient(180deg, #1d4ed8 0%, #3b82f6 100%) !important
         }
 
         .kb .kl {
-            font-size: .45rem;
-            color: #64748b
+        font-size: .45rem;
+        color: #64748b
         }
 
         /* Buttons */
         .btn-s {
-            background: #18243a;
-            border: 1px solid var(--bdr);
-            color: var(--text);
-            font-size: .72rem;
-            padding: 3px 10px
+        background: #18243a;
+        border: 1px solid var(--bdr);
+        color: var(--text);
+        font-size: .72rem;
+        padding: 3px 10px
         }
 
         .btn-s:hover {
-            background: #223355;
-            color: var(--text)
+        background: #223355;
+        color: var(--text)
         }
 
         .btn-sp {
-            background: #0d2848;
-            border: 1px solid var(--blue);
-            color: var(--blue);
-            font-size: .72rem;
-            padding: 3px 10px
+        background: #0d2848;
+        border: 1px solid var(--blue);
+        color: var(--blue);
+        font-size: .72rem;
+        padding: 3px 10px
         }
 
         .btn-sp:hover {
-            background: #1a3d6e;
-            color: #93c5fd
+        background: #1a3d6e;
+        color: #93c5fd
         }
 
         /* Init overlay */
         #initOvl {
-            position: fixed;
-            inset: 0;
-            background: rgba(11, 14, 24, .97);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center
+        position: fixed;
+        inset: 0;
+        background: rgba(11, 14, 24, .97);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center
         }
 
         /* JSON */
         #jsonOut {
-            background: #050810;
-            color: #86efac;
-            border-color: var(--bdr);
-            font-family: monospace;
-            font-size: .65rem
+        background: #050810;
+        color: #86efac;
+        border-color: var(--bdr);
+        font-family: monospace;
+        font-size: .65rem
         }
 
         /* Btn group small */
         .btn-group .btn {
-            font-size: .62rem;
-            padding: 2px 7px
+        font-size: .62rem;
+        padding: 2px 7px
         }
 
         /* Navbar (placeholder — replaced by site navbar in production) */
         .s-nav {
-            background: #0a0f1a !important;
-            border-bottom: 1px solid #1e293b;
-            padding: 7px 16px
+        background: #0a0f1a !important;
+        border-bottom: 1px solid #1e293b;
+        padding: 7px 16px
         }
 
         /* Page title bar (shown inside main when site navbar is active) */
         .synth-title-bar {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 6px 2px 6px;
-            border-bottom: 1px solid var(--bdr);
-            margin-bottom: 10px
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 2px 6px;
+        border-bottom: 1px solid var(--bdr);
+        margin-bottom: 10px
         }
 
         .synth-title {
-            font-size: .95rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            color: var(--blue);
-            text-transform: uppercase;
-            flex-shrink: 0
+        font-size: .95rem;
+        font-weight: 900;
+        letter-spacing: 3px;
+        color: var(--blue);
+        text-transform: uppercase;
+        flex-shrink: 0
         }
 
         .synth-subtitle {
-            font-size: .65rem;
-            color: var(--muted);
-            letter-spacing: .5px
+        font-size: .65rem;
+        color: var(--muted);
+        letter-spacing: .5px
         }
 
         #themeBtn {
-            flex-shrink: 0;
-            width: 30px;
-            height: 26px;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 6px;
-            font-size: .8rem;
-            transition: background .2s
+        flex-shrink: 0;
+        width: 30px;
+        height: 26px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        font-size: .8rem;
+        transition: background .2s
         }
 
         /* ================================================================
-           LIGHT MODE  [data-theme="light"]
-           layout.blade.php のカラーシステムに準拠
-           - 背景: #f5f4ef（和紙調オフホワイト）
-           - ナビバー: 朱赤 #d9381e
-           - フッター: #ede9df
+        LIGHT MODE [data-theme="light"]
+        layout.blade.php のカラーシステムに準拠
+        - 背景: #f5f4ef（和紙調オフホワイト）
+        - ナビバー: 朱赤 #d9381e
+        - フッター: #ede9df
         ================================================================ */
         [data-theme="light"] {
-            --bg: #f5f4ef;
-            --card: #ffffff;
-            --bdr: #dde1e8;
-            --hdr: #edecea;
-            --blue: #2563eb;
-            --purp: #7c3aed;
-            --grn: #16a34a;
-            --ylw: #b45309;
-            --muted: #64748b;
-            --text: #1e293b;
+        --bg: #f5f4ef;
+        --card: #ffffff;
+        --bdr: #dde1e8;
+        --hdr: #edecea;
+        --blue: #2563eb;
+        --purp: #7c3aed;
+        --grn: #16a34a;
+        --ylw: #b45309;
+        --muted: #64748b;
+        --text: #1e293b;
         }
 
         [data-theme="light"] body {
-            background: var(--bg);
-            color: var(--text);
+        background: var(--bg);
+        color: var(--text);
         }
 
         /* ── Navbar ── */
         [data-theme="light"] .s-nav {
-            background: #d9381e !important;
-            border-bottom: 1px solid #bc2f17 !important;
+        background: #d9381e !important;
+        border-bottom: 1px solid #bc2f17 !important;
         }
 
         [data-theme="light"] .s-nav span {
-            color: rgba(255, 255, 255, .9) !important;
+        color: rgba(255, 255, 255, .9) !important;
         }
 
         /* ── Panels ── */
         [data-theme="light"] .sp {
-            background: var(--card);
-            border-color: var(--bdr);
-            box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+        background: var(--card);
+        border-color: var(--bdr);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
         }
 
         [data-theme="light"] .sp-hdr {
-            background: var(--hdr);
-            border-bottom-color: var(--bdr);
+        background: var(--hdr);
+        border-bottom-color: var(--bdr);
         }
 
         /* ── Module cards ── */
         [data-theme="light"] .mc {
-            background: #f8f7f2;
-            border-color: var(--bdr);
+        background: #f8f7f2;
+        border-color: var(--bdr);
         }
 
         [data-theme="light"] .mc.on {
-            border-color: var(--blue);
+        border-color: var(--blue);
         }
 
         [data-theme="light"] .mc-hdr {
-            background: #edecea;
-            border-bottom-color: var(--bdr);
+        background: #edecea;
+        border-bottom-color: var(--bdr);
         }
 
         [data-theme="light"] .mod-sect {
-            color: #94a3b8;
-            border-top-color: #e2e0d8;
+        color: #94a3b8;
+        border-top-color: #e2e0d8;
         }
 
         /* ── LED ── */
         [data-theme="light"] .led {
-            background: #c8d0dc;
+        background: #c8d0dc;
         }
 
         [data-theme="light"] .led.on {
-            background: var(--grn);
-            box-shadow: 0 0 5px var(--grn);
+        background: var(--grn);
+        box-shadow: 0 0 5px var(--grn);
         }
 
         [data-theme="light"] .led.on.b {
-            background: var(--blue);
-            box-shadow: 0 0 5px var(--blue);
+        background: var(--blue);
+        box-shadow: 0 0 5px var(--blue);
         }
 
         /* ── Sliders ── */
         [data-theme="light"] input[type=range] {
-            background: #c8d0dc;
+        background: #c8d0dc;
         }
 
         [data-theme="light"] input[type=range]::-webkit-slider-thumb {
-            background: var(--blue);
-            box-shadow: 0 0 3px rgba(37, 99, 235, .4);
+        background: var(--blue);
+        box-shadow: 0 0 3px rgba(37, 99, 235, .4);
         }
 
         [data-theme="light"] input[type=range]::-moz-range-thumb {
-            background: var(--blue);
+        background: var(--blue);
         }
 
         /* ── Select ── */
         [data-theme="light"] .form-select {
-            background: #ffffff;
-            border-color: var(--bdr);
-            color: var(--text);
+        background: #ffffff;
+        border-color: var(--bdr);
+        color: var(--text);
         }
 
         [data-theme="light"] .form-select:focus {
-            border-color: var(--blue);
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, .2);
+        border-color: var(--blue);
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, .2);
         }
 
         [data-theme="light"] optgroup {
-            background: #f0efea;
-            color: var(--muted);
+        background: #f0efea;
+        color: var(--muted);
         }
 
         /* ── Envelope canvas ── */
         [data-theme="light"] .env-cvs {
-            background: #f0efea;
-            border-color: var(--bdr);
+        background: #f0efea;
+        border-color: var(--bdr);
         }
 
         /* ── Piano ── */
         [data-theme="light"] .piano-wrap {
-            background: #e8e5dc;
+        background: #e8e5dc;
         }
 
         /* ── Buttons ── */
         [data-theme="light"] .btn-s {
-            background: #f0efea;
-            border-color: var(--bdr);
-            color: var(--text);
+        background: #f0efea;
+        border-color: var(--bdr);
+        color: var(--text);
         }
 
         [data-theme="light"] .btn-s:hover {
-            background: #e2e0d8;
-            color: var(--text);
+        background: #e2e0d8;
+        color: var(--text);
         }
 
         [data-theme="light"] .btn-sp {
-            background: #eff6ff;
-            border-color: var(--blue);
-            color: var(--blue);
+        background: #eff6ff;
+        border-color: var(--blue);
+        color: var(--blue);
         }
 
         [data-theme="light"] .btn-sp:hover {
-            background: #dbeafe;
-            color: #1d4ed8;
+        background: #dbeafe;
+        color: #1d4ed8;
         }
 
         /* ── JSON output ── */
         [data-theme="light"] #jsonOut {
-            background: #f0efea;
-            color: #166534;
-            border-color: var(--bdr);
+        background: #f0efea;
+        color: #166534;
+        border-color: var(--bdr);
         }
 
         /* ── Init overlay ── */
         [data-theme="light"] #initOvl {
-            background: rgba(245, 244, 239, .97);
+        background: rgba(245, 244, 239, .97);
         }
 
         [data-theme="light"] #initOvl h2 {
-            color: var(--blue);
+        color: var(--blue);
         }
 
         /* ── Footer ── */
         [data-theme="light"] footer {
-            background: #ede9df;
-            border-top-color: #ddd9d0;
-            color: #6c757d;
+        background: #ede9df;
+        border-top-color: #ddd9d0;
+        color: #6c757d;
         }
 
         /* ── btn-group radio ── */
         [data-theme="light"] .btn-group .btn-outline-primary {
-            color: var(--blue);
-            border-color: var(--blue);
+        color: var(--blue);
+        border-color: var(--blue);
         }
 
         [data-theme="light"] .btn-group .btn-outline-primary:hover,
         [data-theme="light"] .btn-group .btn-check:checked + .btn-outline-primary {
-            background: var(--blue);
-            color: #fff;
+        background: var(--blue);
+        color: #fff;
         }
 
         [data-theme="light"] .btn-group .btn-outline-info {
-            color: #0891b2;
-            border-color: #0891b2;
+        color: #0891b2;
+        border-color: #0891b2;
         }
 
         [data-theme="light"] .btn-group .btn-check:checked + .btn-outline-info {
-            background: #0891b2;
-            color: #fff;
+        background: #0891b2;
+        color: #fff;
         }
 
         /* ================================================================
-           SMARTPHONE KEYBOARD — full-width, tall keys
-           縦: max-width 576px, 横: max-height 576px
+        SMARTPHONE KEYBOARD — full-width, tall keys
+        縦: max-width 576px, 横: max-height 576px
         ================================================================ */
-        @media screen and (max-width: 576px) and (orientation: portrait), screen and (orientation: landscape) and (max-height: 576px) {
+        @media screen and (max-width: 576px) and (orientation: portrait), screen and (orientation: landscape) and
+        (max-height: 576px) {
 
-            /* パネルをコンテナの余白外に広げる */
-            #kbPanel {
-                margin-left: calc(-1 * var(--bs-gutter-x, 1.5rem) / 2);
-                margin-right: calc(-1 * var(--bs-gutter-x, 1.5rem) / 2);
-                border-left: none;
-                border-right: none;
-                border-radius: 0;
-                margin-bottom: 0;
-            }
-
-            #kbPanel .sp-hdr {
-                border-radius: 0;
-            }
-
-            #kbPanel .sp-body {
-                padding: 0;
-            }
-
-            /* piano-wrap も余白ゼロ */
-            #kbPanel .piano-wrap {
-                padding: 0;
-                border-radius: 0;
-                gap: 4px;
-            }
-
-            /* オクターブコントロールと説明には最低限のパディング */
-            #kbPanel .piano-wrap > div {
-                padding: 4px 12px;
-            }
-
-            #kbPanel .sp-body > div:not(.piano-wrap) {
-                padding: 2px 12px 6px;
-            }
+        /* パネルをコンテナの余白外に広げる */
+        #kbPanel {
+        margin-left: calc(-1 * var(--bs-gutter-x, 1.5rem) / 2);
+        margin-right: calc(-1 * var(--bs-gutter-x, 1.5rem) / 2);
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        margin-bottom: 0;
         }
-        </style>
+
+        #kbPanel .sp-hdr {
+        border-radius: 0;
+        }
+
+        #kbPanel .sp-body {
+        padding: 0;
+        }
+
+        /* piano-wrap も余白ゼロ */
+        #kbPanel .piano-wrap {
+        padding: 0;
+        border-radius: 0;
+        gap: 4px;
+        }
+
+        /* オクターブコントロールと説明には最低限のパディング */
+        #kbPanel .piano-wrap > div {
+        padding: 4px 12px;
+        }
+
+        #kbPanel .sp-body > div:not(.piano-wrap) {
+        padding: 2px 12px 6px;
+        }
+        }
+    </style>
 </head>
 <body data-theme="light" data-bs-theme="light">
 <script>
@@ -1003,7 +1008,9 @@
                                     </li>
 
                 
-                <li class="nav-item d-lg-none"><hr class="dropdown-divider opacity-25 my-1"></li>
+                <li class="nav-item d-lg-none">
+                    <hr class="dropdown-divider opacity-25 my-1">
+                </li>
                 <li class="nav-item d-lg-none">
                     <button type="button"
                             class="nav-link theme-toggle-btn btn border-0 bg-transparent d-flex align-items-center gap-2 w-100 text-start">
@@ -1033,9 +1040,11 @@
     <div id="initOvl">
         <div class="text-center px-4">
             <i class="fas fa-sliders-h" style="font-size:2.8rem;color:var(--blue);display:block;margin-bottom:12px"></i>
-            <h2 style="color:var(--blue);font-size:1.5rem;font-weight:900;letter-spacing:3px;margin-bottom:6px">POLY LAYER
+            <h2 style="color:var(--blue);font-size:1.5rem;font-weight:900;letter-spacing:3px;margin-bottom:6px">POLY
+                LAYER
                 SYNTH</h2>
-            <p style="color:var(--muted);font-size:.82rem;margin-bottom:22px">Polyphonic Multi-Oscillator Synthesizer</p>
+            <p style="color:var(--muted);font-size:.82rem;margin-bottom:22px">Polyphonic Multi-Oscillator
+                Synthesizer</p>
             <button class="btn btn-primary btn-lg px-5 fw-bold" onclick="initAudio()"><i class="fas fa-play me-2"></i>START
                 AUDIO ENGINE
             </button>
@@ -1074,11 +1083,13 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="pl">Pan (L ← C → R) <span class="pv" id="panV">C</span></div>
-                        <input type="range" min="-1" max="1" value="0" step="0.01" id="panSl" oninput="setPan(this.value)">
+                        <input type="range" min="-1" max="1" value="0" step="0.01" id="panSl"
+                               oninput="setPan(this.value)">
                     </div>
                     <div class="col-md-6">
                         <div class="pl">Master Volume <span class="pv" id="masterV">80%</span></div>
-                        <input type="range" min="0" max="100" value="80" id="masterSl" oninput="setMasterVol(this.value)">
+                        <input type="range" min="0" max="100" value="80" id="masterSl"
+                               oninput="setMasterVol(this.value)">
                     </div>
                 </div>
             </div>
@@ -1091,9 +1102,11 @@
                 <div class="piano-wrap">
                     <div class="piano-keys" id="pianoKeys"></div>
                     <div class="d-flex align-items-center gap-2">
-                        <button class="btn btn-s btn-sm" onclick="chgOct(-1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="btn btn-s btn-sm" onclick="chgOct(-1)"><i class="fas fa-chevron-left"></i>
+                        </button>
                         <span class="pv" id="octV">4</span>
-                        <button class="btn btn-s btn-sm" onclick="chgOct(1)"><i class="fas fa-chevron-right"></i></button>
+                        <button class="btn btn-s btn-sm" onclick="chgOct(1)"><i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
 
                     <div class="d-flex align-items-center gap-2">
@@ -1120,7 +1133,8 @@
                     </button>
                     <button class="btn btn-s btn-sm" onclick="updateJSON()"><i class="fas fa-sync-alt me-1"></i>更新
                     </button>
-                    <button class="btn btn-sm" style="background:var(--grn);color:#fff;border:none" onclick="applyPreset()">
+                    <button class="btn btn-sm" style="background:var(--grn);color:#fff;border:none"
+                            onclick="applyPreset()">
                         <i class="fas fa-file-import me-1"></i>適用
                     </button>
                 </div>
@@ -1172,7 +1186,7 @@
 
         // ダーク時は太陽（ライトへ切り替え）、ライト時は月（ダークへ切り替え）
         document.querySelectorAll('.theme-icon').forEach(icon => {
-            icon.classList.toggle('fa-sun',  t === 'dark');
+            icon.classList.toggle('fa-sun', t === 'dark');
             icon.classList.toggle('fa-moon', t !== 'dark');
         });
 
@@ -1185,7 +1199,6 @@
             localStorage.setItem('color-scheme', t);
         }
     }
-
 
 
     // OSの設定変更をリアルタイムに監視（ユーザーが明示的に選択していない場合のみ）
@@ -1276,7 +1289,13 @@
             mSt[3].mix = 0.5;      // NOISE starts at 50%
 
             // ── Per-module audio nodes ───────────────────────────────────────
-            const mN = Array.from({length: NM}, () => ({synth: null, vibrato: null, filt: null, lfo: null, mixGain: null}));
+            const mN = Array.from({length: NM}, () => ({
+                synth: null,
+                vibrato: null,
+                filt: null,
+                lfo: null,
+                mixGain: null
+            }));
 
             // ── Global effect nodes ──────────────────────────────────────────
             let gChorus, gPingPong, gReverb, gPitchShift, gPanner, gMaster;
@@ -1329,7 +1348,12 @@
                         // Effects bus (all effects route into panner)
                         gReverb = new Tone.Reverb({decay: 1.5, wet: 0}).connect(gPanner);
                         gPingPong = new Tone.PingPongDelay({delayTime: 0.25, feedback: 0.3, wet: 0}).connect(gReverb);
-                        gChorus = new Tone.Chorus({frequency: 4, delayTime: 2.5, depth: 0.5, wet: 0}).connect(gPingPong);
+                        gChorus = new Tone.Chorus({
+                            frequency: 4,
+                            delayTime: 2.5,
+                            depth: 0.5,
+                            wet: 0
+                        }).connect(gPingPong);
                         gChorus.start();
                         gPitchShift = new Tone.PitchShift({pitch: 0, wet: 0}).connect(gChorus);
 
@@ -1343,11 +1367,19 @@
                             const n = mN[i];
 
                             n.mixGain = new Tone.Gain(st.mix).connect(gPitchShift);
-                            n.filt = new Tone.Filter({frequency: st.filter.freq, type: 'lowpass', Q: 1}).connect(n.mixGain);
+                            n.filt = new Tone.Filter({
+                                frequency: st.filter.freq,
+                                type: 'lowpass',
+                                Q: 1
+                            }).connect(n.mixGain);
 
                             // LFO → filter frequency modulation
                             // min=max=baseFreq: Tone.js resets AudioParam to 0 on connect, so LFO must hold correct value
-                            n.lfo = new Tone.LFO({frequency: st.lfo.rate, min: st.filter.freq, max: st.filter.freq}).start();
+                            n.lfo = new Tone.LFO({
+                                frequency: st.lfo.rate,
+                                min: st.filter.freq,
+                                max: st.filter.freq
+                            }).start();
                             n.lfo.connect(n.filt.frequency);
 
                             // Vibrato effect (pitch LFO), wet=0 by default
@@ -2271,116 +2303,116 @@
         </script>
 
 <script>
-/**
- * SVG Inject
- * ─────────────────────────────────────────────
- * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
- * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
- * - data-loading="true" + CSS transition で FOUC を完全防止
- * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
- */
-(function () {
-    'use strict';
-
-    /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
-    const _cache = new Map();
-
-    /** SVG テキストを取得（キャッシュ付き） */
-    function _fetch(url) {
-        if (!_cache.has(url)) {
-            _cache.set(url,
-                fetch(url, { credentials: 'same-origin' })
-                    .then(function (res) {
-                        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
-                        return res.text();
-                    })
-            );
-        }
-        return _cache.get(url);
-    }
-
-    /** SVG テキストを DOM 要素にパース */
-    function _parse(text, url) {
-        let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
-        let err = doc.querySelector('parsererror');
-        if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
-        let svg = doc.querySelector('svg');
-        if (!svg) throw new Error('No <svg> element found in ' + url);
-        return svg;
-    }
-
     /**
-     * <img> の属性を <svg> へ引き継ぐ
-     * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
-     * ・img の id がなければ SVG の id を削除（重複 ID 防止）
-     * ・alt は aria-label に変換
-     * ・data-loading="true" を付与して CSS が opacity:0 を維持
+     * SVG Inject
+     * ─────────────────────────────────────────────
+     * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
+     * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
+     * - data-loading="true" + CSS transition で FOUC を完全防止
+     * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
      */
-    function _transfer(img, svg) {
-        let skipImg = new Set([
-            'src', 'data-loading', 'decoding', 'loading',
-            'crossorigin', 'fetchpriority', 'referrerpolicy'
-        ]);
-        let keepSvg = new Set([
-            'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
-        ]);
+    (function () {
+        'use strict';
 
-        for (let i = 0; i < img.attributes.length; i++) {
-            let attr = img.attributes[i];
-            if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
-            svg.setAttribute(attr.name, attr.value);
+        /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
+        const _cache = new Map();
+
+        /** SVG テキストを取得（キャッシュ付き） */
+        function _fetch(url) {
+            if (!_cache.has(url)) {
+                _cache.set(url,
+                    fetch(url, {credentials: 'same-origin'})
+                        .then(function (res) {
+                            if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+                            return res.text();
+                        })
+                );
+            }
+            return _cache.get(url);
         }
 
-        /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
-        if (!img.hasAttribute('id')) {
-            svg.removeAttribute('id');
+        /** SVG テキストを DOM 要素にパース */
+        function _parse(text, url) {
+            let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+            let err = doc.querySelector('parsererror');
+            if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
+            let svg = doc.querySelector('svg');
+            if (!svg) throw new Error('No <svg> element found in ' + url);
+            return svg;
         }
 
-        /* alt → aria-label（<svg> に alt は無効） */
-        if (img.alt) {
-            svg.setAttribute('aria-label', img.alt);
-            svg.setAttribute('role', 'img');
+        /**
+         * <img> の属性を <svg> へ引き継ぐ
+         * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
+         * ・img の id がなければ SVG の id を削除（重複 ID 防止）
+         * ・alt は aria-label に変換
+         * ・data-loading="true" を付与して CSS が opacity:0 を維持
+         */
+        function _transfer(img, svg) {
+            let skipImg = new Set([
+                'src', 'data-loading', 'decoding', 'loading',
+                'crossorigin', 'fetchpriority', 'referrerpolicy'
+            ]);
+            let keepSvg = new Set([
+                'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
+            ]);
+
+            for (let i = 0; i < img.attributes.length; i++) {
+                let attr = img.attributes[i];
+                if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
+                svg.setAttribute(attr.name, attr.value);
+            }
+
+            /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
+            if (!img.hasAttribute('id')) {
+                svg.removeAttribute('id');
+            }
+
+            /* alt → aria-label（<svg> に alt は無効） */
+            if (img.alt) {
+                svg.setAttribute('aria-label', img.alt);
+                svg.setAttribute('role', 'img');
+            }
+            svg.removeAttribute('alt');
+
+            /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
+            svg.setAttribute('data-loading', 'true');
         }
-        svg.removeAttribute('alt');
 
-        /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
-        svg.setAttribute('data-loading', 'true');
-    }
+        /** 1 つの <img> を非同期でインライン <svg> に置換 */
+        function _inject(img) {
+            let url = img.src;
+            if (!url || !img.parentNode) return;
 
-    /** 1 つの <img> を非同期でインライン <svg> に置換 */
-    function _inject(img) {
-        let url = img.src;
-        if (!url || !img.parentNode) return;
+            _fetch(url)
+                .then(function (text) {
+                    let svg = _parse(text, url);
+                    _transfer(img, svg);
 
-        _fetch(url)
-            .then(function (text) {
-                let svg = _parse(text, url);
-                _transfer(img, svg);
+                    img.parentNode.replaceChild(svg, img);
 
-                img.parentNode.replaceChild(svg, img);
+                    /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
+                    svg.getBoundingClientRect();
+                    svg.removeAttribute('data-loading');
+                })
+                .catch(function (err) {
+                    console.error('[svg-inject]', err);
+                    /* フォールバック: 元の <img> をそのまま表示 */
+                    img.removeAttribute('data-loading');
+                });
+        }
 
-                /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
-                svg.getBoundingClientRect();
-                svg.removeAttribute('data-loading');
-            })
-            .catch(function (err) {
-                console.error('[svg-inject]', err);
-                /* フォールバック: 元の <img> をそのまま表示 */
-                img.removeAttribute('data-loading');
-            });
-    }
+        /** ページ内の全 img.svg-inject を処理 */
+        function injectAll() {
+            document.querySelectorAll('img.svg-inject').forEach(_inject);
+        }
 
-    /** ページ内の全 img.svg-inject を処理 */
-    function injectAll() {
-        document.querySelectorAll('img.svg-inject').forEach(_inject);
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', injectAll);
-    } else {
-        injectAll();
-    }
-})();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', injectAll);
+        } else {
+            injectAll();
+        }
+    })();
 </script>
 </body>
 </html>

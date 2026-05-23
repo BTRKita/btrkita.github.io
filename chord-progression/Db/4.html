@@ -82,27 +82,30 @@
         /* Bootstrap 5.3 の変数が確実に上書きされるよう明示指定 */
         [data-bs-theme="dark"] .table-light,
         [data-bs-theme="dark"] thead.table-light {
-            --bs-table-bg:          #343a40;
-            --bs-table-color:       #f8f9fa;
-            --bs-table-border-color:#495057;
+            --bs-table-bg: #343a40;
+            --bs-table-color: #f8f9fa;
+            --bs-table-border-color: #495057;
             color: #f8f9fa;
         }
+
         [data-bs-theme="dark"] .table-info {
-            --bs-table-bg:          #032830;
-            --bs-table-color:       #6edff6;
-            --bs-table-border-color:#0d3f50;
+            --bs-table-bg: #032830;
+            --bs-table-color: #6edff6;
+            --bs-table-border-color: #0d3f50;
             color: #6edff6;
         }
+
         [data-bs-theme="dark"] .table-primary {
-            --bs-table-bg:          #031633;
-            --bs-table-color:       #6ea8fe;
-            --bs-table-border-color:#0d2d5e;
+            --bs-table-bg: #031633;
+            --bs-table-color: #6ea8fe;
+            --bs-table-border-color: #0d2d5e;
             color: #6ea8fe;
         }
+
         [data-bs-theme="dark"] .table-success {
-            --bs-table-bg:          #051b11;
-            --bs-table-color:       #75b798;
-            --bs-table-border-color:#0f2d1e;
+            --bs-table-bg: #051b11;
+            --bs-table-color: #75b798;
+            --bs-table-border-color: #0f2d1e;
             color: #75b798;
         }
 
@@ -112,7 +115,7 @@
 
 
         /* 2. ダークモード：黒背景に青系統（4a9eff）のアクセント */
-        :root,[data-theme="dark"] {
+        :root, [data-theme="dark"] {
             .navbar.site-custom-nav {
                 /* 背景色：DAWやエディタ風の引き締まった黒（必要に応じて #000000 等に変更可） */
                 --bs-navbar-bg: #0f172a;
@@ -136,8 +139,7 @@
             }
         }
 
-        [data-theme="light"]
-         {
+        [data-theme="light"] {
             .navbar.site-custom-nav {
                 /* 背景色：黒や緑と識別しやすく、白文字とのコントラストも高い朱赤 */
                 --bs-navbar-bg: #d9381e;
@@ -241,7 +243,7 @@
             border-radius: 4px;
             border: 1px solid var(--site-select-border);
             background-color: transparent; /* ダークモードでの汎用性を考慮 */
-            color: inherit;               /* 親（Bootstrap）の文字色を引き継ぐ */
+            color: inherit; /* 親（Bootstrap）の文字色を引き継ぐ */
             cursor: pointer;
         }
 
@@ -289,9 +291,11 @@
         img.svg-inject[data-loading="true"] {
             opacity: 0;
         }
+
         svg.svg-inject {
             transition: opacity 0.1s ease;
         }
+
         svg.svg-inject[data-loading="true"] {
             opacity: 0;
         }
@@ -306,46 +310,46 @@
             --svg-key-fg: #cbd5e1;
 
             /* circle-of-5th */
-            --svg-ci-fill:  #1c2338;
+            --svg-ci-fill: #1c2338;
             --svg-ci-stroke: #dedad0;
             --svg-ci-major: #e8e6df;
             --svg-ci-minor: #c8c4b8;
-            --svg-ci-dim:   #a8a499;
+            --svg-ci-dim: #a8a499;
 
 
             /* finger-board SVG */
-            --svg-fb-bg:          #1c2338;
-            --svg-fb-line:        #8899aa;
+            --svg-fb-bg: #1c2338;
+            --svg-fb-line: #8899aa;
             --svg-fb-string-name: #e2e8f0;
-            --svg-fb-fret-num:    #c9a0a0;
-            --svg-fb-note-fill:   rgba(180, 180, 190, 0.40);
+            --svg-fb-fret-num: #c9a0a0;
+            --svg-fb-note-fill: rgba(180, 180, 190, 0.40);
             --svg-fb-note-stroke: rgba(15, 23, 42, 0.60);
-            --svg-fb-root-fill:   #f87171;
+            --svg-fb-root-fill: #f87171;
             --svg-fb-root-stroke: #0f172a;
-            --svg-fb-scale-fill:  #60a5fa;
-            --svg-fb-scale-stroke:#0f172a;
+            --svg-fb-scale-fill: #60a5fa;
+            --svg-fb-scale-stroke: #0f172a;
         }
 
         [data-theme="light"] {
             --svg-key-fg: #4a5568;
 
-            --svg-ci-fill:  #ffffff;
+            --svg-ci-fill: #ffffff;
             --svg-ci-stroke: #1a1a1a;
             --svg-ci-major: #111111;
             --svg-ci-minor: #333333;
-            --svg-ci-dim:   #555555;
+            --svg-ci-dim: #555555;
 
             /* finger-board */
-            --svg-fb-bg:          #ffffff;
-            --svg-fb-line:        rgb(0, 0, 0);
+            --svg-fb-bg: #ffffff;
+            --svg-fb-line: rgb(0, 0, 0);
             --svg-fb-string-name: #000000;
-            --svg-fb-fret-num:    #3f2727;
-            --svg-fb-note-fill:   rgba(45, 45, 45, 0.35);
+            --svg-fb-fret-num: #3f2727;
+            --svg-fb-note-fill: rgba(45, 45, 45, 0.35);
             --svg-fb-note-stroke: rgba(255, 255, 255, 0.35);
-            --svg-fb-root-fill:   #d00b0b;
+            --svg-fb-root-fill: #d00b0b;
             --svg-fb-root-stroke: #ffffff;
-            --svg-fb-scale-fill:  rgb(8, 15, 155);
-            --svg-fb-scale-stroke:#ffffff;
+            --svg-fb-scale-fill: rgb(8, 15, 155);
+            --svg-fb-scale-stroke: #ffffff;
         }
 
         :root {
@@ -401,7 +405,7 @@
 
         #error{color:var(--danger);font-size:12px;margin-top:5px;min-height:16px;}
         #staff-out{margin-top:4px;overflow-x:auto;}
-        </style>
+    </style>
 </head>
 <body data-theme="light" data-bs-theme="light">
 <script>
@@ -453,11 +457,14 @@
                                             <a class="nav-link" href="/synthesizer.html">シンセサイザー</a>
                                     </li>
                 <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="/chord-progression/index.html">コード進行</a>
+                                            <a class="nav-link active" aria-current="page"
+                           href="/chord-progression/index.html">コード進行</a>
                                     </li>
 
                 
-                <li class="nav-item d-lg-none"><hr class="dropdown-divider opacity-25 my-1"></li>
+                <li class="nav-item d-lg-none">
+                    <hr class="dropdown-divider opacity-25 my-1">
+                </li>
                 <li class="nav-item d-lg-none">
                     <button type="button"
                             class="nav-link theme-toggle-btn btn border-0 bg-transparent d-flex align-items-center gap-2 w-100 text-start">
@@ -499,20 +506,20 @@
         ------------------------------------------------------- */
         function getDiagramColors() {
             const t = document.documentElement.dataset.theme
-                   ?? document.body.dataset.theme;
+                ?? document.body.dataset.theme;
             const dark = t !== 'light';
             return dark ? {
-                primary:   '#e8e8e2',
+                primary: '#e8e8e2',
                 secondary: '#9e9e98',
-                tertiary:  '#5a5a55',
-                border:    'rgba(255,255,255,0.22)',
-                accent:    '#4d8ef5'
+                tertiary: '#5a5a55',
+                border: 'rgba(255,255,255,0.22)',
+                accent: '#4d8ef5'
             } : {
-                primary:   '#1a1a18',
+                primary: '#1a1a18',
                 secondary: '#6b6b66',
-                tertiary:  '#9e9e98',
-                border:    'rgba(0,0,0,0.25)',
-                accent:    '#2a6dd9'
+                tertiary: '#9e9e98',
+                border: 'rgba(0,0,0,0.25)',
+                accent: '#2a6dd9'
             };
         }
 
@@ -553,7 +560,7 @@
            ストアに保存してテーマ変化時の再描画に備える
         ------------------------------------------------------- */
         function generateFromJson(j, id, name) {
-            diagramStore.set(id, { j, name });
+            diagramStore.set(id, {j, name});
             _renderDiagram(j, id, name);
         }
 
@@ -707,8 +714,8 @@
         }
 
         new MutationObserver(() => {
-            diagramStore.forEach(({ j, name }, id) => _renderDiagram(j, id, name));
-        }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+            diagramStore.forEach(({j, name}, id) => _renderDiagram(j, id, name));
+        }).observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
 
     </script>
 
@@ -933,8 +940,9 @@
                 5線符
             </dt>
 
-<dd class="col-md-9 text-muted small mb-0">
-    <div class="five-line-image" data-chords="[[1,6,8],[2,1,6,8],[4,1,6,8],[6,1,8],[8,1,6]]" data-wholenote="true" data-barlines="true">
+            <dd class="col-md-9 text-muted small mb-0">
+                <div class="five-line-image" data-chords="[[1,6,8],[2,1,6,8],[4,1,6,8],[6,1,8],[8,1,6]]" data-wholenote="true"
+     data-barlines="true">
     <div class="section-title">ト音記号 (G clef)</div>
     <div class="clef-grid g-clefs"></div>
     <div class="section-title">ヘ音記号 (F clef)</div>
@@ -944,7 +952,7 @@
     <div class="staff-error"></div>
     <div class="staff-out"></div>
 </div>
-</dd>
+            </dd>
         </dl>
 
                     <h3 id="C%E2%99%AFsus4">C♯sus4</h3>
@@ -1938,7 +1946,7 @@
 
         // ダーク時は太陽（ライトへ切り替え）、ライト時は月（ダークへ切り替え）
         document.querySelectorAll('.theme-icon').forEach(icon => {
-            icon.classList.toggle('fa-sun',  t === 'dark');
+            icon.classList.toggle('fa-sun', t === 'dark');
             icon.classList.toggle('fa-moon', t !== 'dark');
         });
 
@@ -1951,7 +1959,6 @@
             localStorage.setItem('color-scheme', t);
         }
     }
-
 
 
     // OSの設定変更をリアルタイムに監視（ユーザーが明示的に選択していない場合のみ）
@@ -2033,17 +2040,17 @@
             // FM変調は carrier ± n×modulator にサイドバンドを生成する。
             // 低音域では carrier - modulator ≈ 0Hz (DC) が発生し、これが低域の曇りの原因。
             // 40Hz HPF でDC・サブ帯域をカットしつつ、ピアノ音域(A0=27.5Hz〜)は実用上ほぼ無影響。
-            const hpf = new Tone.Filter({ frequency: 40, type: "highpass", rolloff: -24 }).connect(mixer);
+            const hpf = new Tone.Filter({frequency: 40, type: "highpass", rolloff: -24}).connect(mixer);
 
             // レイヤー1: 基音層 — modulationIndex を 0.3 まで下げサイドバンド密度を最小化
             const layer1 = new Tone.PolySynth(Tone.FMSynth, {
                 volume: 0,
                 harmonicity: 1,
                 modulationIndex: 0.3,
-                oscillator: { type: "sine" },
-                modulation: { type: "sine" },
-                envelope: { attack: 0.005, decay: 3.0, sustain: 0.0, release: 3.5 },
-                modulationEnvelope: { attack: 0.005, decay: 0.05, sustain: 0.0, release: 0.05 }
+                oscillator: {type: "sine"},
+                modulation: {type: "sine"},
+                envelope: {attack: 0.005, decay: 3.0, sustain: 0.0, release: 3.5},
+                modulationEnvelope: {attack: 0.005, decay: 0.05, sustain: 0.0, release: 0.05}
             }).connect(hpf);
 
             // レイヤー2: 倍音層 — modulationIndex 1.8→1.0 に削減
@@ -2051,10 +2058,10 @@
                 volume: -10,
                 harmonicity: 2,
                 modulationIndex: 1.0,
-                oscillator: { type: "sine" },
-                modulation: { type: "sine" },
-                envelope: { attack: 0.005, decay: 0.7, sustain: 0.0, release: 0.7 },
-                modulationEnvelope: { attack: 0.005, decay: 0.05, sustain: 0.0, release: 0.05 }
+                oscillator: {type: "sine"},
+                modulation: {type: "sine"},
+                envelope: {attack: 0.005, decay: 0.7, sustain: 0.0, release: 0.7},
+                modulationEnvelope: {attack: 0.005, decay: 0.05, sustain: 0.0, release: 0.05}
             }).connect(hpf);
 
             // レイヤー3: アタック層
@@ -2062,10 +2069,10 @@
                 volume: -20,
                 harmonicity: 7,
                 modulationIndex: 0.4,
-                oscillator: { type: "sine" },
-                modulation: { type: "sine" },
-                envelope: { attack: 0.005, decay: 0.12, sustain: 0.0, release: 0.15 },
-                modulationEnvelope: { attack: 0.005, decay: 0.05, sustain: 0.0, release: 0.05 }
+                oscillator: {type: "sine"},
+                modulation: {type: "sine"},
+                envelope: {attack: 0.005, decay: 0.12, sustain: 0.0, release: 0.15},
+                modulationEnvelope: {attack: 0.005, decay: 0.05, sustain: 0.0, release: 0.05}
             }).connect(hpf);
 
             const layers = [layer1, layer2, layer3];
@@ -2076,13 +2083,19 @@
                     return layers.every(l => l.disposed);
                 },
                 triggerAttackRelease(notes, duration, time) {
-                    layers.forEach(l => { if (!l.disposed) l.triggerAttackRelease(notes, duration, time); });
+                    layers.forEach(l => {
+                        if (!l.disposed) l.triggerAttackRelease(notes, duration, time);
+                    });
                 },
                 releaseAll() {
-                    layers.forEach(l => { if (!l.disposed) l.releaseAll(); });
+                    layers.forEach(l => {
+                        if (!l.disposed) l.releaseAll();
+                    });
                 },
                 dispose() {
-                    layers.forEach(l => { if (!l.disposed) l.dispose(); });
+                    layers.forEach(l => {
+                        if (!l.disposed) l.dispose();
+                    });
                     hpf.dispose();
                     mixer.dispose();
                 }
@@ -2095,26 +2108,26 @@
                     return createFMPianoInstrument();
 
                 case "square":
-                    const polySquareSynth = new Tone.PolySynth(Tone.Synth, { volume: -10 }).toDestination();
+                    const polySquareSynth = new Tone.PolySynth(Tone.Synth, {volume: -10}).toDestination();
                     polySquareSynth.set({
-                        oscillator: { type: "square" },
-                        envelope: { attack: 0.01, decay: 0.1, sustain: 1.0, release: 0.5 }
+                        oscillator: {type: "square"},
+                        envelope: {attack: 0.01, decay: 0.1, sustain: 1.0, release: 0.5}
                     });
                     return polySquareSynth;
 
                 case "triangle":
-                    const polyTriangleSynth = new Tone.PolySynth(Tone.Synth, { volume: -2 }).toDestination();
+                    const polyTriangleSynth = new Tone.PolySynth(Tone.Synth, {volume: -2}).toDestination();
                     polyTriangleSynth.set({
-                        oscillator: { type: "triangle" },
-                        envelope: { attack: 0.01, decay: 0.1, sustain: 1.0, release: 0.5 }
+                        oscillator: {type: "triangle"},
+                        envelope: {attack: 0.01, decay: 0.1, sustain: 1.0, release: 0.5}
                     });
                     return polyTriangleSynth;
 
                 case "sine":
-                    const polySineSynth = new Tone.PolySynth(Tone.Synth, { volume: -2 }).toDestination();
+                    const polySineSynth = new Tone.PolySynth(Tone.Synth, {volume: -2}).toDestination();
                     polySineSynth.set({
-                        oscillator: { type: "sine" },
-                        envelope: { attack: 0.01, decay: 0.1, sustain: 1.0, release: 0.5 }
+                        oscillator: {type: "sine"},
+                        envelope: {attack: 0.01, decay: 0.1, sustain: 1.0, release: 0.5}
                     });
                     return polySineSynth;
             }
@@ -2138,7 +2151,7 @@
 
         return {
             // スマホ対応：async を外し、タップ直後のイベントループ内で直接オーディオを起動させる
-            play: function(rawChordData) {
+            play: function (rawChordData) {
                 // コンテキスト解除→初期化→リセットの順で呼ぶ
                 Tone.start();
                 setupAudio();
@@ -2175,11 +2188,11 @@
                 Tone.Transport.start();
             },
 
-            stop: function() {
+            stop: function () {
                 stopAndReset();
             },
 
-            selectInstrument: function(type) {
+            selectInstrument: function (type) {
                 Tone.start();
                 setupAudio();
                 stopAndReset();
@@ -2400,7 +2413,8 @@
         dd.querySelectorAll('.clef-btn').forEach(b => b.classList.remove('active'));
         dd.querySelector(`.clef-btn[data-clef-id="${id}"]`).classList.add('active');
         selectedClef = CLEFS.find(c => c.id === id);
-        generate(dd);    }
+        generate(dd);
+    }
 
     const PITCH_MAP = [
         {step: 0, acc: null}, {step: 0, acc: '#'}, {step: 1, acc: null}, {step: 1, acc: '#'},
@@ -2483,11 +2497,11 @@
     function getStaffColors() {
         // html/body の data-theme を見る。未設定なら CSS の :root 定義(dark)に合わせてダーク扱い
         const t = document.documentElement.dataset.theme
-               ?? document.body.dataset.theme;
+            ?? document.body.dataset.theme;
         const dark = t !== 'light';
         return dark
-            ? { bg: '#1c2338', line: '#dedad0', fg: '#dedad0', sub: '#999999' }
-            : { bg: '#ffffff',  line: '#1a1a1a', fg: '#1a1a1a', sub: '#888888' };
+            ? {bg: '#1c2338', line: '#dedad0', fg: '#dedad0', sub: '#999999'}
+            : {bg: '#ffffff', line: '#1a1a1a', fg: '#1a1a1a', sub: '#888888'};
     }
 
     function generateStaffSVG(chords, clef, wholeNote = true, barLines = false) {
@@ -2593,7 +2607,7 @@
                 }
             });
 
-            const octaveShift =  (clef.octaveShift || 0) * 1;
+            const octaveShift = (clef.octaveShift || 0) * 1;
             const names = [...chords[ci]].sort((a, b) => a - b).map(p => {
                 const pc = ((p % 12) + 12) % 12;
                 return ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'][pc] + (Math.floor(p / 12) + 4 + octaveShift);
@@ -2661,122 +2675,122 @@
 
     new MutationObserver(() => {
         document.querySelectorAll('div.five-line-image').forEach(updateStaffColors);
-    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    }).observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
 
 
 </script>
 
 <script>
-/**
- * SVG Inject
- * ─────────────────────────────────────────────
- * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
- * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
- * - data-loading="true" + CSS transition で FOUC を完全防止
- * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
- */
-(function () {
-    'use strict';
-
-    /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
-    const _cache = new Map();
-
-    /** SVG テキストを取得（キャッシュ付き） */
-    function _fetch(url) {
-        if (!_cache.has(url)) {
-            _cache.set(url,
-                fetch(url, { credentials: 'same-origin' })
-                    .then(function (res) {
-                        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
-                        return res.text();
-                    })
-            );
-        }
-        return _cache.get(url);
-    }
-
-    /** SVG テキストを DOM 要素にパース */
-    function _parse(text, url) {
-        let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
-        let err = doc.querySelector('parsererror');
-        if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
-        let svg = doc.querySelector('svg');
-        if (!svg) throw new Error('No <svg> element found in ' + url);
-        return svg;
-    }
-
     /**
-     * <img> の属性を <svg> へ引き継ぐ
-     * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
-     * ・img の id がなければ SVG の id を削除（重複 ID 防止）
-     * ・alt は aria-label に変換
-     * ・data-loading="true" を付与して CSS が opacity:0 を維持
+     * SVG Inject
+     * ─────────────────────────────────────────────
+     * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
+     * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
+     * - data-loading="true" + CSS transition で FOUC を完全防止
+     * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
      */
-    function _transfer(img, svg) {
-        let skipImg = new Set([
-            'src', 'data-loading', 'decoding', 'loading',
-            'crossorigin', 'fetchpriority', 'referrerpolicy'
-        ]);
-        let keepSvg = new Set([
-            'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
-        ]);
+    (function () {
+        'use strict';
 
-        for (let i = 0; i < img.attributes.length; i++) {
-            let attr = img.attributes[i];
-            if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
-            svg.setAttribute(attr.name, attr.value);
+        /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
+        const _cache = new Map();
+
+        /** SVG テキストを取得（キャッシュ付き） */
+        function _fetch(url) {
+            if (!_cache.has(url)) {
+                _cache.set(url,
+                    fetch(url, {credentials: 'same-origin'})
+                        .then(function (res) {
+                            if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+                            return res.text();
+                        })
+                );
+            }
+            return _cache.get(url);
         }
 
-        /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
-        if (!img.hasAttribute('id')) {
-            svg.removeAttribute('id');
+        /** SVG テキストを DOM 要素にパース */
+        function _parse(text, url) {
+            let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+            let err = doc.querySelector('parsererror');
+            if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
+            let svg = doc.querySelector('svg');
+            if (!svg) throw new Error('No <svg> element found in ' + url);
+            return svg;
         }
 
-        /* alt → aria-label（<svg> に alt は無効） */
-        if (img.alt) {
-            svg.setAttribute('aria-label', img.alt);
-            svg.setAttribute('role', 'img');
+        /**
+         * <img> の属性を <svg> へ引き継ぐ
+         * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
+         * ・img の id がなければ SVG の id を削除（重複 ID 防止）
+         * ・alt は aria-label に変換
+         * ・data-loading="true" を付与して CSS が opacity:0 を維持
+         */
+        function _transfer(img, svg) {
+            let skipImg = new Set([
+                'src', 'data-loading', 'decoding', 'loading',
+                'crossorigin', 'fetchpriority', 'referrerpolicy'
+            ]);
+            let keepSvg = new Set([
+                'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
+            ]);
+
+            for (let i = 0; i < img.attributes.length; i++) {
+                let attr = img.attributes[i];
+                if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
+                svg.setAttribute(attr.name, attr.value);
+            }
+
+            /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
+            if (!img.hasAttribute('id')) {
+                svg.removeAttribute('id');
+            }
+
+            /* alt → aria-label（<svg> に alt は無効） */
+            if (img.alt) {
+                svg.setAttribute('aria-label', img.alt);
+                svg.setAttribute('role', 'img');
+            }
+            svg.removeAttribute('alt');
+
+            /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
+            svg.setAttribute('data-loading', 'true');
         }
-        svg.removeAttribute('alt');
 
-        /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
-        svg.setAttribute('data-loading', 'true');
-    }
+        /** 1 つの <img> を非同期でインライン <svg> に置換 */
+        function _inject(img) {
+            let url = img.src;
+            if (!url || !img.parentNode) return;
 
-    /** 1 つの <img> を非同期でインライン <svg> に置換 */
-    function _inject(img) {
-        let url = img.src;
-        if (!url || !img.parentNode) return;
+            _fetch(url)
+                .then(function (text) {
+                    let svg = _parse(text, url);
+                    _transfer(img, svg);
 
-        _fetch(url)
-            .then(function (text) {
-                let svg = _parse(text, url);
-                _transfer(img, svg);
+                    img.parentNode.replaceChild(svg, img);
 
-                img.parentNode.replaceChild(svg, img);
+                    /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
+                    svg.getBoundingClientRect();
+                    svg.removeAttribute('data-loading');
+                })
+                .catch(function (err) {
+                    console.error('[svg-inject]', err);
+                    /* フォールバック: 元の <img> をそのまま表示 */
+                    img.removeAttribute('data-loading');
+                });
+        }
 
-                /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
-                svg.getBoundingClientRect();
-                svg.removeAttribute('data-loading');
-            })
-            .catch(function (err) {
-                console.error('[svg-inject]', err);
-                /* フォールバック: 元の <img> をそのまま表示 */
-                img.removeAttribute('data-loading');
-            });
-    }
+        /** ページ内の全 img.svg-inject を処理 */
+        function injectAll() {
+            document.querySelectorAll('img.svg-inject').forEach(_inject);
+        }
 
-    /** ページ内の全 img.svg-inject を処理 */
-    function injectAll() {
-        document.querySelectorAll('img.svg-inject').forEach(_inject);
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', injectAll);
-    } else {
-        injectAll();
-    }
-})();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', injectAll);
+        } else {
+            injectAll();
+        }
+    })();
 </script>
 </body>
 </html>

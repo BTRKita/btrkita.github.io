@@ -8,7 +8,8 @@
         最大4トラックまで異なる拍数・速度を重ねて再生可能。
         自動消音のリズムトレーナーやランダムテンポ変化など、高度なキープ力とアジリティを鍛えるプロ仕様の機能をブラウザで即座に利用できます。">
 
-    <title>アルティメット・メトロノーム | マルチ機能 ポリリズム・メトロノーム | BTR KITA</title>
+    <title>アルティメット・メトロノーム | マルチ機能 ポリリズム・メトロノーム
+        | BTR KITA</title>
 
     <!-- おさむ -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
@@ -82,27 +83,30 @@
         /* Bootstrap 5.3 の変数が確実に上書きされるよう明示指定 */
         [data-bs-theme="dark"] .table-light,
         [data-bs-theme="dark"] thead.table-light {
-            --bs-table-bg:          #343a40;
-            --bs-table-color:       #f8f9fa;
-            --bs-table-border-color:#495057;
+            --bs-table-bg: #343a40;
+            --bs-table-color: #f8f9fa;
+            --bs-table-border-color: #495057;
             color: #f8f9fa;
         }
+
         [data-bs-theme="dark"] .table-info {
-            --bs-table-bg:          #032830;
-            --bs-table-color:       #6edff6;
-            --bs-table-border-color:#0d3f50;
+            --bs-table-bg: #032830;
+            --bs-table-color: #6edff6;
+            --bs-table-border-color: #0d3f50;
             color: #6edff6;
         }
+
         [data-bs-theme="dark"] .table-primary {
-            --bs-table-bg:          #031633;
-            --bs-table-color:       #6ea8fe;
-            --bs-table-border-color:#0d2d5e;
+            --bs-table-bg: #031633;
+            --bs-table-color: #6ea8fe;
+            --bs-table-border-color: #0d2d5e;
             color: #6ea8fe;
         }
+
         [data-bs-theme="dark"] .table-success {
-            --bs-table-bg:          #051b11;
-            --bs-table-color:       #75b798;
-            --bs-table-border-color:#0f2d1e;
+            --bs-table-bg: #051b11;
+            --bs-table-color: #75b798;
+            --bs-table-border-color: #0f2d1e;
             color: #75b798;
         }
 
@@ -112,7 +116,7 @@
 
 
         /* 2. ダークモード：黒背景に青系統（4a9eff）のアクセント */
-        :root,[data-theme="dark"] {
+        :root, [data-theme="dark"] {
             .navbar.site-custom-nav {
                 /* 背景色：DAWやエディタ風の引き締まった黒（必要に応じて #000000 等に変更可） */
                 --bs-navbar-bg: #0f172a;
@@ -136,8 +140,7 @@
             }
         }
 
-        [data-theme="light"]
-         {
+        [data-theme="light"] {
             .navbar.site-custom-nav {
                 /* 背景色：黒や緑と識別しやすく、白文字とのコントラストも高い朱赤 */
                 --bs-navbar-bg: #d9381e;
@@ -241,7 +244,7 @@
             border-radius: 4px;
             border: 1px solid var(--site-select-border);
             background-color: transparent; /* ダークモードでの汎用性を考慮 */
-            color: inherit;               /* 親（Bootstrap）の文字色を引き継ぐ */
+            color: inherit; /* 親（Bootstrap）の文字色を引き継ぐ */
             cursor: pointer;
         }
 
@@ -289,9 +292,11 @@
         img.svg-inject[data-loading="true"] {
             opacity: 0;
         }
+
         svg.svg-inject {
             transition: opacity 0.1s ease;
         }
+
         svg.svg-inject[data-loading="true"] {
             opacity: 0;
         }
@@ -306,346 +311,346 @@
             --svg-key-fg: #cbd5e1;
 
             /* circle-of-5th */
-            --svg-ci-fill:  #1c2338;
+            --svg-ci-fill: #1c2338;
             --svg-ci-stroke: #dedad0;
             --svg-ci-major: #e8e6df;
             --svg-ci-minor: #c8c4b8;
-            --svg-ci-dim:   #a8a499;
+            --svg-ci-dim: #a8a499;
 
 
             /* finger-board SVG */
-            --svg-fb-bg:          #1c2338;
-            --svg-fb-line:        #8899aa;
+            --svg-fb-bg: #1c2338;
+            --svg-fb-line: #8899aa;
             --svg-fb-string-name: #e2e8f0;
-            --svg-fb-fret-num:    #c9a0a0;
-            --svg-fb-note-fill:   rgba(180, 180, 190, 0.40);
+            --svg-fb-fret-num: #c9a0a0;
+            --svg-fb-note-fill: rgba(180, 180, 190, 0.40);
             --svg-fb-note-stroke: rgba(15, 23, 42, 0.60);
-            --svg-fb-root-fill:   #f87171;
+            --svg-fb-root-fill: #f87171;
             --svg-fb-root-stroke: #0f172a;
-            --svg-fb-scale-fill:  #60a5fa;
-            --svg-fb-scale-stroke:#0f172a;
+            --svg-fb-scale-fill: #60a5fa;
+            --svg-fb-scale-stroke: #0f172a;
         }
 
         [data-theme="light"] {
             --svg-key-fg: #4a5568;
 
-            --svg-ci-fill:  #ffffff;
+            --svg-ci-fill: #ffffff;
             --svg-ci-stroke: #1a1a1a;
             --svg-ci-major: #111111;
             --svg-ci-minor: #333333;
-            --svg-ci-dim:   #555555;
+            --svg-ci-dim: #555555;
 
             /* finger-board */
-            --svg-fb-bg:          #ffffff;
-            --svg-fb-line:        rgb(0, 0, 0);
+            --svg-fb-bg: #ffffff;
+            --svg-fb-line: rgb(0, 0, 0);
             --svg-fb-string-name: #000000;
-            --svg-fb-fret-num:    #3f2727;
-            --svg-fb-note-fill:   rgba(45, 45, 45, 0.35);
+            --svg-fb-fret-num: #3f2727;
+            --svg-fb-note-fill: rgba(45, 45, 45, 0.35);
             --svg-fb-note-stroke: rgba(255, 255, 255, 0.35);
-            --svg-fb-root-fill:   #d00b0b;
+            --svg-fb-root-fill: #d00b0b;
             --svg-fb-root-stroke: #ffffff;
-            --svg-fb-scale-fill:  rgb(8, 15, 155);
-            --svg-fb-scale-stroke:#ffffff;
+            --svg-fb-scale-fill: rgb(8, 15, 155);
+            --svg-fb-scale-stroke: #ffffff;
         }
 
         /* ==========================================
-           メトロノーム カラーモード変数
+        メトロノーム カラーモード変数
         ========================================== */
         :root, [data-theme="light"] {
-            --metro-track-header-bg:    #495057;
-            --metro-track-header-color: #ffffff;
-            --metro-track-body-bg:      #f8f9fa;
-            --metro-border:             #dee2e6;
-            --metro-panel-bg:           #ffffff;
-            --metro-dropdown-bg:        #ffffff;
-            --metro-dropdown-border:    #dee2e6;
-            --metro-item-hover:         #e9ecef;
-            --metro-timesig-line:       #212529;  /* 拍子の分子/分母区切り線 */
+        --metro-track-header-bg: #495057;
+        --metro-track-header-color: #ffffff;
+        --metro-track-body-bg: #f8f9fa;
+        --metro-border: #dee2e6;
+        --metro-panel-bg: #ffffff;
+        --metro-dropdown-bg: #ffffff;
+        --metro-dropdown-border: #dee2e6;
+        --metro-item-hover: #e9ecef;
+        --metro-timesig-line: #212529; /* 拍子の分子/分母区切り線 */
         }
         [data-theme="dark"] {
-            --metro-track-header-bg:    #1e293b;
-            --metro-track-header-color: #94a3b8;
-            --metro-track-body-bg:      #131826;
-            --metro-border:             #334155;
-            --metro-panel-bg:           #1c2338;
-            --metro-dropdown-bg:        #1c2338;
-            --metro-dropdown-border:    #334155;
-            --metro-item-hover:         #252e45;
-            --metro-timesig-line:       #8899bb;  /* 拍子の分子/分母区切り線 */
+        --metro-track-header-bg: #1e293b;
+        --metro-track-header-color: #94a3b8;
+        --metro-track-body-bg: #131826;
+        --metro-border: #334155;
+        --metro-panel-bg: #1c2338;
+        --metro-dropdown-bg: #1c2338;
+        --metro-dropdown-border: #334155;
+        --metro-item-hover: #252e45;
+        --metro-timesig-line: #8899bb; /* 拍子の分子/分母区切り線 */
         }
 
         .btn {
-            -ms-touch-action: manipulation;
-            touch-action: manipulation;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
         }
 
         .visualizer-container {
-            border-radius: 8px;
-            padding: 15px;
+        border-radius: 8px;
+        padding: 15px;
         }
         .track-row {
-            margin-bottom: 12px;
-            border: 1px solid var(--metro-border);
-            border-radius: 8px;
-            overflow: hidden;
+        margin-bottom: 12px;
+        border: 1px solid var(--metro-border);
+        border-radius: 8px;
+        overflow: hidden;
         }
         .track-row-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 6px 12px;
-            background: var(--metro-track-header-bg);
-            color: var(--metro-track-header-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 12px;
+        background: var(--metro-track-header-bg);
+        color: var(--metro-track-header-color);
         }
         .track-row-body {
-            padding: 10px 12px;
-            background: var(--metro-track-body-bg);
+        padding: 10px 12px;
+        background: var(--metro-track-body-bg);
         }
         .beat-box {
-            width: 35px;
-            height: 35px;
-            border: 2px solid #555;
-            border-radius: 6px;
-            display: inline-block;
-            transition: background-color 0.05s ease, box-shadow 0.05s ease;
+        width: 35px;
+        height: 35px;
+        border: 2px solid #555;
+        border-radius: 6px;
+        display: inline-block;
+        transition: background-color 0.05s ease, box-shadow 0.05s ease;
         }
-        .beat-box.active-down,  .beat-box--active-down{
-            background-color: #00ffff;
-            border-color: #0eadad;
-            box-shadow: 0 0 8px 2px #00ffff, 0 0 22px 6px rgba(0, 255, 255, 0.5);
+        .beat-box.active-down, .beat-box--active-down{
+        background-color: #00ffff;
+        border-color: #0eadad;
+        box-shadow: 0 0 8px 2px #00ffff, 0 0 22px 6px rgba(0, 255, 255, 0.5);
         }
-        .beat-box.active-up, .beat-box--active-up  {
-            background-color: #ff00ff;
-            border-color: #b109b1;
-            box-shadow: 0 0 8px 2px #ff00ff, 0 0 22px 6px rgba(255, 0, 255, 0.5);
+        .beat-box.active-up, .beat-box--active-up {
+        background-color: #ff00ff;
+        border-color: #b109b1;
+        box-shadow: 0 0 8px 2px #ff00ff, 0 0 22px 6px rgba(255, 0, 255, 0.5);
         }
         .beat-box.off {
-            background-color: #2b3035;
-            box-shadow: none;
+        background-color: #2b3035;
+        box-shadow: none;
         }
         #tapBtn {
-            transition: background-color 0.05s ease, box-shadow 0.05s ease, border-color 0.05s ease;
+        transition: background-color 0.05s ease, box-shadow 0.05s ease, border-color 0.05s ease;
         }
         #tapBtn.flash {
-            background-color: #ffc107 !important;
-            border-color: #ffc107 !important;
-            color: #000 !important;
-            box-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
+        background-color: #ffc107 !important;
+        border-color: #ffc107 !important;
+        color: #000 !important;
+        box-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
         }
         /*  */
         #tempoTermBadge {
-            background: none;
-            border: none;
-            padding: 0;
-            font-size: 0.95rem;
-            cursor: pointer;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            transition: color 0.2s ease;
-            /*  */
-            min-width: 110px;
-            text-align: left;
-            display: inline-block;
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: color 0.2s ease;
+        /*  */
+        min-width: 110px;
+        text-align: left;
+        display: inline-block;
         }
         #tempoTermBadge:hover {
-            color: #6c757d !important;
+        color: #6c757d !important;
         }
         /*  */
         #tempoDropdownPanel {
-            position: absolute;
-            top: calc(100% + 4px);
-            left: 0;
-            z-index: 1050;
-            display: none;
-            background: var(--metro-dropdown-bg);
-            border: 1px solid var(--metro-dropdown-border);
-            border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-            overflow: hidden;
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        z-index: 1050;
+        display: none;
+        background: var(--metro-dropdown-bg);
+        border: 1px solid var(--metro-dropdown-border);
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+        overflow: hidden;
         }
         #tempoDropdownPanel.show {
-            display: flex;
+        display: flex;
         }
         .tempo-panel-terms {
-            overflow-y: auto;
-            max-height: 300px;
-            border-right: 1px solid var(--metro-dropdown-border);
+        overflow-y: auto;
+        max-height: 300px;
+        border-right: 1px solid var(--metro-dropdown-border);
         }
         .tempo-panel-bpms {
-            overflow-y: auto;
-            max-height: 300px;
-            min-width: 64px;
+        overflow-y: auto;
+        max-height: 300px;
+        min-width: 64px;
         }
         .tempo-term-item {
-            display: grid;
-            grid-template-columns: 60px 1fr;
-            padding: 5px 10px;
-            cursor: pointer;
-            user-select: none;
-            white-space: nowrap;
-            font-size: 0.85rem;
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        padding: 5px 10px;
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+        font-size: 0.85rem;
         }
         .tempo-term-item:hover {
-            background: var(--metro-item-hover);
+        background: var(--metro-item-hover);
         }
         .tempo-term-item.selected {
-            background: #0d6efd;
-            color: #fff;
+        background: #0d6efd;
+        color: #fff;
         }
         .t-range {
-            text-align: right;
-            padding-right: 10px;
-            font-variant-numeric: tabular-nums;
-            color: inherit;
+        text-align: right;
+        padding-right: 10px;
+        font-variant-numeric: tabular-nums;
+        color: inherit;
         }
         .t-name {
-            font-weight: 600;
+        font-weight: 600;
         }
         .tempo-bpm-item {
-            padding: 3px 14px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            user-select: none;
-            text-align: right;
+        padding: 3px 14px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        user-select: none;
+        text-align: right;
         }
         .tempo-bpm-item:hover {
-            background: var(--metro-item-hover);
+        background: var(--metro-item-hover);
         }
         .tempo-bpm-item.active {
-            background: #0d6efd;
-            color: #fff;
-            font-weight: bold;
+        background: #0d6efd;
+        color: #fff;
+        font-weight: bold;
         }
 
         .track-clicktype{
-            font-family: 'Noto Music', serif;
+        font-family: 'Noto Music', serif;
         }
         .track-clicktype-option{
-            font-family: 'Noto Music', serif;
+        font-family: 'Noto Music', serif;
         }
         /*  */
         .music-sym {
-            font-family: 'Noto Music', serif;
-            font-size: 1.15em;
-            line-height: 1;
-            display: inline-block;
-            vertical-align: middle;
+        font-family: 'Noto Music', serif;
+        font-size: 1.15em;
+        line-height: 1;
+        display: inline-block;
+        vertical-align: middle;
         }
         /*  */
         .subdiv-label {
-            display: flex;
-            align-items: baseline;
-            gap: 3px;
-            white-space: nowrap;
-            overflow: hidden;
+        display: flex;
+        align-items: baseline;
+        gap: 3px;
+        white-space: nowrap;
+        overflow: hidden;
         }
         .subdiv-label .music-sym {
-            flex-shrink: 0;
+        flex-shrink: 0;
         }
 
         /*  */
         input[type="range"].vol-range {
-            -webkit-appearance: none;
-            appearance: none;
-            height: 6px;
-            border-radius: 3px;
-            background: #0d6efd;
-            outline: none;
-            transition: background 0.15s ease;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 6px;
+        border-radius: 3px;
+        background: #0d6efd;
+        outline: none;
+        transition: background 0.15s ease;
         }
         input[type="range"].vol-range.is-muted {
-            background: #fd7e14;
+        background: #fd7e14;
         }
         input[type="range"].vol-range::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #0d6efd;
-            cursor: pointer;
-            transition: background 0.15s ease;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #0d6efd;
+        cursor: pointer;
+        transition: background 0.15s ease;
         }
         input[type="range"].vol-range.is-muted::-webkit-slider-thumb {
-            background: #fd7e14;
+        background: #fd7e14;
         }
         input[type="range"].vol-range::-moz-range-thumb {
-            width: 16px;
-            height: 16px;
-            border: none;
-            border-radius: 50%;
-            background: #0d6efd;
-            cursor: pointer;
-            transition: background 0.15s ease;
+        width: 16px;
+        height: 16px;
+        border: none;
+        border-radius: 50%;
+        background: #0d6efd;
+        cursor: pointer;
+        transition: background 0.15s ease;
         }
         input[type="range"].vol-range.is-muted::-moz-range-thumb {
-            background: #fd7e14;
+        background: #fd7e14;
         }
         input[type="range"].vol-range::-moz-range-track {
-            height: 6px;
-            border-radius: 3px;
-            background: #0d6efd;
+        height: 6px;
+        border-radius: 3px;
+        background: #0d6efd;
         }
         input[type="range"].vol-range.is-muted::-moz-range-track {
-            background: #fd7e14;
+        background: #fd7e14;
         }
 
         /*  */
         .viz-row-wrap {
-            position: relative;
-            border-radius: 6px;
-            padding-bottom: 22px;
-            transition: box-shadow 0.4s ease-out, background-color 0.4s ease-out;
+        position: relative;
+        border-radius: 6px;
+        padding-bottom: 22px;
+        transition: box-shadow 0.4s ease-out, background-color 0.4s ease-out;
         }
         .pendulum-bar {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            border-radius: 2px;
-            transform: translateX(-50%);
-            transition: left 0s linear;
-            pointer-events: none;
-            z-index: 2;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        border-radius: 2px;
+        transform: translateX(-50%);
+        transition: left 0s linear;
+        pointer-events: none;
+        z-index: 2;
         }
 
         /*  */
         .vol-num-sm {
-            width: 100% !important;
-            font-size: 0.8rem;
-            padding: 2px 4px;
-            text-align: center;
+        width: 100% !important;
+        font-size: 0.8rem;
+        padding: 2px 4px;
+        text-align: center;
         }
 
         /* ==========================================
-           ダークモード上書き（ビジュアライザー除く）
+        ダークモード上書き（ビジュアライザー除く）
         ========================================== */
         /* card-header の bg-white をダークに */
         [data-theme="dark"] .card-header.bg-white {
-            background-color: var(--metro-panel-bg) !important;
-            color: #dce6f5 !important;
-            border-bottom-color: var(--metro-border) !important;
+        background-color: var(--metro-panel-bg) !important;
+        color: #dce6f5 !important;
+        border-bottom-color: var(--metro-border) !important;
         }
         /* subdivision / track テンプレート内の bg-white パネル */
         [data-theme="dark"] .p-2.border.rounded.bg-white,
         [data-theme="dark"] .p-2.rounded.bg-white {
-            background-color: var(--metro-panel-bg) !important;
-            border-color: var(--metro-border) !important;
-            color: #dce6f5 !important;
+        background-color: var(--metro-panel-bg) !important;
+        border-color: var(--metro-border) !important;
+        color: #dce6f5 !important;
         }
         /* track テンプレートの分子/分母 select（inline style の background:#fff を上書き） */
         [data-theme="dark"] .track-beats,
         [data-theme="dark"] .track-griddiv {
-            background: var(--metro-panel-bg) !important;
-            color: #dce6f5 !important;
-            border-color: var(--metro-border) !important;
+        background: var(--metro-panel-bg) !important;
+        color: #dce6f5 !important;
+        border-color: var(--metro-border) !important;
         }
         /* 拍子の分子/分母区切り線 */
         .timesig-divider {
-            height: 2px;
-            background: var(--metro-timesig-line);
+        height: 2px;
+        background: var(--metro-timesig-line);
         }
-        </style>
+    </style>
 </head>
 <body data-theme="light" data-bs-theme="light">
 <script>
@@ -701,7 +706,9 @@
                                     </li>
 
                 
-                <li class="nav-item d-lg-none"><hr class="dropdown-divider opacity-25 my-1"></li>
+                <li class="nav-item d-lg-none">
+                    <hr class="dropdown-divider opacity-25 my-1">
+                </li>
                 <li class="nav-item d-lg-none">
                     <button type="button"
                             class="nav-link theme-toggle-btn btn border-0 bg-transparent d-flex align-items-center gap-2 w-100 text-start">
@@ -748,11 +755,14 @@
                                 <div class="tempo-panel-terms" id="tempoTermList"></div>
                                 <div class="tempo-panel-bpms" id="tempoBpmList"></div>
                             </div>
-                            <label for="bpmRange" class="form-label fw-bold mb-0">BPM : &#9833; <span id="bpmVal">120</span></label>
+                            <label for="bpmRange" class="form-label fw-bold mb-0">BPM : &#9833; <span
+                                    id="bpmVal">120</span></label>
                         </div>
                         <div class="d-flex align-items-center gap-2">
                             <input type="range" class="form-range" id="bpmRange" min="10" max="400" value="120">
-                            <input type="text" inputmode="numeric" class="form-control" id="bpmNum" data-min="10" data-max="400" data-default="120" value="120" style="width: 80px;" onblur="sanitizeNumericInput(this)">
+                            <input type="text" inputmode="numeric" class="form-control" id="bpmNum" data-min="10"
+                                   data-max="400" data-default="120" value="120" style="width: 80px;"
+                                   onblur="sanitizeNumericInput(this)">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -760,8 +770,11 @@
                             <label for="masterVolRange" class="form-label fw-bold mb-0">マスターボリューム (dB)</label>
                         </div>
                         <div class="d-flex align-items-center gap-2">
-                            <input type="range" class="form-range vol-range" id="masterVolRange" min="-40" max="15" value="0" data-muted="false">
-                            <input type="text" inputmode="numeric" class="form-control" id="masterVolNum" data-min="-40" data-max="15" data-default="0" value="0" style="width: 70px;" onblur="sanitizeNumericInput(this)">
+                            <input type="range" class="form-range vol-range" id="masterVolRange" min="-40" max="15"
+                                   value="0" data-muted="false">
+                            <input type="text" inputmode="numeric" class="form-control" id="masterVolNum" data-min="-40"
+                                   data-max="15" data-default="0" value="0" style="width: 70px;"
+                                   onblur="sanitizeNumericInput(this)">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -810,7 +823,8 @@
                                 <option value="-10">最大 -10 BPM</option>
                                 <option value="-15">最大 -15 BPM</option>
                             </select>
-                            <span class="input-group-text text-muted" style="font-size: 0.75rem;">※1以上変化します</span>
+                            <span class="input-group-text text-muted"
+                                  style="font-size: 0.75rem;">※1以上変化します</span>
                         </div>
                     </div>
                 </div>
@@ -826,14 +840,18 @@
                         <label class="form-check-label fw-bold" for="modeSync">
                             小節同期モード（ポリリズム）
                         </label>
-                        <div class="small text-muted">1小節の長さを全トラックで統一し、その中で分子の数だけ等分します。</div>
+                        <div class="small text-muted">1小節の長さを全トラックで統一し、その中で分子の数だけ等分します。
+                        </div>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="rhythmMode" id="modeIndependent" value="independent" checked>
+                        <input class="form-check-input" type="radio" name="rhythmMode" id="modeIndependent"
+                               value="independent" checked>
                         <label class="form-check-label fw-bold" for="modeIndependent">
                             独立テンポモード（ポリメーター）
                         </label>
-                        <div class="small text-muted">分母（4分、8分など）を基準速度とし、分子の数だけ叩いて綺麗にループします。</div>
+                        <div class="small text-muted">
+                            分母（4分、8分など）を基準速度とし、分子の数だけ叩いて綺麗にループします。
+                        </div>
                     </div>
                 </div>
             </div>
@@ -846,15 +864,30 @@
                         <div class="p-2 border rounded bg-white">
                             <label id="label-4n" class="small fw-bold d-block mb-1 subdiv-label"></label>
                             <div class="d-flex align-items-center gap-1 mb-1">
-                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-4n" min="-40" max="15" value="-40" data-muted="true">
-                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-4n-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1"
+                                       id="vol-4n" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm"
+                                       id="vol-4n-num" data-min="-40" data-max="15" data-default="-40" value="-40"
+                                       style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;"
+                                       onblur="sanitizeNumericInput(this)">
                             </div>
                             <div class="d-flex gap-1">
                                 <select class="form-select form-select-sm" id="pitch-4n" title="4分音符の音程">
-                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                    <option value="C6">C6</option>
+                                    <option value="A5">A5</option>
+                                    <option value="G5">G5</option>
+                                    <option value="E5">E5</option>
+                                    <option value="C5">C5</option>
+                                    <option value="G4">G4</option>
+                                    <option value="E4">E4</option>
+                                    <option value="C4">C4</option>
+                                    <option value="A3" selected>A3</option>
+                                    <option value="C3">C3</option>
                                 </select>
                                 <select class="form-select form-select-sm" id="type-4n" title="4分音符の音色">
-                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                    <option value="sine" selected>サイン</option>
+                                    <option value="triangle">三角</option>
+                                    <option value="square">矩形</option>
                                 </select>
                             </div>
                         </div>
@@ -863,15 +896,30 @@
                         <div class="p-2 border rounded bg-white">
                             <label id="label-8n" class="small fw-bold d-block mb-1 subdiv-label"></label>
                             <div class="d-flex align-items-center gap-1 mb-1">
-                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-8n" min="-40" max="15" value="-40" data-muted="true">
-                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-8n-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1"
+                                       id="vol-8n" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm"
+                                       id="vol-8n-num" data-min="-40" data-max="15" data-default="-40" value="-40"
+                                       style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;"
+                                       onblur="sanitizeNumericInput(this)">
                             </div>
                             <div class="d-flex gap-1">
                                 <select class="form-select form-select-sm" id="pitch-8n" title="8分音符の音程">
-                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                    <option value="C6">C6</option>
+                                    <option value="A5">A5</option>
+                                    <option value="G5">G5</option>
+                                    <option value="E5">E5</option>
+                                    <option value="C5">C5</option>
+                                    <option value="G4">G4</option>
+                                    <option value="E4">E4</option>
+                                    <option value="C4">C4</option>
+                                    <option value="A3" selected>A3</option>
+                                    <option value="C3">C3</option>
                                 </select>
                                 <select class="form-select form-select-sm" id="type-8n" title="8分音符の音色">
-                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                    <option value="sine" selected>サイン</option>
+                                    <option value="triangle">三角</option>
+                                    <option value="square">矩形</option>
                                 </select>
                             </div>
                         </div>
@@ -880,15 +928,30 @@
                         <div class="p-2 border rounded bg-white">
                             <label id="label-16n" class="small fw-bold d-block mb-1 subdiv-label"></label>
                             <div class="d-flex align-items-center gap-1 mb-1">
-                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-16n" min="-40" max="15" value="-40" data-muted="true">
-                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-16n-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1"
+                                       id="vol-16n" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm"
+                                       id="vol-16n-num" data-min="-40" data-max="15" data-default="-40" value="-40"
+                                       style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;"
+                                       onblur="sanitizeNumericInput(this)">
                             </div>
                             <div class="d-flex gap-1">
                                 <select class="form-select form-select-sm" id="pitch-16n" title="16分音符の音程">
-                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                    <option value="C6">C6</option>
+                                    <option value="A5">A5</option>
+                                    <option value="G5">G5</option>
+                                    <option value="E5">E5</option>
+                                    <option value="C5">C5</option>
+                                    <option value="G4">G4</option>
+                                    <option value="E4">E4</option>
+                                    <option value="C4">C4</option>
+                                    <option value="A3" selected>A3</option>
+                                    <option value="C3">C3</option>
                                 </select>
                                 <select class="form-select form-select-sm" id="type-16n" title="16分音符の音色">
-                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                    <option value="sine" selected>サイン</option>
+                                    <option value="triangle">三角</option>
+                                    <option value="square">矩形</option>
                                 </select>
                             </div>
                         </div>
@@ -897,15 +960,30 @@
                         <div class="p-2 border rounded bg-white">
                             <label id="label-3t" class="small fw-bold d-block mb-1 subdiv-label"></label>
                             <div class="d-flex align-items-center gap-1 mb-1">
-                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-3t" min="-40" max="15" value="-40" data-muted="true">
-                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-3t-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1"
+                                       id="vol-3t" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm"
+                                       id="vol-3t-num" data-min="-40" data-max="15" data-default="-40" value="-40"
+                                       style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;"
+                                       onblur="sanitizeNumericInput(this)">
                             </div>
                             <div class="d-flex gap-1">
                                 <select class="form-select form-select-sm" id="pitch-3t" title="3連符の音程">
-                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                    <option value="C6">C6</option>
+                                    <option value="A5">A5</option>
+                                    <option value="G5">G5</option>
+                                    <option value="E5">E5</option>
+                                    <option value="C5">C5</option>
+                                    <option value="G4">G4</option>
+                                    <option value="E4">E4</option>
+                                    <option value="C4">C4</option>
+                                    <option value="A3" selected>A3</option>
+                                    <option value="C3">C3</option>
                                 </select>
                                 <select class="form-select form-select-sm" id="type-3t" title="3連符の音色">
-                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                    <option value="sine" selected>サイン</option>
+                                    <option value="triangle">三角</option>
+                                    <option value="square">矩形</option>
                                 </select>
                             </div>
                         </div>
@@ -914,15 +992,30 @@
                         <div class="p-2 border rounded bg-white">
                             <label id="label-shuffle" class="small fw-bold d-block mb-1 subdiv-label"></label>
                             <div class="d-flex align-items-center gap-1 mb-1">
-                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-shuffle" min="-40" max="15" value="-40" data-muted="true">
-                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-shuffle-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1"
+                                       id="vol-shuffle" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm"
+                                       id="vol-shuffle-num" data-min="-40" data-max="15" data-default="-40" value="-40"
+                                       style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;"
+                                       onblur="sanitizeNumericInput(this)">
                             </div>
                             <div class="d-flex gap-1">
                                 <select class="form-select form-select-sm" id="pitch-shuffle" title="シャッフルの音程">
-                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                    <option value="C6">C6</option>
+                                    <option value="A5">A5</option>
+                                    <option value="G5">G5</option>
+                                    <option value="E5">E5</option>
+                                    <option value="C5">C5</option>
+                                    <option value="G4">G4</option>
+                                    <option value="E4">E4</option>
+                                    <option value="C4">C4</option>
+                                    <option value="A3" selected>A3</option>
+                                    <option value="C3">C3</option>
                                 </select>
                                 <select class="form-select form-select-sm" id="type-shuffle" title="シャッフルの音色">
-                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                    <option value="sine" selected>サイン</option>
+                                    <option value="triangle">三角</option>
+                                    <option value="square">矩形</option>
                                 </select>
                             </div>
                         </div>
@@ -931,15 +1024,30 @@
                         <div class="p-2 border rounded bg-white">
                             <label id="label-skip" class="small fw-bold d-block mb-1 subdiv-label"></label>
                             <div class="d-flex align-items-center gap-1 mb-1">
-                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1" id="vol-skip" min="-40" max="15" value="-40" data-muted="true">
-                                <input type="text" inputmode="numeric" class="form-control form-control-sm" id="vol-skip-num" data-min="-40" data-max="15" data-default="-40" value="-40" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                                <input type="range" class="form-range animate-fader vol-range is-muted flex-grow-1"
+                                       id="vol-skip" min="-40" max="15" value="-40" data-muted="true">
+                                <input type="text" inputmode="numeric" class="form-control form-control-sm"
+                                       id="vol-skip-num" data-min="-40" data-max="15" data-default="-40" value="-40"
+                                       style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;"
+                                       onblur="sanitizeNumericInput(this)">
                             </div>
                             <div class="d-flex gap-1">
                                 <select class="form-select form-select-sm" id="pitch-skip" title="スキップの音程">
-                                    <option value="C6">C6</option><option value="A5">A5</option><option value="G5">G5</option><option value="E5">E5</option><option value="C5">C5</option><option value="G4">G4</option><option value="E4">E4</option><option value="C4">C4</option><option value="A3" selected>A3</option><option value="C3">C3</option>
+                                    <option value="C6">C6</option>
+                                    <option value="A5">A5</option>
+                                    <option value="G5">G5</option>
+                                    <option value="E5">E5</option>
+                                    <option value="C5">C5</option>
+                                    <option value="G4">G4</option>
+                                    <option value="E4">E4</option>
+                                    <option value="C4">C4</option>
+                                    <option value="A3" selected>A3</option>
+                                    <option value="C3">C3</option>
                                 </select>
                                 <select class="form-select form-select-sm" id="type-skip" title="スキップの音色">
-                                    <option value="sine" selected>サイン</option><option value="triangle">三角</option><option value="square">矩形</option>
+                                    <option value="sine" selected>サイン</option>
+                                    <option value="triangle">三角</option>
+                                    <option value="square">矩形</option>
                                 </select>
                             </div>
                         </div>
@@ -966,24 +1074,30 @@
         </div>
 
         <div class="card shadow-sm mb-4">
-            <div class="card-header bg-dark text-white fw-bold">1. 基本操作（START/STOP・BPM・マスターボリューム・TAP TEMPO）</div>
+            <div class="card-header bg-dark text-white fw-bold">1. 基本操作（START/STOP・BPM・マスターボリューム・TAP
+                TEMPO）
+            </div>
             <div class="card-body">
                 <div class="row g-3">
                     <div class="col-md-3">
                         <h5 class="fw-bold text-success">START / STOP</h5>
-                        <p>左上の大きなボタンで再生・停止を切り替えます。初回起動時はブラウザのオーディオ制限解除のため一瞬だけ処理が入りますが、以降は即座に反応します。停止すると全ビジュアライザーがリセットされます。</p>
+                        <p>
+                            左上の大きなボタンで再生・停止を切り替えます。初回起動時はブラウザのオーディオ制限解除のため一瞬だけ処理が入りますが、以降は即座に反応します。停止すると全ビジュアライザーがリセットされます。</p>
                     </div>
                     <div class="col-md-3">
                         <h5 class="fw-bold">BPM（テンポ）</h5>
-                        <p><strong>10〜400 BPM</strong> の範囲で設定できます。スライダーで大まかに動かし、右の数値ボックスで1BPM単位の微調整が可能です。BPM左横に表示される<strong>速度標語テキスト（例：Allegro）</strong>をクリックすると速度標語から指定できるポップオーバーが開きます。</p>
+                        <p><strong>10〜400 BPM</strong> の範囲で設定できます。スライダーで大まかに動かし、右の数値ボックスで1BPM単位の微調整が可能です。BPM左横に表示される<strong>速度標語テキスト（例：Allegro）</strong>をクリックすると速度標語から指定できるポップオーバーが開きます。
+                        </p>
                     </div>
                     <div class="col-md-3">
                         <h5 class="fw-bold text-primary">マスターボリューム</h5>
-                        <p>全体の音量を一括管理します（-40dB〜+6dB）。スライダーを一番左（-40dB）にするとマスターミュートになります。各トラック音量やサブディビジョン音量のバランスを保ったまま全体を絞るときに使います。</p>
+                        <p>
+                            全体の音量を一括管理します（-40dB〜+6dB）。スライダーを一番左（-40dB）にするとマスターミュートになります。各トラック音量やサブディビジョン音量のバランスを保ったまま全体を絞るときに使います。</p>
                     </div>
                     <div class="col-md-3">
                         <h5 class="fw-bold text-secondary">TAP TEMPO</h5>
-                        <p>曲のリズムに合わせて「TAP TEMPO」ボタンを2〜4回叩くと、その間隔から自動的にBPMを算出して反映します。ボタンが黄色にフラッシュして視覚的にも確認できます。</p>
+                        <p>曲のリズムに合わせて「TAP
+                            TEMPO」ボタンを2〜4回叩くと、その間隔から自動的にBPMを算出して反映します。ボタンが黄色にフラッシュして視覚的にも確認できます。</p>
                     </div>
                 </div>
             </div>
@@ -992,17 +1106,21 @@
         <div class="card shadow-sm mb-4 border-primary">
             <div class="card-header bg-primary text-white fw-bold">2. リズム同期モード（ポリリズム vs ポリメーター）</div>
             <div class="card-body">
-                <p>複数トラックを同時に鳴らす際の時間軸の同期方式を選択します。どちらのモードでも、上部のBPMが「4分音符の基準速度」となります。</p>
+                <p>
+                    複数トラックを同時に鳴らす際の時間軸の同期方式を選択します。どちらのモードでも、上部のBPMが「4分音符の基準速度」となります。</p>
                 <div class="row g-3">
                     <div class="col-md-6 border-end">
                         <h5 class="fw-bold text-primary">小節同期モード（ポリリズム）</h5>
                         <p class="small text-muted mb-1">1小節の絶対的な長さを全トラックで揃えます。</p>
-                        <p>「4拍」と「3拍」のトラックを同時に鳴らすと、小節の先頭（1拍目）が常に一致するクロスリズムになります。各拍の間隔はトラックによって異なるため、3対4のポリリズムを手軽に体験できます。</p>
+                        <p>
+                            「4拍」と「3拍」のトラックを同時に鳴らすと、小節の先頭（1拍目）が常に一致するクロスリズムになります。各拍の間隔はトラックによって異なるため、3対4のポリリズムを手軽に体験できます。</p>
                     </div>
                     <div class="col-md-6">
                         <h5 class="fw-bold text-secondary">独立テンポモード（ポリメーター）</h5>
-                        <p class="small text-muted mb-1">分母（音符の長さ）を固定し、各トラックが独自の拍数でループします。</p>
-                        <p>「4拍」と「3拍」を分母4（4分音符基準）で鳴らすと、1拍の速さは同じですが小節の頭が周期的にずれていきます。特定の拍数が経過した後に再び揃う変拍子フレーズの練習に最適です。</p>
+                        <p class="small text-muted mb-1">
+                            分母（音符の長さ）を固定し、各トラックが独自の拍数でループします。</p>
+                        <p>
+                            「4拍」と「3拍」を分母4（4分音符基準）で鳴らすと、1拍の速さは同じですが小節の頭が周期的にずれていきます。特定の拍数が経過した後に再び揃う変拍子フレーズの練習に最適です。</p>
                     </div>
                 </div>
             </div>
@@ -1014,7 +1132,8 @@
                 <span class="badge bg-primary">コア機能</span>
             </div>
             <div class="card-body">
-                <p>「+ トラック追加」ボタンで最大4つのリズムトラックを重ねられます。各トラックは独立して以下を設定できます。</p>
+                <p>「+
+                    トラック追加」ボタンで最大4つのリズムトラックを重ねられます。各トラックは独立して以下を設定できます。</p>
 
                 <table class="table table-bordered align-middle">
                     <thead class="table-light">
@@ -1052,7 +1171,9 @@
                     </tr>
                     <tr>
                         <th class="text-nowrap">裏拍（スイッチ）</th>
-                        <td>ONにすると各拍のちょうど半分のタイミングで裏拍音を挿入します。シンコペーションの練習に。音程は「音程」欄の右セレクトボックスで設定します。</td>
+                        <td>
+                            ONにすると各拍のちょうど半分のタイミングで裏拍音を挿入します。シンコペーションの練習に。音程は「音程」欄の右セレクトボックスで設定します。
+                        </td>
                     </tr>
                     <tr>
                         <th class="text-nowrap">リズムトレーナー</th>
@@ -1069,21 +1190,49 @@
         <div class="card shadow-sm mb-4 border-secondary">
             <div class="card-header bg-secondary text-white fw-bold">4. サブディビジョン・ボリューム</div>
             <div class="card-body">
-                <p>基準テンポに対して様々な細分化グリッドのガイド音を個別に重ねられるミキサーです。各スライダーを左端（-40dB）にするとミュート、右に動かすほど大きくなります（最大+15dB）。数値ボックスへの直接入力も可能です。<strong>初期状態は全てミュート</strong>になっているので、練習に必要なものだけを選んで有効にしてください。</p>
+                <p>
+                    基準テンポに対して様々な細分化グリッドのガイド音を個別に重ねられるミキサーです。各スライダーを左端（-40dB）にするとミュート、右に動かすほど大きくなります（最大+15dB）。数値ボックスへの直接入力も可能です。<strong>初期状態は全てミュート</strong>になっているので、練習に必要なものだけを選んで有効にしてください。
+                </p>
                 <table class="table table-bordered align-middle">
                     <thead class="table-light">
-                    <tr><th style="width:15%;">種類</th><th>リズムパターン</th></tr>
+                    <tr>
+                        <th style="width:15%;">種類</th>
+                        <th>リズムパターン</th>
+                    </tr>
                     </thead>
                     <tbody>
-                    <tr><th id="desc-label-4n"></th><td>1拍に1回鳴る基本グリッド。テンポの骨格を確認したいときに。</td></tr>
-                    <tr><th id="desc-label-8n"></th><td>1拍に2回。8分音符ラインを体感しながら練習できます。</td></tr>
-                    <tr><th id="desc-label-16n"></th><td>1拍に4回。細かいグリッドのキープ力を鍛えます。</td></tr>
-                    <tr><th id="desc-label-3t"></th><td>1拍を3等分。スウィングやトリプレットフィールの基礎に。</td></tr>
-                    <tr><th id="desc-label-shuffle"></th><td>3連符の真ん中を休符にした跳ねるリズム（ダウン・休・アップの繰り返し）。ブルースやジャズのシャッフルビート練習に最適。</td></tr>
-                    <tr><th id="desc-label-skip"></th><td>16分音符の内側2つを休符にしたリズム（ダウン・休・休・アップ）。付点8分＋16分の連続に近いグリッドで、軽快なスキップ感覚を体感できます。</td></tr>
+                    <tr>
+                        <th id="desc-label-4n"></th>
+                        <td>1拍に1回鳴る基本グリッド。テンポの骨格を確認したいときに。</td>
+                    </tr>
+                    <tr>
+                        <th id="desc-label-8n"></th>
+                        <td>1拍に2回。8分音符ラインを体感しながら練習できます。</td>
+                    </tr>
+                    <tr>
+                        <th id="desc-label-16n"></th>
+                        <td>1拍に4回。細かいグリッドのキープ力を鍛えます。</td>
+                    </tr>
+                    <tr>
+                        <th id="desc-label-3t"></th>
+                        <td>1拍を3等分。スウィングやトリプレットフィールの基礎に。</td>
+                    </tr>
+                    <tr>
+                        <th id="desc-label-shuffle"></th>
+                        <td>
+                            3連符の真ん中を休符にした跳ねるリズム（ダウン・休・アップの繰り返し）。ブルースやジャズのシャッフルビート練習に最適。
+                        </td>
+                    </tr>
+                    <tr>
+                        <th id="desc-label-skip"></th>
+                        <td>
+                            16分音符の内側2つを休符にしたリズム（ダウン・休・休・アップ）。付点8分＋16分の連続に近いグリッドで、軽快なスキップ感覚を体感できます。
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
-                <p class="small text-muted mb-0">各種類の音程・音色はスライダー下のセレクトボックスで変更できます。また、リズムトラック側の「クリック」セレクトボックスでいずれかを選ぶと、そのトラックの音量に連動したクリック音としてもご利用いただけます。</p>
+                <p class="small text-muted mb-0">
+                    各種類の音程・音色はスライダー下のセレクトボックスで変更できます。また、リズムトラック側の「クリック」セレクトボックスでいずれかを選ぶと、そのトラックの音量に連動したクリック音としてもご利用いただけます。</p>
             </div>
         </div>
 
@@ -1092,9 +1241,12 @@
             <div class="card-body">
                 <p>練習中に自動でテンポを変化させ、テンポキープ力・対応力を鍛えるモードです。</p>
                 <ul class="mb-0">
-                    <li><strong>ランダム変化モード ON/OFF：</strong>スイッチで有効化。再生中でも即座に切り替えられます。</li>
-                    <li><strong>変化の間隔：</strong>何小節ごとにテンポを変えるかを選択（1・2・4・8小節）。トラック1の1拍目がトリガーとなります。</li>
-                    <li><strong>最大変化幅：</strong>1回の変化量の上限を設定。プラス方向（徐々に速くなる）またはマイナス方向（徐々に遅くなる）を選べます。変化量は1〜上限値の間でランダムです。</li>
+                    <li><strong>ランダム変化モード ON/OFF：</strong>スイッチで有効化。再生中でも即座に切り替えられます。
+                    </li>
+                    <li><strong>変化の間隔：</strong>何小節ごとにテンポを変えるかを選択（1・2・4・8小節）。トラック1の1拍目がトリガーとなります。
+                    </li>
+                    <li><strong>最大変化幅：</strong>1回の変化量の上限を設定。プラス方向（徐々に速くなる）またはマイナス方向（徐々に遅くなる）を選べます。変化量は1〜上限値の間でランダムです。
+                    </li>
                 </ul>
             </div>
         </div>
@@ -1103,11 +1255,17 @@
             <div class="card-header bg-dark text-white fw-bold">6. ビジュアライザーとオートセーブ</div>
             <div class="card-body">
                 <h5 class="fw-bold">ビジュアライザー</h5>
-                <p>各トラックの現在の拍位置がリアルタイムで色付き点灯します。<span class="badge" style="background:#00ffff;color:#000;">シアン</span>が表（ダウン拍）、<span class="badge" style="background:#ff00ff;color:#fff;">マゼンタ</span>が裏拍です。拍数が多い場合は複数行に自動折り返しされます。</p>
+                <p>各トラックの現在の拍位置がリアルタイムで色付き点灯します。<span class="badge"
+                                                                                  style="background:#00ffff;color:#000;">シアン</span>が表（ダウン拍）、<span
+                        class="badge" style="background:#ff00ff;color:#fff;">マゼンタ</span>が裏拍です。拍数が多い場合は複数行に自動折り返しされます。
+                </p>
                 <h5 class="fw-bold">振り子バー</h5>
-                <p>各トラックのビジュアライザー全体に表拍のたびに左右に振れる縦バーを表示します。トラック設定の「振り子」セレクトで色を選択（なし・白・シアン・マゼンタ・イエロー・オレンジ・ティール・ブルー）。再生開始時に左端からスタートし、以降テンポに合わせて等速で往復します。</p>
+                <p>
+                    各トラックのビジュアライザー全体に表拍のたびに左右に振れる縦バーを表示します。トラック設定の「振り子」セレクトで色を選択（なし・白・シアン・マゼンタ・イエロー・オレンジ・ティール・ブルー）。再生開始時に左端からスタートし、以降テンポに合わせて等速で往復します。</p>
                 <h5 class="fw-bold">自動保存</h5>
-                <p class="text-muted mb-0">トラック設定・同期モード・サブディビジョン設定（音程・音色・音量）・マスターボリューム・ランダムテンポ設定は変更のたびにブラウザの <code>localStorage</code> へ自動保存されます。次回同じブラウザで開いたとき、前回の状態から再開できます。</p>
+                <p class="text-muted mb-0">トラック設定・同期モード・サブディビジョン設定（音程・音色・音量）・マスターボリューム・ランダムテンポ設定は変更のたびにブラウザの
+                    <code>localStorage</code> へ自動保存されます。次回同じブラウザで開いたとき、前回の状態から再開できます。
+                </p>
             </div>
         </div>
     </div>
@@ -1116,7 +1274,13 @@
     <template id="tmpl-track-row">
         <div class="track-row-header">
             <span class="fw-bold track-label">トラック [[trackIndex]]</span>
-            <button class="remove-track-btn" data-id="[[trackId]]" title="削除" style="background:#dc3545;border:none;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="1" x2="11" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="1" x2="1" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></button>
+            <button class="remove-track-btn" data-id="[[trackId]]" title="削除"
+                    style="background:#dc3545;border:none;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;flex-shrink:0;">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="1" y1="1" x2="11" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="11" y1="1" x2="1" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
         </div>
         <div class="track-row-body">
             <div class="row align-items-stretch g-2">
@@ -1125,13 +1289,16 @@
                         <div class="small fw-bold mb-2">拍子</div>
                         <div style="display:flex;align-items:center;justify-content:center;">
                             <div style="display:flex;flex-direction:column;align-items:stretch;width:72px;">
-                                <select class="track-beats" data-id="[[trackId]]" style="text-align:center;text-align-last:center;color:#212529;font-size:1.2rem;font-weight:600;border:1px solid #adb5bd;border-bottom:none;border-radius:6px 6px 0 0;padding:4px 2px;background:#fff;cursor:pointer;appearance:none;-webkit-appearance:none;">[[beatsOptions]]</select>
+                                <select class="track-beats" data-id="[[trackId]]"
+                                        style="text-align:center;text-align-last:center;color:#212529;font-size:1.2rem;font-weight:600;border:1px solid #adb5bd;border-bottom:none;border-radius:6px 6px 0 0;padding:4px 2px;background:#fff;cursor:pointer;appearance:none;-webkit-appearance:none;">[[beatsOptions]]</select>
                                 <div class="timesig-divider"></div>
-                                <select class="track-griddiv" data-id="[[trackId]]" style="text-align:center;text-align-last:center;color:#212529;font-size:1.2rem;font-weight:600;border:1px solid #adb5bd;border-top:none;border-radius:0 0 6px 6px;padding:4px 2px;background:#fff;cursor:pointer;appearance:none;-webkit-appearance:none;">[[gridDivOptions]]</select>
+                                <select class="track-griddiv" data-id="[[trackId]]"
+                                        style="text-align:center;text-align-last:center;color:#212529;font-size:1.2rem;font-weight:600;border:1px solid #adb5bd;border-top:none;border-radius:0 0 6px 6px;padding:4px 2px;background:#fff;cursor:pointer;appearance:none;-webkit-appearance:none;">[[gridDivOptions]]</select>
                             </div>
                         </div>
                         <div class="form-floating mt-2">
-                            <select class="form-select track-pendulum-color" id="pendulum-color-[[trackId]]" data-id="[[trackId]]" title="振り子バーの色">
+                            <select class="form-select track-pendulum-color" id="pendulum-color-[[trackId]]"
+                                    data-id="[[trackId]]" title="振り子バーの色">
                                 <option value="none" [[pendulumNoneSelected]]>なし</option>
                                 <option value="#ffffff" [[pendulumWhiteSelected]]>白</option>
                                 <option value="#00ffff" [[pendulumCyanSelected]]>シアン</option>
@@ -1150,29 +1317,35 @@
                         <div class="small fw-bold mb-1">音程 / 音量補正 dB (1拍目 / 通常 / 裏)</div>
                         <div class="d-flex gap-1">
                             <div class="form-floating flex-fill">
-                                <select class="form-select track-pitch" id="pitch-down-[[trackId]]" data-id="[[trackId]]">[[pitchDownOptions]]</select>
+                                <select class="form-select track-pitch" id="pitch-down-[[trackId]]"
+                                        data-id="[[trackId]]">[[pitchDownOptions]]</select>
                                 <label for="pitch-down-[[trackId]]">1拍目 音程</label>
                             </div>
                             <div class="form-floating flex-fill">
-                                <select class="form-select track-normal-pitch" id="pitch-normal-[[trackId]]" data-id="[[trackId]]">[[pitchNormalOptions]]</select>
+                                <select class="form-select track-normal-pitch" id="pitch-normal-[[trackId]]"
+                                        data-id="[[trackId]]">[[pitchNormalOptions]]</select>
                                 <label for="pitch-normal-[[trackId]]">通常 音程</label>
                             </div>
                             <div class="form-floating flex-fill">
-                                <select class="form-select track-up-pitch" id="pitch-up-[[trackId]]" data-id="[[trackId]]">[[pitchUpOptions]]</select>
+                                <select class="form-select track-up-pitch" id="pitch-up-[[trackId]]"
+                                        data-id="[[trackId]]">[[pitchUpOptions]]</select>
                                 <label for="pitch-up-[[trackId]]">裏 音程</label>
                             </div>
                         </div>
                         <div class="d-flex gap-1 mt-1">
                             <div class="form-floating flex-fill">
-                                <select class="form-select track-down-vol-offset" id="vol-offset-down-[[trackId]]" data-id="[[trackId]]">[[volOffsetDownOptions]]</select>
+                                <select class="form-select track-down-vol-offset" id="vol-offset-down-[[trackId]]"
+                                        data-id="[[trackId]]">[[volOffsetDownOptions]]</select>
                                 <label for="vol-offset-down-[[trackId]]">1拍目 dB</label>
                             </div>
                             <div class="form-floating flex-fill">
-                                <select class="form-select track-normal-vol-offset" id="vol-offset-normal-[[trackId]]" data-id="[[trackId]]">[[volOffsetNormalOptions]]</select>
+                                <select class="form-select track-normal-vol-offset" id="vol-offset-normal-[[trackId]]"
+                                        data-id="[[trackId]]">[[volOffsetNormalOptions]]</select>
                                 <label for="vol-offset-normal-[[trackId]]">通常 dB</label>
                             </div>
                             <div class="form-floating flex-fill">
-                                <select class="form-select track-up-vol-offset" id="vol-offset-up-[[trackId]]" data-id="[[trackId]]">[[volOffsetUpOptions]]</select>
+                                <select class="form-select track-up-vol-offset" id="vol-offset-up-[[trackId]]"
+                                        data-id="[[trackId]]">[[volOffsetUpOptions]]</select>
                                 <label for="vol-offset-up-[[trackId]]">裏 dB</label>
                             </div>
                         </div>
@@ -1182,12 +1355,18 @@
                     <div class="p-2 border rounded bg-white h-100 d-flex flex-column justify-content-start">
                         <div class="small fw-bold mb-1">音量 / 音色 / クリック</div>
                         <div class="d-flex align-items-center gap-1 mb-2">
-                            <input type="range" class="form-range track-vol vol-range flex-grow-1" data-id="[[trackId]]" min="-40" max="15" value="[[downVol]]" data-muted="[[downVolMuted]]">
-                            <input type="text" inputmode="numeric" class="form-control form-control-sm track-vol-num" data-id="[[trackId]]" data-min="-40" data-max="15" data-default="[[downVol]]" value="[[downVol]]" style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;" onblur="sanitizeNumericInput(this)">
+                            <input type="range" class="form-range track-vol vol-range flex-grow-1" data-id="[[trackId]]"
+                                   min="-40" max="15" value="[[downVol]]" data-muted="[[downVolMuted]]">
+                            <input type="text" inputmode="numeric" class="form-control form-control-sm track-vol-num"
+                                   data-id="[[trackId]]" data-min="-40" data-max="15" data-default="[[downVol]]"
+                                   value="[[downVol]]"
+                                   style="width:62px;font-size:0.8rem;padding:2px 4px;text-align:center;"
+                                   onblur="sanitizeNumericInput(this)">
                         </div>
                         <div class="d-flex gap-1">
                             <div class="form-floating flex-fill">
-                                <select class="form-select track-soundtype" id="soundtype-[[trackId]]" data-id="[[trackId]]">
+                                <select class="form-select track-soundtype" id="soundtype-[[trackId]]"
+                                        data-id="[[trackId]]">
                                     <option value="sine" [[sineSelected]]>サイン</option>
                                     <option value="triangle" [[triangleSelected]]>三角</option>
                                     <option value="square" [[squareSelected]]>矩形</option>
@@ -1196,7 +1375,8 @@
                                 <label for="soundtype-[[trackId]]">音色</label>
                             </div>
                             <div class="form-floating flex-fill">
-                                <select class="form-select track-clicktype" id="clicktype-[[trackId]]" data-id="[[trackId]]" title="クリック音の種類">
+                                <select class="form-select track-clicktype" id="clicktype-[[trackId]]"
+                                        data-id="[[trackId]]" title="クリック音の種類">
                                     [[clickTypeOptions]]
                                 </select>
                                 <label for="clicktype-[[trackId]]">クリック</label>
@@ -1208,21 +1388,25 @@
                     <div class="p-2 border rounded bg-white h-100 d-flex flex-column gap-2">
                         <div class="d-flex gap-3 flex-wrap">
                             <div class="form-check form-switch p-0">
-                                <input class="form-check-input ms-0 track-upbeat-toggle" type="checkbox" data-id="[[trackId]]" [[upbeatChecked]]>
+                                <input class="form-check-input ms-0 track-upbeat-toggle" type="checkbox"
+                                       data-id="[[trackId]]" [[upbeatChecked]]>
                                 <label class="form-check-label small fw-bold ms-1">裏拍</label>
                             </div>
                             <div class="form-check form-switch p-0">
-                                <input class="form-check-input ms-0 track-mute-active-toggle" type="checkbox" data-id="[[trackId]]" [[muteActiveChecked]]>
+                                <input class="form-check-input ms-0 track-mute-active-toggle" type="checkbox"
+                                       data-id="[[trackId]]" [[muteActiveChecked]]>
                                 <label class="form-check-label small fw-bold ms-1">リズムトレーナー</label>
                             </div>
                         </div>
                         <div class="d-flex gap-2 flex-wrap">
                             <div class="form-floating flex-fill" style="min-width:120px;">
-                                <select class="form-select track-play-bars" id="play-bars-[[trackId]]" data-id="[[trackId]]" title="発音小節数">[[playBarsOptions]]</select>
+                                <select class="form-select track-play-bars" id="play-bars-[[trackId]]"
+                                        data-id="[[trackId]]" title="発音小節数">[[playBarsOptions]]</select>
                                 <label for="play-bars-[[trackId]]">非消音小節</label>
                             </div>
                             <div class="form-floating flex-fill" style="min-width:120px;">
-                                <select class="form-select track-mute-bars" id="mute-bars-[[trackId]]" data-id="[[trackId]]" title="消音小節数">[[muteBarsOptions]]</select>
+                                <select class="form-select track-mute-bars" id="mute-bars-[[trackId]]"
+                                        data-id="[[trackId]]" title="消音小節数">[[muteBarsOptions]]</select>
                                 <label for="mute-bars-[[trackId]]">消音小節</label>
                             </div>
                         </div>
@@ -1271,7 +1455,7 @@
 
         // ダーク時は太陽（ライトへ切り替え）、ライト時は月（ダークへ切り替え）
         document.querySelectorAll('.theme-icon').forEach(icon => {
-            icon.classList.toggle('fa-sun',  t === 'dark');
+            icon.classList.toggle('fa-sun', t === 'dark');
             icon.classList.toggle('fa-moon', t !== 'dark');
         });
 
@@ -1284,7 +1468,6 @@
             localStorage.setItem('color-scheme', t);
         }
     }
-
 
 
     // OSの設定変更をリアルタイムに監視（ユーザーが明示的に選択していない場合のみ）
@@ -1349,12 +1532,16 @@
             /*  */
             /*  */
             const BEAT_SYMBOLS = {
-                '4n':      { symbol: '&#x1D15F;',                name: '4分音符',   label: '4ビート'      },
-                '8n':      { symbol: '&#x1D160;&#x1D160;',                name: '8分音符',   label: '8ビート'      },
-                '16n':     { symbol: '&#x1D161;&#x1D161;&#x1D161;&#x1D161;',               name: '16分音符',  label: '16ビート'     },
-                '3t':      { symbol: '&#x1D160;&#x00B3;&#x1D160;&#x00B3;&#x1D160;&#x00B3;',    name: '3連符',     label: '3拍子'       },
-                'shuffle': { symbol: '&#x1D15F;&#x00B3;&#x1D160;&#x00B3;', name: 'シャッフルビート', label: 'シャッフルビート' },
-                'skip':    { symbol: '&#x1D160;.&#x1D161;',            name: 'スキップビート',   label: 'スキップビート'   },
+                '4n': {symbol: '&#x1D15F;', name: '4分音符', label: '4ビート'},
+                '8n': {symbol: '&#x1D160;&#x1D160;', name: '8分音符', label: '8ビート'},
+                '16n': {symbol: '&#x1D161;&#x1D161;&#x1D161;&#x1D161;', name: '16分音符', label: '16ビート'},
+                '3t': {symbol: '&#x1D160;&#x00B3;&#x1D160;&#x00B3;&#x1D160;&#x00B3;', name: '3連符', label: '3拍子'},
+                'shuffle': {
+                    symbol: '&#x1D15F;&#x00B3;&#x1D160;&#x00B3;',
+                    name: 'シャッフルビート',
+                    label: 'シャッフルビート'
+                },
+                'skip': {symbol: '&#x1D160;.&#x1D161;', name: 'スキップビート', label: 'スキップビート'},
             };
 
             let isPlaying = false;
@@ -1371,20 +1558,124 @@
             let randomBpmMaxStep = 5;
 
             const tempoTerms = [
-                { id: "larghissimo", name: "Larghissimo", reading: "ラルギッシモ", meaning: "最も幅広く、この上なく遅く", min: 10, max: 24, center: 18 },
-                { id: "grave", name: "Grave", reading: "グラーヴェ", meaning: "重々しく、厳かに", min: 25, max: 45, center: 35 },
-                { id: "largo", name: "Largo", reading: "ラルゴ", meaning: "幅広く、ゆったりと", min: 40, max: 50, center: 45 },
-                { id: "lento", name: "Lento", reading: "レント", meaning: "遅く、緩慢に", min: 50, max: 55, center: 53 },
-                { id: "adagio", name: "Adagio", reading: "アダージョ", meaning: "ゆるやかに、心地よく", min: 55, max: 65, center: 60 },
-                { id: "larghetto", name: "Larghetto", reading: "ラルゲット", meaning: "Largoよりやや速く", min: 56, max: 61, center: 60 },
-                { id: "andante", name: "Andante", reading: "アンダンテ", meaning: "歩くような速さで", min: 60, max: 80, center: 70 },
-                { id: "andantino", name: "Andantino", reading: "アンダンティーノ", meaning: "Andanteよりやや速く", min: 70, max: 90, center: 80 },
-                { id: "moderato", name: "Moderato", reading: "モデラート", meaning: "控えめに、適度な速さで", min: 90, max: 110, center: 100 },
-                { id: "allegretto", name: "Allegretto", reading: "アレグレット", meaning: "やや快速に", min: 110, max: 120, center: 115 },
-                { id: "allegro", name: "Allegro", reading: "アレグロ", meaning: "陽気に、快速に", min: 120, max: 150, center: 135 },
-                { id: "vivace", name: "Vivace", reading: "ヴィヴァーチェ", meaning: "生き生きと、活発に", min: 150, max: 170, center: 160 },
-                { id: "presto", name: "Presto", reading: "プレスト", meaning: "急速に、きわめて速く", min: 170, max: 200, center: 185 },
-                { id: "prestissimo", name: "Prestissimo", reading: "プレスティッシモ", meaning: "可能な限り速く、極めて急速に", min: 201, max: 400, center: 240 }
+                {
+                    id: "larghissimo",
+                    name: "Larghissimo",
+                    reading: "ラルギッシモ",
+                    meaning: "最も幅広く、この上なく遅く",
+                    min: 10,
+                    max: 24,
+                    center: 18
+                },
+                {
+                    id: "grave",
+                    name: "Grave",
+                    reading: "グラーヴェ",
+                    meaning: "重々しく、厳かに",
+                    min: 25,
+                    max: 45,
+                    center: 35
+                },
+                {
+                    id: "largo",
+                    name: "Largo",
+                    reading: "ラルゴ",
+                    meaning: "幅広く、ゆったりと",
+                    min: 40,
+                    max: 50,
+                    center: 45
+                },
+                {id: "lento", name: "Lento", reading: "レント", meaning: "遅く、緩慢に", min: 50, max: 55, center: 53},
+                {
+                    id: "adagio",
+                    name: "Adagio",
+                    reading: "アダージョ",
+                    meaning: "ゆるやかに、心地よく",
+                    min: 55,
+                    max: 65,
+                    center: 60
+                },
+                {
+                    id: "larghetto",
+                    name: "Larghetto",
+                    reading: "ラルゲット",
+                    meaning: "Largoよりやや速く",
+                    min: 56,
+                    max: 61,
+                    center: 60
+                },
+                {
+                    id: "andante",
+                    name: "Andante",
+                    reading: "アンダンテ",
+                    meaning: "歩くような速さで",
+                    min: 60,
+                    max: 80,
+                    center: 70
+                },
+                {
+                    id: "andantino",
+                    name: "Andantino",
+                    reading: "アンダンティーノ",
+                    meaning: "Andanteよりやや速く",
+                    min: 70,
+                    max: 90,
+                    center: 80
+                },
+                {
+                    id: "moderato",
+                    name: "Moderato",
+                    reading: "モデラート",
+                    meaning: "控えめに、適度な速さで",
+                    min: 90,
+                    max: 110,
+                    center: 100
+                },
+                {
+                    id: "allegretto",
+                    name: "Allegretto",
+                    reading: "アレグレット",
+                    meaning: "やや快速に",
+                    min: 110,
+                    max: 120,
+                    center: 115
+                },
+                {
+                    id: "allegro",
+                    name: "Allegro",
+                    reading: "アレグロ",
+                    meaning: "陽気に、快速に",
+                    min: 120,
+                    max: 150,
+                    center: 135
+                },
+                {
+                    id: "vivace",
+                    name: "Vivace",
+                    reading: "ヴィヴァーチェ",
+                    meaning: "生き生きと、活発に",
+                    min: 150,
+                    max: 170,
+                    center: 160
+                },
+                {
+                    id: "presto",
+                    name: "Presto",
+                    reading: "プレスト",
+                    meaning: "急速に、きわめて速く",
+                    min: 170,
+                    max: 200,
+                    center: 185
+                },
+                {
+                    id: "prestissimo",
+                    name: "Prestissimo",
+                    reading: "プレスティッシモ",
+                    meaning: "可能な限り速く、極めて急速に",
+                    min: 201,
+                    max: 400,
+                    center: 240
+                }
             ];
 
             /*  */
@@ -1393,49 +1684,57 @@
             const beepSynths = {};
 
             /*  */
-            const subEnvelope = { attack: 0.002, decay: 0.05, sustain: 0, release: 0.03 };
+            const subEnvelope = {attack: 0.002, decay: 0.05, sustain: 0, release: 0.03};
             const subSynths = {
-                "4n":      new Tone.Synth({ envelope: subEnvelope }),
-                "8n":      new Tone.Synth({ envelope: subEnvelope }),
-                "16n":     new Tone.Synth({ envelope: subEnvelope }),
-                "3t":      new Tone.Synth({ envelope: subEnvelope }),
-                "shuffle": new Tone.Synth({ envelope: subEnvelope }),
-                "skip":    new Tone.Synth({ envelope: subEnvelope })
+                "4n": new Tone.Synth({envelope: subEnvelope}),
+                "8n": new Tone.Synth({envelope: subEnvelope}),
+                "16n": new Tone.Synth({envelope: subEnvelope}),
+                "3t": new Tone.Synth({envelope: subEnvelope}),
+                "shuffle": new Tone.Synth({envelope: subEnvelope}),
+                "skip": new Tone.Synth({envelope: subEnvelope})
             };
             const volumeNodes = {
-                "4n":      new Tone.Volume(-40).toDestination(),
-                "8n":      new Tone.Volume(-40).toDestination(),
-                "16n":     new Tone.Volume(-40).toDestination(),
-                "3t":      new Tone.Volume(-40).toDestination(),
+                "4n": new Tone.Volume(-40).toDestination(),
+                "8n": new Tone.Volume(-40).toDestination(),
+                "16n": new Tone.Volume(-40).toDestination(),
+                "3t": new Tone.Volume(-40).toDestination(),
                 "shuffle": new Tone.Volume(-40).toDestination(),
-                "skip":    new Tone.Volume(-40).toDestination()
+                "skip": new Tone.Volume(-40).toDestination()
             };
             /*  */
             Object.keys(subSynths).forEach(id => {
                 subSynths[id].connect(volumeNodes[id]);
             });
             /*  */
-            Object.values(volumeNodes).forEach(node => { node.mute = true; });
+            Object.values(volumeNodes).forEach(node => {
+                node.mute = true;
+            });
 
             let subSettings = {
-                "4n": { pitch: "A3", type: "sine" },
-                "8n": { pitch: "A3", type: "sine" },
-                "16n": { pitch: "A3", type: "sine" },
-                "3t": { pitch: "A3", type: "sine" },
-                "shuffle": { pitch: "A3", type: "sine" },
-                "skip": { pitch: "A3", type: "sine" }
+                "4n": {pitch: "A3", type: "sine"},
+                "8n": {pitch: "A3", type: "sine"},
+                "16n": {pitch: "A3", type: "sine"},
+                "3t": {pitch: "A3", type: "sine"},
+                "shuffle": {pitch: "A3", type: "sine"},
+                "skip": {pitch: "A3", type: "sine"}
             };
 
             const defaultPitchPatterns = [
-                { down: "A5", normal: "C5", up: "C4" },
-                { down: "C6", normal: "A5", up: "C5" },
-                { down: "C5", normal: "C4", up: "C6" },
-                { down: "C4", normal: "C6", up: "A5" }
+                {down: "A5", normal: "C5", up: "C4"},
+                {down: "C6", normal: "A5", up: "C5"},
+                {down: "C5", normal: "C4", up: "C6"},
+                {down: "C4", normal: "C6", up: "A5"}
             ];
 
             const pitchOptionsData = [
-                { value: "C6", text: "C6" }, { value: "A5", text: "A5" }, { value: "G5", text: "G5" }, { value: "E5", text: "E5" }, { value: "C5", text: "C5" },
-                { value: "G4", text: "G4" }, { value: "E4", text: "E4" }, { value: "C4", text: "C4" }, { value: "A3", text: "A3" }, { value: "C3", text: "C3" }
+                {value: "C6", text: "C6"}, {value: "A5", text: "A5"}, {value: "G5", text: "G5"}, {
+                    value: "E5",
+                    text: "E5"
+                }, {value: "C5", text: "C5"},
+                {value: "G4", text: "G4"}, {value: "E4", text: "E4"}, {value: "C4", text: "C4"}, {
+                    value: "A3",
+                    text: "A3"
+                }, {value: "C3", text: "C3"}
             ];
 
             let tapTimes = [];
@@ -1542,7 +1841,7 @@
                 /*  */
                 const activeItem = bpmList.querySelector('.active');
                 if (activeItem) {
-                    activeItem.scrollIntoView({ block: 'center' });
+                    activeItem.scrollIntoView({block: 'center'});
                 }
             }
 
@@ -1570,7 +1869,7 @@
                     const targetItem = termList.querySelector(`[data-term-id="${matchedTerm.id}"]`);
                     if (targetItem) {
                         targetItem.classList.add('selected');
-                        targetItem.scrollIntoView({ block: 'nearest' });
+                        targetItem.scrollIntoView({block: 'nearest'});
                     }
                     renderBpmList(matchedTerm, currentBpm);
                 }
@@ -1626,12 +1925,12 @@
                 /*  */
                 if (el.dataset.step === '1' || !el.dataset.step) num = Math.round(num);
                 el.value = num;
-                el.dispatchEvent(new Event('input', { bubbles: true }));
+                el.dispatchEvent(new Event('input', {bubbles: true}));
             }
 
             function setupEventListeners() {
                 /*  */
-                document.addEventListener('pointerdown', () => Tone.start(), { once: true });
+                document.addEventListener('pointerdown', () => Tone.start(), {once: true});
 
                 startStopBtn.addEventListener('click', toggleTransport);
                 bpmRange.addEventListener('input', (e) => updateBPM(e.target.value));
@@ -1646,9 +1945,13 @@
                     e.preventDefault();
                     _tapTouched = true;
                     handleTapTempo();
-                    setTimeout(() => { _tapTouched = false; }, 500);
-                }, { passive: false });
-                tapBtn.addEventListener('click', () => { if (!_tapTouched) handleTapTempo(); });
+                    setTimeout(() => {
+                        _tapTouched = false;
+                    }, 500);
+                }, {passive: false});
+                tapBtn.addEventListener('click', () => {
+                    if (!_tapTouched) handleTapTempo();
+                });
 
                 document.addEventListener('click', (e) => {
                     const panel = document.getElementById('tempoDropdownPanel');
@@ -1687,8 +1990,17 @@
                     if (tracks.length < maxTracks) {
                         const pattern = defaultPitchPatterns[tracks.length % defaultPitchPatterns.length];
                         addTrack({
-                            beats: 4, gridDiv: 4, upbeatPlay: false, muteActive: false, playBars: 1, muteBars: 1,
-                            downPitch: pattern.down, normalPitch: pattern.normal, downVol: 0, upPitch: pattern.up, soundType: "sine"
+                            beats: 4,
+                            gridDiv: 4,
+                            upbeatPlay: false,
+                            muteActive: false,
+                            playBars: 1,
+                            muteBars: 1,
+                            downPitch: pattern.down,
+                            normalPitch: pattern.normal,
+                            downVol: 0,
+                            upPitch: pattern.up,
+                            soundType: "sine"
                         });
                         saveSettings();
                     }
@@ -1817,16 +2129,18 @@
                     try {
                         const parsed = JSON.parse(savedSubSettings);
                         if (parsed) {
-                            subSettings = { ...subSettings, ...parsed };
+                            subSettings = {...subSettings, ...parsed};
                             /*  */
                             Object.entries(subSettings).forEach(([id, s]) => {
                                 const pitchEl = document.getElementById(`pitch-${id}`);
-                                const typeEl  = document.getElementById(`type-${id}`);
+                                const typeEl = document.getElementById(`type-${id}`);
                                 if (pitchEl && s.pitch) pitchEl.value = s.pitch;
-                                if (typeEl  && s.type)  typeEl.value  = s.type;
+                                if (typeEl && s.type) typeEl.value = s.type;
                             });
                         }
-                    } catch(e) { console.error(e); }
+                    } catch (e) {
+                        console.error(e);
+                    }
                 }
                 if (savedSubVol) {
                     try {
@@ -1837,7 +2151,10 @@
                                     const fader = document.getElementById(`vol-${id}`);
                                     const numBox = document.getElementById(`vol-${id}-num`);
                                     const clamped = Math.max(-40, Math.min(15, parsed[id]));
-                                    if (fader) { fader.value = clamped; fader.classList.toggle('is-muted', clamped <= -40); }
+                                    if (fader) {
+                                        fader.value = clamped;
+                                        fader.classList.toggle('is-muted', clamped <= -40);
+                                    }
                                     if (numBox) numBox.value = clamped;
                                     if (clamped <= -40) {
                                         volumeNodes[id].mute = true;
@@ -1848,7 +2165,9 @@
                                 }
                             });
                         }
-                    } catch(e) { console.error(e); }
+                    } catch (e) {
+                        console.error(e);
+                    }
                 }
                 if (savedRandomSettings) {
                     try {
@@ -1861,7 +2180,9 @@
                             randomBpmInterval.value = randomBpmIntervalBars;
                             randomBpmMaxStepSelect.value = randomBpmMaxStep;
                         }
-                    } catch(e) { console.error(e); }
+                    } catch (e) {
+                        console.error(e);
+                    }
                 }
                 if (savedTracks) {
                     try {
@@ -1870,10 +2191,24 @@
                             parsedTracks.forEach(t => addTrack(t));
                             return;
                         }
-                    } catch (e) { console.error(e); }
+                    } catch (e) {
+                        console.error(e);
+                    }
                 }
                 const pattern = defaultPitchPatterns[0];
-                addTrack({ beats: 4, gridDiv: 4, upbeatPlay: false, muteActive: false, playBars: 1, muteBars: 1, downPitch: pattern.down, normalPitch: pattern.normal, downVol: 0, upPitch: pattern.up, soundType: "sine" });
+                addTrack({
+                    beats: 4,
+                    gridDiv: 4,
+                    upbeatPlay: false,
+                    muteActive: false,
+                    playBars: 1,
+                    muteBars: 1,
+                    downPitch: pattern.down,
+                    normalPitch: pattern.normal,
+                    downVol: 0,
+                    upPitch: pattern.up,
+                    soundType: "sine"
+                });
             }
 
             function updateBPM(val) {
@@ -1895,7 +2230,9 @@
 
             function handleTapTempo() {
                 tapBtn.classList.add('flash');
-                setTimeout(() => { tapBtn.classList.remove('flash'); }, 80);
+                setTimeout(() => {
+                    tapBtn.classList.remove('flash');
+                }, 80);
 
                 const now = performance.now() / 1000;
                 tapTimes.push(now);
@@ -1904,7 +2241,7 @@
                 if (tapTimes.length >= 2) {
                     let intervals = [];
                     for (let i = 1; i < tapTimes.length; i++) {
-                        intervals.push(tapTimes[i] - tapTimes[i-1]);
+                        intervals.push(tapTimes[i] - tapTimes[i - 1]);
                     }
                     const avgInterval = intervals.reduce((a, b) => a + b) / intervals.length;
                     const calculatedBPM = Math.round(60 / avgInterval);
@@ -1948,7 +2285,7 @@
                 /*  */
                 const seq4n = new Tone.Sequence((time) => {
                     if (!volumeNodes["4n"].mute) {
-                        subSynths["4n"].set({ oscillator: { type: subSettings["4n"].type } });
+                        subSynths["4n"].set({oscillator: {type: subSettings["4n"].type}});
                         subSynths["4n"].triggerAttackRelease(subSettings["4n"].pitch, "64n", time);
                     }
                 }, [0], "4n");
@@ -1958,7 +2295,7 @@
                 /*  */
                 const seq8n = new Tone.Sequence((time) => {
                     if (!volumeNodes["8n"].mute) {
-                        subSynths["8n"].set({ oscillator: { type: subSettings["8n"].type } });
+                        subSynths["8n"].set({oscillator: {type: subSettings["8n"].type}});
                         subSynths["8n"].triggerAttackRelease(subSettings["8n"].pitch, "64n", time);
                     }
                 }, [0, 0], "8n");
@@ -1968,7 +2305,7 @@
                 /*  */
                 const seq16n = new Tone.Sequence((time) => {
                     if (!volumeNodes["16n"].mute) {
-                        subSynths["16n"].set({ oscillator: { type: subSettings["16n"].type } });
+                        subSynths["16n"].set({oscillator: {type: subSettings["16n"].type}});
                         subSynths["16n"].triggerAttackRelease(subSettings["16n"].pitch, "64n", time);
                     }
                 }, [0, 0, 0, 0], "16n");
@@ -1978,7 +2315,7 @@
                 /*  */
                 const seq3t = new Tone.Sequence((time) => {
                     if (!volumeNodes["3t"].mute) {
-                        subSynths["3t"].set({ oscillator: { type: subSettings["3t"].type } });
+                        subSynths["3t"].set({oscillator: {type: subSettings["3t"].type}});
                         subSynths["3t"].triggerAttackRelease(subSettings["3t"].pitch, "64n", time);
                     }
                 }, [0, 0, 0], "8t");
@@ -1988,7 +2325,7 @@
                 /*  */
                 const seqShuffle = new Tone.Sequence((time, event) => {
                     if (!volumeNodes["shuffle"].mute && event === 0) {
-                        subSynths["shuffle"].set({ oscillator: { type: subSettings["shuffle"].type } });
+                        subSynths["shuffle"].set({oscillator: {type: subSettings["shuffle"].type}});
                         subSynths["shuffle"].triggerAttackRelease(subSettings["shuffle"].pitch, "64n", time);
                     }
                 }, [0, null, 0], "8t");
@@ -1998,7 +2335,7 @@
                 /*  */
                 const seqSkip = new Tone.Sequence((time, event) => {
                     if (!volumeNodes["skip"].mute && event === 0) {
-                        subSynths["skip"].set({ oscillator: { type: subSettings["skip"].type } });
+                        subSynths["skip"].set({oscillator: {type: subSettings["skip"].type}});
                         subSynths["skip"].triggerAttackRelease(subSettings["skip"].pitch, "64n", time);
                     }
                 }, [0, null, null, 0], "16n");
@@ -2053,14 +2390,31 @@
                         for (let i = 0; i < track.beats; i++) {
                             const beatTime = barTimeOffset + (i * interval);
                             /*  */
-                            partEvents.push({ time: beatTime, type: 'down', index: i, isMuteBar: isMuteBar, barIndex: b });
+                            partEvents.push({
+                                time: beatTime,
+                                type: 'down',
+                                index: i,
+                                isMuteBar: isMuteBar,
+                                barIndex: b
+                            });
                             /*  */
                             for (let k = 1; k < clickOffsets.length; k++) {
-                                partEvents.push({ time: beatTime + clickOffsets[k], type: 'click', index: i, isMuteBar: isMuteBar });
+                                partEvents.push({
+                                    time: beatTime + clickOffsets[k],
+                                    type: 'click',
+                                    index: i,
+                                    isMuteBar: isMuteBar
+                                });
                             }
                             /*  */
                             if (track.upbeatPlay) {
-                                partEvents.push({ time: beatTime + (interval / 2), type: 'up', index: i, isMuteBar: isMuteBar, barIndex: b });
+                                partEvents.push({
+                                    time: beatTime + (interval / 2),
+                                    type: 'up',
+                                    index: i,
+                                    isMuteBar: isMuteBar,
+                                    barIndex: b
+                                });
                             }
                         }
                     }
@@ -2068,14 +2422,14 @@
                     /*  */
                     if (!trackSynths[track.id]) {
                         trackSynths[track.id] = new Tone.PolySynth(Tone.Synth, {
-                            envelope: { attack: 0.002, decay: 0.08, sustain: 0, release: 0.05 }
+                            envelope: {attack: 0.002, decay: 0.08, sustain: 0, release: 0.05}
                         }).toDestination();
                     }
                     /*  */
                     if (!beepSynths[track.id]) {
                         beepSynths[track.id] = new Tone.PolySynth(Tone.Synth, {
-                            oscillator: { type: 'sine' },
-                            envelope: { attack: 0.005, decay: 0, sustain: 1, release: 0.015 }
+                            oscillator: {type: 'sine'},
+                            envelope: {attack: 0.005, decay: 0, sustain: 1, release: 0.015}
                         }).toDestination();
                     }
                     const trackSynth = trackSynths[track.id];
@@ -2085,7 +2439,7 @@
                         /*  */
                         const isBeep = track.soundType === 'beep';
                         const activeSynth = isBeep ? beepSynths[track.id] : trackSynth;
-                        const noteDur   = isBeep ? 0.065 : "32n";  /*  */
+                        const noteDur = isBeep ? 0.065 : "32n";  /*  */
 
                         if (event.type === 'down') {
                             const isFirst = (event.index === 0);
@@ -2096,7 +2450,9 @@
                             if (!shouldMute && effectiveVol > -40) {
                                 const pitch = isFirst ? track.downPitch : (track.normalPitch || "C5");
                                 const gain = Tone.dbToGain(Math.min(effectiveVol, 15));
-                                if (!isBeep) { activeSynth.set({ oscillator: { type: track.soundType || "sine" } }); }
+                                if (!isBeep) {
+                                    activeSynth.set({oscillator: {type: track.soundType || "sine"}});
+                                }
                                 activeSynth.triggerAttackRelease(pitch, noteDur, time, gain);
                             }
 
@@ -2124,13 +2480,17 @@
                                 clearVisual(track.id, prev);
                                 triggerVisual(track.id, event.index, 'active-down', interval);
                             }, time);
-                            Tone.Draw.schedule(() => { clearVisual(track.id, event.index); }, time + (interval * 0.8));
+                            Tone.Draw.schedule(() => {
+                                clearVisual(track.id, event.index);
+                            }, time + (interval * 0.8));
 
                         } else if (event.type === 'click') {
                             /*  */
                             if (!shouldMute && track.downVol > -40) {
                                 const baseGain = Tone.dbToGain(track.downVol);
-                                if (!isBeep) { activeSynth.set({ oscillator: { type: track.soundType || "sine" } }); }
+                                if (!isBeep) {
+                                    activeSynth.set({oscillator: {type: track.soundType || "sine"}});
+                                }
                                 activeSynth.triggerAttackRelease(track.normalPitch || "C5", noteDur, time, baseGain * 0.5);
                             }
 
@@ -2138,10 +2498,14 @@
                             const upEffectiveVol = track.downVol + (track.upVolOffset ?? -5);
                             if (!shouldMute && upEffectiveVol > -40) {
                                 const gain = Tone.dbToGain(Math.min(upEffectiveVol, 15));
-                                if (!isBeep) { activeSynth.set({ oscillator: { type: track.soundType || "sine" } }); }
+                                if (!isBeep) {
+                                    activeSynth.set({oscillator: {type: track.soundType || "sine"}});
+                                }
                                 activeSynth.triggerAttackRelease(track.upPitch || "C4", noteDur, time, gain);
                             }
-                            Tone.Draw.schedule(() => { triggerVisual(track.id, event.index, 'active-up'); }, time);
+                            Tone.Draw.schedule(() => {
+                                triggerVisual(track.id, event.index, 'active-up');
+                            }, time);
                         }
                     }, partEvents);
 
@@ -2154,17 +2518,24 @@
 
             function createNumberOptions(selectedVal) {
                 let options = '';
-                for (let i = 1; i <= 32; i++) { options += `<option value="${i}" ${i === selectedVal ? 'selected' : ''}>${i}</option>`; }
+                for (let i = 1; i <= 32; i++) {
+                    options += `<option value="${i}" ${i === selectedVal ? 'selected' : ''}>${i}</option>`;
+                }
                 return options;
             }
+
             function createGateOptions(selectedVal) {
                 let options = '';
-                for (let i = 1; i <= 10; i++) { options += `<option value="${i}" ${i === selectedVal ? 'selected' : ''}>${i}</option>`; }
+                for (let i = 1; i <= 10; i++) {
+                    options += `<option value="${i}" ${i === selectedVal ? 'selected' : ''}>${i}</option>`;
+                }
                 return options;
             }
+
             function createPitchOptions(selectedVal) {
                 return pitchOptionsData.map(item => `<option value="${item.value}" ${item.value === selectedVal ? 'selected' : ''}>${item.text}</option>`).join('');
             }
+
             function createVolOffsetOptions(selectedVal) {
                 let opts = '';
                 for (let v = 10; v >= -20; v--) {
@@ -2173,6 +2544,7 @@
                 }
                 return opts;
             }
+
             function updateAddTrackButtonState() {
                 addTrackBtn.disabled = (tracks.length >= maxTracks);
             }
@@ -2182,9 +2554,19 @@
 
                 const trackId = config.id || Date.now() + Math.random().toString(36).substring(2, 11);
                 const trackData = {
-                    soundType: "sine", downPitch: "A5", normalPitch: "C5", upPitch: "C4",
-                    downVolOffset: 7, normalVolOffset: 0, upVolOffset: -7,
-                    muteActive: false, playBars: 1, muteBars: 1, clickType: "4n", pendulumColor: "#00ffff", ...config, id: trackId
+                    soundType: "sine",
+                    downPitch: "A5",
+                    normalPitch: "C5",
+                    upPitch: "C4",
+                    downVolOffset: 7,
+                    normalVolOffset: 0,
+                    upVolOffset: -7,
+                    muteActive: false,
+                    playBars: 1,
+                    muteBars: 1,
+                    clickType: "4n",
+                    pendulumColor: "#00ffff", ...config,
+                    id: trackId
                 };
 
                 if (!tracks.some(t => t.id === trackId)) tracks.push(trackData);
@@ -2199,35 +2581,35 @@
                 trackRow.innerHTML = fillTemplate('tmpl-track-row', {
                     trackId,
                     trackIndex,
-                    beatsOptions:            createNumberOptions(trackData.beats),
-                    gridDivOptions:          createNumberOptions(trackData.gridDiv),
-                    pendulumNoneSelected:    pc === 'none'    ? 'selected' : '',
-                    pendulumWhiteSelected:   pc === '#ffffff' ? 'selected' : '',
-                    pendulumCyanSelected:    pc === '#00ffff' ? 'selected' : '',
+                    beatsOptions: createNumberOptions(trackData.beats),
+                    gridDivOptions: createNumberOptions(trackData.gridDiv),
+                    pendulumNoneSelected: pc === 'none' ? 'selected' : '',
+                    pendulumWhiteSelected: pc === '#ffffff' ? 'selected' : '',
+                    pendulumCyanSelected: pc === '#00ffff' ? 'selected' : '',
                     pendulumMagentaSelected: pc === '#ff00ff' ? 'selected' : '',
-                    pendulumYellowSelected:  pc === '#ffc107' ? 'selected' : '',
-                    pendulumOrangeSelected:  pc === '#fd7e14' ? 'selected' : '',
-                    pendulumTealSelected:    pc === '#20c997' ? 'selected' : '',
-                    pendulumBlueSelected:    pc === '#0d6efd' ? 'selected' : '',
-                    pitchDownOptions:        createPitchOptions(trackData.downPitch),
-                    pitchNormalOptions:      createPitchOptions(trackData.normalPitch),
-                    pitchUpOptions:          createPitchOptions(trackData.upPitch),
-                    volOffsetDownOptions:    createVolOffsetOptions(trackData.downVolOffset),
-                    volOffsetNormalOptions:  createVolOffsetOptions(trackData.normalVolOffset),
-                    volOffsetUpOptions:      createVolOffsetOptions(trackData.upVolOffset),
-                    downVol:                 trackData.downVol,
-                    downVolMuted:            trackData.downVol <= -40 ? 'true' : 'false',
-                    sineSelected:            trackData.soundType === 'sine'     ? 'selected' : '',
-                    triangleSelected:        trackData.soundType === 'triangle' ? 'selected' : '',
-                    squareSelected:          trackData.soundType === 'square'   ? 'selected' : '',
-                    beepSelected:            trackData.soundType === 'beep'     ? 'selected' : '',
-                    clickTypeOptions:        Object.entries(BEAT_SYMBOLS).map(([val, def]) =>
-                        `<option class="track-clicktype-option" value="${val}" ${(trackData.clickType||'4n') === val ? 'selected' : ''}>${def.label}</option>`
+                    pendulumYellowSelected: pc === '#ffc107' ? 'selected' : '',
+                    pendulumOrangeSelected: pc === '#fd7e14' ? 'selected' : '',
+                    pendulumTealSelected: pc === '#20c997' ? 'selected' : '',
+                    pendulumBlueSelected: pc === '#0d6efd' ? 'selected' : '',
+                    pitchDownOptions: createPitchOptions(trackData.downPitch),
+                    pitchNormalOptions: createPitchOptions(trackData.normalPitch),
+                    pitchUpOptions: createPitchOptions(trackData.upPitch),
+                    volOffsetDownOptions: createVolOffsetOptions(trackData.downVolOffset),
+                    volOffsetNormalOptions: createVolOffsetOptions(trackData.normalVolOffset),
+                    volOffsetUpOptions: createVolOffsetOptions(trackData.upVolOffset),
+                    downVol: trackData.downVol,
+                    downVolMuted: trackData.downVol <= -40 ? 'true' : 'false',
+                    sineSelected: trackData.soundType === 'sine' ? 'selected' : '',
+                    triangleSelected: trackData.soundType === 'triangle' ? 'selected' : '',
+                    squareSelected: trackData.soundType === 'square' ? 'selected' : '',
+                    beepSelected: trackData.soundType === 'beep' ? 'selected' : '',
+                    clickTypeOptions: Object.entries(BEAT_SYMBOLS).map(([val, def]) =>
+                        `<option class="track-clicktype-option" value="${val}" ${(trackData.clickType || '4n') === val ? 'selected' : ''}>${def.label}</option>`
                     ).join(''),
-                    upbeatChecked:           trackData.upbeatPlay ? 'checked' : '',
-                    muteActiveChecked:       trackData.muteActive ? 'checked' : '',
-                    playBarsOptions:         createGateOptions(trackData.playBars),
-                    muteBarsOptions:         createGateOptions(trackData.muteBars),
+                    upbeatChecked: trackData.upbeatPlay ? 'checked' : '',
+                    muteActiveChecked: trackData.muteActive ? 'checked' : '',
+                    playBarsOptions: createGateOptions(trackData.playBars),
+                    muteBarsOptions: createGateOptions(trackData.muteBars),
                 });
                 tracksContainer.appendChild(trackRow);
 
@@ -2272,28 +2654,55 @@
                 });
                 row.querySelector('.track-pitch').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].downPitch = e.target.value; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].downPitch = e.target.value;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 row.querySelector('.track-normal-pitch').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].normalPitch = e.target.value; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].normalPitch = e.target.value;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 row.querySelector('.track-up-pitch').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].upPitch = e.target.value; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].upPitch = e.target.value;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 const clampOffset = v => isNaN(v) ? 0 : Math.max(-20, Math.min(10, v));
                 row.querySelector('.track-down-vol-offset').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].downVolOffset = clampOffset(parseInt(e.target.value)); e.target.value = tracks[idx].downVolOffset; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].downVolOffset = clampOffset(parseInt(e.target.value));
+                        e.target.value = tracks[idx].downVolOffset;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 row.querySelector('.track-normal-vol-offset').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].normalVolOffset = clampOffset(parseInt(e.target.value)); e.target.value = tracks[idx].normalVolOffset; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].normalVolOffset = clampOffset(parseInt(e.target.value));
+                        e.target.value = tracks[idx].normalVolOffset;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 row.querySelector('.track-up-vol-offset').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].upVolOffset = clampOffset(parseInt(e.target.value)); e.target.value = tracks[idx].upVolOffset; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].upVolOffset = clampOffset(parseInt(e.target.value));
+                        e.target.value = tracks[idx].upVolOffset;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 row.querySelector('.track-vol').addEventListener('input', (e) => {
                     const idx = getTrackIndex();
@@ -2315,7 +2724,10 @@
                         const clamped = isNaN(val) ? -40 : Math.max(-40, Math.min(15, val));
                         tracks[idx].downVol = clamped;
                         const slider = row.querySelector('.track-vol');
-                        if (slider) { slider.value = clamped; slider.classList.toggle('is-muted', clamped <= -40); }
+                        if (slider) {
+                            slider.value = clamped;
+                            slider.classList.toggle('is-muted', clamped <= -40);
+                        }
                         saveSettings();
                         if (isPlaying) setupSchedules();
                     }
@@ -2327,7 +2739,10 @@
                         const clamped = isNaN(val) ? -40 : Math.max(-40, Math.min(15, val));
                         tracks[idx].downVol = clamped;
                         const slider = row.querySelector('.track-vol');
-                        if (slider) { slider.value = clamped; slider.classList.toggle('is-muted', clamped <= -40); }
+                        if (slider) {
+                            slider.value = clamped;
+                            slider.classList.toggle('is-muted', clamped <= -40);
+                        }
                         e.target.value = clamped;
                         saveSettings();
                         if (isPlaying) setupSchedules();
@@ -2335,29 +2750,56 @@
                 });
                 row.querySelector('.track-soundtype').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].soundType = e.target.value; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].soundType = e.target.value;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 row.querySelector('.track-clicktype').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].clickType = e.target.value; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].clickType = e.target.value;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 row.querySelector('.track-upbeat-toggle').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { if(e.target && e.target.checked !== undefined) tracks[idx].upbeatPlay = e.target.checked; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        if (e.target && e.target.checked !== undefined) tracks[idx].upbeatPlay = e.target.checked;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 row.querySelector('.track-mute-active-toggle').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].muteActive = e.target.checked; saveSettings(); updateSubdivisionFaderState(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].muteActive = e.target.checked;
+                        saveSettings();
+                        updateSubdivisionFaderState();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 row.querySelector('.track-play-bars').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].playBars = parseInt(e.target.value) || 1; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].playBars = parseInt(e.target.value) || 1;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
                 row.querySelector('.track-mute-bars').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
-                    if (idx !== -1) { tracks[idx].muteBars = parseInt(e.target.value) || 1; saveSettings(); if (isPlaying) setupSchedules(); }
+                    if (idx !== -1) {
+                        tracks[idx].muteBars = parseInt(e.target.value) || 1;
+                        saveSettings();
+                        if (isPlaying) setupSchedules();
+                    }
                 });
-                row.querySelector('.remove-track-btn').addEventListener('click', () => { removeTrack(trackId); });
+                row.querySelector('.remove-track-btn').addEventListener('click', () => {
+                    removeTrack(trackId);
+                });
                 row.querySelector('.track-pendulum-color').addEventListener('change', (e) => {
                     const idx = getTrackIndex();
                     if (idx !== -1) {
@@ -2385,7 +2827,10 @@
                 document.getElementById(`track-row-${trackId}`).remove();
                 document.getElementById(`viz-row-${trackId}`).remove();
                 tracks = tracks.filter(t => t.id !== trackId);
-                if (trackSynths[trackId]) { trackSynths[trackId].dispose(); delete trackSynths[trackId]; }
+                if (trackSynths[trackId]) {
+                    trackSynths[trackId].dispose();
+                    delete trackSynths[trackId];
+                }
 
                 updateAddTrackButtonState();
                 saveSettings();
@@ -2513,13 +2958,17 @@
                     }
                 }
             }
+
             function clearVisual(trackId, beatIndex) {
                 const box = document.getElementById(`box-${trackId}-${beatIndex}`);
                 if (box) box.className = 'beat-box off';
             }
+
             function clearAllVisuals() {
                 tracks.forEach(track => {
-                    for (let i = 0; i < track.beats; i++) { clearVisual(track.id, i); }
+                    for (let i = 0; i < track.beats; i++) {
+                        clearVisual(track.id, i);
+                    }
                     /*  */
                     const bar = document.getElementById(`pendulum-bar-${track.id}`);
                     if (bar) {
@@ -2541,116 +2990,116 @@
         </script>
 
 <script>
-/**
- * SVG Inject
- * ─────────────────────────────────────────────
- * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
- * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
- * - data-loading="true" + CSS transition で FOUC を完全防止
- * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
- */
-(function () {
-    'use strict';
-
-    /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
-    const _cache = new Map();
-
-    /** SVG テキストを取得（キャッシュ付き） */
-    function _fetch(url) {
-        if (!_cache.has(url)) {
-            _cache.set(url,
-                fetch(url, { credentials: 'same-origin' })
-                    .then(function (res) {
-                        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
-                        return res.text();
-                    })
-            );
-        }
-        return _cache.get(url);
-    }
-
-    /** SVG テキストを DOM 要素にパース */
-    function _parse(text, url) {
-        let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
-        let err = doc.querySelector('parsererror');
-        if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
-        let svg = doc.querySelector('svg');
-        if (!svg) throw new Error('No <svg> element found in ' + url);
-        return svg;
-    }
-
     /**
-     * <img> の属性を <svg> へ引き継ぐ
-     * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
-     * ・img の id がなければ SVG の id を削除（重複 ID 防止）
-     * ・alt は aria-label に変換
-     * ・data-loading="true" を付与して CSS が opacity:0 を維持
+     * SVG Inject
+     * ─────────────────────────────────────────────
+     * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
+     * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
+     * - data-loading="true" + CSS transition で FOUC を完全防止
+     * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
      */
-    function _transfer(img, svg) {
-        let skipImg = new Set([
-            'src', 'data-loading', 'decoding', 'loading',
-            'crossorigin', 'fetchpriority', 'referrerpolicy'
-        ]);
-        let keepSvg = new Set([
-            'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
-        ]);
+    (function () {
+        'use strict';
 
-        for (let i = 0; i < img.attributes.length; i++) {
-            let attr = img.attributes[i];
-            if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
-            svg.setAttribute(attr.name, attr.value);
+        /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
+        const _cache = new Map();
+
+        /** SVG テキストを取得（キャッシュ付き） */
+        function _fetch(url) {
+            if (!_cache.has(url)) {
+                _cache.set(url,
+                    fetch(url, {credentials: 'same-origin'})
+                        .then(function (res) {
+                            if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+                            return res.text();
+                        })
+                );
+            }
+            return _cache.get(url);
         }
 
-        /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
-        if (!img.hasAttribute('id')) {
-            svg.removeAttribute('id');
+        /** SVG テキストを DOM 要素にパース */
+        function _parse(text, url) {
+            let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+            let err = doc.querySelector('parsererror');
+            if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
+            let svg = doc.querySelector('svg');
+            if (!svg) throw new Error('No <svg> element found in ' + url);
+            return svg;
         }
 
-        /* alt → aria-label（<svg> に alt は無効） */
-        if (img.alt) {
-            svg.setAttribute('aria-label', img.alt);
-            svg.setAttribute('role', 'img');
+        /**
+         * <img> の属性を <svg> へ引き継ぐ
+         * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
+         * ・img の id がなければ SVG の id を削除（重複 ID 防止）
+         * ・alt は aria-label に変換
+         * ・data-loading="true" を付与して CSS が opacity:0 を維持
+         */
+        function _transfer(img, svg) {
+            let skipImg = new Set([
+                'src', 'data-loading', 'decoding', 'loading',
+                'crossorigin', 'fetchpriority', 'referrerpolicy'
+            ]);
+            let keepSvg = new Set([
+                'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
+            ]);
+
+            for (let i = 0; i < img.attributes.length; i++) {
+                let attr = img.attributes[i];
+                if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
+                svg.setAttribute(attr.name, attr.value);
+            }
+
+            /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
+            if (!img.hasAttribute('id')) {
+                svg.removeAttribute('id');
+            }
+
+            /* alt → aria-label（<svg> に alt は無効） */
+            if (img.alt) {
+                svg.setAttribute('aria-label', img.alt);
+                svg.setAttribute('role', 'img');
+            }
+            svg.removeAttribute('alt');
+
+            /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
+            svg.setAttribute('data-loading', 'true');
         }
-        svg.removeAttribute('alt');
 
-        /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
-        svg.setAttribute('data-loading', 'true');
-    }
+        /** 1 つの <img> を非同期でインライン <svg> に置換 */
+        function _inject(img) {
+            let url = img.src;
+            if (!url || !img.parentNode) return;
 
-    /** 1 つの <img> を非同期でインライン <svg> に置換 */
-    function _inject(img) {
-        let url = img.src;
-        if (!url || !img.parentNode) return;
+            _fetch(url)
+                .then(function (text) {
+                    let svg = _parse(text, url);
+                    _transfer(img, svg);
 
-        _fetch(url)
-            .then(function (text) {
-                let svg = _parse(text, url);
-                _transfer(img, svg);
+                    img.parentNode.replaceChild(svg, img);
 
-                img.parentNode.replaceChild(svg, img);
+                    /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
+                    svg.getBoundingClientRect();
+                    svg.removeAttribute('data-loading');
+                })
+                .catch(function (err) {
+                    console.error('[svg-inject]', err);
+                    /* フォールバック: 元の <img> をそのまま表示 */
+                    img.removeAttribute('data-loading');
+                });
+        }
 
-                /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
-                svg.getBoundingClientRect();
-                svg.removeAttribute('data-loading');
-            })
-            .catch(function (err) {
-                console.error('[svg-inject]', err);
-                /* フォールバック: 元の <img> をそのまま表示 */
-                img.removeAttribute('data-loading');
-            });
-    }
+        /** ページ内の全 img.svg-inject を処理 */
+        function injectAll() {
+            document.querySelectorAll('img.svg-inject').forEach(_inject);
+        }
 
-    /** ページ内の全 img.svg-inject を処理 */
-    function injectAll() {
-        document.querySelectorAll('img.svg-inject').forEach(_inject);
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', injectAll);
-    } else {
-        injectAll();
-    }
-})();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', injectAll);
+        } else {
+            injectAll();
+        }
+    })();
 </script>
 </body>
 </html>

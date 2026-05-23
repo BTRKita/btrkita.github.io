@@ -15,7 +15,8 @@
             </dc:creator>
             <dc:rights>
                 <rdf:Alt>
-                    <rdf:li xml:lang="x-default">Copyright © 2024 https://btrkita.github.io/ All rights reserved.</rdf:li>
+                    <rdf:li xml:lang="x-default">Copyright © 2024 https://btrkita.github.io/ All rights reserved.
+                    </rdf:li>
                 </rdf:Alt>
             </dc:rights>
         </rdf:Description>
@@ -25,16 +26,16 @@
         <style>
             /* デフォルト（ライトモード相当）のフォールバック変数 */
             :root {
-                --svg-fb-bg:          #ffffff;
-                --svg-fb-line:        rgb(0, 0, 0);
+                --svg-fb-bg: #ffffff;
+                --svg-fb-line: rgb(0, 0, 0);
                 --svg-fb-string-name: #000000;
-                --svg-fb-fret-num:    #3f2727;
-                --svg-fb-note-fill:   rgba(45, 45, 45, 0.35);
+                --svg-fb-fret-num: #3f2727;
+                --svg-fb-note-fill: rgba(45, 45, 45, 0.35);
                 --svg-fb-note-stroke: rgba(255, 255, 255, 0.35);
-                --svg-fb-root-fill:   #d00b0b;
+                --svg-fb-root-fill: #d00b0b;
                 --svg-fb-root-stroke: #ffffff;
-                --svg-fb-scale-fill:  rgb(8, 15, 155);
-                --svg-fb-scale-stroke:#ffffff;
+                --svg-fb-scale-fill: rgb(8, 15, 155);
+                --svg-fb-scale-stroke: #ffffff;
             }
 
             /* キャンバス背景 */

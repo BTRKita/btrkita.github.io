@@ -15,7 +15,8 @@
             </dc:creator>
             <dc:rights>
                 <rdf:Alt>
-                    <rdf:li xml:lang="x-default">Copyright © 2024 https://btrkita.github.io/ All rights reserved.</rdf:li>
+                    <rdf:li xml:lang="x-default">Copyright © 2024 https://btrkita.github.io/ All rights reserved.
+                    </rdf:li>
                 </rdf:Alt>
             </dc:rights>
         </rdf:Description>
@@ -26,14 +27,22 @@
         :root {
             --svg-key-fg: #4a5568;
         }
-        .treble_clef { fill: var(--svg-key-fg); }
-        .line        { stroke: var(--svg-key-fg); }
+
+        .treble_clef {
+            fill: var(--svg-key-fg);
+        }
+
+        .line {
+            stroke: var(--svg-key-fg);
+        }
+
         .sharp-key {
             fill: var(--svg-key-fg);
             font-size: 180px;
             font-weight: 900;
             font-family: "Courier New", Consolas, monospace;
         }
+
         .key {
             fill: var(--svg-key-fg);
             font-size: 200px;

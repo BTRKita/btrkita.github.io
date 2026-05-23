@@ -16,11 +16,12 @@
             </dc:creator>
             <dc:rights>
                 <rdf:Alt>
-                    <rdf:li xml:lang="x-default">Copyright © 2024 https://btrkita.github.io/ All rights reserved.</rdf:li>
+                    <rdf:li xml:lang="x-default">Copyright © 2024 https://btrkita.github.io/ All rights reserved.
+                    </rdf:li>
                 </rdf:Alt>
             </dc:rights>
         </rdf:Description>
     </rdf:RDF>
 </metadata>
-    <rect height="200" width="200" id="fill" fill="#4169e1" />
+    <rect height="200" width="200" id="fill" fill="#4169e1"/>
 </svg>
