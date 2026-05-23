@@ -1,0 +1,1935 @@
+<!doctype html>
+<html lang="ja" data-theme="light" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+
+    <title>POLY LAYER SYNTH | BTR KITA</title>
+
+    <!-- おさむ -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- Styles -->
+    
+    
+
+    <link rel="mask-icon" sizes="any" href="https://btrkita.github.io/img/icon.svg" color="#0bd">
+    <link rel="icon" href="https://btrkita.github.io/img/icon.svg" type="image/svg+xml">
+    <style>
+        /* ==========================================
+          カラーモード設定（ライト・ダーク共通変数定義）
+        ========================================== */
+        :root,
+        [data-theme="dark"] {
+            /* 完全に真っ黒にせず、少し青み・グレーを混ぜてエディタ風に */
+            --site-h1-color: #f7fafc;
+            --site-h1-border: #3b82f6; /* 少し明るめのブルー */
+
+            --site-h2-color: #e2e8f0;
+            --site-h2-border: #334155; /* 暗めのボーダー */
+
+            --site-h3-h5-color: #cbd5e1;
+            --site-h3-border: #1e293b;
+
+            --site-select-border: #475569;
+
+            --site-body-bg: #0b0e18;
+
+
+            --site-footer-bg: #0f172a; /* 深みのある紺・黒 */
+            --site-footer-border: #1e293b;
+            --site-footer-link: #94a3b8;
+            --site-footer-link-hover: #3b82f6;
+            --site-footer-copy: #64748b;
+        }
+
+        [data-theme="light"] {
+            --site-h1-color: #1a202c;
+            --site-h1-border: #0d6efd; /* Bootstrapのprimary相当 */
+
+            --site-h2-color: #2d3748;
+            --site-h2-border: #dee2e6;
+
+            --site-h3-h5-color: #4a5568;
+            --site-h3-border: #e9ecef;
+
+            --site-select-border: #ccc;
+
+            --site-body-bg: #f5f4ef; /* 和紙調オフホワイト */
+
+            --site-footer-bg: #ede9df; /* 温かみのあるオフホワイト */
+            --site-footer-border: #e9ecef;
+            --site-footer-link: #6c757d;
+            --site-footer-link-hover: #0d6efd;
+            --site-footer-copy: #adb5bd;
+        }
+
+        /* ===== ボディ背景 ===== */
+        body {
+            background-color: var(--site-body-bg);
+            transition: background-color .25s ease;
+        }
+
+        /* ===== テーブル コンテキストクラス ダークモード ===== */
+        /* Bootstrap 5.3 の変数が確実に上書きされるよう明示指定 */
+        [data-bs-theme="dark"] .table-light,
+        [data-bs-theme="dark"] thead.table-light {
+            --bs-table-bg:          #343a40;
+            --bs-table-color:       #f8f9fa;
+            --bs-table-border-color:#495057;
+            color: #f8f9fa;
+        }
+        [data-bs-theme="dark"] .table-info {
+            --bs-table-bg:          #032830;
+            --bs-table-color:       #6edff6;
+            --bs-table-border-color:#0d3f50;
+            color: #6edff6;
+        }
+        [data-bs-theme="dark"] .table-primary {
+            --bs-table-bg:          #031633;
+            --bs-table-color:       #6ea8fe;
+            --bs-table-border-color:#0d2d5e;
+            color: #6ea8fe;
+        }
+        [data-bs-theme="dark"] .table-success {
+            --bs-table-bg:          #051b11;
+            --bs-table-color:       #75b798;
+            --bs-table-border-color:#0f2d1e;
+            color: #75b798;
+        }
+
+        /* ==========================================
+        Bootstrap ナビバー専用カラー上書き設定
+        ========================================== */
+
+
+        /* 2. ダークモード：黒背景に青系統（4a9eff）のアクセント */
+        :root,[data-theme="dark"] {
+            .navbar.site-custom-nav {
+                /* 背景色：DAWやエディタ風の引き締まった黒（必要に応じて #000000 等に変更可） */
+                --bs-navbar-bg: #0f172a;
+
+                /* 文字色：基本はグレー、ホバーや現在地で指定の青（4a9eff）に */
+                --bs-navbar-color: #94a3b8;
+                --bs-navbar-hover-color: #4a9eff;
+                --bs-navbar-active-color: #4a9eff;
+                --bs-navbar-disabled-color: #475569;
+
+                /* ロゴ・ブランド名 */
+                --bs-navbar-brand-color: #f8fafc;
+                --bs-navbar-brand-hover-color: #4a9eff;
+
+                /* トグラー（スマホ用三本線ボタン）の調整 */
+                --bs-navbar-toggler-color: #94a3b8;
+                --bs-navbar-toggler-border-color: #334155;
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28148, 163, 184, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+                border-bottom: 1px solid #1e293b;
+            }
+        }
+
+        [data-theme="light"]
+         {
+            .navbar.site-custom-nav {
+                /* 背景色：黒や緑と識別しやすく、白文字とのコントラストも高い朱赤 */
+                --bs-navbar-bg: #d9381e;
+
+                /* 文字色：赤背景の上でハッキリ読めるホワイト */
+                --bs-navbar-color: rgba(255, 255, 255, 0.85);
+                --bs-navbar-hover-color: #ffffff;
+                --bs-navbar-active-color: #f1c40f;
+                --bs-navbar-disabled-color: rgba(255, 255, 255, 0.4);
+
+                /* ロゴ・ブランド名（常時100%の白で強調） */
+                --bs-navbar-brand-color: #ffffff;
+                --bs-navbar-brand-hover-color: #ffffff;
+
+                /* トグラー（スマホ用三本線ボタン）の調整 */
+                --bs-navbar-toggler-color: rgba(255, 255, 255, 0.85);
+                --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.25);
+                /* 三本線アイコンを白ベースにするためのフィルター */
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+                /* ナビバーの境界線（必要に応じて同系色の濃い赤で締める） */
+                border-bottom: 1px solid #bc2f17;
+            }
+        }
+
+
+        /* 共通：Bootstrapの既存の背景ユーティリティとバッティングしないためのクラス */
+        .navbar.site-custom-nav {
+            background-color: var(--bs-navbar-bg) !important;
+        }
+
+        /* ===== 見出し ===== */
+        h1 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--site-h1-color);
+            border-left: 4px solid var(--site-h1-border);
+            padding: 0.15rem 0 0.15rem 0.85rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--site-h2-color);
+            padding: 0 0 0.35rem 0;
+            border-bottom: 2px solid var(--site-h2-border);
+            margin-top: 2rem;
+            margin-bottom: 0.85rem;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: 1px solid var(--site-h3-border);
+            padding-bottom: 0.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.65rem;
+        }
+
+        h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: none;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h5 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--site-h3-h5-color);
+            border-bottom: none;
+        }
+
+        /* ===== その他共通 ===== */
+        span.delimiter:before {
+            content: " ━ ";
+        }
+
+        .select-image {
+            display: none;
+            width: 100%;
+            aspect-ratio: 1462 / 333;
+            height: auto;
+            object-fit: contain;
+            background-color: transparent;
+        }
+
+        .is-visible {
+            display: block !important;
+        }
+
+        .select-in-table {
+            padding: 10px 16px;
+            font-size: 16px;
+            margin-right: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--site-select-border);
+            background-color: transparent; /* ダークモードでの汎用性を考慮 */
+            color: inherit;               /* 親（Bootstrap）の文字色を引き継ぐ */
+            cursor: pointer;
+        }
+
+        /* ===== フッター ===== */
+        .site-footer {
+            background: var(--site-footer-bg);
+            border-top: 1px solid var(--site-footer-border);
+            padding: 1.75rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem 1.25rem;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-nav a {
+            color: var(--site-footer-link);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--site-footer-link-hover);
+        }
+
+        .footer-copy {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--site-footer-copy);
+            margin: 0;
+        }
+
+        /* ==========================================
+          SVG インジェクト: FOUC 防止
+          img.svg-inject[data-loading="true"] → 不透明度 0 でレイアウト確保
+          JS が SVG に置換しきった瞬間に data-loading を削除してフェードイン
+        ========================================== */
+        img.svg-inject[data-loading="true"] {
+            opacity: 0;
+        }
+        svg.svg-inject {
+            transition: opacity 0.1s ease;
+        }
+        svg.svg-inject[data-loading="true"] {
+            opacity: 0;
+        }
+
+        /* ==========================================
+          SVG 外部ファイル用カラー変数
+          ※ <img src> で読み込まれた SVG はこれらを参照する
+        ========================================== */
+        :root,
+        [data-theme="dark"] {
+            /* key-image: 音符・五線・シャープ・フラット */
+            --svg-key-fg: #cbd5e1;
+
+            /* circle-of-5th */
+            --svg-ci-fill:  #1c2338;
+            --svg-ci-stroke: #dedad0;
+            --svg-ci-major: #e8e6df;
+            --svg-ci-minor: #c8c4b8;
+            --svg-ci-dim:   #a8a499;
+
+
+            /* finger-board SVG */
+            --svg-fb-bg:          #1c2338;
+            --svg-fb-line:        #8899aa;
+            --svg-fb-string-name: #e2e8f0;
+            --svg-fb-fret-num:    #c9a0a0;
+            --svg-fb-note-fill:   rgba(180, 180, 190, 0.40);
+            --svg-fb-note-stroke: rgba(15, 23, 42, 0.60);
+            --svg-fb-root-fill:   #f87171;
+            --svg-fb-root-stroke: #0f172a;
+            --svg-fb-scale-fill:  #60a5fa;
+            --svg-fb-scale-stroke:#0f172a;
+        }
+
+        [data-theme="light"] {
+            --svg-key-fg: #4a5568;
+
+            --svg-ci-fill:  #ffffff;
+            --svg-ci-stroke: #1a1a1a;
+            --svg-ci-major: #111111;
+            --svg-ci-minor: #333333;
+            --svg-ci-dim:   #555555;
+
+            /* finger-board */
+            --svg-fb-bg:          #ffffff;
+            --svg-fb-line:        rgb(0, 0, 0);
+            --svg-fb-string-name: #000000;
+            --svg-fb-fret-num:    #3f2727;
+            --svg-fb-note-fill:   rgba(45, 45, 45, 0.35);
+            --svg-fb-note-stroke: rgba(255, 255, 255, 0.35);
+            --svg-fb-root-fill:   #d00b0b;
+            --svg-fb-root-stroke: #ffffff;
+            --svg-fb-scale-fill:  rgb(8, 15, 155);
+            --svg-fb-scale-stroke:#ffffff;
+        }
+
+        
+        </style>
+</head>
+<body data-theme="light" data-bs-theme="light">
+<script>
+    
+    let ColorScheme = 'dark';
+    // 初期テーマの決定：① localStorage → ② OS設定 の順で参照
+    (function initTheme() {
+        ColorScheme = localStorage.getItem('color-scheme');
+        if (!(ColorScheme === 'light' || ColorScheme === 'dark')) {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            ColorScheme = (isDark ? 'dark' : 'light');
+        }
+        document.documentElement.setAttribute('data-bs-theme', ColorScheme);
+        document.documentElement.setAttribute('data-theme', ColorScheme);
+        document.body.setAttribute('data-bs-theme', ColorScheme);
+        document.body.setAttribute('data-theme', ColorScheme);
+    })();
+</script>
+<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">BTR KITA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                                            <a class="nav-link" href="/">Home</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/diatonic/index.html">ダイアトニックコード</a>
+                    
+                </li>
+
+                <li class="nav-item">
+                                            <a class="nav-link" href="/scale/index.html">スケール</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/metronome.html">メトロノーム</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/tuner.html">チューナー</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/chord-progression/index.html">コード進行</a>
+                                    </li>
+
+                
+                <li class="nav-item d-lg-none"><hr class="dropdown-divider opacity-25 my-1"></li>
+                <li class="nav-item d-lg-none">
+                    <button type="button"
+                            class="nav-link theme-toggle-btn btn border-0 bg-transparent d-flex align-items-center gap-2 w-100 text-start">
+                        <i class="fas fa-moon theme-icon"></i>
+                        <span class="theme-label"></span>
+                    </button>
+                </li>
+            </ul>
+
+            
+            <span class="navbar-text d-none d-lg-inline">
+                ギター演奏に役立つ便利な情報
+            </span>
+
+            <button type="button"
+                    class="btn btn-link nav-link theme-toggle-btn d-none d-lg-inline-flex align-items-center px-2"
+                    id="themeBtn" title="ライト / ダーク">
+                <i class="fas fa-moon theme-icon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+<main id="main" class="site-main main">
+    <style x-component>
+        :root {
+            --bg:    #0b0e18;
+            --card:  #131722;
+            --bdr:   #263044;
+            --hdr:   #192236;
+            --blue:  #60a5fa;
+            --purp:  #a78bfa;
+            --grn:   #34d399;
+            --ylw:   #f59e0b;
+            --muted: #94a3b8;
+            --text:  #e2e8f0;
+        }
+        *{box-sizing:border-box}
+        body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif}
+        h1,h2,h3,h4,h5{color:inherit;border:none;padding:0;margin:0}
+
+        /* Panel */
+        .sp{background:var(--card);border:1px solid var(--bdr);border-radius:8px;margin-bottom:10px}
+        .sp-hdr{background:var(--hdr);border-bottom:1px solid var(--bdr);border-radius:8px 8px 0 0;
+            padding:5px 12px;font-size:.62rem;font-weight:800;letter-spacing:2.5px;
+            text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:8px}
+        .sp-body{padding:10px 12px}
+
+        /* Module card */
+        .mc{background:#0d1220;border:1px solid var(--bdr);border-radius:6px}
+        .mc.on{border-color:var(--blue)}
+        .mc-hdr{background:#111927;border-bottom:1px solid var(--bdr);border-radius:6px 6px 0 0;
+            padding:5px 10px;display:flex;justify-content:space-between;align-items:center}
+        .mc-body{padding:8px 10px}
+        .mod-sect{font-size:.58rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+            color:var(--muted);margin:6px 0 3px;padding-top:4px;border-top:1px solid #1e2d44}
+
+        /* LED */
+        .led{width:8px;height:8px;border-radius:50%;background:#253044;display:inline-block;
+            flex-shrink:0;transition:background .2s,box-shadow .2s}
+        .led.on{background:var(--grn);box-shadow:0 0 6px var(--grn)}
+        .led.on.b{background:var(--blue);box-shadow:0 0 6px var(--blue)}
+
+        /* Labels */
+        .pl{font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;
+            margin-bottom:1px;display:flex;align-items:baseline;gap:5px}
+        .pv{font-size:.68rem;color:var(--blue);font-family:monospace;font-weight:700;text-transform:none;letter-spacing:0}
+
+        /* Sliders */
+        input[type=range]{-webkit-appearance:none;width:100%;height:3px;background:#253044;
+            border-radius:2px;outline:none;cursor:pointer;margin:2px 0}
+        input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;
+            background:var(--blue);border-radius:50%;box-shadow:0 0 4px rgba(96,165,250,.5)}
+        input[type=range]::-moz-range-thumb{width:12px;height:12px;background:var(--blue);
+            border-radius:50%;border:none}
+
+        /* Select */
+        .form-select{background:#18243a;color:var(--text);border-color:var(--bdr);font-size:.75rem}
+        .form-select:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(96,165,250,.2)}
+        optgroup{background:#18243a;color:var(--muted)}
+
+        /* Envelope canvas */
+        .env-cvs{background:#080c18;border-radius:4px;border:1px solid var(--bdr);
+            width:100%;height:48px;display:block;margin:4px 0}
+
+        /* Piano */
+        .piano-wrap{background:#06080f;border-radius:8px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:8px}
+        .piano-keys{position:relative;height:120px;user-select:none}
+        .kw{width:34px;height:120px;background:linear-gradient(180deg,#dde 0%,#f0f0f0 100%);
+            border:1px solid #888;border-top:none;border-radius:0 0 4px 4px;cursor:pointer;
+            position:absolute;z-index:1;display:flex;align-items:flex-end;justify-content:center;
+            padding-bottom:4px;transition:background .05s}
+        .kw.active,.kw:active{background:linear-gradient(180deg,#93c5fd 0%,#bfdbfe 100%)!important}
+        .kw .kl{font-size:.5rem;color:#555;text-align:center;line-height:1.3}
+        .kb{width:20px;height:72px;background:linear-gradient(180deg,#141428 0%,#1e1e38 100%);
+            border-radius:0 0 3px 3px;cursor:pointer;position:absolute;z-index:2;top:0;
+            display:flex;align-items:flex-end;justify-content:center;padding-bottom:3px;
+            box-shadow:2px 3px 6px rgba(0,0,0,.7);transition:background .05s}
+        .kb.active,.kb:active{background:linear-gradient(180deg,#1d4ed8 0%,#3b82f6 100%)!important}
+        .kb .kl{font-size:.45rem;color:#64748b}
+
+        /* Buttons */
+        .btn-s{background:#18243a;border:1px solid var(--bdr);color:var(--text);font-size:.72rem;padding:3px 10px}
+        .btn-s:hover{background:#223355;color:var(--text)}
+        .btn-sp{background:#0d2848;border:1px solid var(--blue);color:var(--blue);font-size:.72rem;padding:3px 10px}
+        .btn-sp:hover{background:#1a3d6e;color:#93c5fd}
+
+        /* Init overlay */
+        #initOvl{position:fixed;inset:0;background:rgba(11,14,24,.97);z-index:9999;
+            display:flex;align-items:center;justify-content:center}
+
+        /* JSON */
+        #jsonOut{background:#050810;color:#86efac;border-color:var(--bdr);
+            font-family:monospace;font-size:.65rem}
+
+        /* Btn group small */
+        .btn-group .btn{font-size:.62rem;padding:2px 7px}
+
+        /* Navbar (placeholder — replaced by site navbar in production) */
+        .s-nav{background:#0a0f1a!important;border-bottom:1px solid #1e293b;padding:7px 16px}
+
+        /* Page title bar (shown inside main when site navbar is active) */
+        .synth-title-bar{display:flex;align-items:center;gap:10px;padding:6px 2px 6px;
+            border-bottom:1px solid var(--bdr);margin-bottom:10px}
+        .synth-title{font-size:.95rem;font-weight:900;letter-spacing:3px;color:var(--blue);
+            text-transform:uppercase;flex-shrink:0}
+        .synth-subtitle{font-size:.65rem;color:var(--muted);letter-spacing:.5px}
+        #themeBtn{flex-shrink:0;width:30px;height:26px;padding:0;display:flex;align-items:center;
+            justify-content:center;border-radius:6px;font-size:.8rem;transition:background .2s}
+
+        /* ================================================================
+           LIGHT MODE  [data-theme="light"]
+           layout.blade.php のカラーシステムに準拠
+           - 背景: #f5f4ef（和紙調オフホワイト）
+           - ナビバー: 朱赤 #d9381e
+           - フッター: #ede9df
+        ================================================================ */
+        [data-theme="light"] {
+            --bg:    #f5f4ef;
+            --card:  #ffffff;
+            --bdr:   #dde1e8;
+            --hdr:   #edecea;
+            --blue:  #2563eb;
+            --purp:  #7c3aed;
+            --grn:   #16a34a;
+            --ylw:   #b45309;
+            --muted: #64748b;
+            --text:  #1e293b;
+        }
+
+        [data-theme="light"] body {
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        /* ── Navbar ── */
+        [data-theme="light"] .s-nav {
+            background: #d9381e !important;
+            border-bottom: 1px solid #bc2f17 !important;
+        }
+        [data-theme="light"] .s-nav span {
+            color: rgba(255,255,255,.9) !important;
+        }
+
+        /* ── Panels ── */
+        [data-theme="light"] .sp {
+            background: var(--card);
+            border-color: var(--bdr);
+            box-shadow: 0 1px 4px rgba(0,0,0,.06);
+        }
+        [data-theme="light"] .sp-hdr {
+            background: var(--hdr);
+            border-bottom-color: var(--bdr);
+        }
+
+        /* ── Module cards ── */
+        [data-theme="light"] .mc {
+            background: #f8f7f2;
+            border-color: var(--bdr);
+        }
+        [data-theme="light"] .mc.on {
+            border-color: var(--blue);
+        }
+        [data-theme="light"] .mc-hdr {
+            background: #edecea;
+            border-bottom-color: var(--bdr);
+        }
+        [data-theme="light"] .mod-sect {
+            color: #94a3b8;
+            border-top-color: #e2e0d8;
+        }
+
+        /* ── LED ── */
+        [data-theme="light"] .led {
+            background: #c8d0dc;
+        }
+        [data-theme="light"] .led.on {
+            background: var(--grn);
+            box-shadow: 0 0 5px var(--grn);
+        }
+        [data-theme="light"] .led.on.b {
+            background: var(--blue);
+            box-shadow: 0 0 5px var(--blue);
+        }
+
+        /* ── Sliders ── */
+        [data-theme="light"] input[type=range] {
+            background: #c8d0dc;
+        }
+        [data-theme="light"] input[type=range]::-webkit-slider-thumb {
+            background: var(--blue);
+            box-shadow: 0 0 3px rgba(37,99,235,.4);
+        }
+        [data-theme="light"] input[type=range]::-moz-range-thumb {
+            background: var(--blue);
+        }
+
+        /* ── Select ── */
+        [data-theme="light"] .form-select {
+            background: #ffffff;
+            border-color: var(--bdr);
+            color: var(--text);
+        }
+        [data-theme="light"] .form-select:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 2px rgba(37,99,235,.2);
+        }
+        [data-theme="light"] optgroup {
+            background: #f0efea;
+            color: var(--muted);
+        }
+
+        /* ── Envelope canvas ── */
+        [data-theme="light"] .env-cvs {
+            background: #f0efea;
+            border-color: var(--bdr);
+        }
+
+        /* ── Piano ── */
+        [data-theme="light"] .piano-wrap {
+            background: #e8e5dc;
+        }
+
+        /* ── Buttons ── */
+        [data-theme="light"] .btn-s {
+            background: #f0efea;
+            border-color: var(--bdr);
+            color: var(--text);
+        }
+        [data-theme="light"] .btn-s:hover {
+            background: #e2e0d8;
+            color: var(--text);
+        }
+        [data-theme="light"] .btn-sp {
+            background: #eff6ff;
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+        [data-theme="light"] .btn-sp:hover {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        /* ── JSON output ── */
+        [data-theme="light"] #jsonOut {
+            background: #f0efea;
+            color: #166534;
+            border-color: var(--bdr);
+        }
+
+        /* ── Init overlay ── */
+        [data-theme="light"] #initOvl {
+            background: rgba(245,244,239,.97);
+        }
+        [data-theme="light"] #initOvl h2 {
+            color: var(--blue);
+        }
+
+        /* ── Footer ── */
+        [data-theme="light"] footer {
+            background: #ede9df;
+            border-top-color: #ddd9d0;
+            color: #6c757d;
+        }
+
+        /* ── btn-group radio ── */
+        [data-theme="light"] .btn-group .btn-outline-primary {
+            color: var(--blue);
+            border-color: var(--blue);
+        }
+        [data-theme="light"] .btn-group .btn-outline-primary:hover,
+        [data-theme="light"] .btn-group .btn-check:checked + .btn-outline-primary {
+            background: var(--blue);
+            color: #fff;
+        }
+        [data-theme="light"] .btn-group .btn-outline-info {
+            color: #0891b2;
+            border-color: #0891b2;
+        }
+        [data-theme="light"] .btn-group .btn-check:checked + .btn-outline-info {
+            background: #0891b2;
+            color: #fff;
+        }
+    </style>
+    
+     
+    
+    <!-- ===== INIT OVERLAY ===== -->
+    <div id="initOvl">
+        <div class="text-center px-4">
+            <i class="fas fa-sliders-h" style="font-size:2.8rem;color:var(--blue);display:block;margin-bottom:12px"></i>
+            <h2 style="color:var(--blue);font-size:1.5rem;font-weight:900;letter-spacing:3px;margin-bottom:6px">POLY LAYER SYNTH</h2>
+            <p style="color:var(--muted);font-size:.82rem;margin-bottom:22px">Polyphonic Multi-Oscillator Synthesizer</p>
+            <button class="btn btn-primary btn-lg px-5 fw-bold" onclick="initAudio()"><i class="fas fa-play me-2"></i>START AUDIO ENGINE</button>
+            <p style="color:var(--muted);font-size:.72rem;margin-top:12px">ブラウザのオーディオを開始します</p>
+            <p id="initErr" style="display:none;color:#f87171;font-size:.75rem;margin-top:8px;max-width:400px"></p>
+        </div>
+    </div>
+
+    <main class="container-fluid py-2" style="max-width:1720px">
+        <!-- ===== TITLE BAR ===== -->
+        <div class="synth-title-bar">
+            <span class="synth-title">POLY LAYER SYNTH</span>
+            <span class="synth-subtitle d-none d-sm-inline">Polyphonic · 4-Layer · Per-OSC ADSR / Filter / LFO — Tone.js 14</span>
+            <button class="ms-auto btn btn-s btn-sm" id="themeBtn" onclick="toggleTheme()" title="ダーク / ライト切替">
+                <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+        </div>
+
+        <!-- ===== 1. OSCILLATOR MODULES ===== -->
+        <div class="sp">
+            <div class="sp-hdr"><span class="led on b"></span>OSCILLATOR MODULES</div>
+            <div class="sp-body">
+                <div class="row g-2" id="modGrid"></div>
+            </div>
+        </div>
+
+        <!-- ===== 2. MIXER ===== -->
+        <div class="sp">
+            <div class="sp-hdr">MIXER — CHANNEL LEVELS</div>
+            <div class="sp-body" id="mixerBody"></div>
+        </div>
+
+        <!-- ===== 3. GLOBAL EFFECTS ===== -->
+        <div class="sp">
+            <div class="sp-hdr">GLOBAL EFFECTS</div>
+            <div class="sp-body">
+                <div class="row g-2" id="fxGrid"></div>
+            </div>
+        </div>
+
+        <!-- ===== 4. MASTER ===== -->
+        <div class="sp">
+            <div class="sp-hdr">MASTER &amp; PAN</div>
+            <div class="sp-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="pl">Pan (L ← C → R) <span class="pv" id="panV">C</span></div>
+                        <input type="range" min="-1" max="1" value="0" step="0.01" id="panSl" oninput="setPan(this.value)">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pl">Master Volume <span class="pv" id="masterV">80%</span></div>
+                        <input type="range" min="0" max="100" value="80" id="masterSl" oninput="setMasterVol(this.value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 5. KEYBOARD ===== -->
+        <div class="sp">
+            <div class="sp-hdr">KEYBOARD — WHITE: A S D F G H J K L &nbsp;|&nbsp; BLACK: W E T Y U I O</div>
+            <div class="sp-body">
+                <div class="piano-wrap">
+                    <div class="piano-keys" id="pianoKeys"></div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span style="font-size:.68rem;color:var(--muted)">Octave:</span>
+                        <button class="btn btn-s btn-sm" onclick="chgOct(-1)"><i class="fas fa-chevron-left"></i></button>
+                        <span class="pv" id="octV">4</span>
+                        <button class="btn btn-s btn-sm" onclick="chgOct(1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 6. JSON ===== -->
+        <div class="sp">
+            <div class="sp-hdr">PRESET / JSON</div>
+            <div class="sp-body">
+                <div class="d-flex gap-2 mb-2 flex-wrap">
+                    <button class="btn btn-sp btn-sm" onclick="copyJSON(event)"><i class="fas fa-clipboard me-1"></i>設定をコピー</button>
+                    <button class="btn btn-s btn-sm" onclick="updateJSON()"><i class="fas fa-sync-alt me-1"></i>更新</button>
+                    <button class="btn btn-sm" style="background:var(--grn);color:#fff;border:none" onclick="applyPreset()"><i class="fas fa-file-import me-1"></i>適用</button>
+                </div>
+                <div style="font-size:.62rem;color:var(--muted);margin-bottom:4px">JSONを貼り付けて「適用」を押すとプリセットを読み込みます</div>
+                <textarea id="jsonOut" class="form-control" rows="6" spellcheck="false"></textarea>
+            </div>
+        </div>
+
+    </main>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <nav aria-label="フッターナビゲーション">
+            <ul class="footer-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/diatonic/index.html">ダイアトニックコード</a></li>
+                <li><a href="/scale/index.html">スケール</a></li>
+                <li><a href="/tuner/tuner.html">スケール</a></li>
+                <li><a href="/chord-progression/index.html">コード進行</a></li>
+                <li><a href="/metronome.html">メトロノーム</a></li>
+            </ul>
+        </nav>
+        <p class="footer-copy">© 2024 BTR KITA</p>
+    </div>
+</footer>
+
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+
+<script>
+    /**
+     * テーマを適用する
+     * @param {string} t    'light' | 'dark'
+     * @param {boolean} save true のとき localStorage に保存（ボタン操作時のみ）
+     */
+    function updateTheme(t, save = false) {
+        ColorScheme = t;
+        document.documentElement.setAttribute('data-bs-theme', t);
+        document.documentElement.setAttribute('data-theme', t);
+        document.body.setAttribute('data-bs-theme', t);
+        document.body.setAttribute('data-theme', t);
+
+        // ダーク時は太陽（ライトへ切り替え）、ライト時は月（ダークへ切り替え）
+        document.querySelectorAll('.theme-icon').forEach(icon => {
+            icon.classList.toggle('fa-sun',  t === 'dark');
+            icon.classList.toggle('fa-moon', t !== 'dark');
+        });
+
+        // ハンバーガー内テキスト: 現在のモードの逆を案内
+        document.querySelectorAll('.theme-label').forEach(label => {
+            label.textContent = t === 'dark' ? 'ライトモードへ' : 'ダークモードへ';
+        });
+
+        if (save) {
+            localStorage.setItem('color-scheme', t);
+        }
+    }
+
+
+
+    // OSの設定変更をリアルタイムに監視（ユーザーが明示的に選択していない場合のみ）
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('color-scheme')) {
+            updateTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // save = true でローカルストレージに保存
+                updateTheme(ColorScheme === 'dark' ? 'light' : 'dark', true);
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.image-change-btn');
+        const images = document.querySelectorAll('.select-image');
+        // 表示を切り替える共通関数
+        const updateDisplay = (targetImageClass) => {
+            buttons.forEach(btn => {
+                const isActive = btn.getAttribute('data-image') === targetImageClass;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+
+            images.forEach(img => {
+                // 画像が対象のクラスを持っているか確認
+                if (img.classList.contains(targetImageClass)) {
+                    img.classList.add('is-visible');
+                } else {
+                    img.classList.remove('is-visible');
+                }
+            });
+        };
+
+        // --- 初期化処理 ---
+        const activeBtn = document.querySelector('.image-change-btn.active');
+        if (activeBtn) {
+            updateDisplay(activeBtn.getAttribute('data-image'));
+        }
+
+        // --- イベントリスナー ---
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                updateDisplay(e.currentTarget.getAttribute('data-image'));
+            });
+        });
+
+    });
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+        <script>
+            // ================================================================
+            //  ModSynth Pro — Full Engine
+            // ================================================================
+
+            // ── Module definitions ──────────────────────────────────────────
+            const MDEF = [
+                { name:'OSC 1', isNoise:false, color:'#60a5fa', defWave:'sawtooth' },
+                { name:'OSC 2', isNoise:false, color:'#a78bfa', defWave:'triangle' },
+                { name:'OSC 3', isNoise:false, color:'#34d399', defWave:'square'   },
+                { name:'NOISE', isNoise:true,  color:'#f59e0b', defWave:null        },
+            ];
+            const NM = MDEF.length;
+
+            // ── Per-module state ─────────────────────────────────────────────
+            function mkState(def) {
+                return {
+                    enabled:   false,
+                    waveform:  def.defWave,
+                    noiseType: 'white',
+                    pitch: 0, detune: 0, amp: 0.8,
+                    env: { attack:0.01, decay:0.3, sustain:0.5, release:1.0 },
+                    filter: { type:'lowpass', freq:20000, Q:1 },
+                    lfo: { rate:2, depth:0, target:'filter' },
+                    mix: 0.8,
+                };
+            }
+            const mSt = MDEF.map(d => mkState(d));
+            mSt[0].enabled = true; // OSC1 on by default
+            mSt[3].mix = 0.5;      // NOISE starts at 50%
+
+            // ── Per-module audio nodes ───────────────────────────────────────
+            const mN = Array.from({length:NM}, () => ({synth:null,vibrato:null,filt:null,lfo:null,mixGain:null}));
+
+            // ── Global effect nodes ──────────────────────────────────────────
+            let gChorus, gPingPong, gReverb, gPitchShift, gPanner, gMaster;
+            const gFxSt = {
+                chorus:     { on:false, wet:0, rate:4, depth:0.5 },
+                pingPong:   { on:false, wet:0, delay:0.25, fb:0.3 },
+                reverb:     { on:false, wet:0, decay:1.5 },
+                pitchShift: { on:false, wet:0, pitch:0 },
+            };
+
+            // ── Active notes ─────────────────────────────────────────────────
+            const activeNotes = new Set();
+            let audioReady = false;
+            let currentOct = 4;
+
+            // ================================================================
+            //  AUDIO GRAPH
+            // ================================================================
+            function showInitError(msg) {
+                const btn = document.querySelector('#initOvl button');
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-play me-2"></i>再試行';
+                }
+                const errEl = document.getElementById('initErr');
+                if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
+                console.error('[ModSynth]', msg);
+            }
+
+            function initAudio() {
+                if (typeof Tone === 'undefined') {
+                    showInitError('Tone.js が読み込まれていません。ネットワーク接続を確認してください。');
+                    return;
+                }
+                const btn = document.querySelector('#initOvl button');
+                if (btn) { btn.disabled = true; btn.textContent = '起動中...'; }
+
+                Tone.start().then(() => {
+                    try {
+                        // Global master chain
+                        gMaster    = new Tone.Gain(0.8).toDestination();
+                        gPanner    = new Tone.Panner(0).connect(gMaster);
+
+                        // Effects bus (all effects route into panner)
+                        gReverb     = new Tone.Reverb({ decay:1.5, wet:0 }).connect(gPanner);
+                        gPingPong   = new Tone.PingPongDelay({ delayTime:0.25, feedback:0.3, wet:0 }).connect(gReverb);
+                        gChorus     = new Tone.Chorus({ frequency:4, delayTime:2.5, depth:0.5, wet:0 }).connect(gPingPong);
+                        gChorus.start();
+                        gPitchShift = new Tone.PitchShift({ pitch:0, wet:0 }).connect(gChorus);
+
+                        // Reverb IR generation (non-blocking; wet=0 so dry path unaffected)
+                        gReverb.generate().catch(e => console.warn('[Reverb.generate]', e));
+
+                        // Per-module chains: synth → vibrato → filter → mixGain → pitchShift
+                        for (let i = 0; i < NM; i++) {
+                            const def = MDEF[i];
+                            const st  = mSt[i];
+                            const n   = mN[i];
+
+                            n.mixGain = new Tone.Gain(st.mix).connect(gPitchShift);
+                            n.filt    = new Tone.Filter({ frequency: st.filter.freq, type:'lowpass', Q:1 }).connect(n.mixGain);
+
+                            // LFO → filter frequency modulation
+                            // min=max=baseFreq: Tone.js resets AudioParam to 0 on connect, so LFO must hold correct value
+                            n.lfo = new Tone.LFO({ frequency: st.lfo.rate, min: st.filter.freq, max: st.filter.freq }).start();
+                            n.lfo.connect(n.filt.frequency);
+
+                            // Vibrato effect (pitch LFO), wet=0 by default
+                            n.vibrato = new Tone.Vibrato({ frequency: st.lfo.rate, depth:0, wet:0 }).connect(n.filt);
+
+                            if (def.isNoise) {
+                                n.synth = new Tone.NoiseSynth({
+                                    noise: { type: st.noiseType },
+                                    envelope: { ...st.env },
+                                }).connect(n.vibrato);
+                            } else {
+                                n.synth = new Tone.PolySynth(Tone.Synth, {
+                                    oscillator: { type: def.defWave },
+                                    envelope:   { ...st.env },
+                                }).connect(n.vibrato);
+                                n.synth.volume.value = Tone.gainToDb(st.amp);
+                            }
+                        }
+
+                        audioReady = true;
+                        document.getElementById('initOvl').style.display = 'none';
+                        for (let i = 0; i < NM; i++) drawEnv(i);
+                        updateJSON();
+                        console.log('[ModSynth] Audio engine ready');
+                    } catch(e) {
+                        showInitError('オーディオ初期化エラー: ' + e.message);
+                    }
+                }).catch(e => {
+                    showInitError('Tone.start() 失敗: ' + e.message);
+                });
+            }
+
+            // ================================================================
+            //  NOTE TRIGGER
+            // ================================================================
+            function noteOn(note) {
+                if (!audioReady) return;
+                if (activeNotes.has(note)) return;
+                activeNotes.add(note);
+                const t = Tone.now();
+
+                for (let i = 0; i < NM; i++) {
+                    if (!mSt[i].enabled) continue;
+                    const n = mN[i];
+                    const def = MDEF[i];
+                    if (def.isNoise) {
+                        n.synth.triggerAttack(t);
+                    } else {
+                        const xnote = xpose(note, mSt[i].pitch);
+                        n.synth.triggerAttack(xnote, t);
+                    }
+                }
+            }
+
+            function noteOff(note) {
+                if (!audioReady) return;
+                if (!activeNotes.has(note)) return;
+                activeNotes.delete(note);
+                const t = Tone.now();
+
+                for (let i = 0; i < NM; i++) {
+                    if (!mSt[i].enabled) continue;
+                    const n = mN[i];
+                    const def = MDEF[i];
+                    if (def.isNoise) {
+                        n.synth.triggerRelease(t);
+                    } else {
+                        const xnote = xpose(note, mSt[i].pitch);
+                        n.synth.triggerRelease(xnote, t);
+                    }
+                }
+            }
+
+            function xpose(note, semi) {
+                if (!semi) return note;
+                try { return Tone.Frequency(note).transpose(semi).toNote(); } catch(e) { return note; }
+            }
+
+            // ================================================================
+            //  MODULE CONTROLS
+            // ================================================================
+            function toggleMod(i) {
+                const on = document.getElementById('en'+i).checked;
+                mSt[i].enabled = on;
+                document.getElementById('led'+i).className = 'led'+(on?' on':'');
+                document.getElementById('mc'+i).classList.toggle('on', on);
+                if (!on && audioReady) {
+                    activeNotes.forEach(note => {
+                        try {
+                            MDEF[i].isNoise ? mN[i].synth.triggerRelease(Tone.now())
+                                : mN[i].synth.triggerRelease(xpose(note, mSt[i].pitch), Tone.now());
+                        } catch(e) {}
+                    });
+                }
+                updateJSON();
+            }
+
+            function setWaveform(i, v) {
+                mSt[i].waveform = v;
+                if (audioReady) mN[i].synth.set({ oscillator: { type: v } });
+                updateJSON();
+            }
+
+            function setNoiseType(i, v) {
+                mSt[i].noiseType = v;
+                if (audioReady) mN[i].synth.set({ noise: { type: v } });
+                updateJSON();
+            }
+
+            function setPitch(i, v) {
+                v = +v; mSt[i].pitch = v;
+                document.getElementById('pv'+i).textContent = (v>=0?'+':'')+v+'st';
+                updateJSON();
+            }
+
+            function setDetune(i, v) {
+                v = +v; mSt[i].detune = v;
+                document.getElementById('dv'+i).textContent = (v>=0?'+':'')+v+'ct';
+                if (audioReady && !MDEF[i].isNoise) mN[i].synth.set({ detune: v });
+                updateJSON();
+            }
+
+            function setAmp(i, v) {
+                v = +v; mSt[i].amp = v/100;
+                document.getElementById('av'+i).textContent = v+'%';
+                if (audioReady && !MDEF[i].isNoise) mN[i].synth.volume.value = Tone.gainToDb(v/100);
+                updateJSON();
+            }
+
+            function setEnvP(i, param, v, vid) {
+                v = parseFloat(v); mSt[i].env[param] = v;
+                document.getElementById(vid).textContent = param==='sustain' ? v.toFixed(2) : v.toFixed(2)+'s';
+                if (audioReady) {
+                    mN[i].synth.set({ envelope: { [param]: v } });
+                }
+                drawEnv(i);
+                updateJSON();
+            }
+
+            function setFiltT(i, v) {
+                mSt[i].filter.type = v;
+                if (audioReady) mN[i].filt.type = v;
+                updateJSON();
+            }
+
+            function setFiltF(i, v) {
+                v = parseFloat(v); mSt[i].filter.freq = v;
+                const lbl = v>=1000 ? (v/1000).toFixed(1)+'k' : v.toFixed(0);
+                document.getElementById('fcV'+i).textContent = lbl+'Hz';
+                if (audioReady) {
+                    // Update LFO center to new base frequency
+                    applyLFO(i);
+                }
+                updateJSON();
+            }
+
+            function setFiltQ(i, v) {
+                v = parseFloat(v); mSt[i].filter.Q = v;
+                document.getElementById('fqV'+i).textContent = v.toFixed(1);
+                if (audioReady) {
+                    try { mN[i].filt.Q.linearRampTo(v, 0.05); }
+                    catch(e) { mN[i].filt.Q.value = v; }
+                }
+                updateJSON();
+            }
+
+            function setLFORate(i, v) {
+                v = parseFloat(v); mSt[i].lfo.rate = v;
+                document.getElementById('lrV'+i).textContent = v.toFixed(1)+'Hz';
+                if (audioReady) {
+                    mN[i].lfo.frequency.value = v;
+                    mN[i].vibrato.frequency.value = v;
+                }
+                updateJSON();
+            }
+
+            function setLFODepth(i, v) {
+                v = +v; mSt[i].lfo.depth = v;
+                document.getElementById('ldV'+i).textContent = v+'%';
+                applyLFO(i);
+                updateJSON();
+            }
+
+            function setLFOTgt(i, t) {
+                mSt[i].lfo.target = t;
+                applyLFO(i);
+                updateJSON();
+            }
+
+            function applyLFO(i) {
+                if (!audioReady) return;
+                const { depth, target } = mSt[i].lfo;
+                const baseFreq = mSt[i].filter.freq;
+                const n = mN[i];
+                if (target === 'filter') {
+                    // LFO oscillates around baseFreq; depth 0-100 maps to ±0-4000 Hz range
+                    const range = depth * 40;
+                    n.lfo.min = Math.max(20, baseFreq - range);
+                    n.lfo.max = Math.min(20000, baseFreq + range);
+                    n.vibrato.wet.value = 0;
+                    n.vibrato.depth = 0;
+                } else { // pitch
+                    // Keep filter at baseFreq when LFO targets pitch
+                    n.lfo.min = baseFreq;
+                    n.lfo.max = baseFreq;
+                    n.vibrato.depth = depth / 200;
+                    n.vibrato.wet.value = depth > 0 ? 1 : 0;
+                }
+            }
+
+            // ── Envelope canvas ──────────────────────────────────────────────
+            function drawEnv(i) {
+                const cv = document.getElementById('ec'+i);
+                if (!cv) return;
+                const W = cv.clientWidth || 200, H = 48;
+                cv.width = W; cv.height = H;
+                const ctx = cv.getContext('2d');
+                const { attack:a, decay:d, sustain:s, release:r } = mSt[i].env;
+                const hold = 0.35;
+                const total = a + d + hold + r + 0.001;
+                const px = 6, py = 5, pw = W-px*2, ph = H-py*2-10;
+                const tx = t => px + t/total*pw;
+                const ty = v => py + (1-v)*ph;
+                ctx.clearRect(0, 0, W, H);
+                ctx.strokeStyle = '#1e2d44'; ctx.lineWidth = 1;
+                [0.5].forEach(v => {
+                    ctx.beginPath(); ctx.moveTo(px, ty(v)); ctx.lineTo(W-px, ty(v)); ctx.stroke();
+                });
+                const pts = [[tx(0),ty(0)],[tx(a),ty(1)],[tx(a+d),ty(s)],[tx(a+d+hold),ty(s)],[tx(a+d+hold+r),ty(0)]];
+                ctx.beginPath(); ctx.moveTo(...pts[0]);
+                pts.slice(1).forEach(p => ctx.lineTo(...p));
+                ctx.strokeStyle = MDEF[i].color; ctx.lineWidth = 2; ctx.stroke();
+                ctx.lineTo(tx(total), ty(0)); ctx.lineTo(px, ty(0));
+                ctx.fillStyle = MDEF[i].color+'22'; ctx.fill();
+                ctx.fillStyle = '#475569'; ctx.font = '8px monospace'; ctx.textAlign = 'center';
+                [['A',tx(a/2)],['D',tx(a+d/2)],['S',tx(a+d+hold/2)],['R',tx(a+d+hold+r/2)]].forEach(([l,x]) => {
+                    ctx.fillText(l, x, H-1);
+                });
+            }
+
+            // ================================================================
+            //  MIXER
+            // ================================================================
+            function buildMixer() {
+                const body = document.getElementById('mixerBody');
+                body.innerHTML = `<div class="row g-3">${MDEF.map((d,i) => {
+                    const pct = Math.round(mSt[i].mix * 100);
+                    return `
+    <div class="col-xl-3 col-md-6">
+      <div class="pl mb-1" style="color:${d.color}">${d.name}</div>
+      <input type="range" min="0" max="100" value="${pct}" id="mx${i}"
+             oninput="setMix(${i},this.value)" style="accent-color:${d.color}">
+      <div class="pv" id="mxV${i}">${pct}%</div>
+    </div>`;
+                }).join('')}
+  </div>`;
+            }
+
+            function setMix(i, v) {
+                v = +v; mSt[i].mix = v/100;
+                document.getElementById('mxV'+i).textContent = v+'%';
+                if (audioReady) mN[i].mixGain.gain.value = v/100;
+                updateJSON();
+            }
+
+            // ================================================================
+            //  GLOBAL EFFECTS
+            // ================================================================
+            const FX_DEF = [
+                { key:'chorus',     label:'CHORUS',          color:'#60a5fa' },
+                { key:'pingPong',   label:'PING PONG DELAY',  color:'#a78bfa' },
+                { key:'reverb',     label:'REVERB',           color:'#34d399' },
+                { key:'pitchShift', label:'PITCH SHIFT',      color:'#f59e0b' },
+            ];
+
+            function buildFX() {
+                const grid = document.getElementById('fxGrid');
+                grid.innerHTML = FX_DEF.map(({key, label, color}) => {
+                    const st = gFxSt[key];
+                    const wetPct = Math.round(st.wet * 100);
+                    const extra = key === 'chorus' ? `
+      <div class="pl mt-1">Rate <span class="pv" id="fxChR">${st.rate.toFixed(1)}Hz</span></div>
+      <input type="range" min="0.1" max="20" value="${st.rate}" step="0.1" id="fxChRS" oninput="setChorusRate(this.value)">
+      <div class="pl mt-1">Depth <span class="pv" id="fxChD">${Math.round(st.depth*100)}%</span></div>
+      <input type="range" min="0" max="100" value="${Math.round(st.depth*100)}" id="fxChDS" oninput="setChorusDepth(this.value)">
+    ` : key === 'pingPong' ? `
+      <div class="pl mt-1">Delay <span class="pv" id="fxPPT">${st.delay.toFixed(2)}s</span></div>
+      <input type="range" min="0.01" max="2" value="${st.delay}" step="0.01" id="fxPPTS" oninput="setPPDelay(this.value)">
+      <div class="pl mt-1">Feedback <span class="pv" id="fxPPF">${Math.round(st.fb*100)}%</span></div>
+      <input type="range" min="0" max="95" value="${Math.round(st.fb*100)}" id="fxPPFS" oninput="setPPFB(this.value)">
+    ` : key === 'reverb' ? `
+      <div class="pl mt-1">Decay <span class="pv" id="fxRvD">${st.decay.toFixed(1)}s</span></div>
+      <input type="range" min="0.1" max="10" value="${st.decay}" step="0.1" id="fxRvDS" oninput="setRvDecay(this.value)">
+    ` : key === 'pitchShift' ? `
+      <div class="pl mt-1">Pitch <span class="pv" id="fxPSP">${st.pitch>=0?'+':''}${st.pitch}st</span></div>
+      <input type="range" min="-24" max="24" value="${st.pitch}" step="1" id="fxPSPS" oninput="setPSPitch(this.value)">
+    ` : '';
+                    return `
+    <div class="col-xl-3 col-md-6">
+      <div class="mc p-2">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span style="font-size:.68rem;font-weight:800;color:${color}">${label}</span>
+          <div class="form-check form-switch mb-0">
+            <input class="form-check-input" type="checkbox" id="fx${key}" ${st.on?'checked':''} onchange="toggleFx('${key}',this.checked)">
+          </div>
+        </div>
+        <div class="pl">Wet <span class="pv" id="fxW${key}">${wetPct}%</span></div>
+        <input type="range" min="0" max="100" value="${wetPct}" id="fxWS${key}" oninput="setFxWet('${key}',this.value)">
+        ${extra}
+      </div>
+    </div>`;
+                }).join('');
+            }
+
+            const fxNodeMap = () => ({ chorus:gChorus, pingPong:gPingPong, reverb:gReverb, pitchShift:gPitchShift });
+
+            function toggleFx(k, on) {
+                gFxSt[k].on = on;
+                if (audioReady) {
+                    const node = fxNodeMap()[k];
+                    if (node) node.wet.value = on ? gFxSt[k].wet : 0;
+                }
+                updateJSON();
+            }
+
+            function setFxWet(k, v) {
+                v = +v; gFxSt[k].wet = v/100;
+                document.getElementById('fxW'+k).textContent = v+'%';
+                if (audioReady && gFxSt[k].on) {
+                    const node = fxNodeMap()[k];
+                    if (node) node.wet.value = v/100;
+                }
+                updateJSON();
+            }
+
+            function setChorusRate(v) {
+                v = parseFloat(v); gFxSt.chorus.rate = v;
+                document.getElementById('fxChR').textContent = v.toFixed(1)+'Hz';
+                if (audioReady) gChorus.frequency.value = v;
+                updateJSON();
+            }
+            function setChorusDepth(v) {
+                v = +v; gFxSt.chorus.depth = v/100;
+                document.getElementById('fxChD').textContent = v+'%';
+                if (audioReady) gChorus.depth = v/100;
+                updateJSON();
+            }
+            function setPPDelay(v) {
+                v = parseFloat(v); gFxSt.pingPong.delay = v;
+                document.getElementById('fxPPT').textContent = v.toFixed(2)+'s';
+                if (audioReady) {
+                    try { gPingPong.delayTime.linearRampTo(v, 0.1); } catch(e) { gPingPong.delayTime.value = v; }
+                }
+                updateJSON();
+            }
+            function setPPFB(v) {
+                v = +v; gFxSt.pingPong.fb = v/100;
+                document.getElementById('fxPPF').textContent = v+'%';
+                if (audioReady) {
+                    try { gPingPong.feedback.linearRampTo(v/100, 0.1); } catch(e) { gPingPong.feedback.value = v/100; }
+                }
+                updateJSON();
+            }
+            function setRvDecay(v) {
+                v = parseFloat(v); gFxSt.reverb.decay = v;
+                document.getElementById('fxRvD').textContent = v.toFixed(1)+'s';
+                updateJSON(); // reverb.decay change needs IR regeneration; skip live to avoid glitch
+            }
+            function setPSPitch(v) {
+                v = +v; gFxSt.pitchShift.pitch = v;
+                document.getElementById('fxPSP').textContent = (v>=0?'+':'')+v+'st';
+                if (audioReady) gPitchShift.pitch = v;
+                updateJSON();
+            }
+
+            // ================================================================
+            //  PRESET IMPORT
+            // ================================================================
+            function applyPreset() {
+                const ta = document.getElementById('jsonOut');
+                let data;
+                try {
+                    data = JSON.parse(ta.value);
+                } catch(e) {
+                    alert('JSON パースエラー:\n' + e.message);
+                    return;
+                }
+
+                // ── modules ──────────────────────────────────────────────────
+                if (Array.isArray(data.modules)) {
+                    data.modules.forEach((m, i) => {
+                        if (i >= NM) return;
+                        const def = MDEF[i];
+                        const st  = mSt[i];
+                        if (m.enabled  !== undefined) st.enabled   = !!m.enabled;
+                        if (m.amp      !== undefined) st.amp        = +m.amp;
+                        if (m.mix      !== undefined) st.mix        = +m.mix;
+                        if (m.envelope) Object.assign(st.env,    m.envelope);
+                        if (m.filter)   Object.assign(st.filter,  m.filter);
+                        if (m.lfo)      Object.assign(st.lfo,     m.lfo);
+                        if (!def.isNoise) {
+                            if (m.waveform !== undefined) st.waveform = m.waveform;
+                            if (m.pitch    !== undefined) st.pitch    = +m.pitch;
+                            if (m.detune   !== undefined) st.detune   = +m.detune;
+                        } else {
+                            if (m.noiseType !== undefined) st.noiseType = m.noiseType;
+                        }
+                    });
+                }
+
+                // ── global effects ────────────────────────────────────────────
+                if (data.globalEffects) {
+                    for (const k of Object.keys(gFxSt)) {
+                        if (data.globalEffects[k]) Object.assign(gFxSt[k], data.globalEffects[k]);
+                    }
+                }
+
+                // ── rebuild DOM ───────────────────────────────────────────────
+                document.getElementById('modGrid').innerHTML = '';
+                buildModules();
+                buildMixer();
+                buildFX();
+
+                // ── apply to live audio ───────────────────────────────────────
+                if (audioReady) {
+                    mSt.forEach((st, i) => {
+                        const def = MDEF[i];
+                        const n   = mN[i];
+                        if (!n.synth) return;
+
+                        n.mixGain.gain.value = st.enabled ? st.mix : 0;
+
+                        if (!def.isNoise) {
+                            n.synth.volume.value = Tone.gainToDb(st.amp);
+                            try { n.synth.set({ oscillator: { type: st.waveform } }); } catch(e) {}
+                            n.synth.set({ detune: st.detune });
+                            n.synth.set({ envelope: st.env });
+                        } else {
+                            n.synth.set({ noise: { type: st.noiseType }, envelope: st.env });
+                        }
+
+                        n.filt.type = st.filter.type;
+                        try { n.filt.Q.value = st.filter.Q; } catch(e) {}
+                        applyLFO(i);  // sets filter freq via LFO min/max and vibrato
+                        n.lfo.frequency.value  = st.lfo.rate;
+                        n.vibrato.frequency.value = st.lfo.rate;
+                    });
+
+                    // FX nodes
+                    const nodeMap = fxNodeMap();
+                    for (const k of Object.keys(gFxSt)) {
+                        const st   = gFxSt[k];
+                        const node = nodeMap[k];
+                        if (node) node.wet.value = st.on ? st.wet : 0;
+                    }
+                    if (gChorus) {
+                        gChorus.frequency.value = gFxSt.chorus.rate;
+                        gChorus.depth = gFxSt.chorus.depth;
+                    }
+                    if (gPingPong) {
+                        try { gPingPong.delayTime.value = gFxSt.pingPong.delay; } catch(e) {}
+                        try { gPingPong.feedback.value  = gFxSt.pingPong.fb;    } catch(e) {}
+                    }
+                    if (gPitchShift) gPitchShift.pitch = gFxSt.pitchShift.pitch;
+                }
+
+                updateJSON();
+            }
+
+            // ================================================================
+            //  MASTER
+            // ================================================================
+            function setPan(v) {
+                v = parseFloat(v);
+                const lbl = v===0 ? 'C' : v>0 ? 'R'+(v*100).toFixed(0) : 'L'+(-v*100).toFixed(0);
+                document.getElementById('panV').textContent = lbl;
+                if (audioReady) gPanner.pan.value = v;
+                updateJSON();
+            }
+            function setMasterVol(v) {
+                v = +v;
+                document.getElementById('masterV').textContent = v+'%';
+                if (audioReady) gMaster.gain.value = v/100;
+                updateJSON();
+            }
+
+            // ================================================================
+            //  MODULE UI BUILDER
+            // ================================================================
+            function buildModules() {
+                const grid = document.getElementById('modGrid');
+                const WAVES = [
+                    ['Basic',   ['sine','square','sawtooth','triangle','pulse']],
+                    ['Fat',     ['fatsine','fatsquare','fatsawtooth','fattriangle']],
+                    ['FM Mod',  ['fmsine','fmsquare','fmsawtooth','fmtriangle']],
+                    ['AM Mod',  ['amsine','amsquare','amsawtooth','amtriangle']],
+                ];
+                const fmtW = w => {
+                    if (w.startsWith('fat')) return 'Fat '+w.slice(3).replace(/^./,c=>c.toUpperCase());
+                    if (w.startsWith('fm'))  return 'FM '+w.slice(2).replace(/^./,c=>c.toUpperCase());
+                    if (w.startsWith('am'))  return 'AM '+w.slice(2).replace(/^./,c=>c.toUpperCase());
+                    return w.replace(/^./,c=>c.toUpperCase());
+                };
+
+                MDEF.forEach((def, i) => {
+                    const st = mSt[i];
+                    const ampPct  = Math.round(st.amp * 100);
+                    const mixPct  = Math.round(st.mix * 100);
+                    const pitchLbl = (st.pitch>=0?'+':'')+st.pitch+'st';
+                    const detLbl   = (st.detune>=0?'+':'')+st.detune+'ct';
+                    const fcLbl    = st.filter.freq>=1000 ? (st.filter.freq/1000).toFixed(1)+'kHz' : st.filter.freq.toFixed(0)+'Hz';
+
+                    const waveOpts = WAVES.map(([grp, ws]) =>
+                        `<optgroup label="${grp}">${ws.map(w =>
+                            `<option value="${w}"${w===st.waveform?' selected':''}>${fmtW(w)}</option>`
+                        ).join('')}</optgroup>`
+                    ).join('');
+
+                    const oscTop = def.isNoise ? `
+      <div class="pl">Noise Type</div>
+      <select class="form-select form-select-sm mb-2" id="nt${i}" onchange="setNoiseType(${i},this.value)">
+        <option value="white"${st.noiseType==='white'?' selected':''}>White</option>
+        <option value="pink"${st.noiseType==='pink'?' selected':''}>Pink</option>
+        <option value="brown"${st.noiseType==='brown'?' selected':''}>Brown</option>
+      </select>
+      <div class="pl">Amp <span class="pv" id="av${i}">${ampPct}%</span></div>
+      <input type="range" min="0" max="100" value="${ampPct}" id="slA${i}" class="w-100 mb-1" oninput="setAmp(${i},this.value)">
+    ` : `
+      <div class="pl">Waveform</div>
+      <select class="form-select form-select-sm mb-1" id="wt${i}" onchange="setWaveform(${i},this.value)">${waveOpts}</select>
+      <div class="row g-1 mb-1">
+        <div class="col-4">
+          <div class="pl">Pitch <span class="pv" id="pv${i}">${pitchLbl}</span></div>
+          <input type="range" min="-24" max="24" value="${st.pitch}" step="1" id="slP${i}" class="w-100" oninput="setPitch(${i},this.value)">
+        </div>
+        <div class="col-4">
+          <div class="pl">Det <span class="pv" id="dv${i}">${detLbl}</span></div>
+          <input type="range" min="-100" max="100" value="${st.detune}" id="slD${i}" class="w-100" oninput="setDetune(${i},this.value)">
+        </div>
+        <div class="col-4">
+          <div class="pl">Amp <span class="pv" id="av${i}">${ampPct}%</span></div>
+          <input type="range" min="0" max="100" value="${ampPct}" id="slA${i}" class="w-100" oninput="setAmp(${i},this.value)">
+        </div>
+      </div>
+    `;
+
+                    const col = document.createElement('div');
+                    col.className = 'col-xl-3 col-lg-6';
+                    col.innerHTML = `
+    <div class="mc ${st.enabled?'on':''}" id="mc${i}">
+      <div class="mc-hdr">
+        <div class="d-flex align-items-center gap-2">
+          <input class="form-check-input mt-0" type="checkbox" id="en${i}" ${st.enabled?'checked':''} onchange="toggleMod(${i})">
+          <span style="font-size:.75rem;font-weight:800;color:${def.color}">${def.name}</span>
+        </div>
+        <span class="led ${st.enabled?'on':''}" id="led${i}"></span>
+      </div>
+      <div class="mc-body">
+        ${oscTop}
+
+        <div class="mod-sect">ENVELOPE</div>
+        <div class="row g-1 mb-1">
+          <div class="col-3">
+            <div class="pl">A <span class="pv" id="akV${i}">${st.env.attack.toFixed(2)}s</span></div>
+            <input type="range" min="0.001" max="4" value="${st.env.attack}" step="0.001" id="slAk${i}" class="w-100"
+                   oninput="setEnvP(${i},'attack',this.value,'akV${i}')">
+          </div>
+          <div class="col-3">
+            <div class="pl">D <span class="pv" id="dcV${i}">${st.env.decay.toFixed(2)}s</span></div>
+            <input type="range" min="0.001" max="4" value="${st.env.decay}" step="0.001" id="slDc${i}" class="w-100"
+                   oninput="setEnvP(${i},'decay',this.value,'dcV${i}')">
+          </div>
+          <div class="col-3">
+            <div class="pl">S <span class="pv" id="ssV${i}">${st.env.sustain.toFixed(2)}</span></div>
+            <input type="range" min="0" max="1" value="${st.env.sustain}" step="0.01" id="slSs${i}" class="w-100"
+                   oninput="setEnvP(${i},'sustain',this.value,'ssV${i}')">
+          </div>
+          <div class="col-3">
+            <div class="pl">R <span class="pv" id="rlV${i}">${st.env.release.toFixed(2)}s</span></div>
+            <input type="range" min="0.001" max="8" value="${st.env.release}" step="0.001" id="slRl${i}" class="w-100"
+                   oninput="setEnvP(${i},'release',this.value,'rlV${i}')">
+          </div>
+        </div>
+        <canvas id="ec${i}" class="env-cvs"></canvas>
+
+        <div class="mod-sect">FILTER</div>
+        <div class="row g-1 mb-1">
+          <div class="col-5">
+            <div class="pl">Type</div>
+            <select class="form-select form-select-sm" id="flt${i}" onchange="setFiltT(${i},this.value)">
+              <option value="lowpass"${st.filter.type==='lowpass'?' selected':''}>Lowpass</option>
+              <option value="highpass"${st.filter.type==='highpass'?' selected':''}>Highpass</option>
+              <option value="bandpass"${st.filter.type==='bandpass'?' selected':''}>Bandpass</option>
+              <option value="notch"${st.filter.type==='notch'?' selected':''}>Notch</option>
+            </select>
+          </div>
+          <div class="col-7">
+            <div class="pl">Cutoff <span class="pv" id="fcV${i}">${fcLbl}</span></div>
+            <input type="range" min="20" max="20000" value="${st.filter.freq}" step="1" id="slFf${i}" class="w-100"
+                   oninput="setFiltF(${i},this.value)">
+          </div>
+        </div>
+        <div class="mb-1">
+          <div class="pl">Q (Resonance) <span class="pv" id="fqV${i}">${st.filter.Q.toFixed(1)}</span></div>
+          <input type="range" min="0.1" max="20" value="${st.filter.Q}" step="0.1" id="slFq${i}" class="w-100"
+                 oninput="setFiltQ(${i},this.value)">
+        </div>
+
+        <div class="mod-sect">LFO</div>
+        <div class="row g-1 mb-1">
+          <div class="col-6">
+            <div class="pl">Rate <span class="pv" id="lrV${i}">${st.lfo.rate.toFixed(1)}Hz</span></div>
+            <input type="range" min="0.01" max="20" value="${st.lfo.rate}" step="0.01" id="slLr${i}" class="w-100"
+                   oninput="setLFORate(${i},this.value)">
+          </div>
+          <div class="col-6">
+            <div class="pl">Depth <span class="pv" id="ldV${i}">${st.lfo.depth}%</span></div>
+            <input type="range" min="0" max="100" value="${st.lfo.depth}" id="slLd${i}" class="w-100"
+                   oninput="setLFODepth(${i},this.value)">
+          </div>
+        </div>
+        <div class="btn-group btn-group-sm w-100" role="group">
+          <input type="radio" class="btn-check" name="lt${i}" id="ltP${i}" value="pitch"
+                 ${st.lfo.target==='pitch'?'checked':''} onchange="setLFOTgt(${i},'pitch')">
+          <label class="btn btn-outline-primary" for="ltP${i}">Pitch</label>
+          <input type="radio" class="btn-check" name="lt${i}" id="ltF${i}" value="filter"
+                 ${st.lfo.target==='filter'?'checked':''} onchange="setLFOTgt(${i},'filter')">
+          <label class="btn btn-outline-info" for="ltF${i}">Filter</label>
+        </div>
+      </div>
+    </div>`;
+                    grid.appendChild(col);
+                });
+
+                // Draw canvases after DOM is ready
+                requestAnimationFrame(() => { for (let i=0;i<NM;i++) drawEnv(i); });
+            }
+
+            // ================================================================
+            //  KEYBOARD
+            // ================================================================
+            const WN = ['C','D','E','F','G','A','B'];
+            const KW = 34;
+            const BK_DEFS = [
+                {n:'C#',aw:0},{n:'D#',aw:1},{n:'F#',aw:3},{n:'G#',aw:4},{n:'A#',aw:5}
+            ];
+            let keyMap = {};
+
+            function buildKeyboard() {
+                const con = document.getElementById('pianoKeys');
+                con.innerHTML = '';
+                const nOct = 2, nW = nOct*7;
+                con.style.cssText = `width:${nW*(KW+1)}px;height:120px;position:relative`;
+
+                // White key PC maps
+                const wPc = ['a','s','d','f','g','h','j','k','l',';'];
+                const bPc = [['w','e','t','y','u'],['i','o',null,null,null]];
+
+                for (let i = 0; i < nW; i++) {
+                    const oct = Math.floor(i/7);
+                    const note = WN[i%7]+(currentOct+oct);
+                    const pc = i < wPc.length ? wPc[i] : '';
+                    const el = mkKey('kw', note, `<div class="kl">${pc.toUpperCase()}<br><span style="font-size:.4rem;color:#888">${note}</span></div>`);
+                    el.style.left = i*(KW+1)+'px';
+                    con.appendChild(el);
+                }
+                for (let oct = 0; oct < nOct; oct++) {
+                    BK_DEFS.forEach(({n, aw}, bi) => {
+                        const note = n+(currentOct+oct);
+                        const pc = bPc[oct]?.[bi] || '';
+                        const el = mkKey('kb', note, `<div class="kl">${pc.toUpperCase()}</div>`);
+                        el.style.left = ((oct*7+aw)*(KW+1)+(KW+1)-10)+'px';
+                        con.appendChild(el);
+                    });
+                }
+                buildKeyMap();
+            }
+
+            function mkKey(cls, note, inner) {
+                const el = document.createElement('div');
+                el.className = cls; el.dataset.note = note; el.innerHTML = inner;
+                el.addEventListener('mousedown', e => { e.preventDefault(); noteOn(note); el.classList.add('active'); });
+                el.addEventListener('mouseup',   () => { noteOff(note); el.classList.remove('active'); });
+                el.addEventListener('mouseleave',() => { if(activeNotes.has(note)){noteOff(note);el.classList.remove('active');} });
+                el.addEventListener('touchstart', e => { e.preventDefault(); noteOn(note); el.classList.add('active'); },{passive:false});
+                el.addEventListener('touchend',   e => { e.preventDefault(); noteOff(note); el.classList.remove('active'); },{passive:false});
+                return el;
+            }
+
+            function buildKeyMap() {
+                keyMap = {};
+                const wK = ['a','s','d','f','g','h','j','k','l',';'];
+                const wN = ['C','D','E','F','G','A','B','C','D','E'];
+                const wO = [ 0,  0,  0,  0,  0,  0,  0,  1,  1,  1];
+                wK.forEach((k,i) => { if(wN[i]) keyMap[k] = wN[i]+(currentOct+wO[i]); });
+                const bK = ['w','e','t','y','u','i','o'];
+                const bN = ['C#','D#','F#','G#','A#','C#','D#'];
+                const bO = [  0,   0,   0,   0,   0,   1,   1];
+                bK.forEach((k,i) => { keyMap[k] = bN[i]+(currentOct+bO[i]); });
+            }
+
+            function chgOct(d) {
+                currentOct = Math.max(1, Math.min(6, currentOct+d));
+                document.getElementById('octV').textContent = currentOct;
+                buildKeyboard();
+            }
+
+            // Types where keyboard focus means the user is typing text → block note keys
+            const TEXT_INPUTS = new Set(['text','number','search','email','password','url','tel']);
+            function isTypingFocus(el) {
+                const tag = el.tagName;
+                if (tag === 'TEXTAREA' || tag === 'SELECT') return true;
+                if (tag === 'INPUT' && TEXT_INPUTS.has(el.type)) return true;
+                return false;
+            }
+
+            document.addEventListener('keydown', e => {
+                if (e.repeat || isTypingFocus(e.target)) return;
+                const note = keyMap[e.key.toLowerCase()];
+                if (!note) return;
+                noteOn(note);
+                const el = document.querySelector(`[data-note="${note}"]`);
+                if (el) el.classList.add('active');
+            });
+            document.addEventListener('keyup', e => {
+                if (isTypingFocus(e.target)) return;
+                const note = keyMap[e.key.toLowerCase()];
+                if (!note) return;
+                noteOff(note);
+                const el = document.querySelector(`[data-note="${note}"]`);
+                if (el) el.classList.remove('active');
+            });
+
+            // ================================================================
+            //  JSON OUTPUT
+            // ================================================================
+            function updateJSON() {
+                const ta = document.getElementById('jsonOut');
+                if (!ta || document.activeElement === ta) return; // don't overwrite while user is editing
+                const out = {
+                    modules: mSt.map((s,i) => ({
+                        name: MDEF[i].name,
+                        enabled: s.enabled,
+                        ...(MDEF[i].isNoise ? {noiseType:s.noiseType} : {waveform:s.waveform,pitch:s.pitch,detune:s.detune}),
+                        amp: s.amp, mix: s.mix,
+                        envelope: s.env,
+                        filter: s.filter,
+                        lfo: s.lfo,
+                    })),
+                    globalEffects: gFxSt,
+                };
+                ta.value = JSON.stringify(out, null, 2);
+            }
+
+            function copyJSON(e) {
+                navigator.clipboard.writeText(document.getElementById('jsonOut').value).then(() => {
+                    e.target.innerHTML = '<i class="fas fa-check me-1"></i>コピー完了';
+                    setTimeout(() => { e.target.innerHTML = '<i class="fas fa-clipboard me-1"></i>設定をコピー'; }, 1800);
+                });
+            }
+
+            // ================================================================
+            //  INIT
+            // ================================================================
+            // ================================================================
+            //  THEME TOGGLE
+            // ================================================================
+            function toggleTheme() {
+                const html = document.documentElement;
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                const next = isDark ? 'light' : 'dark';
+                html.setAttribute('data-theme', next);
+                html.setAttribute('data-bs-theme', next);
+                const icon = document.getElementById('themeIcon');
+                if (icon) icon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                try { localStorage.setItem('synth-theme', next); } catch(e) {}
+            }
+
+            function _restoreTheme() {
+                try {
+                    const saved = localStorage.getItem('synth-theme');
+                    if (saved) {
+                        document.documentElement.setAttribute('data-theme', saved);
+                        document.documentElement.setAttribute('data-bs-theme', saved);
+                    }
+                } catch(e) {}
+                // Sync icon to current theme
+                const icon = document.getElementById('themeIcon');
+                if (icon) {
+                    const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+                    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                }
+            }
+
+            // ================================================================
+            //  INIT
+            // ================================================================
+            document.addEventListener('DOMContentLoaded', () => {
+                _restoreTheme();
+                buildModules();
+                buildMixer();
+                buildFX();
+                buildKeyboard();
+                updateJSON();
+                window.addEventListener('resize', () => { for(let i=0;i<NM;i++) drawEnv(i); });
+            });
+        </script>
+
+<script>
+/**
+ * SVG Inject
+ * ─────────────────────────────────────────────
+ * class="svg-inject" を持つ <img> を fetch してインライン <svg> に置換する。
+ * - JS メモリ上にテキストをキャッシュし、同一 URL の重複リクエストを防ぐ
+ * - data-loading="true" + CSS transition で FOUC を完全防止
+ * - fetch / パースエラー時は元の <img> をそのまま表示（フォールバック）
+ */
+(function () {
+    'use strict';
+
+    /** URL → Promise<string> のキャッシュ（同一ページ内で 1 リクエストのみ） */
+    const _cache = new Map();
+
+    /** SVG テキストを取得（キャッシュ付き） */
+    function _fetch(url) {
+        if (!_cache.has(url)) {
+            _cache.set(url,
+                fetch(url, { credentials: 'same-origin' })
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+                        return res.text();
+                    })
+            );
+        }
+        return _cache.get(url);
+    }
+
+    /** SVG テキストを DOM 要素にパース */
+    function _parse(text, url) {
+        let doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+        let err = doc.querySelector('parsererror');
+        if (err) throw new Error('SVG parse error (' + url + '): ' + err.textContent.trim());
+        let svg = doc.querySelector('svg');
+        if (!svg) throw new Error('No <svg> element found in ' + url);
+        return svg;
+    }
+
+    /**
+     * <img> の属性を <svg> へ引き継ぐ
+     * ・SVG 構造属性（xmlns / viewBox 等）は上書きしない
+     * ・img の id がなければ SVG の id を削除（重複 ID 防止）
+     * ・alt は aria-label に変換
+     * ・data-loading="true" を付与して CSS が opacity:0 を維持
+     */
+    function _transfer(img, svg) {
+        let skipImg = new Set([
+            'src', 'data-loading', 'decoding', 'loading',
+            'crossorigin', 'fetchpriority', 'referrerpolicy'
+        ]);
+        let keepSvg = new Set([
+            'xmlns', 'xmlns:xlink', 'viewBox', 'version', 'xml:space'
+        ]);
+
+        for (let i = 0; i < img.attributes.length; i++) {
+            let attr = img.attributes[i];
+            if (skipImg.has(attr.name) || keepSvg.has(attr.name)) continue;
+            svg.setAttribute(attr.name, attr.value);
+        }
+
+        /* id: img が持っていない場合は SVG の id を削除（同一ページに複数あると重複になるため） */
+        if (!img.hasAttribute('id')) {
+            svg.removeAttribute('id');
+        }
+
+        /* alt → aria-label（<svg> に alt は無効） */
+        if (img.alt) {
+            svg.setAttribute('aria-label', img.alt);
+            svg.setAttribute('role', 'img');
+        }
+        svg.removeAttribute('alt');
+
+        /* FOUC 防止: 挿入時は CSS で opacity:0 のまま保持 */
+        svg.setAttribute('data-loading', 'true');
+    }
+
+    /** 1 つの <img> を非同期でインライン <svg> に置換 */
+    function _inject(img) {
+        let url = img.src;
+        if (!url || !img.parentNode) return;
+
+        _fetch(url)
+            .then(function (text) {
+                let svg = _parse(text, url);
+                _transfer(img, svg);
+
+                img.parentNode.replaceChild(svg, img);
+
+                /* reflow を強制してから data-loading を削除 → CSS transition で フェードイン */
+                svg.getBoundingClientRect();
+                svg.removeAttribute('data-loading');
+            })
+            .catch(function (err) {
+                console.error('[svg-inject]', err);
+                /* フォールバック: 元の <img> をそのまま表示 */
+                img.removeAttribute('data-loading');
+            });
+    }
+
+    /** ページ内の全 img.svg-inject を処理 */
+    function injectAll() {
+        document.querySelectorAll('img.svg-inject').forEach(_inject);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', injectAll);
+    } else {
+        injectAll();
+    }
+})();
+</script>
+</body>
+</html>
