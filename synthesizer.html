@@ -349,90 +349,6 @@
             --svg-fb-scale-stroke:#ffffff;
         }
 
-        
-        </style>
-</head>
-<body data-theme="light" data-bs-theme="light">
-<script>
-    
-    let ColorScheme = 'dark';
-    // 初期テーマの決定：① localStorage → ② OS設定 の順で参照
-    (function initTheme() {
-        ColorScheme = localStorage.getItem('color-scheme');
-        if (!(ColorScheme === 'light' || ColorScheme === 'dark')) {
-            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            ColorScheme = (isDark ? 'dark' : 'light');
-        }
-        document.documentElement.setAttribute('data-bs-theme', ColorScheme);
-        document.documentElement.setAttribute('data-theme', ColorScheme);
-        document.body.setAttribute('data-bs-theme', ColorScheme);
-        document.body.setAttribute('data-theme', ColorScheme);
-    })();
-</script>
-<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">BTR KITA</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                                            <a class="nav-link" href="/">Home</a>
-                    
-                </li>
-                <li class="nav-item">
-                                            <a class="nav-link" href="/diatonic/index.html">ダイアトニックコード</a>
-                    
-                </li>
-
-                <li class="nav-item">
-                                            <a class="nav-link" href="/scale/index.html">スケール</a>
-                    
-                </li>
-                <li class="nav-item">
-                                            <a class="nav-link" href="/metronome.html">メトロノーム</a>
-                    
-                </li>
-                <li class="nav-item">
-                                            <a class="nav-link" href="/tuner.html">チューナー</a>
-                                    </li>
-                <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="/synthesizer.html">シンセサイザー</a>
-                                    </li>
-                <li class="nav-item">
-                                            <a class="nav-link" href="/chord-progression/index.html">コード進行</a>
-                                    </li>
-
-                
-                <li class="nav-item d-lg-none"><hr class="dropdown-divider opacity-25 my-1"></li>
-                <li class="nav-item d-lg-none">
-                    <button type="button"
-                            class="nav-link theme-toggle-btn btn border-0 bg-transparent d-flex align-items-center gap-2 w-100 text-start">
-                        <i class="fas fa-moon theme-icon"></i>
-                        <span class="theme-label"></span>
-                    </button>
-                </li>
-            </ul>
-
-            
-            <span class="navbar-text d-none d-lg-inline">
-                ギター演奏に役立つ便利な情報
-            </span>
-
-            <button type="button"
-                    class="btn btn-link nav-link theme-toggle-btn d-none d-lg-inline-flex align-items-center px-2"
-                    id="themeBtn" title="ライト / ダーク">
-                <i class="fas fa-moon theme-icon"></i>
-            </button>
-        </div>
-    </div>
-</nav>
-
-
-<main id="main" class="site-main main">
-    <style x-component>
         :root {
             --bg: #0b0e18;
             --card: #131722;
@@ -990,9 +906,129 @@
             background: #0891b2;
             color: #fff;
         }
-    </style>
+
+        /* ================================================================
+           SMARTPHONE KEYBOARD — full-width, tall keys
+           縦: max-width 576px, 横: max-height 576px
+        ================================================================ */
+        @media screen and (max-width: 576px) and (orientation: portrait), screen and (orientation: landscape) and (max-height: 576px) {
+
+            /* パネルをコンテナの余白外に広げる */
+            #kbPanel {
+                margin-left: calc(-1 * var(--bs-gutter-x, 1.5rem) / 2);
+                margin-right: calc(-1 * var(--bs-gutter-x, 1.5rem) / 2);
+                border-left: none;
+                border-right: none;
+                border-radius: 0;
+                margin-bottom: 0;
+            }
+
+            #kbPanel .sp-hdr {
+                border-radius: 0;
+            }
+
+            #kbPanel .sp-body {
+                padding: 0;
+            }
+
+            /* piano-wrap も余白ゼロ */
+            #kbPanel .piano-wrap {
+                padding: 0;
+                border-radius: 0;
+                gap: 4px;
+            }
+
+            /* オクターブコントロールと説明には最低限のパディング */
+            #kbPanel .piano-wrap > div {
+                padding: 4px 12px;
+            }
+
+            #kbPanel .sp-body > div:not(.piano-wrap) {
+                padding: 2px 12px 6px;
+            }
+        }
+        </style>
+</head>
+<body data-theme="light" data-bs-theme="light">
+<script>
     
-     
+    let ColorScheme = 'dark';
+    // 初期テーマの決定：① localStorage → ② OS設定 の順で参照
+    (function initTheme() {
+        ColorScheme = localStorage.getItem('color-scheme');
+        if (!(ColorScheme === 'light' || ColorScheme === 'dark')) {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            ColorScheme = (isDark ? 'dark' : 'light');
+        }
+        document.documentElement.setAttribute('data-bs-theme', ColorScheme);
+        document.documentElement.setAttribute('data-theme', ColorScheme);
+        document.body.setAttribute('data-bs-theme', ColorScheme);
+        document.body.setAttribute('data-theme', ColorScheme);
+    })();
+</script>
+<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">BTR KITA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                                            <a class="nav-link" href="/">Home</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/diatonic/index.html">ダイアトニックコード</a>
+                    
+                </li>
+
+                <li class="nav-item">
+                                            <a class="nav-link" href="/scale/index.html">スケール</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/metronome.html">メトロノーム</a>
+                    
+                </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/tuner.html">チューナー</a>
+                                    </li>
+                <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="/synthesizer.html">シンセサイザー</a>
+                                    </li>
+                <li class="nav-item">
+                                            <a class="nav-link" href="/chord-progression/index.html">コード進行</a>
+                                    </li>
+
+                
+                <li class="nav-item d-lg-none"><hr class="dropdown-divider opacity-25 my-1"></li>
+                <li class="nav-item d-lg-none">
+                    <button type="button"
+                            class="nav-link theme-toggle-btn btn border-0 bg-transparent d-flex align-items-center gap-2 w-100 text-start">
+                        <i class="fas fa-moon theme-icon"></i>
+                        <span class="theme-label"></span>
+                    </button>
+                </li>
+            </ul>
+
+            
+            <span class="navbar-text d-none d-lg-inline">
+                ギター演奏に役立つ便利な情報
+            </span>
+
+            <button type="button"
+                    class="btn btn-link nav-link theme-toggle-btn d-none d-lg-inline-flex align-items-center px-2"
+                    id="themeBtn" title="ライト / ダーク">
+                <i class="fas fa-moon theme-icon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+<main id="main" class="site-main main">
     <!-- ===== INIT OVERLAY ===== -->
     <div id="initOvl">
         <div class="text-center px-4">
@@ -1007,6 +1043,7 @@
             <p id="initErr" style="display:none;color:#f87171;font-size:.75rem;margin-top:8px;max-width:400px"></p>
         </div>
     </div>
+
     <main class="container-fluid py-2" style="max-width:1720px">
         <!-- ===== 1. OSCILLATOR MODULES ===== -->
         <div class="sp">
@@ -1048,20 +1085,24 @@
         </div>
 
         <!-- ===== 5. KEYBOARD ===== -->
-        <div class="sp">
+        <div class="sp" id="kbPanel">
             <div class="sp-hdr">KEYBOARD</div>
             <div class="sp-body">
                 <div class="piano-wrap">
                     <div class="piano-keys" id="pianoKeys"></div>
                     <div class="d-flex align-items-center gap-2">
-                        <span style="font-size:.68rem;color:var(--muted)">Octave:</span>
                         <button class="btn btn-s btn-sm" onclick="chgOct(-1)"><i class="fas fa-chevron-left"></i></button>
                         <span class="pv" id="octV">4</span>
                         <button class="btn btn-s btn-sm" onclick="chgOct(1)"><i class="fas fa-chevron-right"></i></button>
                     </div>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <span style="font-size:.68rem;color:var(--muted)">Octave</span>
+                    </div>
                 </div>
                 <div style="font-size:.62rem;color:var(--muted);margin-bottom:4px">
-                    <p>鍵盤のクリック、タップ、対応したPCのキーボード（A, S, D, Fなど）を押すと音が出ます。オクターブは左右のボタンで変更可能です。</p>
+                    <p>鍵盤のクリック、タップ、対応したPCのキーボード（A, S, D,
+                        Fなど）を押すと音が出ます。オクターブは左右のボタンで変更可能です。</p>
                     <p>
                         WHITE（白鍵）: A S D F G H J K L ; : ]<br>
                         BLACK（黒鍵）: W E T Y U &nbsp;/&nbsp; O P [
@@ -2032,25 +2073,27 @@
                 const portrait = H > W;
                 const phone = Math.min(W, H) <= 576; // phone (not tablet/PC)
                 if (phone && portrait) {
-                    // SP縦: 1オクターブ、固定キー幅
-                    return {nOct: 1, kw: 40};
+                    // SP縦: 1オクターブ、全幅・高さ270px
+                    const nOct = 1, nW = 7;
+                    const kw = Math.max(28, Math.floor((W - (nW - 1)) / nW));
+                    return {nOct, kw, KH: 270, BH: 162};
                 } else if (phone && !portrait) {
-                    // SP横: 2オクターブ、全幅ストレッチ
-                    const nW = 14;
-                    const avail = W - 56; // sp-body padding (12×2) + piano-wrap padding (14×2)
-                    const kw = Math.max(28, Math.floor(avail / nW) - 1);
-                    return {nOct: 2, kw};
+                    // SP横: 2オクターブ、全幅・高さ270px
+                    const nOct = Math.min(2, 10 - currentOct), nW = 14;
+                    const kw = Math.max(28, Math.floor((W - (nW - 1)) / nW));
+                    return {nOct, kw, KH: 270, BH: 162};
                 } else {
-                    // PC / tablet
-                    return {nOct: 2, kw: 34};
+                    // PC / tablet: 通常サイズ
+                    let oct = Math.max(2, Math.min(6, Math.floor((window.innerWidth / 260))));
+                    oct = Math.min(oct, 10 - currentOct);
+                    return {nOct: oct, kw: 34, KH: 120, BH: 72};
                 }
             }
 
             function buildKeyboard() {
-                const {nOct, kw} = getKbOpts();
+                const {nOct, kw, KH, BH} = getKbOpts();
                 const bkW = Math.round(kw * 0.58);   // black key width (~58% of white)
                 const bkOff = (kw + 1) - Math.ceil(bkW / 2); // center black key at white-key boundary
-                const KH = 120, BH = 72;
 
                 const con = document.getElementById('pianoKeys');
                 con.innerHTML = '';
@@ -2066,6 +2109,7 @@
                     const el = mkKey('kw', note, inner);
                     el.style.left = i * (kw + 1) + 'px';
                     el.style.width = kw + 'px';
+                    el.style.height = KH + 'px';
                     con.appendChild(el);
                 }
 
