@@ -1,7 +1,25 @@
 <?xml version="1.0" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" id="svg-canvas"
      width="2100.00" height="2100.00" viewBox="0.00 0.00 2100.00 2100.00">
-
+    <metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+             xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <rdf:Description rdf:about="">
+            <dc:format>image/svg+xml</dc:format>
+            <dc:title>Circle of 5th</dc:title>
+            <dc:creator>
+                <rdf:Bag>
+                    <rdf:li>Suzunone（https://btrkita.github.io/）</rdf:li>
+                </rdf:Bag>
+            </dc:creator>
+            <dc:rights>
+                <rdf:Alt>
+                    <rdf:li xml:lang="x-default">Copyright © 2024 https://btrkita.github.io/ All rights reserved.</rdf:li>
+                </rdf:Alt>
+            </dc:rights>
+        </rdf:Description>
+    </rdf:RDF>
+</metadata>
     <defs>
         <style>
             /* デフォルト（ライトモード相当）のフォールバック変数 */
