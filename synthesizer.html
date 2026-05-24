@@ -1040,11 +1040,9 @@
     <div id="initOvl">
         <div class="text-center px-4">
             <i class="fas fa-sliders-h" style="font-size:2.8rem;color:var(--blue);display:block;margin-bottom:12px"></i>
-            <h2 style="color:var(--blue);font-size:1.5rem;font-weight:900;letter-spacing:3px;margin-bottom:6px">POLY
-                LAYER
+            <h2 style="color:var(--blue);font-size:1.5rem;font-weight:900;letter-spacing:3px;margin-bottom:6px">POLY LAYER
                 SYNTH</h2>
-            <p style="color:var(--muted);font-size:.82rem;margin-bottom:22px">Polyphonic Multi-Oscillator
-                Synthesizer</p>
+            <p style="color:var(--muted);font-size:.82rem;margin-bottom:22px">Polyphonic Multi-Oscillator Synthesizer</p>
             <button class="btn btn-primary btn-lg px-5 fw-bold" onclick="initAudio()"><i class="fas fa-play me-2"></i>START
                 AUDIO ENGINE
             </button>
@@ -1083,13 +1081,11 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="pl">Pan (L ← C → R) <span class="pv" id="panV">C</span></div>
-                        <input type="range" min="-1" max="1" value="0" step="0.01" id="panSl"
-                               oninput="setPan(this.value)">
+                        <input type="range" min="-1" max="1" value="0" step="0.01" id="panSl" oninput="setPan(this.value)">
                     </div>
                     <div class="col-md-6">
                         <div class="pl">Master Volume <span class="pv" id="masterV">80%</span></div>
-                        <input type="range" min="0" max="100" value="80" id="masterSl"
-                               oninput="setMasterVol(this.value)">
+                        <input type="range" min="0" max="100" value="80" id="masterSl" oninput="setMasterVol(this.value)">
                     </div>
                 </div>
             </div>
@@ -1102,11 +1098,9 @@
                 <div class="piano-wrap">
                     <div class="piano-keys" id="pianoKeys"></div>
                     <div class="d-flex align-items-center gap-2">
-                        <button class="btn btn-s btn-sm" onclick="chgOct(-1)"><i class="fas fa-chevron-left"></i>
-                        </button>
+                        <button class="btn btn-s btn-sm" onclick="chgOct(-1)"><i class="fas fa-chevron-left"></i></button>
                         <span class="pv" id="octV">4</span>
-                        <button class="btn btn-s btn-sm" onclick="chgOct(1)"><i class="fas fa-chevron-right"></i>
-                        </button>
+                        <button class="btn btn-s btn-sm" onclick="chgOct(1)"><i class="fas fa-chevron-right"></i></button>
                     </div>
 
                     <div class="d-flex align-items-center gap-2">
@@ -1133,8 +1127,7 @@
                     </button>
                     <button class="btn btn-s btn-sm" onclick="updateJSON()"><i class="fas fa-sync-alt me-1"></i>更新
                     </button>
-                    <button class="btn btn-sm" style="background:var(--grn);color:#fff;border:none"
-                            onclick="applyPreset()">
+                    <button class="btn btn-sm" style="background:var(--grn);color:#fff;border:none" onclick="applyPreset()">
                         <i class="fas fa-file-import me-1"></i>適用
                     </button>
                 </div>
@@ -1279,7 +1272,7 @@
                     pitch: 0, detune: 0, amp: 0.8,
                     env: {attack: 0.01, decay: 0.3, sustain: 0.5, release: 1.0},
                     filter: {type: 'lowpass', freq: 20000, Q: 1},
-                    lfo: {rate: 2, depth: 0, target: 'filter'},
+                    lfo: {rate: 2, pitchDepth: 0, filterDepth: 0},
                     mix: 0.8,
                 };
             }
@@ -1289,13 +1282,7 @@
             mSt[3].mix = 0.5;      // NOISE starts at 50%
 
             // ── Per-module audio nodes ───────────────────────────────────────
-            const mN = Array.from({length: NM}, () => ({
-                synth: null,
-                vibrato: null,
-                filt: null,
-                lfo: null,
-                mixGain: null
-            }));
+            const mN = Array.from({length: NM}, () => ({synth: null, vibrato: null, filt: null, lfo: null, mixGain: null}));
 
             // ── Global effect nodes ──────────────────────────────────────────
             let gChorus, gPingPong, gReverb, gPitchShift, gPanner, gMaster;
@@ -1348,12 +1335,7 @@
                         // Effects bus (all effects route into panner)
                         gReverb = new Tone.Reverb({decay: 1.5, wet: 0}).connect(gPanner);
                         gPingPong = new Tone.PingPongDelay({delayTime: 0.25, feedback: 0.3, wet: 0}).connect(gReverb);
-                        gChorus = new Tone.Chorus({
-                            frequency: 4,
-                            delayTime: 2.5,
-                            depth: 0.5,
-                            wet: 0
-                        }).connect(gPingPong);
+                        gChorus = new Tone.Chorus({frequency: 4, delayTime: 2.5, depth: 0.5, wet: 0}).connect(gPingPong);
                         gChorus.start();
                         gPitchShift = new Tone.PitchShift({pitch: 0, wet: 0}).connect(gChorus);
 
@@ -1369,20 +1351,14 @@
                             n.mixGain = new Tone.Gain(st.mix).connect(gPitchShift);
                             n.filt = new Tone.Filter({
                                 frequency: st.filter.freq,
-                                type: 'lowpass',
-                                Q: 1
+                                type: st.filter.type,
+                                Q: st.filter.Q
                             }).connect(n.mixGain);
 
-                            // LFO → filter frequency modulation
-                            // min=max=baseFreq: Tone.js resets AudioParam to 0 on connect, so LFO must hold correct value
-                            n.lfo = new Tone.LFO({
-                                frequency: st.lfo.rate,
-                                min: st.filter.freq,
-                                max: st.filter.freq
-                            }).start();
-                            n.lfo.connect(n.filt.frequency);
+                            // LFO is connected by applyLFO() only when it is actually targeting the filter.
+                            n.lfo = new Tone.LFO({frequency: st.lfo.rate, min: st.filter.freq, max: st.filter.freq}).start();
 
-                            // Vibrato effect (pitch LFO), wet=0 by default
+                            // Keep a dry pass-through here; pitch LFO modulates synth detune directly.
                             n.vibrato = new Tone.Vibrato({frequency: st.lfo.rate, depth: 0, wet: 0}).connect(n.filt);
 
                             if (def.isNoise) {
@@ -1390,10 +1366,12 @@
                                     noise: {type: st.noiseType},
                                     envelope: {...st.env},
                                 }).connect(n.vibrato);
+                                n.synth.volume.value = Tone.gainToDb(st.amp);
                             } else {
                                 n.synth = new Tone.PolySynth(Tone.Synth, {
-                                    oscillator: {type: def.defWave},
+                                    oscillator: {type: st.waveform},
                                     envelope: {...st.env},
+                                    detune: moduleDetuneCents(st),
                                 }).connect(n.vibrato);
                                 n.synth.volume.value = Tone.gainToDb(st.amp);
                             }
@@ -1401,7 +1379,10 @@
 
                         audioReady = true;
                         document.getElementById('initOvl').style.display = 'none';
-                        for (let i = 0; i < NM; i++) drawEnv(i);
+                        for (let i = 0; i < NM; i++) {
+                            applyLFO(i);
+                            drawEnv(i);
+                        }
                         updateJSON();
                         console.log('[ModSynth] Audio engine ready');
                     } catch (e) {
@@ -1428,8 +1409,7 @@
                     if (def.isNoise) {
                         n.synth.triggerAttack(t);
                     } else {
-                        const xnote = xpose(note, mSt[i].pitch);
-                        n.synth.triggerAttack(xnote, t);
+                        n.synth.triggerAttack(note, t);
                     }
                 }
             }
@@ -1447,19 +1427,83 @@
                     if (def.isNoise) {
                         n.synth.triggerRelease(t);
                     } else {
-                        const xnote = xpose(note, mSt[i].pitch);
-                        n.synth.triggerRelease(xnote, t);
+                        n.synth.triggerRelease(note, t);
                     }
                 }
             }
 
-            function xpose(note, semi) {
-                if (!semi) return note;
+            function moduleDetuneCents(st) {
+                return (st.pitch * 100) + st.detune;
+            }
+
+            function setToneParam(param, value, ramp = 0.03) {
+                if (!param) return;
                 try {
-                    return Tone.Frequency(note).transpose(semi).toNote();
+                    if (typeof param.cancelScheduledValues === 'function') param.cancelScheduledValues(Tone.now());
                 } catch (e) {
-                    return note;
                 }
+                try {
+                    if (typeof param.linearRampTo === 'function') {
+                        param.linearRampTo(value, ramp);
+                    } else if (typeof param.rampTo === 'function') {
+                        param.rampTo(value, ramp);
+                    } else {
+                        param.value = value;
+                    }
+                } catch (e) {
+                    try {
+                        param.value = value;
+                    } catch (err) {
+                    }
+                }
+            }
+
+            function setSignalValue(signal, value) {
+                if (!signal) return;
+                try {
+                    if (typeof signal === 'object' && 'value' in signal) {
+                        signal.value = value;
+                    } else if (typeof signal.set === 'function') {
+                        signal.set({value});
+                    }
+                } catch (e) {
+                }
+            }
+
+            function setVibratoDepth(vibrato, value) {
+                if (!vibrato) return;
+                try {
+                    if (vibrato.depth && typeof vibrato.depth === 'object' && 'value' in vibrato.depth) {
+                        vibrato.depth.value = value;
+                    } else if (typeof vibrato.set === 'function') {
+                        vibrato.set({depth: value});
+                    } else {
+                        vibrato.depth = value;
+                    }
+                } catch (e) {
+                }
+            }
+
+            function applyModulePitch(i) {
+                if (!audioReady || MDEF[i].isNoise) return;
+                mN[i].synth.set({detune: moduleDetuneCents(mSt[i])});
+            }
+
+            function normalizeLFOState(lfo) {
+                if (lfo.depth !== undefined || lfo.target !== undefined) {
+                    const oldDepth = +(lfo.depth || 0);
+                    if (lfo.target === 'pitch') {
+                        lfo.pitchDepth = oldDepth;
+                        if (lfo.filterDepth === undefined) lfo.filterDepth = 0;
+                    } else {
+                        if (lfo.pitchDepth === undefined) lfo.pitchDepth = 0;
+                        lfo.filterDepth = oldDepth;
+                    }
+                }
+                if (lfo.pitchDepth === undefined) lfo.pitchDepth = 0;
+                if (lfo.filterDepth === undefined) lfo.filterDepth = 0;
+                delete lfo.depth;
+                delete lfo.target;
             }
 
             // ================================================================
@@ -1474,7 +1518,7 @@
                     activeNotes.forEach(note => {
                         try {
                             MDEF[i].isNoise ? mN[i].synth.triggerRelease(Tone.now())
-                                : mN[i].synth.triggerRelease(xpose(note, mSt[i].pitch), Tone.now());
+                                : mN[i].synth.triggerRelease(note, Tone.now());
                         } catch (e) {
                         }
                     });
@@ -1498,6 +1542,7 @@
                 v = +v;
                 mSt[i].pitch = v;
                 document.getElementById('pv' + i).textContent = (v >= 0 ? '+' : '') + v + 'st';
+                applyModulePitch(i);
                 updateJSON();
             }
 
@@ -1505,7 +1550,7 @@
                 v = +v;
                 mSt[i].detune = v;
                 document.getElementById('dv' + i).textContent = (v >= 0 ? '+' : '') + v + 'ct';
-                if (audioReady && !MDEF[i].isNoise) mN[i].synth.set({detune: v});
+                applyModulePitch(i);
                 updateJSON();
             }
 
@@ -1513,7 +1558,7 @@
                 v = +v;
                 mSt[i].amp = v / 100;
                 document.getElementById('av' + i).textContent = v + '%';
-                if (audioReady && !MDEF[i].isNoise) mN[i].synth.volume.value = Tone.gainToDb(v / 100);
+                if (audioReady) mN[i].synth.volume.value = Tone.gainToDb(v / 100);
                 updateJSON();
             }
 
@@ -1572,37 +1617,57 @@
             }
 
             function setLFODepth(i, v) {
+                setLFOFilterDepth(i, v);
+            }
+
+            function setLFOPitchDepth(i, v) {
                 v = +v;
-                mSt[i].lfo.depth = v;
-                document.getElementById('ldV' + i).textContent = v + '%';
+                mSt[i].lfo.pitchDepth = v;
+                document.getElementById('lpV' + i).textContent = v + '%';
+                applyLFO(i);
+                updateJSON();
+            }
+
+            function setLFOFilterDepth(i, v) {
+                v = +v;
+                mSt[i].lfo.filterDepth = v;
+                document.getElementById('lfV' + i).textContent = v + '%';
                 applyLFO(i);
                 updateJSON();
             }
 
             function setLFOTgt(i, t) {
-                mSt[i].lfo.target = t;
-                applyLFO(i);
-                updateJSON();
+                if (t === 'pitch') {
+                    setLFOPitchDepth(i, mSt[i].lfo.pitchDepth || mSt[i].lfo.depth || 0);
+                } else {
+                    setLFOFilterDepth(i, mSt[i].lfo.filterDepth || mSt[i].lfo.depth || 0);
+                }
             }
 
             function applyLFO(i) {
                 if (!audioReady) return;
-                const {depth, target} = mSt[i].lfo;
+                normalizeLFOState(mSt[i].lfo);
+                const {pitchDepth, filterDepth} = mSt[i].lfo;
                 const baseFreq = mSt[i].filter.freq;
                 const n = mN[i];
-                if (target === 'filter') {
-                    // LFO oscillates around baseFreq; depth 0-100 maps to ±0-4000 Hz range
-                    const range = depth * 40;
+
+                try {
+                    n.lfo.disconnect();
+                } catch (e) {
+                }
+                setToneParam(n.filt.frequency, baseFreq);
+
+                const pitchOn = !MDEF[i].isNoise && pitchDepth > 0;
+                setVibratoDepth(n.vibrato, pitchOn ? pitchDepth / 200 : 0);
+                setSignalValue(n.vibrato.wet, pitchOn ? 1 : 0);
+                applyModulePitch(i);
+
+                if (filterDepth > 0) {
+                    // LFO oscillates around baseFreq; depth 0-100 maps to ±0-4000 Hz range.
+                    const range = filterDepth * 40;
                     n.lfo.min = Math.max(20, baseFreq - range);
                     n.lfo.max = Math.min(20000, baseFreq + range);
-                    n.vibrato.wet.value = 0;
-                    n.vibrato.depth = 0;
-                } else { // pitch
-                    // Keep filter at baseFreq when LFO targets pitch
-                    n.lfo.min = baseFreq;
-                    n.lfo.max = baseFreq;
-                    n.vibrato.depth = depth / 200;
-                    n.vibrato.wet.value = depth > 0 ? 1 : 0;
+                    n.lfo.connect(n.filt.frequency);
                 }
             }
 
@@ -1828,7 +1893,10 @@
                         if (m.mix !== undefined) st.mix = +m.mix;
                         if (m.envelope) Object.assign(st.env, m.envelope);
                         if (m.filter) Object.assign(st.filter, m.filter);
-                        if (m.lfo) Object.assign(st.lfo, m.lfo);
+                        if (m.lfo) {
+                            Object.assign(st.lfo, m.lfo);
+                            normalizeLFOState(st.lfo);
+                        }
                         if (!def.isNoise) {
                             if (m.waveform !== undefined) st.waveform = m.waveform;
                             if (m.pitch !== undefined) st.pitch = +m.pitch;
@@ -1867,20 +1935,21 @@
                                 n.synth.set({oscillator: {type: st.waveform}});
                             } catch (e) {
                             }
-                            n.synth.set({detune: st.detune});
+                            n.synth.set({detune: moduleDetuneCents(st)});
                             n.synth.set({envelope: st.env});
                         } else {
                             n.synth.set({noise: {type: st.noiseType}, envelope: st.env});
                         }
+                        n.synth.volume.value = Tone.gainToDb(st.amp);
 
                         n.filt.type = st.filter.type;
                         try {
                             n.filt.Q.value = st.filter.Q;
                         } catch (e) {
                         }
-                        applyLFO(i);  // sets filter freq via LFO min/max and vibrato
                         n.lfo.frequency.value = st.lfo.rate;
                         n.vibrato.frequency.value = st.lfo.rate;
+                        applyLFO(i);
                     });
 
                     // FX nodes
@@ -1948,11 +2017,14 @@
 
                 MDEF.forEach((def, i) => {
                     const st = mSt[i];
+                    normalizeLFOState(st.lfo);
                     const ampPct = Math.round(st.amp * 100);
                     const mixPct = Math.round(st.mix * 100);
                     const pitchLbl = (st.pitch >= 0 ? '+' : '') + st.pitch + 'st';
                     const detLbl = (st.detune >= 0 ? '+' : '') + st.detune + 'ct';
                     const fcLbl = st.filter.freq >= 1000 ? (st.filter.freq / 1000).toFixed(1) + 'kHz' : st.filter.freq.toFixed(0) + 'Hz';
+                    const pitchDepth = def.isNoise ? 0 : st.lfo.pitchDepth;
+                    const pitchDepthDisabled = def.isNoise ? ' disabled' : '';
 
                     const waveOpts = WAVES.map(([grp, ws]) =>
                         `<optgroup label="${grp}">${ws.map(w =>
@@ -2052,24 +2124,21 @@
 
         <div class="mod-sect">LFO</div>
         <div class="row g-1 mb-1">
-          <div class="col-6">
+          <div class="col-4">
             <div class="pl">Rate <span class="pv" id="lrV${i}">${st.lfo.rate.toFixed(1)}Hz</span></div>
             <input type="range" min="0.01" max="20" value="${st.lfo.rate}" step="0.01" id="slLr${i}" class="w-100"
                    oninput="setLFORate(${i},this.value)">
           </div>
-          <div class="col-6">
-            <div class="pl">Depth <span class="pv" id="ldV${i}">${st.lfo.depth}%</span></div>
-            <input type="range" min="0" max="100" value="${st.lfo.depth}" id="slLd${i}" class="w-100"
-                   oninput="setLFODepth(${i},this.value)">
+          <div class="col-4">
+            <div class="pl">Pitch <span class="pv" id="lpV${i}">${pitchDepth}%</span></div>
+            <input type="range" min="0" max="100" value="${pitchDepth}" id="slLp${i}" class="w-100"
+                   oninput="setLFOPitchDepth(${i},this.value)"${pitchDepthDisabled}>
           </div>
-        </div>
-        <div class="btn-group btn-group-sm w-100" role="group">
-          <input type="radio" class="btn-check" name="lt${i}" id="ltP${i}" value="pitch"
-                 ${st.lfo.target === 'pitch' ? 'checked' : ''} onchange="setLFOTgt(${i},'pitch')">
-          <label class="btn btn-outline-primary" for="ltP${i}">Pitch</label>
-          <input type="radio" class="btn-check" name="lt${i}" id="ltF${i}" value="filter"
-                 ${st.lfo.target === 'filter' ? 'checked' : ''} onchange="setLFOTgt(${i},'filter')">
-          <label class="btn btn-outline-info" for="ltF${i}">Filter</label>
+          <div class="col-4">
+            <div class="pl">Filter <span class="pv" id="lfV${i}">${st.lfo.filterDepth}%</span></div>
+            <input type="range" min="0" max="100" value="${st.lfo.filterDepth}" id="slLf${i}" class="w-100"
+                   oninput="setLFOFilterDepth(${i},this.value)">
+          </div>
         </div>
       </div>
     </div>`;
@@ -2250,19 +2319,22 @@
                 const ta = document.getElementById('jsonOut');
                 if (!ta || document.activeElement === ta) return; // don't overwrite while user is editing
                 const out = {
-                    modules: mSt.map((s, i) => ({
-                        name: MDEF[i].name,
-                        enabled: s.enabled,
-                        ...(MDEF[i].isNoise ? {noiseType: s.noiseType} : {
-                            waveform: s.waveform,
-                            pitch: s.pitch,
-                            detune: s.detune
-                        }),
-                        amp: s.amp, mix: s.mix,
-                        envelope: s.env,
-                        filter: s.filter,
-                        lfo: s.lfo,
-                    })),
+                    modules: mSt.map((s, i) => {
+                        normalizeLFOState(s.lfo);
+                        return {
+                            name: MDEF[i].name,
+                            enabled: s.enabled,
+                            ...(MDEF[i].isNoise ? {noiseType: s.noiseType} : {
+                                waveform: s.waveform,
+                                pitch: s.pitch,
+                                detune: s.detune
+                            }),
+                            amp: s.amp, mix: s.mix,
+                            envelope: s.env,
+                            filter: s.filter,
+                            lfo: s.lfo,
+                        };
+                    }),
                     globalEffects: gFxSt,
                 };
                 ta.value = JSON.stringify(out, null, 2);
@@ -2276,13 +2348,6 @@
                     }, 1800);
                 });
             }
-
-            // ================================================================
-            //  INIT
-            // ================================================================
-            // ================================================================
-            //  THEME TOGGLE
-            // ================================================================
 
             // ================================================================
             //  INIT
