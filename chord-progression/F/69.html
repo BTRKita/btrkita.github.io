@@ -19,14 +19,37 @@
 
     <!-- Styles -->
     
+
     
 
+    
     <link rel="mask-icon" sizes="any" href="https://btrkita.github.io/img/icon.svg" color="#0bd">
     <link rel="icon" href="https://btrkita.github.io/img/icon.svg" type="image/svg+xml">
     <style>
-        /* ==========================================
-          カラーモード設定（ライト・ダーク共通変数定義）
-        ========================================== */
+        /*
+         */
+        @media (display-mode: standalone) {
+            body {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                user-select: none;
+                overscroll-behavior: none;
+            }
+
+            input,
+            textarea,
+            .selectable {
+                -webkit-user-select: text;
+                user-select: text;
+            }
+
+            .pwa-hide {
+                display: none !important;
+            }
+        }
+
+        /*
+         */
         :root,
         [data-theme="dark"] {
             /* 完全に真っ黒にせず、少し青み・グレーを混ぜてエディタ風に */
@@ -424,7 +447,7 @@
         document.body.setAttribute('data-theme', ColorScheme);
     })();
 </script>
-<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary">
+<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary pwa-hide">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">BTR KITA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -2766,7 +2789,7 @@
             </div>
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer pwa-hide">
     <div class="container">
         <nav aria-label="フッターナビゲーション">
             <ul class="footer-nav">
@@ -3650,5 +3673,6 @@
         }
     })();
 </script>
+
 </body>
 </html>

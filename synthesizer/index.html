@@ -20,14 +20,37 @@
 
     <!-- Styles -->
     
+
     
 
+    
     <link rel="mask-icon" sizes="any" href="https://btrkita.github.io/img/icon.svg" color="#0bd">
     <link rel="icon" href="https://btrkita.github.io/img/icon.svg" type="image/svg+xml">
     <style>
-        /* ==========================================
-          カラーモード設定（ライト・ダーク共通変数定義）
-        ========================================== */
+        /*
+         */
+        @media (display-mode: standalone) {
+            body {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                user-select: none;
+                overscroll-behavior: none;
+            }
+
+            input,
+            textarea,
+            .selectable {
+                -webkit-user-select: text;
+                user-select: text;
+            }
+
+            .pwa-hide {
+                display: none !important;
+            }
+        }
+
+        /*
+         */
         :root,
         [data-theme="dark"] {
             /* 完全に真っ黒にせず、少し青み・グレーを混ぜてエディタ風に */
@@ -354,603 +377,679 @@
         }
 
         :root {
-        --bg: #0b0e18;
-        --card: #131722;
-        --bdr: #263044;
-        --hdr: #192236;
-        --blue: #60a5fa;
-        --purp: #a78bfa;
-        --grn: #34d399;
-        --ylw: #f59e0b;
-        --muted: #94a3b8;
-        --text: #e2e8f0;
+            --bg: #0b0e18;
+            --card: #131722;
+            --bdr: #263044;
+            --hdr: #192236;
+            --blue: #60a5fa;
+            --purp: #a78bfa;
+            --grn: #34d399;
+            --ylw: #f59e0b;
+            --muted: #94a3b8;
+            --text: #e2e8f0;
         }
 
         * {
-        box-sizing: border-box
+            box-sizing: border-box
         }
 
         body {
-        background: var(--bg);
-        color: var(--text);
-        font-family: 'Segoe UI', system-ui, sans-serif
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, sans-serif
         }
 
         h1, h2, h3, h4, h5 {
-        color: inherit;
-        border: none;
-        padding: 0;
-        margin: 0
+            color: inherit;
+            border: none;
+            padding: 0;
+            margin: 0
         }
 
         /* Panel */
         .sp {
-        background: var(--card);
-        border: 1px solid var(--bdr);
-        border-radius: 8px;
-        margin-bottom: 10px
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 8px;
+            margin-bottom: 10px
         }
 
         .sp-hdr {
-        background: var(--hdr);
-        border-bottom: 1px solid var(--bdr);
-        border-radius: 8px 8px 0 0;
-        padding: 5px 12px;
-        font-size: .62rem;
-        font-weight: 800;
-        letter-spacing: 2.5px;
-        text-transform: uppercase;
-        color: var(--blue);
-        display: flex;
-        align-items: center;
-        gap: 8px
+            background: var(--hdr);
+            border-bottom: 1px solid var(--bdr);
+            border-radius: 8px 8px 0 0;
+            padding: 5px 12px;
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            gap: 8px
         }
 
         .sp-body {
-        padding: 10px 12px
+            padding: 10px 12px
         }
 
         /* Module card */
         .mc {
-        background: #0d1220;
-        border: 1px solid var(--bdr);
-        border-radius: 6px
+            background: #0d1220;
+            border: 1px solid var(--bdr);
+            border-radius: 6px
         }
 
         .mc.on {
-        border-color: var(--blue)
+            border-color: var(--blue)
         }
 
         .mc-hdr {
-        background: #111927;
-        border-bottom: 1px solid var(--bdr);
-        border-radius: 6px 6px 0 0;
-        padding: 5px 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center
+            background: #111927;
+            border-bottom: 1px solid var(--bdr);
+            border-radius: 6px 6px 0 0;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
         }
 
         .mc-body {
-        padding: 8px 10px
+            padding: 8px 10px
         }
 
         .mod-sect {
-        font-size: .58rem;
-        font-weight: 800;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin: 6px 0 3px;
-        padding-top: 4px;
-        border-top: 1px solid #1e2d44
+            font-size: .58rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 6px 0 3px;
+            padding-top: 4px;
+            border-top: 1px solid #1e2d44
         }
 
         /* LED */
         .led {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #253044;
-        display: inline-block;
-        flex-shrink: 0;
-        transition: background .2s, box-shadow .2s
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #253044;
+            display: inline-block;
+            flex-shrink: 0;
+            transition: background .2s, box-shadow .2s
         }
 
         .led.on {
-        background: var(--grn);
-        box-shadow: 0 0 6px var(--grn)
+            background: var(--grn);
+            box-shadow: 0 0 6px var(--grn)
         }
 
         .led.on.b {
-        background: var(--blue);
-        box-shadow: 0 0 6px var(--blue)
+            background: var(--blue);
+            box-shadow: 0 0 6px var(--blue)
         }
 
         /* Labels */
         .pl {
-        font-size: .58rem;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: .8px;
-        margin-bottom: 1px;
-        display: flex;
-        align-items: baseline;
-        gap: 5px
+            font-size: .58rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            margin-bottom: 1px;
+            display: flex;
+            align-items: baseline;
+            gap: 5px
         }
 
         .pv {
-        font-size: .68rem;
-        color: var(--blue);
-        font-family: monospace;
-        font-weight: 700;
-        text-transform: none;
-        letter-spacing: 0
+            font-size: .68rem;
+            color: var(--blue);
+            font-family: monospace;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0
         }
 
         /* Sliders */
         input[type=range] {
-        -webkit-appearance: none;
-        width: 100%;
-        height: 3px;
-        background: #253044;
-        border-radius: 2px;
-        outline: none;
-        cursor: pointer;
-        margin: 2px 0
+            -webkit-appearance: none;
+            width: 100%;
+            height: 3px;
+            background: #253044;
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+            margin: 2px 0
         }
 
         input[type=range]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 12px;
-        height: 12px;
-        background: var(--blue);
-        border-radius: 50%;
-        box-shadow: 0 0 4px rgba(96, 165, 250, .5)
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: var(--blue);
+            border-radius: 50%;
+            box-shadow: 0 0 4px rgba(96, 165, 250, .5)
         }
 
         input[type=range]::-moz-range-thumb {
-        width: 12px;
-        height: 12px;
-        background: var(--blue);
-        border-radius: 50%;
-        border: none
+            width: 12px;
+            height: 12px;
+            background: var(--blue);
+            border-radius: 50%;
+            border: none
         }
 
         /* Select */
         .form-select {
-        background: #18243a;
-        color: var(--text);
-        border-color: var(--bdr);
-        font-size: .75rem
+            background: #18243a;
+            color: var(--text);
+            border-color: var(--bdr);
+            font-size: .75rem
         }
 
         .form-select:focus {
-        border-color: var(--blue);
-        box-shadow: 0 0 0 2px rgba(96, 165, 250, .2)
+            border-color: var(--blue);
+            box-shadow: 0 0 0 2px rgba(96, 165, 250, .2)
         }
 
         optgroup {
-        background: #18243a;
-        color: var(--muted)
+            background: #18243a;
+            color: var(--muted)
         }
 
         /* Envelope canvas */
         .env-cvs {
-        background: #080c18;
-        border-radius: 4px;
-        border: 1px solid var(--bdr);
-        width: 100%;
-        height: 48px;
-        display: block;
-        margin: 4px 0
+            background: #080c18;
+            border-radius: 4px;
+            border: 1px solid var(--bdr);
+            width: 100%;
+            height: 48px;
+            display: block;
+            margin: 4px 0
         }
 
         /* Piano */
         .piano-wrap {
-        background: #06080f;
-        border-radius: 8px;
-        padding: 12px 14px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        overflow-x: auto;
-        width: 100%
+            background: #06080f;
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            width: 100%
         }
 
         .piano-keys {
-        position: relative;
-        height: 120px;
-        user-select: none;
-        touch-action: none;
-        flex-shrink: 0
+            position: relative;
+            height: 120px;
+            user-select: none;
+            touch-action: none;
+            flex-shrink: 0
         }
 
         .kw {
-        width: 34px;
-        height: 120px;
-        background: linear-gradient(180deg, #dde 0%, #f0f0f0 100%);
-        border: 1px solid #888;
-        border-top: none;
-        border-radius: 0 0 4px 4px;
-        cursor: pointer;
-        position: absolute;
-        z-index: 1;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        padding-bottom: 4px;
-        transition: background .05s
+            width: 34px;
+            height: 120px;
+            background: linear-gradient(180deg, #dde 0%, #f0f0f0 100%);
+            border: 1px solid #888;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            cursor: pointer;
+            position: absolute;
+            z-index: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 4px;
+            transition: background .05s
         }
 
         .kw.active, .kw:active {
-        background: linear-gradient(180deg, #93c5fd 0%, #bfdbfe 100%) !important
+            background: linear-gradient(180deg, #93c5fd 0%, #bfdbfe 100%) !important
         }
 
         .kw .kl {
-        font-size: .5rem;
-        color: #555;
-        text-align: center;
-        line-height: 1.3
+            font-size: .5rem;
+            color: #555;
+            text-align: center;
+            line-height: 1.3
         }
 
         .kb {
-        width: 20px;
-        height: 72px;
-        background: linear-gradient(180deg, #141428 0%, #1e1e38 100%);
-        border-radius: 0 0 3px 3px;
-        cursor: pointer;
-        position: absolute;
-        z-index: 2;
-        top: 0;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        padding-bottom: 3px;
-        box-shadow: 2px 3px 6px rgba(0, 0, 0, .7);
-        transition: background .05s
+            width: 20px;
+            height: 72px;
+            background: linear-gradient(180deg, #141428 0%, #1e1e38 100%);
+            border-radius: 0 0 3px 3px;
+            cursor: pointer;
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 3px;
+            box-shadow: 2px 3px 6px rgba(0, 0, 0, .7);
+            transition: background .05s
         }
 
         .kb.active, .kb:active {
-        background: linear-gradient(180deg, #1d4ed8 0%, #3b82f6 100%) !important
+            background: linear-gradient(180deg, #1d4ed8 0%, #3b82f6 100%) !important
         }
 
         .kb .kl {
-        font-size: .45rem;
-        color: #64748b
+            font-size: .45rem;
+            color: #64748b
         }
 
         /* Buttons */
         .btn-s {
-        background: #18243a;
-        border: 1px solid var(--bdr);
-        color: var(--text);
-        font-size: .72rem;
-        padding: 3px 10px
+            background: #18243a;
+            border: 1px solid var(--bdr);
+            color: var(--text);
+            font-size: .72rem;
+            padding: 3px 10px
         }
 
         .btn-s:hover {
-        background: #223355;
-        color: var(--text)
+            background: #223355;
+            color: var(--text)
         }
 
         .btn-sp {
-        background: #0d2848;
-        border: 1px solid var(--blue);
-        color: var(--blue);
-        font-size: .72rem;
-        padding: 3px 10px
+            background: #0d2848;
+            border: 1px solid var(--blue);
+            color: var(--blue);
+            font-size: .72rem;
+            padding: 3px 10px
         }
 
         .btn-sp:hover {
-        background: #1a3d6e;
-        color: #93c5fd
+            background: #1a3d6e;
+            color: #93c5fd
         }
 
         /* Init overlay */
         #initOvl {
-        position: fixed;
-        inset: 0;
-        background: rgba(11, 14, 24, .97);
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 14, 24, .97);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center
         }
 
         /* JSON */
         #jsonOut {
-        background: #050810;
-        color: #86efac;
-        border-color: var(--bdr);
-        font-family: monospace;
-        font-size: .65rem
+            background: #050810;
+            color: #86efac;
+            border-color: var(--bdr);
+            font-family: monospace;
+            font-size: .65rem
         }
 
         /* Btn group small */
         .btn-group .btn {
-        font-size: .62rem;
-        padding: 2px 7px
+            font-size: .62rem;
+            padding: 2px 7px
+        }
+
+        .voice-actions {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+            flex-wrap: wrap
+        }
+
+        .voice-msg {
+            font-size: .62rem;
+            color: var(--muted);
+            min-height: 1.1rem;
+            margin-top: 4px
+        }
+
+        .voice-msg.error {
+            color: #f87171
+        }
+
+        .voice-msg.ok {
+            color: var(--grn)
+        }
+
+        .voice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 52vh;
+            overflow: auto
+        }
+
+        .voice-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border: 1px solid var(--bdr);
+            border-radius: 6px;
+            background: #0d1220;
+            padding: 8px
+        }
+
+        .voice-item.active {
+            border-color: var(--grn);
+            box-shadow: 0 0 0 1px rgba(52, 211, 153, .25) inset
+        }
+
+        .voice-name {
+            font-size: .78rem;
+            font-weight: 800;
+            color: var(--text);
+            word-break: break-word
+        }
+
+        .voice-meta {
+            font-size: .58rem;
+            color: var(--muted);
+            margin-top: 2px
+        }
+
+        .voice-item-actions {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            flex-shrink: 0
         }
 
         /* Navbar (placeholder — replaced by site navbar in production) */
         .s-nav {
-        background: #0a0f1a !important;
-        border-bottom: 1px solid #1e293b;
-        padding: 7px 16px
+            background: #0a0f1a !important;
+            border-bottom: 1px solid #1e293b;
+            padding: 7px 16px
         }
 
         /* Page title bar (shown inside main when site navbar is active) */
         .synth-title-bar {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 6px 2px 6px;
-        border-bottom: 1px solid var(--bdr);
-        margin-bottom: 10px
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 2px 6px;
+            border-bottom: 1px solid var(--bdr);
+            margin-bottom: 10px
         }
 
         .synth-title {
-        font-size: .95rem;
-        font-weight: 900;
-        letter-spacing: 3px;
-        color: var(--blue);
-        text-transform: uppercase;
-        flex-shrink: 0
+            font-size: .95rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: var(--blue);
+            text-transform: uppercase;
+            flex-shrink: 0
         }
 
         .synth-subtitle {
-        font-size: .65rem;
-        color: var(--muted);
-        letter-spacing: .5px
+            font-size: .65rem;
+            color: var(--muted);
+            letter-spacing: .5px
         }
 
         #themeBtn {
-        flex-shrink: 0;
-        width: 30px;
-        height: 26px;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 6px;
-        font-size: .8rem;
-        transition: background .2s
+            flex-shrink: 0;
+            width: 30px;
+            height: 26px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: .8rem;
+            transition: background .2s
         }
 
         /* ================================================================
-        LIGHT MODE [data-theme="light"]
-        layout.blade.php のカラーシステムに準拠
-        - 背景: #f5f4ef（和紙調オフホワイト）
-        - ナビバー: 朱赤 #d9381e
-        - フッター: #ede9df
+           LIGHT MODE  [data-theme="light"]
+           layout.blade.php のカラーシステムに準拠
+           - 背景: #f5f4ef（和紙調オフホワイト）
+           - ナビバー: 朱赤 #d9381e
+           - フッター: #ede9df
         ================================================================ */
         [data-theme="light"] {
-        --bg: #f5f4ef;
-        --card: #ffffff;
-        --bdr: #dde1e8;
-        --hdr: #edecea;
-        --blue: #2563eb;
-        --purp: #7c3aed;
-        --grn: #16a34a;
-        --ylw: #b45309;
-        --muted: #64748b;
-        --text: #1e293b;
+            --bg: #f5f4ef;
+            --card: #ffffff;
+            --bdr: #dde1e8;
+            --hdr: #edecea;
+            --blue: #2563eb;
+            --purp: #7c3aed;
+            --grn: #16a34a;
+            --ylw: #b45309;
+            --muted: #64748b;
+            --text: #1e293b;
         }
 
         [data-theme="light"] body {
-        background: var(--bg);
-        color: var(--text);
+            background: var(--bg);
+            color: var(--text);
         }
 
         /* ── Navbar ── */
         [data-theme="light"] .s-nav {
-        background: #d9381e !important;
-        border-bottom: 1px solid #bc2f17 !important;
+            background: #d9381e !important;
+            border-bottom: 1px solid #bc2f17 !important;
         }
 
         [data-theme="light"] .s-nav span {
-        color: rgba(255, 255, 255, .9) !important;
+            color: rgba(255, 255, 255, .9) !important;
         }
 
         /* ── Panels ── */
         [data-theme="light"] .sp {
-        background: var(--card);
-        border-color: var(--bdr);
-        box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+            background: var(--card);
+            border-color: var(--bdr);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
         }
 
         [data-theme="light"] .sp-hdr {
-        background: var(--hdr);
-        border-bottom-color: var(--bdr);
+            background: var(--hdr);
+            border-bottom-color: var(--bdr);
         }
 
         /* ── Module cards ── */
         [data-theme="light"] .mc {
-        background: #f8f7f2;
-        border-color: var(--bdr);
+            background: #f8f7f2;
+            border-color: var(--bdr);
         }
 
         [data-theme="light"] .mc.on {
-        border-color: var(--blue);
+            border-color: var(--blue);
         }
 
         [data-theme="light"] .mc-hdr {
-        background: #edecea;
-        border-bottom-color: var(--bdr);
+            background: #edecea;
+            border-bottom-color: var(--bdr);
         }
 
         [data-theme="light"] .mod-sect {
-        color: #94a3b8;
-        border-top-color: #e2e0d8;
+            color: #94a3b8;
+            border-top-color: #e2e0d8;
         }
 
         /* ── LED ── */
         [data-theme="light"] .led {
-        background: #c8d0dc;
+            background: #c8d0dc;
         }
 
         [data-theme="light"] .led.on {
-        background: var(--grn);
-        box-shadow: 0 0 5px var(--grn);
+            background: var(--grn);
+            box-shadow: 0 0 5px var(--grn);
         }
 
         [data-theme="light"] .led.on.b {
-        background: var(--blue);
-        box-shadow: 0 0 5px var(--blue);
+            background: var(--blue);
+            box-shadow: 0 0 5px var(--blue);
         }
 
         /* ── Sliders ── */
         [data-theme="light"] input[type=range] {
-        background: #c8d0dc;
+            background: #c8d0dc;
         }
 
         [data-theme="light"] input[type=range]::-webkit-slider-thumb {
-        background: var(--blue);
-        box-shadow: 0 0 3px rgba(37, 99, 235, .4);
+            background: var(--blue);
+            box-shadow: 0 0 3px rgba(37, 99, 235, .4);
         }
 
         [data-theme="light"] input[type=range]::-moz-range-thumb {
-        background: var(--blue);
+            background: var(--blue);
         }
 
         /* ── Select ── */
         [data-theme="light"] .form-select {
-        background: #ffffff;
-        border-color: var(--bdr);
-        color: var(--text);
+            background: #ffffff;
+            border-color: var(--bdr);
+            color: var(--text);
         }
 
         [data-theme="light"] .form-select:focus {
-        border-color: var(--blue);
-        box-shadow: 0 0 0 2px rgba(37, 99, 235, .2);
+            border-color: var(--blue);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, .2);
         }
 
         [data-theme="light"] optgroup {
-        background: #f0efea;
-        color: var(--muted);
+            background: #f0efea;
+            color: var(--muted);
         }
 
         /* ── Envelope canvas ── */
         [data-theme="light"] .env-cvs {
-        background: #f0efea;
-        border-color: var(--bdr);
+            background: #f0efea;
+            border-color: var(--bdr);
         }
 
         /* ── Piano ── */
         [data-theme="light"] .piano-wrap {
-        background: #e8e5dc;
+            background: #e8e5dc;
         }
 
         /* ── Buttons ── */
         [data-theme="light"] .btn-s {
-        background: #f0efea;
-        border-color: var(--bdr);
-        color: var(--text);
+            background: #f0efea;
+            border-color: var(--bdr);
+            color: var(--text);
         }
 
         [data-theme="light"] .btn-s:hover {
-        background: #e2e0d8;
-        color: var(--text);
+            background: #e2e0d8;
+            color: var(--text);
         }
 
         [data-theme="light"] .btn-sp {
-        background: #eff6ff;
-        border-color: var(--blue);
-        color: var(--blue);
+            background: #eff6ff;
+            border-color: var(--blue);
+            color: var(--blue);
         }
 
         [data-theme="light"] .btn-sp:hover {
-        background: #dbeafe;
-        color: #1d4ed8;
+            background: #dbeafe;
+            color: #1d4ed8;
         }
 
         /* ── JSON output ── */
         [data-theme="light"] #jsonOut {
-        background: #f0efea;
-        color: #166534;
-        border-color: var(--bdr);
+            background: #f0efea;
+            color: #166534;
+            border-color: var(--bdr);
         }
 
         /* ── Init overlay ── */
         [data-theme="light"] #initOvl {
-        background: rgba(245, 244, 239, .97);
+            background: rgba(245, 244, 239, .97);
         }
 
         [data-theme="light"] #initOvl h2 {
-        color: var(--blue);
+            color: var(--blue);
         }
 
         /* ── Footer ── */
         [data-theme="light"] footer {
-        background: #ede9df;
-        border-top-color: #ddd9d0;
-        color: #6c757d;
+            background: #ede9df;
+            border-top-color: #ddd9d0;
+            color: #6c757d;
         }
 
         /* ── btn-group radio ── */
         [data-theme="light"] .btn-group .btn-outline-primary {
-        color: var(--blue);
-        border-color: var(--blue);
+            color: var(--blue);
+            border-color: var(--blue);
         }
 
         [data-theme="light"] .btn-group .btn-outline-primary:hover,
         [data-theme="light"] .btn-group .btn-check:checked + .btn-outline-primary {
-        background: var(--blue);
-        color: #fff;
+            background: var(--blue);
+            color: #fff;
         }
 
         [data-theme="light"] .btn-group .btn-outline-info {
-        color: #0891b2;
-        border-color: #0891b2;
+            color: #0891b2;
+            border-color: #0891b2;
         }
 
         [data-theme="light"] .btn-group .btn-check:checked + .btn-outline-info {
-        background: #0891b2;
-        color: #fff;
+            background: #0891b2;
+            color: #fff;
+        }
+
+        [data-theme="light"] .voice-item {
+            background: #f8f7f2;
+            border-color: var(--bdr);
+        }
+
+        [data-theme="light"] .voice-item.active {
+            border-color: var(--grn);
+            box-shadow: 0 0 0 1px rgba(22, 163, 74, .22) inset;
         }
 
         /* ================================================================
-        SMARTPHONE KEYBOARD — full-width, tall keys
-        縦: max-width 576px, 横: max-height 576px
+           SMARTPHONE KEYBOARD — full-width, tall keys
+           縦: max-width 576px, 横: max-height 576px
         ================================================================ */
-        @media screen and (max-width: 576px) and (orientation: portrait), screen and (orientation: landscape) and
-        (max-height: 576px) {
+        @media screen and (max-width: 576px) and (orientation: portrait), screen and (orientation: landscape) and (max-height: 576px) {
 
-        /* パネルをコンテナの余白外に広げる */
-        #kbPanel {
-        margin-left: calc(-1 * var(--bs-gutter-x, 1.5rem) / 2);
-        margin-right: calc(-1 * var(--bs-gutter-x, 1.5rem) / 2);
-        border-left: none;
-        border-right: none;
-        border-radius: 0;
-        margin-bottom: 0;
-        }
+            /* パネルをコンテナの余白外に広げる */
+            #kbPanel {
+                margin-left: calc(-1 * var(--bs-gutter-x, 1.5rem) / 2);
+                margin-right: calc(-1 * var(--bs-gutter-x, 1.5rem) / 2);
+                border-left: none;
+                border-right: none;
+                border-radius: 0;
+                margin-bottom: 0;
+            }
 
-        #kbPanel .sp-hdr {
-        border-radius: 0;
-        }
+            #kbPanel .sp-hdr {
+                border-radius: 0;
+            }
 
-        #kbPanel .sp-body {
-        padding: 0;
-        }
+            #kbPanel .sp-body {
+                padding: 0;
+            }
 
-        /* piano-wrap も余白ゼロ */
-        #kbPanel .piano-wrap {
-        padding: 0;
-        border-radius: 0;
-        gap: 4px;
-        }
+            /* piano-wrap も余白ゼロ */
+            #kbPanel .piano-wrap {
+                padding: 0;
+                border-radius: 0;
+                gap: 4px;
+            }
 
-        /* オクターブコントロールと説明には最低限のパディング */
-        #kbPanel .piano-wrap > div {
-        padding: 4px 12px;
-        }
+            /* オクターブコントロールと説明には最低限のパディング */
+            #kbPanel .piano-wrap > div {
+                padding: 4px 12px;
+            }
 
-        #kbPanel .sp-body > div:not(.piano-wrap) {
-        padding: 2px 12px 6px;
-        }
+            #kbPanel .sp-body > div:not(.piano-wrap) {
+                padding: 2px 12px 6px;
+            }
         }
     </style>
 </head>
@@ -971,7 +1070,7 @@
         document.body.setAttribute('data-theme', ColorScheme);
     })();
 </script>
-<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary">
+<nav class="navbar site-custom-nav navbar-expand-lg bg-body-tertiary pwa-hide">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">BTR KITA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -1079,13 +1178,47 @@
             <div class="sp-hdr">MASTER &amp; PAN</div>
             <div class="sp-body">
                 <div class="row g-3">
-                    <div class="col-md-6">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="pl">Voice Name</div>
+                        <input type="text" class="form-control form-control-sm" id="voiceNameIn" value="Init Voice"
+                               oninput="setVoiceName(this.value)">
+                        <div class="voice-actions">
+                            <button type="button" class="btn btn-sp btn-sm" onclick="saveVoicePreset()"><i class="fas fa-save me-1"></i>保存</button>
+                            <button type="button" class="btn btn-s btn-sm" onclick="openVoiceManager()"><i class="fas fa-folder-open me-1"></i>管理</button>
+                        </div>
+                        <div class="voice-msg" id="voiceDbMsg"></div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
                         <div class="pl">Pan (L ← C → R) <span class="pv" id="panV">C</span></div>
                         <input type="range" min="-1" max="1" value="0" step="0.01" id="panSl" oninput="setPan(this.value)">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-xl-3 col-md-6">
                         <div class="pl">Master Volume <span class="pv" id="masterV">80%</span></div>
                         <input type="range" min="0" max="100" value="80" id="masterSl" oninput="setMasterVol(this.value)">
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="pl">Transpose <span class="pv" id="transposeV">+0st</span></div>
+                        <input type="range" min="-24" max="24" value="0" step="1" id="transposeSl" oninput="setTranspose(this.value)">
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="pl">PB Range <span class="pv" id="pbRangeV">2st</span></div>
+                        <input type="range" min="0" max="24" value="2" step="1" id="pbRangeSl" oninput="setPBRange(this.value)">
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="pl">Mod Wheel Sens <span class="pv" id="modSensV">100%</span></div>
+                        <input type="range" min="0" max="200" value="100" step="1" id="modSensSl" oninput="setModWheelSens(this.value)">
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="pl">Portamento <span class="pv" id="portaV">0.00s</span></div>
+                        <input type="range" min="0" max="2" value="0" step="0.01" id="portaSl" oninput="setPortamento(this.value)">
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="pl">Filter Cutoff <span class="pv" id="masterCutoffV">20.0kHz</span></div>
+                        <input type="range" min="20" max="20000" value="20000" step="1" id="masterCutoffSl" oninput="setMasterCutoff(this.value)">
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="pl">Resonance <span class="pv" id="masterResV">0.1</span></div>
+                        <input type="range" min="0.1" max="20" value="0.1" step="0.1" id="masterResSl" oninput="setMasterResonance(this.value)">
                     </div>
                 </div>
             </div>
@@ -1139,9 +1272,66 @@
         </div>
 
     </main>
+
+    <!-- VOICE MANAGER MODAL -->
+    <div class="modal fade" id="voiceManagerModal" tabindex="-1" aria-labelledby="voiceManagerTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="voiceManagerTitle"><i class="fas fa-folder-open me-2"></i>VOICE MANAGER</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="voice-list" id="voiceList"></div>
+                    <div class="voice-msg" id="voiceManagerMsg"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-s" data-bs-dismiss="modal">閉じる</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIRM MODAL -->
+    <div class="modal fade" id="voiceConfirmModal" tabindex="-1" aria-labelledby="voiceConfirmTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="voiceConfirmTitle"><i class="fas fa-exclamation-triangle me-2"></i>確認</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                </div>
+                <div class="modal-body" id="voiceConfirmMessage"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-s" data-bs-dismiss="modal">キャンセル</button>
+                    <button type="button" class="btn btn-primary" id="voiceConfirmOk">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RENAME MODAL -->
+    <div class="modal fade" id="voiceRenameModal" tabindex="-1" aria-labelledby="voiceRenameTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="voiceRenameTitle"><i class="fas fa-edit me-2"></i>名前変更</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="pl">New Voice Name</div>
+                    <input type="text" class="form-control" id="voiceRenameInput">
+                    <div class="voice-msg error" id="voiceRenameErr"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-s" data-bs-dismiss="modal">キャンセル</button>
+                    <button type="button" class="btn btn-primary" onclick="confirmRenameVoice()">変更</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer pwa-hide">
     <div class="container">
         <nav aria-label="フッターナビゲーション">
             <ul class="footer-nav">
@@ -1272,7 +1462,11 @@
                     pitch: 0, detune: 0, amp: 0.8,
                     env: {attack: 0.01, decay: 0.3, sustain: 0.5, release: 1.0},
                     filter: {type: 'lowpass', freq: 20000, Q: 1},
-                    lfo: {rate: 2, pitchDepth: 0, filterDepth: 0},
+                    lfo: {rate: 2, pitchDepth: 0, filterDepth: 0, ampDepth: 0},
+                    eg: {pitch: 0, filter: 0},
+                    unison: {count: 1, detune: 20},
+                    sub: {type: 'sine', volume: 0},
+                    noise: {sampleRate: 44100, filterBypass: false},
                     mix: 0.8,
                 };
             }
@@ -1282,21 +1476,236 @@
             mSt[3].mix = 0.5;      // NOISE starts at 50%
 
             // ── Per-module audio nodes ───────────────────────────────────────
-            const mN = Array.from({length: NM}, () => ({synth: null, vibrato: null, filt: null, lfo: null, mixGain: null}));
+            const mN = Array.from({length: NM}, () => ({
+                synth: null, subSynth: null, subGain: null, crush: null,
+                vibrato: null, filt: null, lfo: null, ampLfo: null, ampGain: null, mixGain: null
+            }));
 
             // ── Global effect nodes ──────────────────────────────────────────
-            let gChorus, gPingPong, gReverb, gPitchShift, gPanner, gMaster;
+            let gChorus, gPingPong, gReverb, gPitchShift, gMasterFilter, gPanner, gMaster;
             const gFxSt = {
                 chorus: {on: false, wet: 0, rate: 4, depth: 0.5},
                 pingPong: {on: false, wet: 0, delay: 0.25, fb: 0.3},
                 reverb: {on: false, wet: 0, decay: 1.5},
                 pitchShift: {on: false, wet: 0, pitch: 0},
             };
+            const masterSt = {
+                voiceName: 'Init Voice',
+                pan: 0,
+                volume: 0.8,
+                transpose: 0,
+                pbRange: 2,
+                modWheelSens: 1,
+                portamento: 0,
+                filterCutoff: 20000,
+                resonance: 0.1,
+            };
 
             // ── Active notes ─────────────────────────────────────────────────
             const activeNotes = new Set();
+            let activeVoiceName = masterSt.voiceName;
+            let pendingConfirmResolve = null;
+            let pendingRenameVoiceName = null;
             let audioReady = false;
             let currentOct = 4;
+
+            // ================================================================
+            //  VOICE DATABASE
+            // ================================================================
+            const VOICE_DB_NAME = 'PoyuSynthAppDatabase';
+            const VOICE_DB_VERSION = 1;
+            const VOICE_STORE_NAME = 'voices';
+            const VOICE_NAME_FORBIDDEN = /[\/\\:*?"<>|]/;
+
+            function requestToPromise(req) {
+                return new Promise((resolve, reject) => {
+                    req.onsuccess = () => resolve(req.result);
+                    req.onerror = () => reject(req.error || new Error('IndexedDB request failed'));
+                });
+            }
+
+            function txDone(tx) {
+                return new Promise((resolve, reject) => {
+                    tx.oncomplete = () => resolve();
+                    tx.onerror = () => reject(tx.error || new Error('IndexedDB transaction failed'));
+                    tx.onabort = () => reject(tx.error || new Error('IndexedDB transaction aborted'));
+                });
+            }
+
+            function normalizeVoiceName(v) {
+                return String(v || '').trim();
+            }
+
+            function validateVoiceName(v) {
+                const name = normalizeVoiceName(v);
+                if (!name) return {ok: false, name, message: 'Voice Nameを入力してください。'};
+                if (VOICE_NAME_FORBIDDEN.test(name)) return {
+                    ok: false,
+                    name,
+                    message: 'Voice Nameに使用できない文字が含まれています: / \\ : * ? " < > |'
+                };
+                return {ok: true, name, message: ''};
+            }
+
+            class VoiceDatabase {
+                static open() {
+                    return new Promise((resolve, reject) => {
+                        const req = indexedDB.open(VOICE_DB_NAME, VOICE_DB_VERSION);
+                        req.onupgradeneeded = () => {
+                            const db = req.result;
+                            if (!db.objectStoreNames.contains(VOICE_STORE_NAME)) {
+                                db.createObjectStore(VOICE_STORE_NAME, {keyPath: 'voiceName'});
+                            }
+                        };
+                        req.onsuccess = () => resolve(req.result);
+                        req.onerror = () => reject(req.error || new Error('IndexedDBを開けませんでした。'));
+                    });
+                }
+
+                static async put(data, overwrite = false) {
+                    const check = validateVoiceName(data && data.voiceName);
+                    if (!check.ok) throw new Error(check.message);
+                    const db = await VoiceDatabase.open();
+                    return new Promise((resolve, reject) => {
+                        const tx = db.transaction(VOICE_STORE_NAME, 'readwrite');
+                        const store = tx.objectStore(VOICE_STORE_NAME);
+                        let record = null;
+                        const fail = err => {
+                            try {
+                                tx.abort();
+                            } catch (e) {
+                            }
+                            db.close();
+                            reject(err);
+                        };
+                        tx.oncomplete = () => {
+                            db.close();
+                            resolve(record);
+                        };
+                        tx.onerror = () => {
+                            db.close();
+                            reject(tx.error || new Error('IndexedDB transaction failed'));
+                        };
+                        tx.onabort = () => {
+                            if (!record) return;
+                            db.close();
+                            reject(tx.error || new Error('IndexedDB transaction aborted'));
+                        };
+                        const getReq = store.get(check.name);
+                        getReq.onsuccess = () => {
+                            if (getReq.result && !overwrite) {
+                                fail(new Error('VOICE_EXISTS'));
+                                return;
+                            }
+                            const payload = JSON.parse(JSON.stringify(data));
+                            payload.voiceName = check.name;
+                            record = {
+                                voiceName: check.name,
+                                updatedAt: new Date().toISOString(),
+                                data: payload
+                            };
+                            store.put(record);
+                        };
+                        getReq.onerror = () => fail(getReq.error || new Error('IndexedDB request failed'));
+                    });
+                }
+
+                static async getAllKeys() {
+                    const db = await VoiceDatabase.open();
+                    try {
+                        const tx = db.transaction(VOICE_STORE_NAME, 'readonly');
+                        const store = tx.objectStore(VOICE_STORE_NAME);
+                        if (store.getAllKeys) return await requestToPromise(store.getAllKeys());
+                        return (await requestToPromise(store.getAll())).map(r => r.voiceName);
+                    } finally {
+                        db.close();
+                    }
+                }
+
+                static async load(voiceName) {
+                    const name = normalizeVoiceName(voiceName);
+                    const db = await VoiceDatabase.open();
+                    try {
+                        const tx = db.transaction(VOICE_STORE_NAME, 'readonly');
+                        return await requestToPromise(tx.objectStore(VOICE_STORE_NAME).get(name));
+                    } finally {
+                        db.close();
+                    }
+                }
+
+                static async delete(voiceName) {
+                    const name = normalizeVoiceName(voiceName);
+                    const db = await VoiceDatabase.open();
+                    try {
+                        const tx = db.transaction(VOICE_STORE_NAME, 'readwrite');
+                        tx.objectStore(VOICE_STORE_NAME).delete(name);
+                        await txDone(tx);
+                    } finally {
+                        db.close();
+                    }
+                }
+
+                static async rename(oldName, newName) {
+                    const oldKey = normalizeVoiceName(oldName);
+                    const check = validateVoiceName(newName);
+                    if (!check.ok) throw new Error(check.message);
+                    if (oldKey === check.name) return await VoiceDatabase.load(oldKey);
+                    const db = await VoiceDatabase.open();
+                    return new Promise((resolve, reject) => {
+                        const tx = db.transaction(VOICE_STORE_NAME, 'readwrite');
+                        const store = tx.objectStore(VOICE_STORE_NAME);
+                        let record = null;
+                        const fail = err => {
+                            try {
+                                tx.abort();
+                            } catch (e) {
+                            }
+                            db.close();
+                            reject(err);
+                        };
+                        tx.oncomplete = () => {
+                            db.close();
+                            resolve(record);
+                        };
+                        tx.onerror = () => {
+                            db.close();
+                            reject(tx.error || new Error('IndexedDB transaction failed'));
+                        };
+                        tx.onabort = () => {
+                            if (!record) return;
+                            db.close();
+                            reject(tx.error || new Error('IndexedDB transaction aborted'));
+                        };
+                        const oldReq = store.get(oldKey);
+                        oldReq.onsuccess = () => {
+                            const oldRecord = oldReq.result;
+                            if (!oldRecord) {
+                                fail(new Error('VOICE_NOT_FOUND'));
+                                return;
+                            }
+                            const newReq = store.get(check.name);
+                            newReq.onsuccess = () => {
+                                if (newReq.result) {
+                                    fail(new Error('VOICE_EXISTS'));
+                                    return;
+                                }
+                                const data = JSON.parse(JSON.stringify(oldRecord.data || {}));
+                                data.voiceName = check.name;
+                                if (data.master) data.master.voiceName = check.name;
+                                record = {
+                                    voiceName: check.name,
+                                    updatedAt: new Date().toISOString(),
+                                    data
+                                };
+                                store.delete(oldKey);
+                                store.put(record);
+                            };
+                            newReq.onerror = () => fail(newReq.error || new Error('IndexedDB request failed'));
+                        };
+                        oldReq.onerror = () => fail(oldReq.error || new Error('IndexedDB request failed'));
+                    });
+                }
+            }
 
             // ================================================================
             //  AUDIO GRAPH
@@ -1329,11 +1738,16 @@
                 Tone.start().then(() => {
                     try {
                         // Global master chain
-                        gMaster = new Tone.Gain(0.8).toDestination();
-                        gPanner = new Tone.Panner(0).connect(gMaster);
+                        gMaster = new Tone.Gain(masterSt.volume).toDestination();
+                        gPanner = new Tone.Panner(masterSt.pan).connect(gMaster);
+                        gMasterFilter = new Tone.Filter({
+                            type: 'lowpass',
+                            frequency: masterSt.filterCutoff,
+                            Q: masterSt.resonance
+                        }).connect(gPanner);
 
                         // Effects bus (all effects route into panner)
-                        gReverb = new Tone.Reverb({decay: 1.5, wet: 0}).connect(gPanner);
+                        gReverb = new Tone.Reverb({decay: 1.5, wet: 0}).connect(gMasterFilter);
                         gPingPong = new Tone.PingPongDelay({delayTime: 0.25, feedback: 0.3, wet: 0}).connect(gReverb);
                         gChorus = new Tone.Chorus({frequency: 4, delayTime: 2.5, depth: 0.5, wet: 0}).connect(gPingPong);
                         gChorus.start();
@@ -1342,39 +1756,53 @@
                         // Reverb IR generation (non-blocking; wet=0 so dry path unaffected)
                         gReverb.generate().catch(e => console.warn('[Reverb.generate]', e));
 
-                        // Per-module chains: synth → vibrato → filter → mixGain → pitchShift
+                        // Per-module chains: synth/sub/noise → vibrato → filter/bypass → amp LFO → mixGain → pitchShift
                         for (let i = 0; i < NM; i++) {
                             const def = MDEF[i];
                             const st = mSt[i];
+                            normalizeExtendedState(st);
                             const n = mN[i];
 
                             n.mixGain = new Tone.Gain(st.mix).connect(gPitchShift);
+                            n.ampGain = new Tone.Gain(1).connect(n.mixGain);
                             n.filt = new Tone.Filter({
                                 frequency: st.filter.freq,
                                 type: st.filter.type,
                                 Q: st.filter.Q
-                            }).connect(n.mixGain);
+                            }).connect(n.ampGain);
 
                             // LFO is connected by applyLFO() only when it is actually targeting the filter.
                             n.lfo = new Tone.LFO({frequency: st.lfo.rate, min: st.filter.freq, max: st.filter.freq}).start();
+                            n.ampLfo = new Tone.LFO({frequency: st.lfo.rate, min: 1, max: 1}).start();
 
                             // Keep a dry pass-through here; pitch LFO modulates synth detune directly.
-                            n.vibrato = new Tone.Vibrato({frequency: st.lfo.rate, depth: 0, wet: 0}).connect(n.filt);
+                            n.vibrato = new Tone.Vibrato({frequency: st.lfo.rate, depth: 0, wet: 0});
 
                             if (def.isNoise) {
+                                n.crush = new Tone.BitCrusher(noiseCrushBits(st)).connect(n.vibrato);
                                 n.synth = new Tone.NoiseSynth({
                                     noise: {type: st.noiseType},
                                     envelope: {...st.env},
-                                }).connect(n.vibrato);
+                                }).connect(n.crush);
                                 n.synth.volume.value = Tone.gainToDb(st.amp);
                             } else {
                                 n.synth = new Tone.PolySynth(Tone.Synth, {
-                                    oscillator: {type: st.waveform},
+                                    oscillator: oscOptions(st),
                                     envelope: {...st.env},
                                     detune: moduleDetuneCents(st),
+                                    portamento: masterSt.portamento,
                                 }).connect(n.vibrato);
                                 n.synth.volume.value = Tone.gainToDb(st.amp);
+                                n.subGain = new Tone.Gain(st.sub.volume).connect(n.vibrato);
+                                n.subSynth = new Tone.PolySynth(Tone.Synth, {
+                                    oscillator: {type: st.sub.type},
+                                    envelope: {...st.env},
+                                    detune: moduleDetuneCents(st),
+                                    portamento: masterSt.portamento,
+                                }).connect(n.subGain);
+                                n.subSynth.volume.value = Tone.gainToDb(st.amp);
                             }
+                            updateFilterRoute(i);
                         }
 
                         audioReady = true;
@@ -1406,10 +1834,15 @@
                     if (!mSt[i].enabled) continue;
                     const n = mN[i];
                     const def = MDEF[i];
+                    const playNote = transposeNote(note, masterSt.transpose);
+                    applyEnvAttack(i, t);
                     if (def.isNoise) {
                         n.synth.triggerAttack(t);
                     } else {
-                        n.synth.triggerAttack(note, t);
+                        n.synth.triggerAttack(playNote, t);
+                        if (n.subSynth && mSt[i].sub.volume > 0) {
+                            n.subSynth.triggerAttack(transposeNote(playNote, -12), t);
+                        }
                     }
                 }
             }
@@ -1424,16 +1857,55 @@
                     if (!mSt[i].enabled) continue;
                     const n = mN[i];
                     const def = MDEF[i];
+                    const playNote = transposeNote(note, masterSt.transpose);
                     if (def.isNoise) {
                         n.synth.triggerRelease(t);
                     } else {
-                        n.synth.triggerRelease(note, t);
+                        n.synth.triggerRelease(playNote, t);
+                        if (n.subSynth) n.subSynth.triggerRelease(transposeNote(playNote, -12), t);
                     }
+                    applyEnvRelease(i, t);
+                }
+            }
+
+            function releaseAllActive() {
+                if (!audioReady) {
+                    activeNotes.clear();
+                    return;
+                }
+                Array.from(activeNotes).forEach(note => noteOff(note));
+                activeNotes.clear();
+            }
+
+            function transposeNote(note, semi) {
+                if (!semi) return note;
+                try {
+                    return Tone.Frequency(note).transpose(semi).toNote();
+                } catch (e) {
+                    return note;
                 }
             }
 
             function moduleDetuneCents(st) {
                 return (st.pitch * 100) + st.detune;
+            }
+
+            function clamp(v, min, max) {
+                return Math.min(max, Math.max(min, v));
+            }
+
+            function oscOptions(st) {
+                const base = ['sine', 'triangle', 'sawtooth', 'square'].includes(st.waveform) ? st.waveform : 'sawtooth';
+                if (st.unison.count > 1) {
+                    return {type: 'fat' + base, count: st.unison.count, spread: st.unison.detune};
+                }
+                return {type: base};
+            }
+
+            function noiseCrushBits(st) {
+                const sr = clamp(st.noise.sampleRate, 2000, 44100);
+                if (sr >= 44100) return 16;
+                return Math.round(4 + (sr - 2000) / (44100 - 2000) * 12);
             }
 
             function setToneParam(param, value, ramp = 0.03) {
@@ -1487,6 +1959,15 @@
             function applyModulePitch(i) {
                 if (!audioReady || MDEF[i].isNoise) return;
                 mN[i].synth.set({detune: moduleDetuneCents(mSt[i])});
+                if (mN[i].subSynth) mN[i].subSynth.set({detune: moduleDetuneCents(mSt[i])});
+            }
+
+            function normalizeExtendedState(st) {
+                if (!st.eg) st.eg = {pitch: 0, filter: 0};
+                if (!st.unison) st.unison = {count: 1, detune: 20};
+                if (!st.sub) st.sub = {type: 'sine', volume: 0};
+                if (!st.noise) st.noise = {sampleRate: 44100, filterBypass: false};
+                normalizeLFOState(st.lfo);
             }
 
             function normalizeLFOState(lfo) {
@@ -1495,15 +1976,65 @@
                     if (lfo.target === 'pitch') {
                         lfo.pitchDepth = oldDepth;
                         if (lfo.filterDepth === undefined) lfo.filterDepth = 0;
+                        if (lfo.ampDepth === undefined) lfo.ampDepth = 0;
                     } else {
                         if (lfo.pitchDepth === undefined) lfo.pitchDepth = 0;
                         lfo.filterDepth = oldDepth;
+                        if (lfo.ampDepth === undefined) lfo.ampDepth = 0;
                     }
                 }
                 if (lfo.pitchDepth === undefined) lfo.pitchDepth = 0;
                 if (lfo.filterDepth === undefined) lfo.filterDepth = 0;
+                if (lfo.ampDepth === undefined) lfo.ampDepth = 0;
                 delete lfo.depth;
                 delete lfo.target;
+            }
+
+            function filterEnvTarget(st) {
+                return clamp(st.filter.freq + st.eg.filter * 80, 20, 20000);
+            }
+
+            function pitchEnvTarget(st) {
+                return moduleDetuneCents(st) + st.eg.pitch * 24;
+            }
+
+            function applyEnvAttack(i, t) {
+                const st = mSt[i];
+                const n = mN[i];
+                const ramp = Math.max(0.01, st.env.attack + st.env.decay);
+                if (st.eg.filter !== 0 && !(MDEF[i].isNoise && st.noise.filterBypass)) {
+                    setToneParam(n.filt.frequency, filterEnvTarget(st), 0.001);
+                    setToneParam(n.filt.frequency, st.filter.freq, ramp);
+                }
+                if (!MDEF[i].isNoise && st.eg.pitch !== 0) {
+                    const target = pitchEnvTarget(st);
+                    n.synth.set({detune: target});
+                    if (n.subSynth) n.subSynth.set({detune: target});
+                    setTimeout(() => applyModulePitch(i), ramp * 1000);
+                }
+            }
+
+            function applyEnvRelease(i) {
+                const st = mSt[i];
+                const n = mN[i];
+                if (!(MDEF[i].isNoise && st.noise.filterBypass)) {
+                    setToneParam(n.filt.frequency, st.filter.freq, Math.max(0.01, st.env.release));
+                }
+                applyModulePitch(i);
+            }
+
+            function updateFilterRoute(i) {
+                if (!audioReady && !mN[i].vibrato) return;
+                const n = mN[i];
+                try {
+                    n.vibrato.disconnect();
+                } catch (e) {
+                }
+                if (MDEF[i].isNoise && mSt[i].noise.filterBypass) {
+                    n.vibrato.connect(n.ampGain);
+                } else {
+                    n.vibrato.connect(n.filt);
+                }
             }
 
             // ================================================================
@@ -1517,8 +2048,12 @@
                 if (!on && audioReady) {
                     activeNotes.forEach(note => {
                         try {
+                            const playNote = transposeNote(note, masterSt.transpose);
                             MDEF[i].isNoise ? mN[i].synth.triggerRelease(Tone.now())
-                                : mN[i].synth.triggerRelease(note, Tone.now());
+                                : mN[i].synth.triggerRelease(playNote, Tone.now());
+                            if (!MDEF[i].isNoise && mN[i].subSynth) {
+                                mN[i].subSynth.triggerRelease(transposeNote(playNote, -12), Tone.now());
+                            }
                         } catch (e) {
                         }
                     });
@@ -1528,13 +2063,35 @@
 
             function setWaveform(i, v) {
                 mSt[i].waveform = v;
-                if (audioReady) mN[i].synth.set({oscillator: {type: v}});
+                if (audioReady) mN[i].synth.set({oscillator: oscOptions(mSt[i])});
                 updateJSON();
             }
 
             function setNoiseType(i, v) {
                 mSt[i].noiseType = v;
                 if (audioReady) mN[i].synth.set({noise: {type: v}});
+                updateJSON();
+            }
+
+            function setNoiseSampleRate(i, v) {
+                v = +v;
+                mSt[i].noise.sampleRate = v;
+                const lbl = v >= 44100 ? 'Clean' : (v / 1000).toFixed(1) + 'k';
+                document.getElementById('nsrV' + i).textContent = lbl;
+                if (audioReady && mN[i].crush) {
+                    try {
+                        mN[i].crush.bits.value = noiseCrushBits(mSt[i]);
+                    } catch (e) {
+                        mN[i].crush.bits = noiseCrushBits(mSt[i]);
+                    }
+                }
+                updateJSON();
+            }
+
+            function setNoiseFilterBypass(i, on) {
+                mSt[i].noise.filterBypass = !!on;
+                updateFilterRoute(i);
+                applyLFO(i);
                 updateJSON();
             }
 
@@ -1558,7 +2115,10 @@
                 v = +v;
                 mSt[i].amp = v / 100;
                 document.getElementById('av' + i).textContent = v + '%';
-                if (audioReady) mN[i].synth.volume.value = Tone.gainToDb(v / 100);
+                if (audioReady) {
+                    mN[i].synth.volume.value = Tone.gainToDb(v / 100);
+                    if (mN[i].subSynth) mN[i].subSynth.volume.value = Tone.gainToDb(v / 100);
+                }
                 updateJSON();
             }
 
@@ -1568,6 +2128,7 @@
                 document.getElementById(vid).textContent = param === 'sustain' ? v.toFixed(2) : v.toFixed(2) + 's';
                 if (audioReady) {
                     mN[i].synth.set({envelope: {[param]: v}});
+                    if (mN[i].subSynth) mN[i].subSynth.set({envelope: {[param]: v}});
                 }
                 drawEnv(i);
                 updateJSON();
@@ -1611,6 +2172,7 @@
                 document.getElementById('lrV' + i).textContent = v.toFixed(1) + 'Hz';
                 if (audioReady) {
                     mN[i].lfo.frequency.value = v;
+                    mN[i].ampLfo.frequency.value = v;
                     mN[i].vibrato.frequency.value = v;
                 }
                 updateJSON();
@@ -1636,6 +2198,66 @@
                 updateJSON();
             }
 
+            function setLFOAmpDepth(i, v) {
+                v = +v;
+                mSt[i].lfo.ampDepth = v;
+                document.getElementById('laV' + i).textContent = v + '%';
+                applyLFO(i);
+                updateJSON();
+            }
+
+            function setUnisonCount(i, v) {
+                v = +v;
+                mSt[i].unison.count = v;
+                document.getElementById('ucV' + i).textContent = v + 'v';
+                if (audioReady && !MDEF[i].isNoise) mN[i].synth.set({oscillator: oscOptions(mSt[i])});
+                updateJSON();
+            }
+
+            function setUnisonDetune(i, v) {
+                v = +v;
+                mSt[i].unison.detune = v;
+                document.getElementById('udV' + i).textContent = v + 'ct';
+                if (audioReady && !MDEF[i].isNoise) mN[i].synth.set({oscillator: oscOptions(mSt[i])});
+                updateJSON();
+            }
+
+            function setSubType(i, v) {
+                mSt[i].sub.type = v;
+                if (audioReady && mN[i].subSynth) mN[i].subSynth.set({oscillator: {type: v}});
+                updateJSON();
+            }
+
+            function setSubVol(i, v) {
+                v = +v;
+                mSt[i].sub.volume = v / 100;
+                document.getElementById('svV' + i).textContent = v + '%';
+                if (audioReady && mN[i].subGain) mN[i].subGain.gain.value = v / 100;
+                updateJSON();
+            }
+
+            function applyPortamentoToSynths() {
+                if (!audioReady) return;
+                mN.forEach((n, i) => {
+                    if (MDEF[i].isNoise) return;
+                    try {
+                        n.synth.set({portamento: masterSt.portamento});
+                    } catch (e) {
+                    }
+                    try {
+                        if (n.subSynth) n.subSynth.set({portamento: masterSt.portamento});
+                    } catch (e) {
+                    }
+                });
+            }
+
+            function setEGAmount(i, target, v) {
+                v = +v;
+                mSt[i].eg[target] = v;
+                document.getElementById((target === 'pitch' ? 'epV' : 'efV') + i).textContent = v + '%';
+                updateJSON();
+            }
+
             function setLFOTgt(i, t) {
                 if (t === 'pitch') {
                     setLFOPitchDepth(i, mSt[i].lfo.pitchDepth || mSt[i].lfo.depth || 0);
@@ -1658,16 +2280,30 @@
                 setToneParam(n.filt.frequency, baseFreq);
 
                 const pitchOn = !MDEF[i].isNoise && pitchDepth > 0;
-                setVibratoDepth(n.vibrato, pitchOn ? pitchDepth / 200 : 0);
+                setVibratoDepth(n.vibrato, pitchOn ? pitchDepth / 100 : 0);
                 setSignalValue(n.vibrato.wet, pitchOn ? 1 : 0);
                 applyModulePitch(i);
 
                 if (filterDepth > 0) {
                     // LFO oscillates around baseFreq; depth 0-100 maps to ±0-4000 Hz range.
                     const range = filterDepth * 40;
-                    n.lfo.min = Math.max(20, baseFreq - range);
-                    n.lfo.max = Math.min(20000, baseFreq + range);
-                    n.lfo.connect(n.filt.frequency);
+                    n.lfo.min = -Math.min(baseFreq - 20, range);
+                    n.lfo.max = Math.min(20000 - baseFreq, range);
+                    if (!(MDEF[i].isNoise && mSt[i].noise.filterBypass)) n.lfo.connect(n.filt.frequency);
+                }
+
+                try {
+                    n.ampLfo.disconnect();
+                } catch (e) {
+                }
+                if (mSt[i].lfo.ampDepth > 0) {
+                    const range = mSt[i].lfo.ampDepth / 100;
+                    n.ampGain.gain.value = 0;
+                    n.ampLfo.min = 1 - range;
+                    n.ampLfo.max = 1;
+                    n.ampLfo.connect(n.ampGain.gain);
+                } else {
+                    n.ampGain.gain.value = 1;
                 }
             }
 
@@ -1881,7 +2517,10 @@
                     alert('JSON パースエラー:\n' + e.message);
                     return;
                 }
+                applyPresetData(data);
+            }
 
+            function applyPresetData(data) {
                 // ── modules ──────────────────────────────────────────────────
                 if (Array.isArray(data.modules)) {
                     data.modules.forEach((m, i) => {
@@ -1893,10 +2532,14 @@
                         if (m.mix !== undefined) st.mix = +m.mix;
                         if (m.envelope) Object.assign(st.env, m.envelope);
                         if (m.filter) Object.assign(st.filter, m.filter);
+                        if (m.eg) Object.assign(st.eg, m.eg);
+                        if (m.unison) Object.assign(st.unison, m.unison);
+                        if (m.sub) Object.assign(st.sub, m.sub);
+                        if (m.noise) Object.assign(st.noise, m.noise);
                         if (m.lfo) {
                             Object.assign(st.lfo, m.lfo);
-                            normalizeLFOState(st.lfo);
                         }
+                        normalizeExtendedState(st);
                         if (!def.isNoise) {
                             if (m.waveform !== undefined) st.waveform = m.waveform;
                             if (m.pitch !== undefined) st.pitch = +m.pitch;
@@ -1914,11 +2557,21 @@
                     }
                 }
 
+                // ── master ───────────────────────────────────────────────────
+                if (data.master) {
+                    Object.assign(masterSt, data.master);
+                }
+                if (data.voiceName !== undefined) {
+                    masterSt.voiceName = String(data.voiceName || 'Untitled Voice');
+                }
+                activeVoiceName = masterSt.voiceName;
+
                 // ── rebuild DOM ───────────────────────────────────────────────
                 document.getElementById('modGrid').innerHTML = '';
                 buildModules();
                 buildMixer();
                 buildFX();
+                applyMasterStateToUI();
 
                 // ── apply to live audio ───────────────────────────────────────
                 if (audioReady) {
@@ -1932,13 +2585,25 @@
                         if (!def.isNoise) {
                             n.synth.volume.value = Tone.gainToDb(st.amp);
                             try {
-                                n.synth.set({oscillator: {type: st.waveform}});
+                                n.synth.set({oscillator: oscOptions(st)});
                             } catch (e) {
                             }
                             n.synth.set({detune: moduleDetuneCents(st)});
                             n.synth.set({envelope: st.env});
+                            if (n.subSynth) {
+                                n.subSynth.volume.value = Tone.gainToDb(st.amp);
+                                n.subSynth.set({oscillator: {type: st.sub.type}, detune: moduleDetuneCents(st), envelope: st.env});
+                            }
+                            if (n.subGain) n.subGain.gain.value = st.sub.volume;
                         } else {
                             n.synth.set({noise: {type: st.noiseType}, envelope: st.env});
+                            if (n.crush) {
+                                try {
+                                    n.crush.bits.value = noiseCrushBits(st);
+                                } catch (e) {
+                                    n.crush.bits = noiseCrushBits(st);
+                                }
+                            }
                         }
                         n.synth.volume.value = Tone.gainToDb(st.amp);
 
@@ -1948,7 +2613,9 @@
                         } catch (e) {
                         }
                         n.lfo.frequency.value = st.lfo.rate;
+                        n.ampLfo.frequency.value = st.lfo.rate;
                         n.vibrato.frequency.value = st.lfo.rate;
+                        updateFilterRoute(i);
                         applyLFO(i);
                     });
 
@@ -1974,6 +2641,7 @@
                         }
                     }
                     if (gPitchShift) gPitchShift.pitch = gFxSt.pitchShift.pitch;
+                    applyMasterStateToUI();
                 }
 
                 updateJSON();
@@ -1982,8 +2650,20 @@
             // ================================================================
             //  MASTER
             // ================================================================
+            function fmtFreq(v) {
+                return v >= 1000 ? (v / 1000).toFixed(1) + 'kHz' : v.toFixed(0) + 'Hz';
+            }
+
+            function setVoiceName(v) {
+                masterSt.voiceName = v || 'Untitled Voice';
+                activeVoiceName = masterSt.voiceName;
+                setVoiceDbMessage('');
+                updateJSON();
+            }
+
             function setPan(v) {
                 v = parseFloat(v);
+                masterSt.pan = v;
                 const lbl = v === 0 ? 'C' : v > 0 ? 'R' + (v * 100).toFixed(0) : 'L' + (-v * 100).toFixed(0);
                 document.getElementById('panV').textContent = lbl;
                 if (audioReady) gPanner.pan.value = v;
@@ -1992,9 +2672,94 @@
 
             function setMasterVol(v) {
                 v = +v;
+                masterSt.volume = v / 100;
                 document.getElementById('masterV').textContent = v + '%';
                 if (audioReady) gMaster.gain.value = v / 100;
                 updateJSON();
+            }
+
+            function setTranspose(v) {
+                v = +v;
+                if (v !== masterSt.transpose) releaseAllActive();
+                masterSt.transpose = v;
+                document.getElementById('transposeV').textContent = (v >= 0 ? '+' : '') + v + 'st';
+                updateJSON();
+            }
+
+            function setPBRange(v) {
+                v = +v;
+                masterSt.pbRange = v;
+                document.getElementById('pbRangeV').textContent = v + 'st';
+                updateJSON();
+            }
+
+            function setModWheelSens(v) {
+                v = +v;
+                masterSt.modWheelSens = v / 100;
+                document.getElementById('modSensV').textContent = v + '%';
+                updateJSON();
+            }
+
+            function setPortamento(v) {
+                v = parseFloat(v);
+                masterSt.portamento = v;
+                document.getElementById('portaV').textContent = v.toFixed(2) + 's';
+                applyPortamentoToSynths();
+                updateJSON();
+            }
+
+            function setMasterCutoff(v) {
+                v = parseFloat(v);
+                masterSt.filterCutoff = v;
+                document.getElementById('masterCutoffV').textContent = fmtFreq(v);
+                if (audioReady && gMasterFilter) setToneParam(gMasterFilter.frequency, v, 0.05);
+                updateJSON();
+            }
+
+            function setMasterResonance(v) {
+                v = parseFloat(v);
+                masterSt.resonance = v;
+                document.getElementById('masterResV').textContent = v.toFixed(1);
+                if (audioReady && gMasterFilter) setToneParam(gMasterFilter.Q, v, 0.05);
+                updateJSON();
+            }
+
+            function applyMasterStateToUI() {
+                const voice = document.getElementById('voiceNameIn');
+                if (voice) voice.value = masterSt.voiceName;
+                const panSl = document.getElementById('panSl');
+                if (panSl) panSl.value = masterSt.pan;
+                const masterSl = document.getElementById('masterSl');
+                if (masterSl) masterSl.value = Math.round(masterSt.volume * 100);
+                const transposeSl = document.getElementById('transposeSl');
+                if (transposeSl) transposeSl.value = masterSt.transpose;
+                const pbRangeSl = document.getElementById('pbRangeSl');
+                if (pbRangeSl) pbRangeSl.value = masterSt.pbRange;
+                const modSensSl = document.getElementById('modSensSl');
+                if (modSensSl) modSensSl.value = Math.round(masterSt.modWheelSens * 100);
+                const portaSl = document.getElementById('portaSl');
+                if (portaSl) portaSl.value = masterSt.portamento;
+                const cutoffSl = document.getElementById('masterCutoffSl');
+                if (cutoffSl) cutoffSl.value = masterSt.filterCutoff;
+                const resSl = document.getElementById('masterResSl');
+                if (resSl) resSl.value = masterSt.resonance;
+
+                document.getElementById('panV').textContent = masterSt.pan === 0 ? 'C' : masterSt.pan > 0 ? 'R' + (masterSt.pan * 100).toFixed(0) : 'L' + (-masterSt.pan * 100).toFixed(0);
+                document.getElementById('masterV').textContent = Math.round(masterSt.volume * 100) + '%';
+                document.getElementById('transposeV').textContent = (masterSt.transpose >= 0 ? '+' : '') + masterSt.transpose + 'st';
+                document.getElementById('pbRangeV').textContent = masterSt.pbRange + 'st';
+                document.getElementById('modSensV').textContent = Math.round(masterSt.modWheelSens * 100) + '%';
+                document.getElementById('portaV').textContent = masterSt.portamento.toFixed(2) + 's';
+                document.getElementById('masterCutoffV').textContent = fmtFreq(masterSt.filterCutoff);
+                document.getElementById('masterResV').textContent = masterSt.resonance.toFixed(1);
+
+                if (audioReady) {
+                    gPanner.pan.value = masterSt.pan;
+                    gMaster.gain.value = masterSt.volume;
+                    setToneParam(gMasterFilter.frequency, masterSt.filterCutoff, 0.05);
+                    setToneParam(gMasterFilter.Q, masterSt.resonance, 0.05);
+                    applyPortamentoToSynths();
+                }
             }
 
             // ================================================================
@@ -2003,10 +2768,7 @@
             function buildModules() {
                 const grid = document.getElementById('modGrid');
                 const WAVES = [
-                    ['Basic', ['sine', 'square', 'sawtooth', 'triangle', 'pulse']],
-                    ['Fat', ['fatsine', 'fatsquare', 'fatsawtooth', 'fattriangle']],
-                    ['FM Mod', ['fmsine', 'fmsquare', 'fmsawtooth', 'fmtriangle']],
-                    ['AM Mod', ['amsine', 'amsquare', 'amsawtooth', 'amtriangle']],
+                    ['Basic', ['sine', 'triangle', 'sawtooth', 'square']],
                 ];
                 const fmtW = w => {
                     if (w.startsWith('fat')) return 'Fat ' + w.slice(3).replace(/^./, c => c.toUpperCase());
@@ -2017,7 +2779,7 @@
 
                 MDEF.forEach((def, i) => {
                     const st = mSt[i];
-                    normalizeLFOState(st.lfo);
+                    normalizeExtendedState(st);
                     const ampPct = Math.round(st.amp * 100);
                     const mixPct = Math.round(st.mix * 100);
                     const pitchLbl = (st.pitch >= 0 ? '+' : '') + st.pitch + 'st';
@@ -2025,6 +2787,8 @@
                     const fcLbl = st.filter.freq >= 1000 ? (st.filter.freq / 1000).toFixed(1) + 'kHz' : st.filter.freq.toFixed(0) + 'Hz';
                     const pitchDepth = def.isNoise ? 0 : st.lfo.pitchDepth;
                     const pitchDepthDisabled = def.isNoise ? ' disabled' : '';
+                    const sampleRateLbl = st.noise.sampleRate >= 44100 ? 'Clean' : (st.noise.sampleRate / 1000).toFixed(1) + 'k';
+                    const subVolPct = Math.round(st.sub.volume * 100);
 
                     const waveOpts = WAVES.map(([grp, ws]) =>
                         `<optgroup label="${grp}">${ws.map(w =>
@@ -2039,8 +2803,16 @@
         <option value="pink"${st.noiseType === 'pink' ? ' selected' : ''}>Pink</option>
         <option value="brown"${st.noiseType === 'brown' ? ' selected' : ''}>Brown</option>
       </select>
-      <div class="pl">Amp <span class="pv" id="av${i}">${ampPct}%</span></div>
-      <input type="range" min="0" max="100" value="${ampPct}" id="slA${i}" class="w-100 mb-1" oninput="setAmp(${i},this.value)">
+      <div class="row g-1 mb-1">
+        <div class="col-6">
+          <div class="pl">Amp <span class="pv" id="av${i}">${ampPct}%</span></div>
+          <input type="range" min="0" max="100" value="${ampPct}" id="slA${i}" class="w-100" oninput="setAmp(${i},this.value)">
+        </div>
+        <div class="col-6">
+          <div class="pl">Sample Rate <span class="pv" id="nsrV${i}">${sampleRateLbl}</span></div>
+          <input type="range" min="2000" max="44100" value="${st.noise.sampleRate}" step="100" id="nsr${i}" class="w-100" oninput="setNoiseSampleRate(${i},this.value)">
+        </div>
+      </div>
     ` : `
       <div class="pl">Waveform</div>
       <select class="form-select form-select-sm mb-1" id="wt${i}" onchange="setWaveform(${i},this.value)">${waveOpts}</select>
@@ -2058,6 +2830,28 @@
           <input type="range" min="0" max="100" value="${ampPct}" id="slA${i}" class="w-100" oninput="setAmp(${i},this.value)">
         </div>
       </div>
+      <div class="mod-sect">UNISON / SUB</div>
+      <div class="row g-1 mb-1">
+        <div class="col-4">
+          <div class="pl">Voices <span class="pv" id="ucV${i}">${st.unison.count}v</span></div>
+          <input type="range" min="1" max="8" value="${st.unison.count}" step="1" id="uc${i}" class="w-100" oninput="setUnisonCount(${i},this.value)">
+        </div>
+        <div class="col-4">
+          <div class="pl">Spread <span class="pv" id="udV${i}">${st.unison.detune}ct</span></div>
+          <input type="range" min="0" max="100" value="${st.unison.detune}" step="1" id="ud${i}" class="w-100" oninput="setUnisonDetune(${i},this.value)">
+        </div>
+        <div class="col-4">
+          <div class="pl">Sub Vol <span class="pv" id="svV${i}">${subVolPct}%</span></div>
+          <input type="range" min="0" max="100" value="${subVolPct}" id="sv${i}" class="w-100" oninput="setSubVol(${i},this.value)">
+        </div>
+      </div>
+      <div class="pl">Sub Type</div>
+      <select class="form-select form-select-sm mb-1" id="subt${i}" onchange="setSubType(${i},this.value)">
+        <option value="sine"${st.sub.type === 'sine' ? ' selected' : ''}>Sine</option>
+        <option value="triangle"${st.sub.type === 'triangle' ? ' selected' : ''}>Triangle</option>
+        <option value="sawtooth"${st.sub.type === 'sawtooth' ? ' selected' : ''}>Saw</option>
+        <option value="square"${st.sub.type === 'square' ? ' selected' : ''}>Square</option>
+      </select>
     `;
 
                     const col = document.createElement('div');
@@ -2098,6 +2892,18 @@
           </div>
         </div>
         <canvas id="ec${i}" class="env-cvs"></canvas>
+        <div class="row g-1 mb-1">
+          <div class="col-6">
+            <div class="pl">EG → Pitch <span class="pv" id="epV${i}">${def.isNoise ? 0 : st.eg.pitch}%</span></div>
+            <input type="range" min="-100" max="100" value="${def.isNoise ? 0 : st.eg.pitch}" id="egp${i}" class="w-100"
+                   oninput="setEGAmount(${i},'pitch',this.value)"${def.isNoise ? ' disabled' : ''}>
+          </div>
+          <div class="col-6">
+            <div class="pl">EG → Filter <span class="pv" id="efV${i}">${st.eg.filter}%</span></div>
+            <input type="range" min="-100" max="100" value="${st.eg.filter}" id="egf${i}" class="w-100"
+                   oninput="setEGAmount(${i},'filter',this.value)">
+          </div>
+        </div>
 
         <div class="mod-sect">FILTER</div>
         <div class="row g-1 mb-1">
@@ -2121,23 +2927,33 @@
           <input type="range" min="0.1" max="20" value="${st.filter.Q}" step="0.1" id="slFq${i}" class="w-100"
                  oninput="setFiltQ(${i},this.value)">
         </div>
+        ${def.isNoise ? `
+        <div class="form-check form-switch mb-1">
+          <input class="form-check-input" type="checkbox" id="fbp${i}" ${st.noise.filterBypass ? 'checked' : ''} onchange="setNoiseFilterBypass(${i},this.checked)">
+          <label class="form-check-label" for="fbp${i}" style="font-size:.66rem;color:var(--muted)">Filter Bypass</label>
+        </div>` : ''}
 
         <div class="mod-sect">LFO</div>
         <div class="row g-1 mb-1">
-          <div class="col-4">
+          <div class="col-3">
             <div class="pl">Rate <span class="pv" id="lrV${i}">${st.lfo.rate.toFixed(1)}Hz</span></div>
             <input type="range" min="0.01" max="20" value="${st.lfo.rate}" step="0.01" id="slLr${i}" class="w-100"
                    oninput="setLFORate(${i},this.value)">
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <div class="pl">Pitch <span class="pv" id="lpV${i}">${pitchDepth}%</span></div>
             <input type="range" min="0" max="100" value="${pitchDepth}" id="slLp${i}" class="w-100"
                    oninput="setLFOPitchDepth(${i},this.value)"${pitchDepthDisabled}>
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <div class="pl">Filter <span class="pv" id="lfV${i}">${st.lfo.filterDepth}%</span></div>
             <input type="range" min="0" max="100" value="${st.lfo.filterDepth}" id="slLf${i}" class="w-100"
                    oninput="setLFOFilterDepth(${i},this.value)">
+          </div>
+          <div class="col-3">
+            <div class="pl">Amp <span class="pv" id="laV${i}">${st.lfo.ampDepth}%</span></div>
+            <input type="range" min="0" max="100" value="${st.lfo.ampDepth}" id="slLa${i}" class="w-100"
+                   oninput="setLFOAmpDepth(${i},this.value)">
           </div>
         </div>
       </div>
@@ -2315,10 +3131,9 @@
             // ================================================================
             //  JSON OUTPUT
             // ================================================================
-            function updateJSON() {
-                const ta = document.getElementById('jsonOut');
-                if (!ta || document.activeElement === ta) return; // don't overwrite while user is editing
-                const out = {
+            function buildPresetData() {
+                return {
+                    voiceName: masterSt.voiceName,
                     modules: mSt.map((s, i) => {
                         normalizeLFOState(s.lfo);
                         return {
@@ -2333,10 +3148,22 @@
                             envelope: s.env,
                             filter: s.filter,
                             lfo: s.lfo,
+                            eg: s.eg,
+                            ...(MDEF[i].isNoise ? {noise: s.noise} : {
+                                unison: s.unison,
+                                sub: s.sub
+                            }),
                         };
                     }),
+                    master: masterSt,
                     globalEffects: gFxSt,
                 };
+            }
+
+            function updateJSON() {
+                const ta = document.getElementById('jsonOut');
+                if (!ta || document.activeElement === ta) return; // don't overwrite while user is editing
+                const out = buildPresetData();
                 ta.value = JSON.stringify(out, null, 2);
             }
 
@@ -2349,6 +3176,230 @@
                 });
             }
 
+            function setVoiceDbMessage(msg, type = '') {
+                const el = document.getElementById('voiceDbMsg');
+                if (!el) return;
+                el.textContent = msg || '';
+                el.className = 'voice-msg' + (type ? ' ' + type : '');
+            }
+
+            function setVoiceManagerMessage(msg, type = '') {
+                const el = document.getElementById('voiceManagerMsg');
+                if (!el) return;
+                el.textContent = msg || '';
+                el.className = 'voice-msg' + (type ? ' ' + type : '');
+            }
+
+            function showVoiceConfirm(message, okLabel = 'OK', danger = false) {
+                if (typeof bootstrap === 'undefined') return Promise.resolve(window.confirm(message));
+                const el = document.getElementById('voiceConfirmModal');
+                const msg = document.getElementById('voiceConfirmMessage');
+                const ok = document.getElementById('voiceConfirmOk');
+                msg.textContent = message;
+                ok.textContent = okLabel;
+                ok.className = danger ? 'btn btn-danger' : 'btn btn-primary';
+                const modal = bootstrap.Modal.getOrCreateInstance(el);
+                return new Promise(resolve => {
+                    pendingConfirmResolve = resolve;
+                    ok.onclick = () => {
+                        const done = pendingConfirmResolve;
+                        pendingConfirmResolve = null;
+                        modal.hide();
+                        if (done) done(true);
+                    };
+                    el.addEventListener('hidden.bs.modal', () => {
+                        if (pendingConfirmResolve) {
+                            const done = pendingConfirmResolve;
+                            pendingConfirmResolve = null;
+                            done(false);
+                        }
+                    }, {once: true});
+                    modal.show();
+                });
+            }
+
+            function formatVoiceDate(iso) {
+                if (!iso) return '';
+                const d = new Date(iso);
+                if (Number.isNaN(d.getTime())) return '';
+                return d.toLocaleString('ja-JP', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+
+            async function saveVoicePreset() {
+                const check = validateVoiceName(masterSt.voiceName);
+                if (!check.ok) {
+                    setVoiceDbMessage(check.message, 'error');
+                    return;
+                }
+                const data = buildPresetData();
+                data.voiceName = check.name;
+                data.master.voiceName = check.name;
+                try {
+                    const exists = await VoiceDatabase.load(check.name);
+                    if (exists) {
+                        const ok = await showVoiceConfirm('すでに同じ名前の設定があります。上書きしますか？', '上書き', false);
+                        if (!ok) return;
+                    }
+                    await VoiceDatabase.put(data, !!exists);
+                    masterSt.voiceName = check.name;
+                    activeVoiceName = check.name;
+                    applyMasterStateToUI();
+                    updateJSON();
+                    setVoiceDbMessage(`「${check.name}」を保存しました。`, 'ok');
+                    if (document.getElementById('voiceManagerModal')?.classList.contains('show')) await renderVoiceManager();
+                } catch (e) {
+                    setVoiceDbMessage(e.message === 'VOICE_EXISTS' ? 'すでに同じ名前の設定があります。' : e.message, 'error');
+                }
+            }
+
+            async function openVoiceManager() {
+                await renderVoiceManager();
+                if (typeof bootstrap === 'undefined') return;
+                bootstrap.Modal.getOrCreateInstance(document.getElementById('voiceManagerModal')).show();
+            }
+
+            async function renderVoiceManager() {
+                const list = document.getElementById('voiceList');
+                if (!list) return;
+                list.innerHTML = '';
+                setVoiceManagerMessage('');
+                try {
+                    const keys = (await VoiceDatabase.getAllKeys()).map(String).sort((a, b) => a.localeCompare(b, 'ja'));
+                    if (!keys.length) {
+                        const empty = document.createElement('div');
+                        empty.className = 'voice-msg';
+                        empty.textContent = '保存されているVoiceはありません。';
+                        list.appendChild(empty);
+                        return;
+                    }
+                    for (const name of keys) {
+                        const rec = await VoiceDatabase.load(name);
+                        const item = document.createElement('div');
+                        item.className = 'voice-item' + (activeVoiceName === name ? ' active' : '');
+
+                        const info = document.createElement('div');
+                        const title = document.createElement('div');
+                        title.className = 'voice-name';
+                        if (activeVoiceName === name) {
+                            const icon = document.createElement('i');
+                            icon.className = 'fas fa-check me-1';
+                            icon.style.color = 'var(--grn)';
+                            title.appendChild(icon);
+                        }
+                        title.appendChild(document.createTextNode(name));
+                        const meta = document.createElement('div');
+                        meta.className = 'voice-meta';
+                        meta.textContent = rec?.updatedAt ? '更新: ' + formatVoiceDate(rec.updatedAt) : '';
+                        info.appendChild(title);
+                        info.appendChild(meta);
+
+                        const actions = document.createElement('div');
+                        actions.className = 'voice-item-actions';
+                        const loadBtn = document.createElement('button');
+                        loadBtn.type = 'button';
+                        loadBtn.className = 'btn btn-sp btn-sm';
+                        loadBtn.innerHTML = '<i class="fas fa-file-import me-1"></i>読込';
+                        loadBtn.onclick = () => loadVoicePreset(name);
+                        const renameBtn = document.createElement('button');
+                        renameBtn.type = 'button';
+                        renameBtn.className = 'btn btn-s btn-sm';
+                        renameBtn.innerHTML = '<i class="fas fa-edit me-1"></i>名前変更';
+                        renameBtn.onclick = () => openRenameVoice(name);
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.type = 'button';
+                        deleteBtn.className = 'btn btn-outline-danger btn-sm';
+                        deleteBtn.innerHTML = '<i class="fas fa-trash-alt me-1"></i>削除';
+                        deleteBtn.onclick = () => deleteVoicePreset(name);
+                        actions.appendChild(loadBtn);
+                        actions.appendChild(renameBtn);
+                        actions.appendChild(deleteBtn);
+
+                        item.appendChild(info);
+                        item.appendChild(actions);
+                        list.appendChild(item);
+                    }
+                } catch (e) {
+                    setVoiceManagerMessage('一覧取得に失敗しました: ' + e.message, 'error');
+                }
+            }
+
+            async function loadVoicePreset(name) {
+                try {
+                    const rec = await VoiceDatabase.load(name);
+                    if (!rec) {
+                        setVoiceManagerMessage(`「${name}」が見つかりません。`, 'error');
+                        return;
+                    }
+                    applyPresetData(rec.data || {});
+                    activeVoiceName = rec.voiceName;
+                    setVoiceDbMessage(`「${rec.voiceName}」を読み込みました。`, 'ok');
+                    await renderVoiceManager();
+                } catch (e) {
+                    setVoiceManagerMessage('読込に失敗しました: ' + e.message, 'error');
+                }
+            }
+
+            async function deleteVoicePreset(name) {
+                const ok = await showVoiceConfirm(`本当に「${name}」を削除しますか？`, '削除', true);
+                if (!ok) return;
+                try {
+                    await VoiceDatabase.delete(name);
+                    if (activeVoiceName === name) activeVoiceName = null;
+                    setVoiceDbMessage(`「${name}」を削除しました。`, 'ok');
+                    await renderVoiceManager();
+                } catch (e) {
+                    setVoiceManagerMessage('削除に失敗しました: ' + e.message, 'error');
+                }
+            }
+
+            function openRenameVoice(name) {
+                pendingRenameVoiceName = name;
+                const input = document.getElementById('voiceRenameInput');
+                const err = document.getElementById('voiceRenameErr');
+                input.value = name;
+                err.textContent = '';
+                const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('voiceRenameModal'));
+                modal.show();
+                setTimeout(() => {
+                    input.focus();
+                    input.select();
+                }, 150);
+            }
+
+            async function confirmRenameVoice() {
+                const oldName = pendingRenameVoiceName;
+                const input = document.getElementById('voiceRenameInput');
+                const err = document.getElementById('voiceRenameErr');
+                const check = validateVoiceName(input.value);
+                if (!check.ok) {
+                    err.textContent = check.message;
+                    return;
+                }
+                try {
+                    const rec = await VoiceDatabase.rename(oldName, check.name);
+                    if (activeVoiceName === oldName) {
+                        activeVoiceName = check.name;
+                        masterSt.voiceName = check.name;
+                        applyMasterStateToUI();
+                        updateJSON();
+                    }
+                    bootstrap.Modal.getOrCreateInstance(document.getElementById('voiceRenameModal')).hide();
+                    pendingRenameVoiceName = null;
+                    setVoiceDbMessage(`「${oldName}」を「${rec.voiceName}」に変更しました。`, 'ok');
+                    await renderVoiceManager();
+                } catch (e) {
+                    err.textContent = e.message === 'VOICE_EXISTS'
+                        ? 'すでに同じ名前の設定があります。'
+                        : (e.message === 'VOICE_NOT_FOUND' ? '変更元のVoiceが見つかりません。' : e.message);
+                }
+            }
+
             // ================================================================
             //  INIT
             // ================================================================
@@ -2357,6 +3408,7 @@
                 buildMixer();
                 buildFX();
                 buildKeyboard();
+                applyMasterStateToUI();
                 updateJSON();
                 let _resizeT;
                 window.addEventListener('resize', () => {
@@ -2479,5 +3531,14 @@
         }
     })();
 </script>
+<script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker.register('./sw.js').catch(function (error) {
+                        console.error('Service Worker registration failed:', error);
+                    });
+                });
+            }
+        </script>
 </body>
 </html>
